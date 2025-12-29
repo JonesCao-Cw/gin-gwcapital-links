@@ -7,7 +7,7 @@
   <meta name="description" content="Gin-杰明 GWCAPITAL 合作开户链接与客服微信" />
   <style>
     :root{
-      --bg:#0b0f19;
+      --bg:#070a12;
       --card:#121a2b;
       --card2:#0f1626;
       --text:#e8eeff;
@@ -16,47 +16,110 @@
       --accent2:#7c5cff;
       --good:#34d399;
       --warn:#fbbf24;
-      --border:rgba(255,255,255,.10);
-      --shadow: 0 18px 40px rgba(0,0,0,.45);
-      --radius:18px;
+      --danger:#fb7185;
+      --border:rgba(255,255,255,.12);
+      --shadow: 0 22px 60px rgba(0,0,0,.55);
+      --radius:22px;
+
+      /* 🔧整体放大：你想更大就继续加 */
+      --containerMax: 1120px;
+      --heroPad: 32px;
+      --cardPad: 18px;
+      --h1: 26px;
+      --sub: 15px;
+      --title: 18px;
+      --desc: 14px;
+      --btn: 14px;
     }
+
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;
-      background: radial-gradient(1200px 700px at 20% 10%, rgba(124,92,255,.25), transparent 55%),
-                  radial-gradient(1000px 600px at 80% 20%, rgba(102,227,255,.18), transparent 55%),
-                  linear-gradient(180deg, #070a12, var(--bg) 35%, #070a12);
+      background:
+        radial-gradient(1200px 700px at 18% 8%, rgba(124,92,255,.26), transparent 55%),
+        radial-gradient(1100px 650px at 86% 14%, rgba(102,227,255,.18), transparent 55%),
+        linear-gradient(180deg, #050712, var(--bg) 35%, #04050c);
       color:var(--text);
       min-height:100vh;
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:28px 14px;
+      padding:34px 16px;
+      position:relative;
+      overflow:hidden;
     }
+
+    /* 🧬 背景科幻水印 GW */
+    .watermark{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      opacity:.18;
+      filter: blur(.2px);
+      mix-blend-mode: screen;
+    }
+    .watermark span{
+      font-weight:900;
+      font-size: min(46vw, 520px);
+      letter-spacing: .06em;
+      color: transparent;
+      background:
+        linear-gradient(90deg, rgba(102,227,255,.95), rgba(124,92,255,.95));
+      -webkit-background-clip: text;
+      background-clip: text;
+      text-shadow:
+        0 0 18px rgba(102,227,255,.22),
+        0 0 42px rgba(124,92,255,.18);
+      transform: rotate(-10deg);
+      user-select:none;
+    }
+    /* 轻微网格噪点（更科幻） */
+    .watermark:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+      background-size: 42px 42px;
+      opacity:.35;
+      mask-image: radial-gradient(closest-side, rgba(0,0,0,.0), rgba(0,0,0,.9));
+    }
+
     .wrap{
-      width:min(880px, 100%);
+      width:min(var(--containerMax), 100%);
+      position:relative;
+      z-index:1;
     }
+
     .hero{
-      padding:26px 22px 18px;
+      padding: var(--heroPad);
       border:1px solid var(--border);
-      background: linear-gradient(180deg, rgba(18,26,43,.88), rgba(15,22,38,.78));
+      background: linear-gradient(180deg, rgba(18,26,43,.92), rgba(15,22,38,.84));
       border-radius:var(--radius);
       box-shadow:var(--shadow);
       position:relative;
       overflow:hidden;
+      backdrop-filter: blur(10px);
     }
     .hero:before{
       content:"";
       position:absolute;
       inset:-2px;
-      background: radial-gradient(500px 220px at 20% 0%, rgba(102,227,255,.18), transparent 55%),
-                  radial-gradient(500px 220px at 80% 0%, rgba(124,92,255,.18), transparent 55%);
+      background:
+        radial-gradient(520px 260px at 22% 0%, rgba(102,227,255,.18), transparent 60%),
+        radial-gradient(520px 260px at 78% 0%, rgba(124,92,255,.20), transparent 60%);
       pointer-events:none;
     }
+
     h1{
-      margin:0 0 8px;
-      font-size:22px;
+      margin:0 0 10px;
+      font-size: var(--h1);
       letter-spacing:.2px;
       position:relative;
       z-index:1;
@@ -64,8 +127,8 @@
     .sub{
       margin:0;
       color:var(--muted);
-      font-size:14px;
-      line-height:1.6;
+      font-size: var(--sub);
+      line-height:1.7;
       position:relative;
       z-index:1;
     }
@@ -73,74 +136,79 @@
     .grid{
       display:grid;
       grid-template-columns: 1fr;
-      gap:14px;
-      margin-top:14px;
+      gap:16px;
+      margin-top:18px;
     }
-    @media (min-width: 760px){
+    @media (min-width: 900px){
       .grid{ grid-template-columns: 1fr 1fr 1fr; }
     }
 
     .card{
       border:1px solid var(--border);
-      background: linear-gradient(180deg, rgba(18,26,43,.88), rgba(15,22,38,.78));
+      background: linear-gradient(180deg, rgba(18,26,43,.92), rgba(15,22,38,.84));
       border-radius:var(--radius);
-      padding:16px;
-      box-shadow: 0 14px 28px rgba(0,0,0,.35);
+      padding: var(--cardPad);
+      box-shadow: 0 16px 34px rgba(0,0,0,.38);
       position:relative;
       overflow:hidden;
-      min-height: 210px;
+      min-height: 240px; /* 🔧整体更大 */
     }
+
     .badge{
       display:inline-flex;
       align-items:center;
       gap:8px;
-      font-size:12px;
-      padding:6px 10px;
+      font-size:13px;
+      padding:7px 11px;
       border-radius:999px;
       border:1px solid var(--border);
       color:var(--muted);
       background: rgba(255,255,255,.03);
     }
     .title{
-      margin:10px 0 6px;
-      font-size:16px;
+      margin:12px 0 8px;
+      font-size: var(--title);
       line-height:1.35;
+      font-weight:800;
     }
     .desc{
-      margin:0 0 14px;
+      margin:0 0 16px;
       color:var(--muted);
-      font-size:13px;
-      line-height:1.6;
+      font-size: var(--desc);
+      line-height:1.7;
     }
+
     .btn{
       width:100%;
       border:none;
-      border-radius:14px;
-      padding:12px 14px;
-      font-weight:700;
+      border-radius:16px;
+      padding:14px 16px; /* 🔧按钮更大 */
+      font-weight:900;
       cursor:pointer;
       color:#061018;
-      background: linear-gradient(90deg, var(--accent), rgba(102,227,255,.75));
-      box-shadow: 0 10px 22px rgba(102,227,255,.12);
+      font-size: var(--btn);
+      background: linear-gradient(90deg, var(--accent), rgba(102,227,255,.78));
+      box-shadow: 0 12px 26px rgba(102,227,255,.12);
       transition: transform .08s ease, filter .08s ease;
     }
-    .btn:hover{ filter:brightness(1.05) }
+    .btn:hover{ filter:brightness(1.06) }
     .btn:active{ transform: translateY(1px) }
     .btn.alt{
       color:#0a0914;
-      background: linear-gradient(90deg, var(--accent2), rgba(124,92,255,.75));
-      box-shadow: 0 10px 22px rgba(124,92,255,.14);
+      background: linear-gradient(90deg, var(--accent2), rgba(124,92,255,.78));
+      box-shadow: 0 12px 26px rgba(124,92,255,.14);
     }
     .btn.wechat{
       color:#06120b;
-      background: linear-gradient(90deg, var(--good), rgba(52,211,153,.75));
-      box-shadow: 0 10px 22px rgba(52,211,153,.14);
+      background: linear-gradient(90deg, var(--good), rgba(52,211,153,.80));
+      box-shadow: 0 12px 26px rgba(52,211,153,.14);
     }
+
     .small{
       margin-top:10px;
-      font-size:12px;
+      font-size:12.5px;
       color:var(--muted);
-      line-height:1.5;
+      line-height:1.55;
       word-break: break-all;
     }
 
@@ -157,27 +225,56 @@
       box-shadow: 0 16px 30px rgba(0,0,0,.45);
       font-size: 13px;
       display:none;
-      max-width: min(560px, calc(100% - 24px));
+      max-width: min(640px, calc(100% - 24px));
+      z-index: 10;
     }
     .toast.show{ display:block; }
+
+    /* ✅ 风险提示（你要的“点击即视为同意”） */
+    .risk{
+      margin-top:18px;
+      padding:14px 16px;
+      border-radius:16px;
+      border:1px solid rgba(251,113,133,.28);
+      background: linear-gradient(180deg, rgba(251,113,133,.10), rgba(255,255,255,.02));
+      color: rgba(255,255,255,.92);
+      font-size: 13px;
+      line-height: 1.75;
+    }
+    .risk b{ color:#fff }
+    .risk .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-weight:900;
+      letter-spacing:.2px;
+      margin-bottom:8px;
+      color: rgba(255,255,255,.95);
+    }
+    .risk .dot{
+      width:10px;height:10px;border-radius:999px;
+      background: var(--danger);
+      box-shadow: 0 0 18px rgba(251,113,133,.35);
+    }
+
+    /* 原本底部提示 */
     .hint{
-      margin-top:14px;
+      margin-top:12px;
       padding:12px 14px;
       border-radius:14px;
-      border:1px dashed rgba(255,255,255,.18);
+      border:1px dashed rgba(255,255,255,.20);
       color: var(--muted);
-      font-size:12px;
+      font-size:12.5px;
       line-height:1.7;
       background: rgba(255,255,255,.02);
     }
-    .k{
-      color: var(--text);
-      font-weight:700;
-    }
+    .k{ color: var(--text); font-weight:900; }
   </style>
 </head>
 
 <body>
+  <div class="watermark" aria-hidden="true"><span>GW</span></div>
+
   <div class="wrap">
     <section class="hero">
       <h1>Gin-杰明 · GWCAPITAL 合作链接</h1>
@@ -212,8 +309,17 @@
         </div>
       </div>
 
+      <!-- ✅ 你要的“规避风险标语”放在提示上面 -->
+      <div class="risk" role="note" aria-label="风险提示">
+        <div class="tag"><span class="dot"></span><b>风险提示</b></div>
+        本页面仅用于信息展示与合作入口跳转，不构成任何投资建议或收益承诺。您在本页面进行的任何点击、跳转、注册、咨询等操作均为<b>个人自主行为</b>，由此产生的结果与风险（包括但不限于账户开立、交易损益、网络与设备故障、第三方平台规则变化等）均由您自行承担。<br/>
+        <b>继续访问或点击任意按钮，即视为您已阅读、理解并同意上述风险提示。</b>
+      </div>
+
+      <!-- 原提示（你红框那段） -->
       <div class="hint">
-        提示：若你的用户在 iOS / 微信内置浏览器里打开，有些系统会限制直接唤起 App。这个页面的策略是：<span class="k">先复制</span>，再<span class="k">尝试唤起</span>，失败也不影响用户粘贴添加。
+        提示：若你的用户在 <span class="k">iOS</span> / <span class="k">微信内置浏览器</span> 里打开，部分系统可能限制直接唤起 App。
+        本页面策略为：<span class="k">先复制</span>，再<span class="k">尝试唤起</span>；失败也不影响用户粘贴添加。
       </div>
     </section>
   </div>
@@ -237,7 +343,6 @@
     }
 
     function openInNewTab(url){
-      // GitHub Pages 环境：新开标签页更稳定
       window.open(url, "_blank", "noopener,noreferrer");
     }
 
@@ -246,7 +351,6 @@
         await navigator.clipboard.writeText(text);
         return true;
       }catch(e){
-        // 兼容老浏览器
         const ta = document.createElement("textarea");
         ta.value = text;
         ta.style.position = "fixed";
@@ -276,9 +380,7 @@
       const ok = await copyText(WECHAT_ID);
       toast(ok ? `已复制微信号：${WECHAT_ID}` : `复制失败，请手动复制：${WECHAT_ID}`);
 
-      // 尝试拉起微信（不同系统/浏览器可能拦截）
-      // 1) 先尝试 weixin:// scheme
-      // 2) 不行就停：用户已经复制好微信号了
+      // 尝试拉起微信（部分系统/浏览器会拦截）
       const scheme = "weixin://";
       const a = document.createElement("a");
       a.href = scheme;
