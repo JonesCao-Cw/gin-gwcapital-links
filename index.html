@@ -2,8 +2,9 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>Gin-杰明 · GWCAPITAL 合作链接</title>
+<meta name="description" content="Gin-杰明 GWCAPITAL 合作开户链接与客服微信" />
 
 <style>
 :root{
@@ -21,7 +22,9 @@
   --radius:22px;
 }
 
+/* ✅ 关键修复：允许滚动；iOS 滚动顺滑；并处理刘海安全区 */
 *{box-sizing:border-box}
+html, body{height:auto}
 body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
@@ -30,15 +33,20 @@ body{
     radial-gradient(1100px 650px at 85% 15%, rgba(102,227,255,.22), transparent 55%),
     linear-gradient(180deg,#050712,var(--bg));
   color:var(--text);
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:32px 16px;
-  overflow:hidden;
+
+  /* ✅ 不再锁死 */
+  overflow-y:auto;
+  -webkit-overflow-scrolling: touch;
+
+  /* ✅ 让内容不被刘海/底部条遮挡 */
+  padding:
+    calc(24px + env(safe-area-inset-top))
+    16px
+    calc(24px + env(safe-area-inset-bottom))
+    16px;
 }
 
-/* ===== GW 水印 ===== */
+/* GW 水印（不会挡住点击，也不会影响滚动） */
 .watermark{
   position:fixed;
   inset:0;
@@ -56,36 +64,37 @@ body{
   background:linear-gradient(90deg,#66e3ff,#7c5cff);
   -webkit-background-clip:text;
   background-clip:text;
-  opacity:.45;
+  opacity:.35;
   transform:rotate(-12deg) translate(-6%,-8%);
   text-shadow:
-    0 0 22px rgba(102,227,255,.45),
-    0 0 60px rgba(124,92,255,.35);
+    0 0 22px rgba(102,227,255,.35),
+    0 0 60px rgba(124,92,255,.28);
 }
 
 .wrap{
   width:min(1160px,100%);
   position:relative;
   z-index:1;
+  margin:0 auto; /* ✅ 不用 flex 居中，避免影响滚动 */
 }
 
 .panel{
   background:linear-gradient(180deg,rgba(18,26,43,.94),rgba(15,22,38,.88));
   border:1px solid var(--border);
   border-radius:var(--radius);
-  padding:32px;
+  padding:24px; /* 手机上更舒服 */
   box-shadow:0 24px 60px rgba(0,0,0,.55);
 }
 
-h1{margin:0 0 10px;font-size:26px}
+h1{margin:0 0 10px;font-size:26px;line-height:1.25}
 .sub{margin:0;color:var(--muted);font-size:15px;line-height:1.7}
 
-/* ===== 卡片区域 ===== */
+/* 卡片区域 */
 .cards{
-  margin-top:24px;
+  margin-top:18px;
   display:grid;
   grid-template-columns:1fr;
-  gap:18px;
+  gap:16px;
 }
 @media(min-width:900px){
   .cards{grid-template-columns:1fr 1fr 1fr;}
@@ -95,10 +104,10 @@ h1{margin:0 0 10px;font-size:26px}
   background:var(--panel);
   border:1px solid var(--border);
   border-radius:20px;
-  padding:20px;
+  padding:18px;
   display:flex;
-  flex-direction:column; /* 关键 */
-  min-height:280px;
+  flex-direction:column;
+  min-height:260px;
 }
 
 .badge{
@@ -114,28 +123,25 @@ h1{margin:0 0 10px;font-size:26px}
 .title{margin:14px 0 8px;font-size:18px;font-weight:800}
 .desc{font-size:14px;color:var(--muted);line-height:1.7}
 
-/* ===== 按钮统一贴底 ===== */
-.actions{
-  margin-top:auto;   /* 关键：把按钮推到底 */
-}
+/* 按钮统一贴底 */
+.actions{margin-top:auto}
 .btn{
   width:100%;
-  height:48px;       /* 统一高度 */
+  height:48px;
   border-radius:14px;
   border:none;
   font-weight:900;
   font-size:14px;
   cursor:pointer;
 }
-
 .btn.tm{background:linear-gradient(90deg,var(--blue),#66e3ffaa);color:#061018}
 .btn.dp{background:linear-gradient(90deg,var(--purple),#7c5cffaa);color:#0a0914}
 .btn.wx{background:linear-gradient(90deg,var(--green),#34d399aa);color:#06120b}
 
-/* ===== 风险提示 ===== */
+/* 风险提示 */
 .risk{
-  margin-top:26px;
-  padding:18px 20px;
+  margin-top:18px;
+  padding:16px 18px;
   border-radius:16px;
   border:1px solid rgba(251,113,133,.35);
   background:linear-gradient(180deg,rgba(251,113,133,.12),rgba(255,255,255,.02));
@@ -163,9 +169,9 @@ h1{margin:0 0 10px;font-size:26px}
   font-weight:900;
 }
 
-/* ===== 跳转说明 ===== */
+/* 跳转说明 */
 .hint{
-  margin-top:14px;
+  margin-top:12px;
   padding:12px 14px;
   border-radius:14px;
   border:1px dashed rgba(255,255,255,.2);
