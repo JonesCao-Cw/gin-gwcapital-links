@@ -3,39 +3,32 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gin-杰明 GWCAPITAL 合作链接</title>
+  <title>Gin-杰明 · GWCAPITAL 合作链接</title>
   <meta name="description" content="Gin-杰明 GWCAPITAL 合作开户链接与客服微信" />
+
   <style>
     :root{
       --bg:#070a12;
-      --card:#121a2b;
-      --card2:#0f1626;
       --text:#e8eeff;
       --muted:#a9b3d1;
-      --accent:#66e3ff;
-      --accent2:#7c5cff;
-      --good:#34d399;
-      --warn:#fbbf24;
-      --danger:#fb7185;
       --border:rgba(255,255,255,.12);
       --shadow: 0 22px 60px rgba(0,0,0,.55);
       --radius:22px;
 
-      /* 🔧整体放大：你想更大就继续加 */
-      --containerMax: 1120px;
-      --heroPad: 32px;
+      --accent:#66e3ff;
+      --accent2:#7c5cff;
+      --good:#34d399;
+      --danger:#fb7185;
+
+      --containerMax: 1160px;
+      --heroPad: 34px;
       --cardPad: 18px;
-      --h1: 26px;
-      --sub: 15px;
-      --title: 18px;
-      --desc: 14px;
-      --btn: 14px;
     }
 
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;
       background:
         radial-gradient(1200px 700px at 18% 8%, rgba(124,92,255,.26), transparent 55%),
         radial-gradient(1100px 650px at 86% 14%, rgba(102,227,255,.18), transparent 55%),
@@ -45,286 +38,244 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:34px 16px;
-      position:relative;
+      padding:36px 16px;
       overflow:hidden;
     }
 
-    /* 🧬 背景科幻水印 GW */
+    /* ===== 背景水印 GW ===== */
     .watermark{
       position:fixed;
       inset:0;
       pointer-events:none;
-      z-index:0;
       display:flex;
       align-items:center;
       justify-content:center;
       opacity:.18;
-      filter: blur(.2px);
-      mix-blend-mode: screen;
+      mix-blend-mode:screen;
     }
     .watermark span{
+      font-size:min(46vw,520px);
       font-weight:900;
-      font-size: min(46vw, 520px);
-      letter-spacing: .06em;
-      color: transparent;
-      background:
-        linear-gradient(90deg, rgba(102,227,255,.95), rgba(124,92,255,.95));
-      -webkit-background-clip: text;
-      background-clip: text;
-      text-shadow:
-        0 0 18px rgba(102,227,255,.22),
-        0 0 42px rgba(124,92,255,.18);
-      transform: rotate(-10deg);
-      user-select:none;
-    }
-    /* 轻微网格噪点（更科幻） */
-    .watermark:after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
-      background-size: 42px 42px;
-      opacity:.35;
-      mask-image: radial-gradient(closest-side, rgba(0,0,0,.0), rgba(0,0,0,.9));
+      letter-spacing:.06em;
+      color:transparent;
+      background:linear-gradient(90deg,#66e3ff,#7c5cff);
+      -webkit-background-clip:text;
+      background-clip:text;
+      text-shadow:0 0 18px rgba(102,227,255,.25);
+      transform:rotate(-10deg);
     }
 
     .wrap{
-      width:min(var(--containerMax), 100%);
+      width:min(var(--containerMax),100%);
       position:relative;
       z-index:1;
     }
 
     .hero{
-      padding: var(--heroPad);
+      padding:var(--heroPad);
       border:1px solid var(--border);
-      background: linear-gradient(180deg, rgba(18,26,43,.92), rgba(15,22,38,.84));
       border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(18,26,43,.92),rgba(15,22,38,.84));
       box-shadow:var(--shadow);
-      position:relative;
-      overflow:hidden;
-      backdrop-filter: blur(10px);
-    }
-    .hero:before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background:
-        radial-gradient(520px 260px at 22% 0%, rgba(102,227,255,.18), transparent 60%),
-        radial-gradient(520px 260px at 78% 0%, rgba(124,92,255,.20), transparent 60%);
-      pointer-events:none;
     }
 
     h1{
       margin:0 0 10px;
-      font-size: var(--h1);
-      letter-spacing:.2px;
-      position:relative;
-      z-index:1;
+      font-size:26px;
     }
     .sub{
       margin:0;
       color:var(--muted);
-      font-size: var(--sub);
+      font-size:15px;
       line-height:1.7;
-      position:relative;
-      z-index:1;
     }
 
     .grid{
+      margin-top:20px;
       display:grid;
-      grid-template-columns: 1fr;
+      grid-template-columns:1fr;
       gap:16px;
-      margin-top:18px;
     }
-    @media (min-width: 900px){
-      .grid{ grid-template-columns: 1fr 1fr 1fr; }
+    @media(min-width:920px){
+      .grid{grid-template-columns:1fr 1fr 1fr;}
     }
 
+    /* ===== 卡片 ===== */
     .card{
       border:1px solid var(--border);
-      background: linear-gradient(180deg, rgba(18,26,43,.92), rgba(15,22,38,.84));
       border-radius:var(--radius);
-      padding: var(--cardPad);
-      box-shadow: 0 16px 34px rgba(0,0,0,.38);
-      position:relative;
-      overflow:hidden;
-      min-height: 240px; /* 🔧整体更大 */
+      padding:var(--cardPad);
+      background:linear-gradient(180deg,rgba(18,26,43,.92),rgba(15,22,38,.84));
+      box-shadow:0 16px 36px rgba(0,0,0,.4);
+      min-height:260px;
+      transition:.25s;
+    }
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 24px 56px rgba(0,0,0,.55);
     }
 
     .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
+      display:inline-block;
       font-size:13px;
-      padding:7px 11px;
+      padding:6px 12px;
       border-radius:999px;
       border:1px solid var(--border);
       color:var(--muted);
-      background: rgba(255,255,255,.03);
     }
+
     .title{
-      margin:12px 0 8px;
-      font-size: var(--title);
-      line-height:1.35;
+      margin:14px 0 8px;
+      font-size:18px;
       font-weight:800;
     }
     .desc{
-      margin:0 0 16px;
+      font-size:14px;
       color:var(--muted);
-      font-size: var(--desc);
       line-height:1.7;
+      margin-bottom:16px;
     }
 
     .btn{
       width:100%;
-      border:none;
+      padding:14px;
       border-radius:16px;
-      padding:14px 16px; /* 🔧按钮更大 */
+      border:none;
       font-weight:900;
       cursor:pointer;
+      font-size:14px;
+    }
+    .btn.tm{
+      background:linear-gradient(90deg,var(--accent),#66e3ffaa);
       color:#061018;
-      font-size: var(--btn);
-      background: linear-gradient(90deg, var(--accent), rgba(102,227,255,.78));
-      box-shadow: 0 12px 26px rgba(102,227,255,.12);
-      transition: transform .08s ease, filter .08s ease;
     }
-    .btn:hover{ filter:brightness(1.06) }
-    .btn:active{ transform: translateY(1px) }
-    .btn.alt{
+    .btn.dp{
+      background:linear-gradient(90deg,var(--accent2),#7c5cffaa);
       color:#0a0914;
-      background: linear-gradient(90deg, var(--accent2), rgba(124,92,255,.78));
-      box-shadow: 0 12px 26px rgba(124,92,255,.14);
     }
-    .btn.wechat{
+    .btn.wx{
+      background:linear-gradient(90deg,var(--good),#34d399aa);
       color:#06120b;
-      background: linear-gradient(90deg, var(--good), rgba(52,211,153,.80));
-      box-shadow: 0 12px 26px rgba(52,211,153,.14);
     }
 
     .small{
       margin-top:10px;
       font-size:12.5px;
       color:var(--muted);
-      line-height:1.55;
-      word-break: break-all;
+      word-break:break-all;
     }
 
-    .toast{
-      position: fixed;
-      left:50%;
-      bottom:18px;
-      transform: translateX(-50%);
-      background: rgba(17,24,39,.92);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 10px 12px;
-      border-radius: 12px;
-      box-shadow: 0 16px 30px rgba(0,0,0,.45);
-      font-size: 13px;
-      display:none;
-      max-width: min(640px, calc(100% - 24px));
-      z-index: 10;
-    }
-    .toast.show{ display:block; }
-
-    /* ✅ 风险提示（你要的“点击即视为同意”） */
+    /* ===== 风险提示（黄色框） ===== */
     .risk{
-      margin-top:18px;
-      padding:14px 16px;
+      margin-top:22px;
+      padding:16px 18px;
       border-radius:16px;
-      border:1px solid rgba(251,113,133,.28);
-      background: linear-gradient(180deg, rgba(251,113,133,.10), rgba(255,255,255,.02));
-      color: rgba(255,255,255,.92);
-      font-size: 13px;
-      line-height: 1.75;
-    }
-    .risk b{ color:#fff }
-    .risk .tag{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      font-weight:900;
+      border:1px solid rgba(251,113,133,.35);
+      background:linear-gradient(180deg,rgba(251,113,133,.12),rgba(255,255,255,.02));
+      font-size:13px;
+      line-height:1.85;
       letter-spacing:.2px;
-      margin-bottom:8px;
-      color: rgba(255,255,255,.95);
     }
-    .risk .dot{
-      width:10px;height:10px;border-radius:999px;
-      background: var(--danger);
-      box-shadow: 0 0 18px rgba(251,113,133,.35);
+    .risk-header{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:900;
+      margin-bottom:10px;
+    }
+    .risk-dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:var(--danger);
+      box-shadow:0 0 14px rgba(251,113,133,.5);
+    }
+    .risk ul{
+      margin:0;
+      padding-left:18px;
+    }
+    .risk li{
+      margin:6px 0;
+    }
+    .risk-confirm{
+      margin-top:10px;
+      padding-top:10px;
+      border-top:1px dashed rgba(255,255,255,.2);
+      font-weight:900;
+      color:#fff;
     }
 
-    /* 原本底部提示 */
+    /* ===== 跳转提示（白框） ===== */
     .hint{
-      margin-top:12px;
+      margin-top:14px;
       padding:12px 14px;
       border-radius:14px;
-      border:1px dashed rgba(255,255,255,.20);
-      color: var(--muted);
+      border:1px dashed rgba(255,255,255,.2);
+      background:rgba(255,255,255,.02);
+      color:var(--muted);
       font-size:12.5px;
-      line-height:1.7;
-      background: rgba(255,255,255,.02);
+      line-height:1.75;
     }
-    .k{ color: var(--text); font-weight:900; }
+    .hint b{color:#fff;font-weight:900;}
   </style>
 </head>
 
 <body>
-  <div class="watermark" aria-hidden="true"><span>GW</span></div>
+  <div class="watermark"><span>GW</span></div>
 
   <div class="wrap">
-    <section class="hero">
+    <div class="hero">
       <h1>Gin-杰明 · GWCAPITAL 合作链接</h1>
       <p class="sub">请选择对应入口。开户/合作跳转为外部链接；客服微信入口将自动复制微信号并尝试拉起微信。</p>
 
       <div class="grid">
-        <!-- TMGM -->
         <div class="card">
-          <div class="badge">美元账户 · TMGM</div>
+          <span class="badge">美元账户 · TMGM</span>
           <div class="title">TMGM 合作开户链接</div>
-          <p class="desc">适用于美元账户开户流程。点击按钮将跳转到开户链接页面。</p>
-          <button class="btn" id="btn-tmgm">立即开户</button>
+          <div class="desc">适用于美元账户开户流程，点击按钮将跳转至开户页面。</div>
+          <button class="btn tm" id="btn-tmgm">立即开户</button>
           <div class="small" id="url-tmgm"></div>
         </div>
 
-        <!-- Dprime -->
         <div class="card">
-          <div class="badge">美分账户 · Dprime</div>
+          <span class="badge">美分账户 · Dprime</span>
           <div class="title">Dprime 美分账户开户</div>
-          <p class="desc">适用于美分账户交易需求。点击按钮将跳转到注册页面。</p>
-          <button class="btn alt" id="btn-dprime">立即开户注册</button>
+          <div class="desc">适用于美分账户交易需求，点击按钮将跳转至注册页面。</div>
+          <button class="btn dp" id="btn-dprime">立即开户注册</button>
           <div class="small" id="url-dprime"></div>
         </div>
 
-        <!-- WeChat -->
         <div class="card">
-          <div class="badge">客服助理 · 微信</div>
+          <span class="badge">客服助理 · 微信</span>
           <div class="title">联系客服微信：GINVIP23</div>
-          <p class="desc">点击按钮将复制微信号 <span class="k">GINVIP23</span>，并尝试拉起微信 App。</p>
-          <button class="btn wechat" id="btn-wechat">复制微信号并打开微信</button>
-          <div class="small">若未自动打开微信：已复制，可直接到微信搜索粘贴添加。</div>
+          <div class="desc">点击按钮将复制微信号并尝试拉起微信 App。</div>
+          <button class="btn wx" id="btn-wechat">复制微信号并打开微信</button>
+          <div class="small">若未自动打开微信，可直接在微信中粘贴搜索添加。</div>
         </div>
       </div>
 
-      <!-- ✅ 你要的“规避风险标语”放在提示上面 -->
-      <div class="risk" role="note" aria-label="风险提示">
-        <div class="tag"><span class="dot"></span><b>风险提示</b></div>
-        本页面仅用于信息展示与合作入口跳转，不构成任何投资建议或收益承诺。您在本页面进行的任何点击、跳转、注册、咨询等操作均为<b>个人自主行为</b>，由此产生的结果与风险（包括但不限于账户开立、交易损益、网络与设备故障、第三方平台规则变化等）均由您自行承担。<br/>
-        <b>继续访问或点击任意按钮，即视为您已阅读、理解并同意上述风险提示。</b>
+      <!-- 风险提示 -->
+      <div class="risk">
+        <div class="risk-header">
+          <span class="risk-dot"></span>
+          <span>风险提示</span>
+        </div>
+        <ul>
+          <li>本页面仅用于信息展示与合作入口跳转，不构成任何投资建议或收益承诺。</li>
+          <li>所有点击、跳转、注册、咨询等操作均为个人自主行为。</li>
+          <li>由此产生的风险与结果（包括但不限于账户开立、交易损益、平台规则变化、网络或设备问题等）均自行承担。</li>
+        </ul>
+        <div class="risk-confirm">
+          继续访问或点击任意按钮，即视为已阅读、理解并同意上述风险提示。
+        </div>
       </div>
 
-      <!-- 原提示（你红框那段） -->
+      <!-- 跳转说明 -->
       <div class="hint">
-        提示：若你的用户在 <span class="k">iOS</span> / <span class="k">微信内置浏览器</span> 里打开，部分系统可能限制直接唤起 App。
-        本页面策略为：<span class="k">先复制</span>，再<span class="k">尝试唤起</span>；失败也不影响用户粘贴添加。
+        跳转说明：在 <b>iOS</b> 或 <b>微信内置浏览器</b> 中，可能限制直接唤起 App。页面策略为：<b>先复制</b>，再<b>尝试唤起</b>；未成功也不影响正常添加。
       </div>
-    </section>
+    </div>
   </div>
-
-  <div class="toast" id="toast"></div>
 
   <script>
     const TMGM_URL = "https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans";
@@ -334,60 +285,12 @@
     document.getElementById("url-tmgm").textContent = TMGM_URL;
     document.getElementById("url-dprime").textContent = DPRIME_URL;
 
-    function toast(msg){
-      const el = document.getElementById("toast");
-      el.textContent = msg;
-      el.classList.add("show");
-      clearTimeout(window.__t);
-      window.__t = setTimeout(()=> el.classList.remove("show"), 2600);
-    }
-
-    function openInNewTab(url){
-      window.open(url, "_blank", "noopener,noreferrer");
-    }
-
-    async function copyText(text){
-      try{
-        await navigator.clipboard.writeText(text);
-        return true;
-      }catch(e){
-        const ta = document.createElement("textarea");
-        ta.value = text;
-        ta.style.position = "fixed";
-        ta.style.left = "-9999px";
-        document.body.appendChild(ta);
-        ta.select();
-        try{
-          document.execCommand("copy");
-          document.body.removeChild(ta);
-          return true;
-        }catch(err){
-          document.body.removeChild(ta);
-          return false;
-        }
-      }
-    }
-
-    document.getElementById("btn-tmgm").addEventListener("click", () => {
-      openInNewTab(TMGM_URL);
-    });
-
-    document.getElementById("btn-dprime").addEventListener("click", () => {
-      openInNewTab(DPRIME_URL);
-    });
-
-    document.getElementById("btn-wechat").addEventListener("click", async () => {
-      const ok = await copyText(WECHAT_ID);
-      toast(ok ? `已复制微信号：${WECHAT_ID}` : `复制失败，请手动复制：${WECHAT_ID}`);
-
-      // 尝试拉起微信（部分系统/浏览器会拦截）
-      const scheme = "weixin://";
-      const a = document.createElement("a");
-      a.href = scheme;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    });
+    document.getElementById("btn-tmgm").onclick = () => window.open(TMGM_URL,"_blank");
+    document.getElementById("btn-dprime").onclick = () => window.open(DPRIME_URL,"_blank");
+    document.getElementById("btn-wechat").onclick = async () => {
+      try{ await navigator.clipboard.writeText(WECHAT_ID); }catch(e){}
+      window.location.href = "weixin://";
+    };
   </script>
 </body>
 </html>
