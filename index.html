@@ -25,37 +25,31 @@
 *{box-sizing:border-box}
 html, body{height:100%}
 
-/* ===== 默认：电脑版舞台（稳定） ===== */
+/* ===== 默认：电脑舞台模式 ===== */
 body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
   color:var(--text);
-
   background:
     radial-gradient(1200px 700px at 15% 10%, rgba(124,92,255,.28), transparent 55%),
     radial-gradient(1100px 650px at 85% 15%, rgba(102,227,255,.22), transparent 55%),
     linear-gradient(180deg,#050712,var(--bg));
 
-  /* ✅ 电脑：舞台居中 */
   display:flex;
   align-items:center;
   justify-content:center;
-
-  /* ✅ 电脑：不需要滚动时锁住，防止背景“漂移” */
   overflow:hidden;
   padding:24px 16px;
 }
 
-/* ✅ 手机：切换为可滚动布局（只对小屏生效） */
+/* ===== 手机：允许滚动 ===== */
 @media (max-width: 899px){
   html, body{height:auto}
   body{
-    display:block;              /* 取消 flex 居中 */
-    overflow-y:auto;            /* 允许下滑 */
+    display:block;
+    overflow-y:auto;
     overflow-x:hidden;
-    -webkit-overflow-scrolling: touch;
-
-    /* safe-area，避免刘海/底部条遮挡 */
+    -webkit-overflow-scrolling:touch;
     padding:
       calc(18px + env(safe-area-inset-top))
       14px
@@ -64,7 +58,7 @@ body{
   }
 }
 
-/* ===== GW 水印（固定，不跟滚动跑偏） ===== */
+/* ===== GW 水印 ===== */
 .watermark{
   position:fixed;
   inset:0;
@@ -82,7 +76,6 @@ body{
   background:linear-gradient(90deg,#66e3ff,#7c5cff);
   -webkit-background-clip:text;
   background-clip:text;
-
   opacity:.35;
   transform:rotate(-12deg) translate(-6%,-8%);
   text-shadow:
@@ -90,16 +83,13 @@ body{
     0 0 60px rgba(124,92,255,.28);
 }
 
-/* ===== 容器：电脑居中固定宽；手机撑满 ===== */
 .wrap{
   width:min(1160px,100%);
   position:relative;
   z-index:1;
 }
-
-/* ✅ 手机让整体更贴合屏幕 */
 @media (max-width: 899px){
-  .wrap{ width:100%; }
+  .wrap{width:100%}
 }
 
 .panel{
@@ -109,16 +99,14 @@ body{
   padding:32px;
   box-shadow:0 24px 60px rgba(0,0,0,.55);
 }
-
-/* ✅ 手机面板内边距小一点，避免太挤 */
 @media (max-width: 899px){
-  .panel{ padding:22px; }
+  .panel{padding:22px}
 }
 
 h1{margin:0 0 10px;font-size:26px;line-height:1.25}
 .sub{margin:0;color:var(--muted);font-size:15px;line-height:1.7}
 
-/* 卡片区域 */
+/* ===== 卡片 ===== */
 .cards{
   margin-top:20px;
   display:grid;
@@ -138,10 +126,8 @@ h1{margin:0 0 10px;font-size:26px;line-height:1.25}
   flex-direction:column;
   min-height:280px;
 }
-
-/* ✅ 手机卡片稍微紧凑一点 */
 @media (max-width: 899px){
-  .card{ padding:18px; min-height:auto; }
+  .card{min-height:auto;padding:18px}
 }
 
 .badge{
@@ -157,7 +143,6 @@ h1{margin:0 0 10px;font-size:26px;line-height:1.25}
 .title{margin:14px 0 8px;font-size:18px;font-weight:800}
 .desc{font-size:14px;color:var(--muted);line-height:1.7}
 
-/* 按钮统一贴底 */
 .actions{margin-top:auto}
 .btn{
   width:100%;
@@ -172,7 +157,7 @@ h1{margin:0 0 10px;font-size:26px;line-height:1.25}
 .btn.dp{background:linear-gradient(90deg,var(--purple),#7c5cffaa);color:#0a0914}
 .btn.wx{background:linear-gradient(90deg,var(--green),#34d399aa);color:#06120b}
 
-/* 风险提示 */
+/* ===== 风险提示 ===== */
 .risk{
   margin-top:20px;
   padding:18px 20px;
@@ -203,7 +188,7 @@ h1{margin:0 0 10px;font-size:26px;line-height:1.25}
   font-weight:900;
 }
 
-/* 跳转说明 */
+/* ===== 跳转说明 ===== */
 .hint{
   margin-top:14px;
   padding:12px 14px;
@@ -219,62 +204,62 @@ h1{margin:0 0 10px;font-size:26px;line-height:1.25}
 </head>
 
 <body>
-  <div class="watermark"><span>GW</span></div>
+<div class="watermark"><span>GW</span></div>
 
-  <div class="wrap">
-    <div class="panel">
-      <h1>Gin-杰明 · GWCAPITAL 合作链接</h1>
-      <p class="sub">请选择对应入口。开户/合作跳转为外部链接；客服微信入口将自动复制微信号并尝试拉起微信。</p>
+<div class="wrap">
+  <div class="panel">
+    <h1>Gin-杰明 · GWCAPITAL 合作链接</h1>
+    <p class="sub">请选择对应入口。开户/合作跳转为外部链接；客服微信入口将自动复制微信号并尝试拉起微信。</p>
 
-      <div class="cards">
-        <div class="card">
-          <span class="badge">美元账户 · TMGM</span>
-          <div class="title">TMGM 合作开户链接</div>
-          <div class="desc">适用于美元账户开户流程，点击下方按钮跳转至开户页面。</div>
-          <div class="actions">
-            <button class="btn tm" id="tmgm">立即开户</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <span class="badge">美分账户 · Dprime</span>
-          <div class="title">Dprime 美分账户开户</div>
-          <div class="desc">适用于美分账户交易需求，点击下方按钮跳转至注册页面。</div>
-          <div class="actions">
-            <button class="btn dp" id="dprime">立即开户注册</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <span class="badge">客服助理 · 微信</span>
-          <div class="title">联系客服微信：GINVIP23</div>
-          <div class="desc">点击按钮将自动复制微信号，并尝试拉起微信 App。</div>
-          <div class="actions">
-            <button class="btn wx" id="wechat">复制微信号并打开微信</button>
-          </div>
+    <div class="cards">
+      <div class="card">
+        <span class="badge">美元账户 · TMGM</span>
+        <div class="title">TMGM 合作开户链接</div>
+        <div class="desc">适用于美元账户开户流程，点击下方按钮跳转至开户页面。</div>
+        <div class="actions">
+          <button class="btn tm" id="tmgm">立即开户</button>
         </div>
       </div>
 
-      <div class="risk">
-        <div class="risk-title"><span class="dot"></span>风险提示</div>
-        <ul>
-          <li>本页面仅用于信息展示与合作入口跳转，不构成任何投资建议或收益承诺。</li>
-          <li>所有点击、跳转、注册、咨询等操作均为个人自主行为。</li>
-          <li>由此产生的风险与结果（包括账户开立、交易损益、平台规则变化等）均自行承担。</li>
-        </ul>
-        <div class="confirm">继续访问或点击任意按钮，即视为已阅读、理解并同意上述风险提示。</div>
+      <div class="card">
+        <span class="badge">美分账户 · Dprime</span>
+        <div class="title">Dprime 美分账户开户</div>
+        <div class="desc">适用于美分账户交易需求，点击下方按钮跳转至注册页面。</div>
+        <div class="actions">
+          <button class="btn dp" id="dprime">立即开户注册</button>
+        </div>
       </div>
 
-      <div class="hint">
-        跳转说明：在 <b>iOS</b> 或 <b>微信内置浏览器</b> 中，可能限制直接唤起 App。页面策略为：<b>先复制</b>，再<b>尝试唤起</b>；未成功也不影响正常添加。
+      <div class="card">
+        <span class="badge">客服助理 · 微信</span>
+        <div class="title">联系客服微信：GINVIP123</div>
+        <div class="desc">点击按钮将自动复制微信号，并尝试拉起微信 App。</div>
+        <div class="actions">
+          <button class="btn wx" id="wechat">复制微信号并打开微信</button>
+        </div>
       </div>
     </div>
+
+    <div class="risk">
+      <div class="risk-title"><span class="dot"></span>风险提示</div>
+      <ul>
+        <li>本页面仅用于信息展示与合作入口跳转，不构成任何投资建议或收益承诺。</li>
+        <li>所有点击、跳转、注册、咨询等操作均为个人自主行为。</li>
+        <li>由此产生的风险与结果（包括账户开立、交易损益、平台规则变化等）均自行承担。</li>
+      </ul>
+      <div class="confirm">继续访问或点击任意按钮，即视为已阅读、理解并同意上述风险提示。</div>
+    </div>
+
+    <div class="hint">
+      跳转说明：在 <b>iOS</b> 或 <b>微信内置浏览器</b> 中，可能限制直接唤起 App。页面策略为：<b>先复制</b>，再<b>尝试唤起</b>；未成功也不影响正常添加。
+    </div>
   </div>
+</div>
 
 <script>
 const TMGM="https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans";
 const DPRIME="https://user.dprimefast.net/signup/H1968038-a01";
-const WX="GINVIP23";
+const WX="GINVIP123";
 
 document.getElementById("tmgm").onclick=()=>window.open(TMGM,"_blank");
 document.getElementById("dprime").onclick=()=>window.open(DPRIME,"_blank");
