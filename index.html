@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gin-杰明 GWCAPITAL 合作链接</title>
+  <meta name="description" content="Gin-杰明 GWCAPITAL 合作开户链接与客服微信" />
+  <style>
+    :root{
+      --bg:#0b0f19;
+      --card:#121a2b;
+      --card2:#0f1626;
+      --text:#e8eeff;
+      --muted:#a9b3d1;
+      --accent:#66e3ff;
+      --accent2:#7c5cff;
+      --good:#34d399;
+      --warn:#fbbf24;
+      --border:rgba(255,255,255,.10);
+      --shadow: 0 18px 40px rgba(0,0,0,.45);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;
+      background: radial-gradient(1200px 700px at 20% 10%, rgba(124,92,255,.25), transparent 55%),
+                  radial-gradient(1000px 600px at 80% 20%, rgba(102,227,255,.18), transparent 55%),
+                  linear-gradient(180deg, #070a12, var(--bg) 35%, #070a12);
+      color:var(--text);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px 14px;
+    }
+    .wrap{
+      width:min(880px, 100%);
+    }
+    .hero{
+      padding:26px 22px 18px;
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(18,26,43,.88), rgba(15,22,38,.78));
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(500px 220px at 20% 0%, rgba(102,227,255,.18), transparent 55%),
+                  radial-gradient(500px 220px at 80% 0%, rgba(124,92,255,.18), transparent 55%);
+      pointer-events:none;
+    }
+    h1{
+      margin:0 0 8px;
+      font-size:22px;
+      letter-spacing:.2px;
+      position:relative;
+      z-index:1;
+    }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.6;
+      position:relative;
+      z-index:1;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+      margin-top:14px;
+    }
+    @media (min-width: 760px){
+      .grid{ grid-template-columns: 1fr 1fr 1fr; }
+    }
+
+    .card{
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(18,26,43,.88), rgba(15,22,38,.78));
+      border-radius:var(--radius);
+      padding:16px;
+      box-shadow: 0 14px 28px rgba(0,0,0,.35);
+      position:relative;
+      overflow:hidden;
+      min-height: 210px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      color:var(--muted);
+      background: rgba(255,255,255,.03);
+    }
+    .title{
+      margin:10px 0 6px;
+      font-size:16px;
+      line-height:1.35;
+    }
+    .desc{
+      margin:0 0 14px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.6;
+    }
+    .btn{
+      width:100%;
+      border:none;
+      border-radius:14px;
+      padding:12px 14px;
+      font-weight:700;
+      cursor:pointer;
+      color:#061018;
+      background: linear-gradient(90deg, var(--accent), rgba(102,227,255,.75));
+      box-shadow: 0 10px 22px rgba(102,227,255,.12);
+      transition: transform .08s ease, filter .08s ease;
+    }
+    .btn:hover{ filter:brightness(1.05) }
+    .btn:active{ transform: translateY(1px) }
+    .btn.alt{
+      color:#0a0914;
+      background: linear-gradient(90deg, var(--accent2), rgba(124,92,255,.75));
+      box-shadow: 0 10px 22px rgba(124,92,255,.14);
+    }
+    .btn.wechat{
+      color:#06120b;
+      background: linear-gradient(90deg, var(--good), rgba(52,211,153,.75));
+      box-shadow: 0 10px 22px rgba(52,211,153,.14);
+    }
+    .small{
+      margin-top:10px;
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.5;
+      word-break: break-all;
+    }
+
+    .toast{
+      position: fixed;
+      left:50%;
+      bottom:18px;
+      transform: translateX(-50%);
+      background: rgba(17,24,39,.92);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 12px;
+      box-shadow: 0 16px 30px rgba(0,0,0,.45);
+      font-size: 13px;
+      display:none;
+      max-width: min(560px, calc(100% - 24px));
+    }
+    .toast.show{ display:block; }
+    .hint{
+      margin-top:14px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px dashed rgba(255,255,255,.18);
+      color: var(--muted);
+      font-size:12px;
+      line-height:1.7;
+      background: rgba(255,255,255,.02);
+    }
+    .k{
+      color: var(--text);
+      font-weight:700;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>Gin-杰明 · GWCAPITAL 合作链接</h1>
+      <p class="sub">请选择对应入口。开户/合作跳转为外部链接；客服微信入口将自动复制微信号并尝试拉起微信。</p>
+
+      <div class="grid">
+        <!-- TMGM -->
+        <div class="card">
+          <div class="badge">美元账户 · TMGM</div>
+          <div class="title">TMGM 合作开户链接</div>
+          <p class="desc">适用于美元账户开户流程。点击按钮将跳转到开户链接页面。</p>
+          <button class="btn" id="btn-tmgm">立即开户</button>
+          <div class="small" id="url-tmgm"></div>
+        </div>
+
+        <!-- Dprime -->
+        <div class="card">
+          <div class="badge">美分账户 · Dprime</div>
+          <div class="title">Dprime 美分账户开户</div>
+          <p class="desc">适用于美分账户交易需求。点击按钮将跳转到注册页面。</p>
+          <button class="btn alt" id="btn-dprime">立即开户注册</button>
+          <div class="small" id="url-dprime"></div>
+        </div>
+
+        <!-- WeChat -->
+        <div class="card">
+          <div class="badge">客服助理 · 微信</div>
+          <div class="title">联系客服微信：GINVIP23</div>
+          <p class="desc">点击按钮将复制微信号 <span class="k">GINVIP23</span>，并尝试拉起微信 App。</p>
+          <button class="btn wechat" id="btn-wechat">复制微信号并打开微信</button>
+          <div class="small">若未自动打开微信：已复制，可直接到微信搜索粘贴添加。</div>
+        </div>
+      </div>
+
+      <div class="hint">
+        提示：若你的用户在 iOS / 微信内置浏览器里打开，有些系统会限制直接唤起 App。这个页面的策略是：<span class="k">先复制</span>，再<span class="k">尝试唤起</span>，失败也不影响用户粘贴添加。
+      </div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const TMGM_URL = "https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans";
+    const DPRIME_URL = "https://user.dprimefast.net/signup/H1968038-a01";
+    const WECHAT_ID = "GINVIP23";
+
+    document.getElementById("url-tmgm").textContent = TMGM_URL;
+    document.getElementById("url-dprime").textContent = DPRIME_URL;
+
+    function toast(msg){
+      const el = document.getElementById("toast");
+      el.textContent = msg;
+      el.classList.add("show");
+      clearTimeout(window.__t);
+      window.__t = setTimeout(()=> el.classList.remove("show"), 2600);
+    }
+
+    function openInNewTab(url){
+      // GitHub Pages 环境：新开标签页更稳定
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
+
+    async function copyText(text){
+      try{
+        await navigator.clipboard.writeText(text);
+        return true;
+      }catch(e){
+        // 兼容老浏览器
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.select();
+        try{
+          document.execCommand("copy");
+          document.body.removeChild(ta);
+          return true;
+        }catch(err){
+          document.body.removeChild(ta);
+          return false;
+        }
+      }
+    }
+
+    document.getElementById("btn-tmgm").addEventListener("click", () => {
+      openInNewTab(TMGM_URL);
+    });
+
+    document.getElementById("btn-dprime").addEventListener("click", () => {
+      openInNewTab(DPRIME_URL);
+    });
+
+    document.getElementById("btn-wechat").addEventListener("click", async () => {
+      const ok = await copyText(WECHAT_ID);
+      toast(ok ? `已复制微信号：${WECHAT_ID}` : `复制失败，请手动复制：${WECHAT_ID}`);
+
+      // 尝试拉起微信（不同系统/浏览器可能拦截）
+      // 1) 先尝试 weixin:// scheme
+      // 2) 不行就停：用户已经复制好微信号了
+      const scheme = "weixin://";
+      const a = document.createElement("a");
+      a.href = scheme;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
+  </script>
+</body>
+</html>
