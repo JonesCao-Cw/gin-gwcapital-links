@@ -4,7 +4,6 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>Gin-杰明 · GWCAPITAL 合作链接</title>
-<meta name="description" content="Gin-杰明 GWCAPITAL 合作开户链接与客服微信/钉钉" />
 
 <style>
 :root{
@@ -13,135 +12,74 @@
   --border:rgba(255,255,255,.12);
   --text:#e8eeff;
   --muted:#a9b3d1;
-
   --blue:#66e3ff;
   --purple:#7c5cff;
   --green:#34d399;
+  --cyan:#38bdf8;
   --danger:#fb7185;
   --orange:#fbbf24;
-
   --radius:22px;
 }
-
 *{box-sizing:border-box}
-html, body{height:100%}
+html,body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text)}
 
-/* ===== 默认：电脑舞台模式 ===== */
 body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
-  color:var(--text);
   background:
     radial-gradient(1200px 700px at 15% 10%, rgba(124,92,255,.28), transparent 55%),
     radial-gradient(1100px 650px at 85% 15%, rgba(102,227,255,.22), transparent 55%),
     linear-gradient(180deg,#050712,var(--bg));
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  padding:24px 16px;
+  padding:24px;
+}
+@media(max-width:900px){
+  body{padding:16px;overflow-y:auto}
 }
 
-/* ===== 手机：允许滚动 ===== */
-@media (max-width: 899px){
-  html, body{height:auto}
-  body{
-    display:block;
-    overflow-y:auto;
-    overflow-x:hidden;
-    -webkit-overflow-scrolling:touch;
-    padding:
-      calc(18px + env(safe-area-inset-top))
-      14px
-      calc(18px + env(safe-area-inset-bottom))
-      14px;
-  }
-}
-
-/* ===== GW 水印 ===== */
+/* 水印 */
 .watermark{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:0;
+  position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+  pointer-events:none;z-index:0
 }
 .watermark span{
-  font-size:min(48vw,540px);
+  font-size:min(48vw,520px);
   font-weight:900;
   letter-spacing:.08em;
-  color:transparent;
   background:linear-gradient(90deg,#66e3ff,#7c5cff);
   -webkit-background-clip:text;
   background-clip:text;
+  color:transparent;
   opacity:.35;
-  transform:rotate(-12deg) translate(-6%,-8%);
-  text-shadow:
-    0 0 22px rgba(102,227,255,.35),
-    0 0 60px rgba(124,92,255,.28);
+  transform:rotate(-12deg);
 }
 
-.wrap{
-  width:min(1160px,100%);
-  position:relative;
-  z-index:1;
-}
-@media (max-width: 899px){
-  .wrap{width:100%}
-}
-
+/* 主体 */
+.wrap{max-width:1160px;margin:auto;position:relative;z-index:1}
 .panel{
-  background:linear-gradient(180deg,rgba(18,26,43,.94),rgba(15,22,38,.88));
+  background:linear-gradient(180deg,rgba(18,26,43,.94),rgba(15,22,38,.9));
   border:1px solid var(--border);
   border-radius:var(--radius);
-  padding:32px;
-  box-shadow:0 24px 60px rgba(0,0,0,.55);
+  padding:28px;
 }
-@media (max-width: 899px){
-  .panel{padding:22px}
-}
+h1{margin:0 0 8px;font-size:26px}
 
-h1{margin:0 0 10px;font-size:26px;line-height:1.25}
-
-/* ✅ 红框那句：做成明显提示条 */
+/* 顶部重要提示 */
 .notice{
-  margin:10px 0 0;
-  padding:12px 14px;
+  margin:12px 0 18px;
+  padding:14px;
   border-radius:14px;
-  border:1px solid rgba(251,191,36,.35);
-  background:linear-gradient(180deg,rgba(251,191,36,.14),rgba(255,255,255,.02));
-  color:#f5f7ff;
-  font-size:14px;
-  line-height:1.7;
+  border:1px solid rgba(251,191,36,.4);
+  background:linear-gradient(180deg,rgba(251,191,36,.18),rgba(255,255,255,.03));
+  font-size:14px;line-height:1.7
 }
 .notice b{color:#fff}
-.notice .tag{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  font-weight:900;
-  margin-right:10px;
-}
-.notice .dot{
-  width:9px;height:9px;border-radius:50%;
-  background:var(--orange);
-  box-shadow:0 0 14px rgba(251,191,36,.55);
-}
 
-/* ===== 卡片 ===== */
+/* 卡片 */
 .cards{
-  margin-top:18px;
   display:grid;
-  grid-template-columns:1fr;
   gap:16px;
 }
 @media(min-width:900px){
-  .cards{grid-template-columns:1fr 1fr 1fr 1fr;}
+  .cards{grid-template-columns:repeat(4,1fr)}
 }
-
 .card{
   background:var(--panel);
   border:1px solid var(--border);
@@ -149,14 +87,8 @@ h1{margin:0 0 10px;font-size:26px;line-height:1.25}
   padding:20px;
   display:flex;
   flex-direction:column;
-  min-height:280px;
 }
-@media (max-width: 899px){
-  .card{min-height:auto;padding:18px}
-}
-
 .badge{
-  display:inline-block;
   font-size:13px;
   padding:6px 12px;
   border-radius:999px;
@@ -164,68 +96,38 @@ h1{margin:0 0 10px;font-size:26px;line-height:1.25}
   color:var(--muted);
   width:max-content;
 }
-
-.title{margin:14px 0 8px;font-size:18px;font-weight:800}
+.title{margin:14px 0 6px;font-size:18px;font-weight:800}
 .desc{font-size:14px;color:var(--muted);line-height:1.7}
-
 .actions{margin-top:auto}
 .btn{
-  width:100%;
-  height:48px;
-  border-radius:14px;
-  border:none;
-  font-weight:900;
-  font-size:14px;
-  cursor:pointer;
+  width:100%;height:48px;border-radius:14px;
+  border:none;font-weight:900;font-size:14px;cursor:pointer
 }
-.btn.tm{background:linear-gradient(90deg,var(--blue),#66e3ffaa);color:#061018}
-.btn.dp{background:linear-gradient(90deg,var(--purple),#7c5cffaa);color:#0a0914}
-.btn.wx{background:linear-gradient(90deg,var(--green),#34d399aa);color:#06120b}
-.btn.dd{background:linear-gradient(90deg,#38bdf8,#60a5fa);color:#061018}
+.tm{background:linear-gradient(90deg,var(--blue),#66e3ffaa)}
+.dp{background:linear-gradient(90deg,var(--purple),#7c5cffaa)}
+.wx{background:linear-gradient(90deg,var(--green),#34d399aa)}
+.dd{background:linear-gradient(90deg,var(--cyan),#60a5faaa)}
 
-/* ===== 风险提示 ===== */
+/* 风险 */
 .risk{
   margin-top:20px;
-  padding:18px 20px;
+  padding:18px;
   border-radius:16px;
   border:1px solid rgba(251,113,133,.35);
-  background:linear-gradient(180deg,rgba(251,113,133,.12),rgba(255,255,255,.02));
-  font-size:13px;
-  line-height:1.85;
+  background:linear-gradient(180deg,rgba(251,113,133,.14),rgba(255,255,255,.03));
+  font-size:13px;line-height:1.8
 }
-.risk-title{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-weight:900;
-  margin-bottom:10px;
-}
-.risk-dot{
-  width:10px;height:10px;border-radius:50%;
-  background:var(--danger);
-  box-shadow:0 0 14px rgba(251,113,133,.6);
-}
-.risk ul{margin:0;padding-left:18px}
-.risk li{margin:6px 0}
-.confirm{
-  margin-top:10px;
-  padding-top:10px;
-  border-top:1px dashed rgba(255,255,255,.2);
-  font-weight:900;
-}
+.risk b{font-weight:900}
 
-/* ===== 跳转说明 ===== */
+/* 底部说明 */
 .hint{
   margin-top:14px;
-  padding:12px 14px;
+  padding:12px;
   border-radius:14px;
-  border:1px dashed rgba(255,255,255,.2);
-  background:rgba(255,255,255,.02);
+  border:1px dashed rgba(255,255,255,.25);
   color:var(--muted);
-  font-size:12.5px;
-  line-height:1.75;
+  font-size:12.5px;line-height:1.7
 }
-.hint b{color:#fff}
 </style>
 </head>
 
@@ -236,17 +138,17 @@ h1{margin:0 0 10px;font-size:26px;line-height:1.25}
   <div class="panel">
     <h1>Gin-杰明 · GWCAPITAL 合作链接</h1>
 
-    <!-- ✅ 红框内容（重写+更醒目） -->
     <div class="notice">
-      <span class="tag"><span class="dot"></span>重要提示</span>
-      请选择对应入口。开户/合作将跳转至外部页面；开户完成后，请将<strong>注册邮箱</strong>发送给下方小助理进行验证，验证通过后可进入内部 <b>VIP</b> 群。
+      请选择对应入口。开户/合作将跳转至外部链接；完成开户注册后，
+      <b>请将开户邮箱发送给下方助理进行验证</b>，
+      验证通过后可进入内部 <b>VIP</b> 群。
     </div>
 
     <div class="cards">
       <div class="card">
         <span class="badge">美元账户 · TMGM</span>
         <div class="title">TMGM 合作开户链接</div>
-        <div class="desc">适用于美元账户开户流程，点击下方按钮跳转至开户页面。</div>
+        <div class="desc">适用于美元账户开户流程。</div>
         <div class="actions">
           <button class="btn tm" id="tmgm">立即开户</button>
         </div>
@@ -255,7 +157,7 @@ h1{margin:0 0 10px;font-size:26px;line-height:1.25}
       <div class="card">
         <span class="badge">美分账户 · Dprime</span>
         <div class="title">Dprime 美分账户开户</div>
-        <div class="desc">适用于美分账户交易需求，点击下方按钮跳转至注册页面。</div>
+        <div class="desc">适用于美分账户交易需求。</div>
         <div class="actions">
           <button class="btn dp" id="dprime">立即开户注册</button>
         </div>
@@ -264,17 +166,16 @@ h1{margin:0 0 10px;font-size:26px;line-height:1.25}
       <div class="card">
         <span class="badge">咨询助理 · 微信</span>
         <div class="title">助理微信：GINVIP123</div>
-        <div class="desc">点击按钮将自动复制微信号，并尝试拉起微信 App。</div>
+        <div class="desc">自动复制微信号并尝试唤起微信。</div>
         <div class="actions">
           <button class="btn wx" id="wechat">点击咨询助理微信</button>
         </div>
       </div>
 
-      <!-- ✅ 新增：助理钉钉 -->
       <div class="card">
         <span class="badge">咨询助理 · 钉钉</span>
-        <div class="title">助理钉钉：点击跳转名片</div>
-        <div class="desc">点击按钮跳转至钉钉外部名片页面，可直接发起沟通。</div>
+        <div class="title">助理钉钉：ginvip123</div>
+        <div class="desc">自动复制钉钉号并跳转钉钉名片。</div>
         <div class="actions">
           <button class="btn dd" id="ding">点击咨询助理钉钉</button>
         </div>
@@ -282,17 +183,15 @@ h1{margin:0 0 10px;font-size:26px;line-height:1.25}
     </div>
 
     <div class="risk">
-      <div class="risk-title"><span class="risk-dot"></span>风险提示</div>
-      <ul>
-        <li>本页面仅用于信息展示与合作入口跳转，不构成任何投资建议或收益承诺。</li>
-        <li>所有点击、跳转、注册、咨询等操作均为个人自主行为。</li>
-        <li>由此产生的风险与结果（包括账户开立、交易损益、平台规则变化等）均自行承担。</li>
-      </ul>
-      <div class="confirm">继续访问或点击任意按钮，即视为已阅读、理解并同意上述风险提示。</div>
+      <b>风险提示：</b>本页面仅用于信息展示与合作入口跳转，不构成任何投资建议或收益承诺。
+      所有点击、跳转、注册、咨询等操作均为个人自主行为，
+      由此产生的任何结果与风险均需自行承担。
+      <br><b>继续访问或点击即视为已阅读并同意上述说明。</b>
     </div>
 
     <div class="hint">
-      跳转说明：在 <b>iOS</b> 或 <b>微信/钉钉内置浏览器</b> 中，可能限制直接唤起 App。建议策略：<b>先复制</b>（微信号），再尝试唤起；或直接在 App 内搜索添加。
+      跳转说明：在 iOS 或微信/钉钉内置浏览器中，可能限制直接唤起 App。
+      建议策略：<b>先复制</b>，再在对应 App 内搜索添加。
     </div>
   </div>
 </div>
@@ -301,20 +200,21 @@ h1{margin:0 0 10px;font-size:26px;line-height:1.25}
 const TMGM="https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans";
 const DPRIME="https://user.dprimefast.net/signup/H1968038-a01";
 const WX="GINVIP123";
-const DING="https://n.dingtalk.com/dingding/h5-profile/outside/index.html?fr_source=13&uidCipher=g0RObbEF3psyySztuGyjSA%3D%3D&cardToken=013c1c6afa&profile=%40kgDODf02bQ";
+const DING_ID="ginvip123";
+const DING_LINK="https://n.dingtalk.com/dingding/h5-profile/outside/index.html?fr_source=13&uidCipher=g0RObbEF3psyySztuGyjSA%3D%3D&cardToken=013c1c6afa&profile=%40kgDODf02bQ";
 
-/* 外部开户链接 */
 document.getElementById("tmgm").onclick=()=>window.open(TMGM,"_blank");
 document.getElementById("dprime").onclick=()=>window.open(DPRIME,"_blank");
 
-/* 微信：复制+尝试拉起 */
 document.getElementById("wechat").onclick=async()=>{
   try{await navigator.clipboard.writeText(WX);}catch(e){}
   location.href="weixin://";
 };
 
-/* 钉钉：跳转名片（外部链接，系统会尝试唤起钉钉/或打开H5） */
-document.getElementById("ding").onclick=()=>window.open(DING,"_blank");
+document.getElementById("ding").onclick=async()=>{
+  try{await navigator.clipboard.writeText(DING_ID);}catch(e){}
+  window.open(DING_LINK,"_blank");
+};
 </script>
 </body>
 </html>
