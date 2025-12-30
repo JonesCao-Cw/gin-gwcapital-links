@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<title>Gin-杰明 · GWCAPITAL 合作链接</title>
+<title>GWCAPITAL · 合作链接</title>
+<meta name="description" content="GWCAPITAL 合作链接：开户入口与助理联系方式" />
 
 <style>
 :root{
@@ -12,74 +13,224 @@
   --border:rgba(255,255,255,.12);
   --text:#e8eeff;
   --muted:#a9b3d1;
+
   --blue:#66e3ff;
   --purple:#7c5cff;
   --green:#34d399;
   --cyan:#38bdf8;
+
   --danger:#fb7185;
   --orange:#fbbf24;
+
   --radius:22px;
 }
-*{box-sizing:border-box}
-html,body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text)}
 
+*{box-sizing:border-box}
+html, body{height:100%}
+
+/* ===== 背景（不变）===== */
 body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  color:var(--text);
+
   background:
     radial-gradient(1200px 700px at 15% 10%, rgba(124,92,255,.28), transparent 55%),
     radial-gradient(1100px 650px at 85% 15%, rgba(102,227,255,.22), transparent 55%),
     linear-gradient(180deg,#050712,var(--bg));
-  padding:24px;
-}
-@media(max-width:900px){
-  body{padding:16px;overflow-y:auto}
+
+  /* ✅ 不再用“舞台锁死”模式，避免电脑/手机来回出问题 */
+  overflow-x:hidden;
+  padding: 22px 16px;
 }
 
-/* 水印 */
+/* GW 水印（不变，但更稳定） */
 .watermark{
-  position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
-  pointer-events:none;z-index:0
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:0;
 }
 .watermark span{
-  font-size:min(48vw,520px);
+  font-size:min(48vw,540px);
   font-weight:900;
   letter-spacing:.08em;
+  color:transparent;
+  background:linear-gradient(90deg,#66e3ff,#7c5cff);
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  opacity:.35;
+  transform:rotate(-12deg) translate(-6%,-8%);
+  text-shadow:
+    0 0 22px rgba(102,227,255,.35),
+    0 0 60px rgba(124,92,255,.28);
+}
+
+/* 主容器 */
+.wrap{
+  width:min(1160px, 100%);
+  margin: 0 auto;
+  position:relative;
+  z-index:1;
+}
+
+/* 顶部导航（参考图一结构） */
+.topbar{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding: 10px 10px;
+}
+
+/* 左侧品牌 */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width: 220px;
+}
+.brand img{
+  width:28px;
+  height:28px;
+  object-fit:contain;
+  border-radius:8px;
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,.35));
+}
+.brand .name{
+  font-weight:900;
+  letter-spacing:.02em;
+}
+.brand .name b{
   background:linear-gradient(90deg,#66e3ff,#7c5cff);
   -webkit-background-clip:text;
   background-clip:text;
   color:transparent;
-  opacity:.35;
-  transform:rotate(-12deg);
 }
 
-/* 主体 */
-.wrap{max-width:1160px;margin:auto;position:relative;z-index:1}
+/* 中间导航链接 */
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  flex:1;
+  color:var(--muted);
+  font-size:14px;
+  white-space:nowrap;
+}
+.nav a{
+  color:var(--muted);
+  text-decoration:none;
+  padding:8px 10px;
+  border-radius:10px;
+  transition: all .18s ease;
+}
+.nav a:hover{
+  color:#fff;
+  background:rgba(255,255,255,.06);
+}
+
+/* 右侧按钮 */
+.top-actions{
+  min-width: 220px;
+  display:flex;
+  justify-content:flex-end;
+}
+.pill{
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  padding:10px 14px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:14px;
+  cursor:pointer;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.pill:hover{ background:rgba(255,255,255,.10); }
+
+/* ✅ 手机：导航折叠为可横向滚动 */
+@media (max-width: 900px){
+  .brand{min-width:auto}
+  .top-actions{min-width:auto}
+  .nav{
+    justify-content:flex-start;
+    overflow:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .nav::-webkit-scrollbar{display:none}
+}
+
+/* 主面板 */
 .panel{
-  background:linear-gradient(180deg,rgba(18,26,43,.94),rgba(15,22,38,.9));
+  margin-top: 14px;
+  background:linear-gradient(180deg,rgba(18,26,43,.94),rgba(15,22,38,.88));
   border:1px solid var(--border);
   border-radius:var(--radius);
-  padding:28px;
+  padding: 28px;
+  box-shadow:0 24px 60px rgba(0,0,0,.55);
 }
-h1{margin:0 0 8px;font-size:26px}
 
-/* 顶部重要提示 */
+/* 欢迎区（参考图一：居中大标题 + 副标题） */
+.hero{
+  padding: 26px 10px 14px;
+  text-align:center;
+}
+.hero h1{
+  margin:0;
+  font-size: 54px;
+  letter-spacing: .01em;
+  line-height:1.15;
+}
+.hero h1 .accent{
+  background:linear-gradient(90deg,#66e3ff,#7c5cff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  font-weight:1000;
+}
+.hero p{
+  margin:14px 0 0;
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.8;
+}
+@media (max-width: 900px){
+  .hero h1{font-size:34px}
+  .panel{padding:22px}
+}
+
+/* ===== 下面：你之前的内容（卡片 + 风险提示） ===== */
 .notice{
-  margin:12px 0 18px;
-  padding:14px;
+  margin:18px 0 14px;
+  padding:12px 14px;
   border-radius:14px;
   border:1px solid rgba(251,191,36,.4);
-  background:linear-gradient(180deg,rgba(251,191,36,.18),rgba(255,255,255,.03));
-  font-size:14px;line-height:1.7
+  background:linear-gradient(180deg,rgba(251,191,36,.16),rgba(255,255,255,.02));
+  font-size:14px;
+  line-height:1.75;
+  text-align:left;
 }
 .notice b{color:#fff}
 
-/* 卡片 */
 .cards{
+  margin-top:14px;
   display:grid;
+  grid-template-columns:1fr;
   gap:16px;
 }
 @media(min-width:900px){
-  .cards{grid-template-columns:repeat(4,1fr)}
+  .cards{grid-template-columns:repeat(4,1fr);}
 }
+
 .card{
   background:var(--panel);
   border:1px solid var(--border);
@@ -87,8 +238,14 @@ h1{margin:0 0 8px;font-size:26px}
   padding:20px;
   display:flex;
   flex-direction:column;
+  min-height:260px;
 }
+@media (max-width: 899px){
+  .card{min-height:auto;padding:18px}
+}
+
 .badge{
+  display:inline-block;
   font-size:13px;
   padding:6px 12px;
   border-radius:999px;
@@ -96,105 +253,158 @@ h1{margin:0 0 8px;font-size:26px}
   color:var(--muted);
   width:max-content;
 }
-.title{margin:14px 0 6px;font-size:18px;font-weight:800}
+.title{margin:14px 0 8px;font-size:18px;font-weight:800}
 .desc{font-size:14px;color:var(--muted);line-height:1.7}
+
 .actions{margin-top:auto}
 .btn{
-  width:100%;height:48px;border-radius:14px;
-  border:none;font-weight:900;font-size:14px;cursor:pointer
+  width:100%;
+  height:48px;
+  border-radius:14px;
+  border:none;
+  font-weight:900;
+  font-size:14px;
+  cursor:pointer;
 }
-.tm{background:linear-gradient(90deg,var(--blue),#66e3ffaa)}
-.dp{background:linear-gradient(90deg,var(--purple),#7c5cffaa)}
-.wx{background:linear-gradient(90deg,var(--green),#34d399aa)}
-.dd{background:linear-gradient(90deg,var(--cyan),#60a5faaa)}
+.btn.tm{background:linear-gradient(90deg,var(--blue),#66e3ffaa);color:#061018}
+.btn.dp{background:linear-gradient(90deg,var(--purple),#7c5cffaa);color:#0a0914}
+.btn.wx{background:linear-gradient(90deg,var(--green),#34d399aa);color:#06120b}
+.btn.dd{background:linear-gradient(90deg,var(--cyan),#60a5faaa);color:#061018}
 
-/* 风险 */
 .risk{
   margin-top:20px;
-  padding:18px;
+  padding:18px 20px;
   border-radius:16px;
   border:1px solid rgba(251,113,133,.35);
-  background:linear-gradient(180deg,rgba(251,113,133,.14),rgba(255,255,255,.03));
-  font-size:13px;line-height:1.8
+  background:linear-gradient(180deg,rgba(251,113,133,.12),rgba(255,255,255,.02));
+  font-size:13px;
+  line-height:1.85;
 }
-.risk b{font-weight:900}
+.risk-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:900;
+  margin-bottom:10px;
+}
+.risk-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:var(--danger);
+  box-shadow:0 0 14px rgba(251,113,133,.6);
+}
+.risk ul{margin:0;padding-left:18px}
+.risk li{margin:6px 0}
+.confirm{
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px dashed rgba(255,255,255,.2);
+  font-weight:900;
+}
 
-/* 底部说明 */
 .hint{
   margin-top:14px;
-  padding:12px;
+  padding:12px 14px;
   border-radius:14px;
-  border:1px dashed rgba(255,255,255,.25);
+  border:1px dashed rgba(255,255,255,.2);
+  background:rgba(255,255,255,.02);
   color:var(--muted);
-  font-size:12.5px;line-height:1.7
+  font-size:12.5px;
+  line-height:1.75;
 }
+.hint b{color:#fff}
 </style>
 </head>
 
 <body>
-<div class="watermark"><span>GW</span></div>
+  <div class="watermark"><span>GW</span></div>
 
-<div class="wrap">
-  <div class="panel">
-    <h1>Gin-杰明 · GWCAPITAL 合作链接</h1>
-
-    <div class="notice">
-      请选择对应入口。开户/合作将跳转至外部链接；完成开户注册后，
-      <b>请将开户邮箱发送给下方助理进行验证</b>，
-      验证通过后可进入内部 <b>VIP</b> 群。
-    </div>
-
-    <div class="cards">
-      <div class="card">
-        <span class="badge">美元账户 · TMGM</span>
-        <div class="title">TMGM 合作开户链接</div>
-        <div class="desc">适用于美元账户开户流程。</div>
-        <div class="actions">
-          <button class="btn tm" id="tmgm">立即开户</button>
-        </div>
+  <div class="wrap">
+    <!-- 顶部导航（图一风格） -->
+    <div class="topbar">
+      <div class="brand">
+        <!-- ✅ 图二 Logo：请确保你已上传 assets/gw-logo.png -->
+        <img src="assets/gw-logo.png" alt="GWCAPITAL Logo">
+        <div class="name"><b>GWCAPITAL</b></div>
       </div>
 
-      <div class="card">
-        <span class="badge">美分账户 · Dprime</span>
-        <div class="title">Dprime 美分账户开户</div>
-        <div class="desc">适用于美分账户交易需求。</div>
-        <div class="actions">
-          <button class="btn dp" id="dprime">立即开户注册</button>
-        </div>
+      <div class="nav">
+        <a href="#links">合作入口</a>
+        <a href="#risk">风险提示</a>
+        <a href="#assistant">助理联系</a>
       </div>
 
-      <div class="card">
-        <span class="badge">咨询助理 · 微信</span>
-        <div class="title">助理微信：GINVIP123</div>
-        <div class="desc">自动复制微信号并尝试唤起微信。</div>
-        <div class="actions">
-          <button class="btn wx" id="wechat">点击咨询助理微信</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="badge">咨询助理 · 钉钉</span>
-        <div class="title">助理钉钉：ginvip123</div>
-        <div class="desc">自动复制钉钉号并跳转钉钉名片。</div>
-        <div class="actions">
-          <button class="btn dd" id="ding">点击咨询助理钉钉</button>
-        </div>
+      <div class="top-actions">
+        <a class="pill" href="#links">开始使用 →</a>
       </div>
     </div>
 
-    <div class="risk">
-      <b>风险提示：</b>本页面仅用于信息展示与合作入口跳转，不构成任何投资建议或收益承诺。
-      所有点击、跳转、注册、咨询等操作均为个人自主行为，
-      由此产生的任何结果与风险均需自行承担。
-      <br><b>继续访问或点击即视为已阅读并同意上述说明。</b>
-    </div>
+    <div class="panel">
+      <!-- 欢迎区（图一结构） -->
+      <div class="hero">
+        <h1>欢迎来到 <span class="accent">GWCAPITAL</span></h1>
+        <p>合作入口与助理联系方式（开户/合作跳转为外部链接）。</p>
+      </div>
 
-    <div class="hint">
-      跳转说明：在 iOS 或微信/钉钉内置浏览器中，可能限制直接唤起 App。
-      建议策略：<b>先复制</b>，再在对应 App 内搜索添加。
+      <!-- 你之前的提示条 -->
+      <div class="notice" id="links">
+        请选择对应入口。开户/合作将跳转至外部页面；开户完成后，请将<strong>注册邮箱</strong>发送给下方助理进行验证，验证通过后可进入内部 <b>VIP</b> 群。
+      </div>
+
+      <!-- 你之前的四张卡片 -->
+      <div class="cards">
+        <div class="card">
+          <span class="badge">美元账户 · TMGM</span>
+          <div class="title">TMGM 合作开户链接</div>
+          <div class="desc">适用于美元账户开户流程，点击下方按钮跳转至开户页面。</div>
+          <div class="actions">
+            <button class="btn tm" id="tmgm">立即开户</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="badge">美分账户 · Dprime</span>
+          <div class="title">Dprime 美分账户开户</div>
+          <div class="desc">适用于美分账户交易需求，点击下方按钮跳转至注册页面。</div>
+          <div class="actions">
+            <button class="btn dp" id="dprime">立即开户注册</button>
+          </div>
+        </div>
+
+        <div class="card" id="assistant">
+          <span class="badge">咨询助理 · 微信</span>
+          <div class="title">助理微信：GINVIP123</div>
+          <div class="desc">点击按钮将自动复制微信号，并尝试拉起微信 App。</div>
+          <div class="actions">
+            <button class="btn wx" id="wechat">点击咨询助理微信</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="badge">咨询助理 · 钉钉</span>
+          <div class="title">助理钉钉：ginvip123</div>
+          <div class="desc">点击按钮将自动复制钉钉号，并跳转钉钉名片页面。</div>
+          <div class="actions">
+            <button class="btn dd" id="ding">点击咨询助理钉钉</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 风险提示 -->
+      <div class="risk" id="risk">
+        <div class="risk-title"><span class="risk-dot"></span>风险提示</div>
+        <ul>
+          <li>本页面仅用于信息展示与合作入口跳转，不构成任何投资建议或收益承诺。</li>
+          <li>所有点击、跳转、注册、咨询等操作均为个人自主行为。</li>
+          <li>由此产生的风险与结果（包括账户开立、交易损益、平台规则变化等）均自行承担。</li>
+        </ul>
+        <div class="confirm">继续访问或点击任意按钮，即视为已阅读、理解并同意上述风险提示。</div>
+      </div>
+
+      <div class="hint">
+        跳转说明：在 <b>iOS</b> 或 <b>微信/钉钉内置浏览器</b> 中，可能限制直接唤起 App。建议策略：<b>先复制</b>，再在对应 App 内搜索添加。
+      </div>
     </div>
   </div>
-</div>
 
 <script>
 const TMGM="https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans";
