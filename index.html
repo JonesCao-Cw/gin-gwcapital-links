@@ -266,18 +266,16 @@ body{
   font-weight:900;
 }
 
-/* ===== 底部说明 ===== */
-.hint{
-  margin-top:14px;
-  padding:12px 14px;
-  border-radius:14px;
-  border:1px dashed rgba(255,255,255,.25);
-  background:rgba(255,255,255,.02);
+/* ✅ 合并后的跳转说明（在 risk 内，不会露底断层） */
+.jump-hint{
+  margin-top:12px;
+  padding-top:12px;
+  border-top:1px dashed rgba(255,255,255,.22);
   color:var(--muted);
   font-size:12.5px;
   line-height:1.75;
 }
-.hint b{color:#fff}
+.jump-hint b{color:#fff}
 
 /* ===== 移动端 ===== */
 @media(max-width:900px){
@@ -366,12 +364,13 @@ body{
         <li>由此产生的风险与结果（包括账户开立、交易损益、平台规则变化等）均自行承担。</li>
       </ul>
       <div class="confirm">继续访问或点击任意按钮，即视为已阅读、理解并同意上述风险提示。</div>
+
+      <div class="jump-hint">
+        跳转说明：在 <b>iOS</b> 或 <b>微信 / 钉钉内置浏览器</b> 中，可能限制直接唤起 App。
+        建议策略：<b>先复制</b>，再在对应 App 内搜索添加。
+      </div>
     </div>
 
-    <div class="hint">
-      跳转说明：在 <b>iOS</b> 或 <b>微信 / 钉钉内置浏览器</b> 中，可能限制直接唤起 App。
-      建议策略：<b>先复制</b>，再在对应 App 内搜索添加。
-    </div>
   </div>
 </div>
 
