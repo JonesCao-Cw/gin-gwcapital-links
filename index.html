@@ -28,7 +28,7 @@
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 
-/* ===== 固定全屏背景（解决断层的核心） ===== */
+/* ===== 固定全屏背景 ===== */
 .bg{
   position:fixed;
   inset:-2px;
@@ -70,7 +70,11 @@ body{
   color:var(--text);
   background:transparent;
   overflow-x:hidden;
-  padding:22px 16px;
+  padding:
+    calc(18px + env(safe-area-inset-top))
+    16px
+    calc(28px + env(safe-area-inset-bottom))
+    16px;
 }
 
 /* ===== 主容器 ===== */
@@ -265,8 +269,6 @@ body{
   border-top:1px dashed rgba(255,255,255,.2);
   font-weight:900;
 }
-
-/* ✅ 合并后的跳转说明（在 risk 内，不会露底断层） */
 .jump-hint{
   margin-top:12px;
   padding-top:12px;
@@ -277,11 +279,41 @@ body{
 }
 .jump-hint b{color:#fff}
 
-/* ===== 移动端 ===== */
+/* ===== ✅ 手机端强制适配（核心） ===== */
 @media(max-width:900px){
+  /* 顶部栏不再硬撑宽度 */
+  .topbar{
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:6px 6px;
+  }
+  .brand{min-width:0}
+  .top-actions{min-width:0}
+
+  /* 手机隐藏中间导航，避免挤压 */
+  .nav{display:none}
+
+  /* 按钮更小更贴合 */
+  .pill{padding:8px 12px;font-size:13px}
+
+  /* 面板/字体更紧凑 */
+  .panel{padding:20px}
+  .hero{padding:18px 6px 6px}
   .hero h1{font-size:34px}
-  .panel{padding:22px}
-  .nav{overflow:auto;justify-content:flex-start}
+  .hero p{font-size:14px;line-height:1.75}
+
+  /* 卡片一列（默认），间距略收 */
+  .cards{gap:14px}
+  .card{padding:18px}
+}
+
+/* 超小屏再缩一点（iPhone SE 这种） */
+@media(max-width:380px){
+  body{padding-left:12px;padding-right:12px}
+  .panel{padding:18px}
+  .hero h1{font-size:30px}
+  .btn{height:46px}
 }
 </style>
 </head>
@@ -296,11 +328,13 @@ body{
       <img src="assets/gw-logo.png" alt="GWCAPITAL Logo">
       <div class="name"><b>GWCAPITAL</b></div>
     </div>
+
     <div class="nav">
       <a href="#links">合作入口</a>
       <a href="#assistant">助理联系</a>
       <a href="#risk">风险提示</a>
     </div>
+
     <div class="top-actions">
       <a class="pill" href="#links">开始使用 →</a>
     </div>
