@@ -20,72 +20,125 @@
   --cyan:#38bdf8;
 
   --danger:#fb7185;
+  --orange:#fbbf24;
 
   --radius:22px;
 }
 
 *{box-sizing:border-box}
-html,body{margin:0;padding:0}
+html,body{margin:0;padding:0;height:100%}
 
+/* 关键：把 html/body 也涂满背景，避免 iOS 回弹露白 */
+html{background:var(--bg);}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  overflow-x:hidden;
+
+  /* 关键：适配 iPhone 刘海/底部安全区 */
+  padding:
+    calc(22px + env(safe-area-inset-top))
+    16px
+    calc(22px + env(safe-area-inset-bottom))
+    16px;
+
+  /* 关键：降低 iOS 回弹带来的“露底”概率 */
+  overscroll-behavior-y:none;
+}
+
+/* ===== 固定全屏背景（更大 inset，进一步防白边） ===== */
 .bg{
-  position:fixed; inset:-2px; z-index:-3;
+  position:fixed;
+  inset:-18vh -18vw; /* 比之前更大，滚动/回弹也不露底 */
+  z-index:-10;
   background:
     radial-gradient(1200px 700px at 15% 10%, rgba(124,92,255,.28), transparent 55%),
     radial-gradient(1100px 650px at 85% 15%, rgba(102,227,255,.22), transparent 55%),
     linear-gradient(180deg,#050712,var(--bg));
+  transform:translateZ(0);
 }
 
+/* ===== GW 水印 ===== */
 .watermark{
-  position:fixed; inset:0; pointer-events:none;
-  display:flex; align-items:center; justify-content:center;
-  z-index:-2;
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:-9;
 }
 .watermark span{
   font-size:min(48vw,540px);
-  font-weight:900; letter-spacing:.08em;
+  font-weight:900;
+  letter-spacing:.08em;
   color:transparent;
   background:linear-gradient(90deg,#66e3ff,#7c5cff);
-  -webkit-background-clip:text; background-clip:text;
-  opacity:.35;
+  -webkit-background-clip:text;
+  background-clip:text;
+  opacity:.28;
   transform:rotate(-12deg) translate(-6%,-8%);
-  text-shadow:0 0 22px rgba(102,227,255,.35), 0 0 60px rgba(124,92,255,.28);
+  text-shadow:
+    0 0 22px rgba(102,227,255,.35),
+    0 0 60px rgba(124,92,255,.28);
 }
 
-body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
-  color:var(--text);
-  background:transparent;
-  overflow-x:hidden;
-  padding:22px 16px;
+/* ===== 主容器 ===== */
+.wrap{
+  max-width:1160px;
+  margin:0 auto;
+  position:relative;
+  z-index:1;
 }
 
-.wrap{max-width:1160px;margin:0 auto;position:relative;z-index:1}
-
+/* ===== 顶部导航（已删除右上角“开始使用”按钮） ===== */
 .topbar{
-  display:flex;align-items:center;gap:14px;
+  display:flex;
+  align-items:center;
+  gap:14px;
   padding:8px 10px;
 }
-.brand{display:flex;align-items:center;gap:10px;min-width:200px}
-.brand img{width:28px;height:28px;object-fit:contain;border-radius:8px}
-.brand .name{font-weight:900;letter-spacing:.02em}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:200px;
+}
+.brand img{
+  width:28px;height:28px;object-fit:contain;border-radius:8px;
+}
+.brand .name{
+  font-weight:900;
+  letter-spacing:.02em;
+}
 .brand .name b{
   background:linear-gradient(90deg,#66e3ff,#7c5cff);
-  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
 }
 .nav{
-  flex:1;display:flex;justify-content:center;gap:18px;
-  color:var(--muted);font-size:14px;white-space:nowrap;
+  flex:1;
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  color:var(--muted);
+  font-size:14px;
+  white-space:nowrap;
 }
-.nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:10px}
-.nav a:hover{color:#fff;background:rgba(255,255,255,.06)}
-.top-actions{min-width:200px;display:flex;justify-content:flex-end}
-.pill{
-  border:1px solid rgba(255,255,255,.14);
+.nav a{
+  color:var(--muted);
+  text-decoration:none;
+  padding:8px 10px;
+  border-radius:10px;
+}
+.nav a:hover{
+  color:#fff;
   background:rgba(255,255,255,.06);
-  color:#fff;padding:10px 14px;border-radius:999px;
-  font-weight:900;font-size:14px;text-decoration:none;
 }
 
+/* ===== 面板 ===== */
 .panel{
   margin-top:14px;
   background:linear-gradient(180deg,rgba(18,26,43,.94),rgba(15,22,38,.9));
@@ -95,238 +148,324 @@ body{
   box-shadow:0 24px 60px rgba(0,0,0,.55);
 }
 
-.hero{text-align:center;padding:22px 10px 10px}
-.hero h1{margin:0;font-size:52px;line-height:1.15}
+/* ===== 欢迎区 ===== */
+.hero{
+  text-align:center;
+  padding:22px 10px 14px;
+}
+.hero h1{
+  margin:0;
+  font-size:52px;
+  line-height:1.15;
+}
 .hero .accent{
   background:linear-gradient(90deg,#66e3ff,#7c5cff);
-  -webkit-background-clip:text;background-clip:text;color:transparent;font-weight:1000;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  font-weight:1000;
 }
-.hero p{margin:14px 0 0;color:var(--muted);font-size:16px;line-height:1.8}
+.hero p{
+  margin:14px 0 0;
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.8;
+}
 
-/* ===== 关于我区 ===== */
+/* ===== “关于我”区域（轮播 + 介绍） ===== */
 .about{
   margin-top:18px;
   display:grid;
-  gap:18px;
-  grid-template-columns: 1.05fr 1.4fr;
+  gap:16px;
+  grid-template-columns: 1.05fr 1.25fr;
   align-items:stretch;
 }
-@media(max-width:900px){ .about{grid-template-columns:1fr;} }
 
-.about-card{
-  border-radius:20px;
+/* 左：图片轮播卡 */
+.gallery{
+  background:rgba(255,255,255,.02);
   border:1px solid var(--border);
-  background:rgba(255,255,255,.04);
-  box-shadow:0 14px 40px rgba(0,0,0,.35);
+  border-radius:22px;
+  padding:16px;
+  position:relative;
   overflow:hidden;
 }
 
-/* ===== 三折叠“电视景深”轮播 ===== */
-.tv{
-  position:relative;
-  width:100%;
-  min-height:340px;
-  padding:18px 14px 14px;
-}
-@media(max-width:900px){ .tv{min-height:300px;} }
-
-.tv-stage{
-  position:relative;
-  height:290px;
-  border-radius:18px;
-  overflow:hidden;
-  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.01));
-  border:1px solid rgba(255,255,255,.10);
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,.25);
-}
-@media(max-width:900px){ .tv-stage{height:260px;} }
-
-.tv-slides{
-  position:absolute; inset:0;
-  perspective: 1100px;
-}
-
-/* 每张卡片：用背景图，保证切换有动画 */
-.slide{
+/* 电视景深：用模糊背景做“左右折叠感” */
+.gallery::before{
+  content:"";
   position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  width:78%;
-  height:88%;
-  left:11%;
-  border-radius:18px;
-  background-position:center;
-  background-size:cover;
-  box-shadow:0 24px 60px rgba(0,0,0,.55);
-  border:1px solid rgba(255,255,255,.16);
-  transition: transform .55s ease, filter .55s ease, opacity .55s ease;
-  will-change: transform, filter, opacity;
-}
-
-/* 中间主图 */
-.slide.is-center{
-  transform:translateY(-50%) translateX(0) scale(1);
-  filter:blur(0px) brightness(1.02) contrast(1.03);
-  opacity:1;
-  z-index:3;
-}
-
-/* 左侧折叠 */
-.slide.is-left{
-  transform:translateY(-50%) translateX(-46%) scale(.78) rotateY(26deg);
-  filter:blur(2.2px) brightness(.75) saturate(.9);
-  opacity:.75;
-  z-index:2;
-}
-
-/* 右侧折叠 */
-.slide.is-right{
-  transform:translateY(-50%) translateX(46%) scale(.78) rotateY(-26deg);
-  filter:blur(2.2px) brightness(.75) saturate(.9);
-  opacity:.75;
-  z-index:2;
-}
-
-/* 其他隐藏 */
-.slide.is-hidden{
-  opacity:0;
-  transform:translateY(-50%) scale(.6);
-  filter:blur(6px) brightness(.6);
-  z-index:1;
-  pointer-events:none;
-}
-
-/* 左右阴影遮罩，强化“电视景深” */
-.tv-vignette{
-  position:absolute; inset:0;
-  pointer-events:none;
+  inset:-24px;
   background:
-    radial-gradient(60% 85% at 50% 45%, rgba(0,0,0,0) 45%, rgba(0,0,0,.55) 100%),
-    linear-gradient(90deg, rgba(0,0,0,.45), rgba(0,0,0,0) 22%, rgba(0,0,0,0) 78%, rgba(0,0,0,.45));
+    radial-gradient(700px 380px at 50% 25%, rgba(102,227,255,.10), transparent 60%),
+    radial-gradient(680px 360px at 50% 70%, rgba(124,92,255,.12), transparent 62%);
+  filter:blur(0px);
+  pointer-events:none;
+  z-index:0;
+}
+.gallery-inner{
+  position:relative;
+  z-index:1;
+}
+
+/* 舞台 */
+.stage{
+  position:relative;
+  border-radius:18px;
+  overflow:hidden;
+  background:rgba(0,0,0,.25);
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow: 0 14px 40px rgba(0,0,0,.45);
+  aspect-ratio: 16 / 11;  /* 视觉更像“电视屏” */
+}
+
+/* 侧边“折叠”幻影（用当前图做背景，左右压扁） */
+.fold{
+  position:absolute;
+  top:0;bottom:0;
+  width:26%;
+  background-size:cover;
+  background-position:center;
+  filter:blur(2px) saturate(.9) brightness(.72);
   opacity:.55;
+  transform-origin:center;
+}
+.fold.left{
+  left:0;
+  transform:skewY(0deg) rotateY(28deg) scaleX(.86);
+  mask-image:linear-gradient(90deg, rgba(0,0,0,1), rgba(0,0,0,0));
+  -webkit-mask-image:linear-gradient(90deg, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+.fold.right{
+  right:0;
+  transform:skewY(0deg) rotateY(-28deg) scaleX(.86);
+  mask-image:linear-gradient(270deg, rgba(0,0,0,1), rgba(0,0,0,0));
+  -webkit-mask-image:linear-gradient(270deg, rgba(0,0,0,1), rgba(0,0,0,0));
 }
 
-/* 控制条 */
-.tv-controls{
+/* 中间主图容器：平滑滚动替换 */
+.track{
+  position:absolute;
+  inset:0;
   display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  margin-top:10px;
+  height:100%;
+  will-change:transform;
+  transition:transform 720ms cubic-bezier(.22,.9,.22,1);
 }
-.tv-btn{
-  width:42px;height:42px;border-radius:50%;
-  border:1px solid rgba(255,255,255,.22);
-  background:rgba(0,0,0,.18);
-  color:#fff;
-  font-size:22px;
-  cursor:pointer;
-  opacity:.35;
-  transition:.2s ease;
-  backdrop-filter: blur(6px);
-}
-.tv:hover .tv-btn{opacity:.6}
-.tv-btn:hover{opacity:.9; transform: translateY(-1px);}
-
-.dots{
+.slide{
+  min-width:100%;
+  height:100%;
   display:flex;
   align-items:center;
   justify-content:center;
+  padding:14px;
+}
+.slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:14px;
+  transform:scale(1.01);
+  box-shadow: 0 10px 32px rgba(0,0,0,.45);
+}
+
+/* 左右按钮：透明度低、悬浮 */
+.gbtn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:42px;height:42px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(0,0,0,.22);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index:5;
+  opacity:.58;              /* 你要的低透明 */
+  transition:opacity .2s ease, transform .2s ease, background .2s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.gbtn:hover{opacity:.92;background:rgba(0,0,0,.32)}
+.gbtn:active{transform:translateY(-50%) scale(.98)}
+.gbtn.left{left:10px}
+.gbtn.right{right:10px}
+.gbtn svg{width:18px;height:18px}
+
+/* 底部 dots */
+.dots{
+  display:flex;
   gap:8px;
-  flex:1;
+  justify-content:center;
+  align-items:center;
+  margin-top:12px;
 }
 .dot{
-  width:8px;height:8px;border-radius:999px;
-  background:rgba(255,255,255,.22);
-  border:1px solid rgba(255,255,255,.22);
+  width:7px;height:7px;
+  border-radius:999px;
+  background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.10);
   cursor:pointer;
-  transition: .25s ease;
+  transition:transform .2s ease, background .2s ease, width .2s ease;
 }
 .dot.active{
+  background:linear-gradient(90deg,#66e3ff,#7c5cff);
   width:22px;
-  background:linear-gradient(90deg,#66e3ff,#7c5cff);
-  border-color: transparent;
-  box-shadow:0 0 14px rgba(124,92,255,.35);
 }
 
-.about-info{padding:18px 18px 16px}
-.about-tag{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:12.5px;padding:7px 12px;border-radius:999px;
-  border:1px solid rgba(255,255,255,.14);
-  background:rgba(255,255,255,.03);
-  color:var(--muted);
-}
-.about-info h2{margin:14px 0 8px;font-size:22px;font-weight:950}
-.about-info p{margin:0 0 12px;color:rgba(232,238,255,.86);font-size:14px;line-height:1.85}
-.bullets{display:grid;gap:10px;margin-top:10px}
-.bullet{
-  border-radius:14px;border:1px solid rgba(255,255,255,.12);
+/* 右：人物介绍卡 */
+.bio{
   background:rgba(255,255,255,.02);
-  padding:12px 12px;color:rgba(232,238,255,.9);
-  font-size:13.5px;line-height:1.75;display:flex;gap:10px;align-items:flex-start;
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:18px 18px;
 }
-.bullet i{
-  width:10px;height:10px;margin-top:6px;border-radius:50%;
+.bio-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:7px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.12);
+  color:var(--muted);
+  font-size:13px;
+  background:rgba(255,255,255,.03);
+}
+.bio h2{
+  margin:12px 0 8px;
+  font-size:26px;
+  line-height:1.2;
+}
+.bio p{
+  margin:0 0 12px;
+  color:var(--muted);
+  line-height:1.85;
+  font-size:14px;
+}
+.bullets{
+  display:grid;
+  gap:10px;
+  margin-top:10px;
+}
+.item{
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.02);
+  border-radius:14px;
+  padding:12px 12px;
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+}
+.bdot{
+  width:10px;height:10px;border-radius:50%;
+  margin-top:5px;
   background:linear-gradient(90deg,#66e3ff,#7c5cff);
-  box-shadow:0 0 12px rgba(124,92,255,.35);
-  flex:0 0 auto;
+  box-shadow:0 0 18px rgba(124,92,255,.25);
 }
-.bullet strong{font-weight:900}
+.item b{color:#fff}
 
-/* ===== 卡片 ===== */
-.cards{display:grid;gap:16px;margin-top:18px}
-@media(min-width:900px){ .cards{grid-template-columns:repeat(4,1fr);} }
+/* ===== 卡片入口（开户/咨询） ===== */
+.cards{
+  margin-top:18px;
+  display:grid;
+  gap:16px;
+}
+@media(min-width:900px){
+  .cards{grid-template-columns:repeat(4,1fr);}
+}
 .card{
-  background:var(--panel);border:1px solid var(--border);
-  border-radius:20px;padding:20px;display:flex;flex-direction:column;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
 }
 .badge{
-  font-size:13px;padding:6px 12px;border-radius:999px;
-  border:1px solid var(--border);color:var(--muted);width:max-content;
+  font-size:13px;
+  padding:6px 12px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  color:var(--muted);
+  width:max-content;
 }
 .title{margin:14px 0 8px;font-size:18px;font-weight:800}
 .desc{font-size:14px;color:var(--muted);line-height:1.7}
 .actions{margin-top:auto}
-.btn{width:100%;height:48px;border-radius:14px;border:none;font-weight:900;font-size:14px;cursor:pointer}
+.btn{
+  width:100%;
+  height:48px;
+  border-radius:14px;
+  border:none;
+  font-weight:900;
+  font-size:14px;
+  cursor:pointer;
+}
 .tm{background:linear-gradient(90deg,var(--blue),#66e3ffaa);color:#061018}
 .dp{background:linear-gradient(90deg,var(--purple),#7c5cffaa);color:#0a0914}
 .wx{background:linear-gradient(90deg,var(--green),#34d399aa);color:#06120b}
 .dd{background:linear-gradient(90deg,var(--cyan),#60a5faaa);color:#061018}
 
-/* ===== 提示条 / 风险 ===== */
-.notice{
-  margin:18px 0 14px;padding:14px;border-radius:14px;
-  border:1px solid rgba(251,191,36,.45);
-  background:linear-gradient(180deg,rgba(251,191,36,.16),rgba(255,255,255,.02));
-  font-size:14px;line-height:1.75;
-}
-.notice b{color:#fff}
-
+/* ===== 风险提示 ===== */
 .risk{
-  margin-top:20px;padding:18px 20px;border-radius:16px;
+  margin-top:20px;
+  padding:18px 20px;
+  border-radius:16px;
   border:1px solid rgba(251,113,133,.35);
   background:linear-gradient(180deg,rgba(251,113,133,.12),rgba(255,255,255,.02));
-  font-size:13px;line-height:1.85;
+  font-size:13px;
+  line-height:1.85;
 }
-.risk-title{display:flex;align-items:center;gap:10px;font-weight:900;margin-bottom:10px}
-.risk-dot{width:10px;height:10px;border-radius:50%;background:var(--danger)}
+.risk-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:900;
+  margin-bottom:10px;
+}
+.risk-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:var(--danger);
+}
 .risk ul{margin:0;padding-left:18px}
 .risk li{margin:6px 0}
-.confirm{margin-top:10px;padding-top:10px;border-top:1px dashed rgba(255,255,255,.2);font-weight:900}
+.confirm{
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px dashed rgba(255,255,255,.2);
+  font-weight:900;
+}
 
+/* ===== 底部说明 ===== */
 .hint{
-  margin-top:14px;padding:12px 14px;border-radius:14px;
+  margin-top:14px;
+  padding:12px 14px;
+  border-radius:14px;
   border:1px dashed rgba(255,255,255,.25);
   background:rgba(255,255,255,.02);
-  color:var(--muted);font-size:12.5px;line-height:1.75;
+  color:var(--muted);
+  font-size:12.5px;
+  line-height:1.75;
 }
 .hint b{color:#fff}
 
-@media(max-width:900px){
-  .hero h1{font-size:34px}
-  .panel{padding:22px}
+/* ===== 移动端 ===== */
+@media(max-width:980px){
+  .hero h1{font-size:36px}
+  .panel{padding:20px}
+  .about{grid-template-columns: 1fr;}
   .nav{overflow:auto;justify-content:flex-start}
+  .stage{aspect-ratio: 16/12;}
+}
+
+@media(max-width:520px){
+  .hero h1{font-size:32px}
+  .brand{min-width:auto}
+  .nav{gap:10px;font-size:13px}
+  .gbtn{width:40px;height:40px}
 }
 </style>
 </head>
@@ -346,9 +485,6 @@ body{
       <a href="#about">关于我</a>
       <a href="#risk">风险提示</a>
     </div>
-    <div class="top-actions">
-      <a class="pill" href="#links">开始使用 →</a>
-    </div>
   </div>
 
   <div class="panel">
@@ -357,51 +493,61 @@ body{
       <p>合作入口与助理联系方式（开户 / 合作将跳转为外部链接）。</p>
     </div>
 
-    <!-- 关于我 -->
+    <!-- 关于我（轮播 + 介绍） -->
     <div class="about" id="about">
-      <div class="about-card">
-        <div class="tv">
-          <div class="tv-stage" id="tvStage">
-            <div class="tv-slides">
-              <div class="slide" id="slide0"></div>
-              <div class="slide" id="slide1"></div>
-              <div class="slide" id="slide2"></div>
+      <div class="gallery">
+        <div class="gallery-inner">
+          <div class="stage" id="stage">
+            <div class="fold left" id="foldL"></div>
+            <div class="fold right" id="foldR"></div>
+
+            <div class="track" id="track">
+              <!-- JS 动态注入 slides -->
             </div>
-            <div class="tv-vignette"></div>
+
+            <button class="gbtn left" id="prev" aria-label="上一张">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M14.5 5.5L8 12l6.5 6.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="gbtn right" id="next" aria-label="下一张">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M9.5 5.5L16 12l-6.5 6.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
           </div>
 
-          <div class="tv-controls">
-            <button class="tv-btn" id="tvPrev" aria-label="上一张">‹</button>
-            <div class="dots" id="dots"></div>
-            <button class="tv-btn" id="tvNext" aria-label="下一张">›</button>
-          </div>
+          <div class="dots" id="dots"></div>
         </div>
       </div>
 
-      <div class="about-card">
-        <div class="about-info">
-          <span class="about-tag">Gin · 杰明 | 宏观与行情研究</span>
-          <h2>大家好，我是 Gin-杰明。</h2>
-          <p>
-            深耕交易与市场研究多年，曾任金十数据讲师，并参与金十交易学院的体系搭建。
-            这里是我的专属小站，聚合外汇、黄金、加密资产与美股等方向的个人观点与宏观解读；
-            合作与开户咨询请直接查看下方入口。
-          </p>
+      <div class="bio">
+        <span class="bio-badge">Gin · 杰明 | 宏观与行情研究</span>
+        <h2>大家好，我是 Gin-杰明。</h2>
+        <p>
+          深耕交易与市场研究多年，曾任金十数据讲师，并参与交易学院体系搭建。
+          这里是我的专属小站，聚合外汇、黄金、加密资产与美股等方向的个人观点与宏观解读；
+          合作与开户咨询，请直接查看下方入口。
+        </p>
 
-          <div class="bullets">
-            <div class="bullet"><i></i><div><strong>主线方法：</strong>以宏观逻辑 + 市场结构为主线，偏“看懂市场节奏”。</div></div>
-            <div class="bullet"><i></i><div><strong>更新覆盖：</strong>外汇 / 黄金 / 加密 / 美股，方向清晰，观点直给。</div></div>
-            <div class="bullet"><i></i><div><strong>合作或加入VIP群：</strong>按下方流程开户提交邮箱至小助理验证即可。</div></div>
+        <div class="bullets">
+          <div class="item">
+            <span class="bdot"></span>
+            <div><b>主线方法：</b>以宏观逻辑 + 市场结构为主线，偏“看懂市场节奏”。</div>
+          </div>
+          <div class="item">
+            <span class="bdot"></span>
+            <div><b>更新覆盖：</b>外汇 / 黄金 / 加密 / 美股，方向清晰，观点直给。</div>
+          </div>
+          <div class="item">
+            <span class="bdot"></span>
+            <div><b>合作或加入VIP群：</b>按下方流程开户提交邮箱至小助理验证即可。</div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 合作入口 -->
+    <!-- 入口卡片 -->
     <div class="cards" id="links">
       <div class="card">
         <span class="badge">美元账户 · TMGM</span>
-        <div class="title">TMGM 合作开户注册</div>
+        <div class="title">TMGM 合作开户注册链接</div>
         <div class="desc">适用于美元账户开户流程。</div>
         <div class="actions">
           <button class="btn tm" id="tmgm">立即开户</button>
@@ -417,7 +563,7 @@ body{
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" id="assistant">
         <span class="badge">咨询助理 · 微信</span>
         <div class="title">助理微信：GINVIP123</div>
         <div class="desc">点击按钮复制微信号并尝试唤起微信。</div>
@@ -434,12 +580,6 @@ body{
           <button class="btn dd" id="ding">点击咨询助理钉钉</button>
         </div>
       </div>
-    </div>
-
-    <div class="notice">
-      请选择对应入口。开户 / 合作将跳转至外部链接；
-      开户完成后请将 <b>注册邮箱</b> 发送给下方助理验证，
-      验证通过后可进入内部 <b>VIP</b> 群。
     </div>
 
     <div class="risk" id="risk">
@@ -460,7 +600,7 @@ body{
 </div>
 
 <script>
-/* ===== 链接 ===== */
+/* ===== 外链 ===== */
 const TMGM="https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans";
 const DPRIME="https://user.dprimefast.net/signup/H1968038-a01";
 const WX="GINVIP123";
@@ -480,99 +620,117 @@ document.getElementById("ding").onclick=async()=>{
   window.open(DING_LINK,"_blank");
 };
 
-/* ===== 三折叠轮播（电视景深） ===== */
-const imgs = [
+/* ===== 轮播（顺滑滚动替换 + 自动播放 + 手动切换） ===== */
+const images = [
   "images/g1.jpg","images/g2.jpg","images/g3.jpg","images/g4.jpg",
   "images/g5.jpg","images/g6.jpg","images/g7.jpg","images/g8.jpg"
 ];
 
-let idx = 0;
-const slide0 = document.getElementById("slide0");
-const slide1 = document.getElementById("slide1");
-const slide2 = document.getElementById("slide2");
-
+const track = document.getElementById("track");
 const dotsWrap = document.getElementById("dots");
-const prevBtn = document.getElementById("tvPrev");
-const nextBtn = document.getElementById("tvNext");
-const stage = document.getElementById("tvStage");
+const foldL = document.getElementById("foldL");
+const foldR = document.getElementById("foldR");
 
-function setBg(el, url){
-  el.style.backgroundImage = `url('${url}')`;
-}
+let idx = 0;
+let timer = null;
+let isDragging = false;
+let startX = 0;
 
-function render(){
-  const left = (idx - 1 + imgs.length) % imgs.length;
-  const right = (idx + 1) % imgs.length;
+function buildSlides(){
+  track.innerHTML = images.map(src => `
+    <div class="slide">
+      <img src="${src}" alt="profile" loading="lazy" />
+    </div>
+  `).join("");
 
-  // 填背景
-  setBg(slide0, imgs[left]);
-  setBg(slide1, imgs[idx]);
-  setBg(slide2, imgs[right]);
+  dotsWrap.innerHTML = images.map((_,i)=>`
+    <span class="dot ${i===0?'active':''}" data-i="${i}"></span>
+  `).join("");
 
-  // 状态类（动画由 CSS transition 驱动）
-  slide0.className = "slide is-left";
-  slide1.className = "slide is-center";
-  slide2.className = "slide is-right";
-
-  // dots
-  [...dotsWrap.children].forEach((d,i)=> d.classList.toggle("active", i===idx));
-}
-
-function goto(i){
-  idx = (i + imgs.length) % imgs.length;
-  render();
-}
-
-function next(){ goto(idx+1); }
-function prev(){ goto(idx-1); }
-
-prevBtn.addEventListener("click", ()=>{ prev(); resetAuto(); });
-nextBtn.addEventListener("click", ()=>{ next(); resetAuto(); });
-
-/* dots 创建 */
-(function initDots(){
-  dotsWrap.innerHTML = "";
-  imgs.forEach((_,i)=>{
-    const d = document.createElement("div");
-    d.className = "dot" + (i===idx ? " active" : "");
-    d.addEventListener("click", ()=>{ goto(i); resetAuto(); });
-    dotsWrap.appendChild(d);
+  dotsWrap.querySelectorAll(".dot").forEach(d=>{
+    d.addEventListener("click", ()=> goTo(+d.dataset.i, true));
   });
-})();
+
+  updateFolds();
+  applyTransform(false);
+}
+
+function updateDots(){
+  dotsWrap.querySelectorAll(".dot").forEach((d,i)=>{
+    d.classList.toggle("active", i===idx);
+  });
+}
+
+function applyTransform(animate=true){
+  track.style.transitionDuration = animate ? "720ms" : "0ms";
+  track.style.transform = `translateX(${-idx*100}%)`;
+  updateDots();
+  updateFolds();
+}
+
+/* 电视两侧折叠幻影：用当前图作为背景 */
+function updateFolds(){
+  const src = images[idx];
+  foldL.style.backgroundImage = `url('${src}')`;
+  foldR.style.backgroundImage = `url('${src}')`;
+}
+
+/* 切换（带一点点“缓动感”） */
+function goTo(i, animate=true){
+  idx = (i + images.length) % images.length;
+  applyTransform(animate);
+}
+
+document.getElementById("prev").addEventListener("click", ()=>{
+  stopAuto();
+  goTo(idx-1, true);
+  startAuto();
+});
+document.getElementById("next").addEventListener("click", ()=>{
+  stopAuto();
+  goTo(idx+1, true);
+  startAuto();
+});
 
 /* 自动播放 */
-let timer = null;
 function startAuto(){
   stopAuto();
-  timer = setInterval(()=> next(), 4200);
+  timer = setInterval(()=> goTo(idx+1, true), 4200);
 }
 function stopAuto(){
   if(timer) clearInterval(timer);
   timer = null;
 }
-function resetAuto(){
-  startAuto();
-}
 
-/* 鼠标悬停暂停（桌面端） */
-stage.addEventListener("mouseenter", stopAuto);
-stage.addEventListener("mouseleave", startAuto);
+/* 触摸滑动（手机上更自然） */
+const stage = document.getElementById("stage");
+stage.addEventListener("touchstart", (e)=>{
+  isDragging = true;
+  startX = e.touches[0].clientX;
+  stopAuto();
+},{passive:true});
 
-/* 手机滑动切换 */
-let startX = 0;
-stage.addEventListener("touchstart", (e)=>{ startX = e.touches[0].clientX; }, {passive:true});
 stage.addEventListener("touchend", (e)=>{
-  const endX = e.changedTouches[0].clientX;
-  const dx = endX - startX;
-  if(Math.abs(dx) > 40){
-    if(dx > 0) prev(); else next();
-    resetAuto();
+  if(!isDragging) return;
+  isDragging = false;
+  const endX = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientX : startX;
+  const diff = endX - startX;
+  if(Math.abs(diff) > 40){
+    if(diff > 0) goTo(idx-1, true);
+    else goTo(idx+1, true);
   }
-}, {passive:true});
+  startAuto();
+},{passive:true});
 
-/* 首次渲染 */
-render();
+/* 初始 */
+buildSlides();
 startAuto();
+
+/* 页面切后台暂停，回来继续 */
+document.addEventListener("visibilitychange", ()=>{
+  if(document.hidden) stopAuto();
+  else startAuto();
+});
 </script>
 </body>
 </html>
