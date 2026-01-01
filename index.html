@@ -26,65 +26,27 @@
 }
 
 *{box-sizing:border-box}
-
-/* ✅ 关键：html/body 一定要有底色，不能透明，否则 iOS 回弹会露底 */
-html,body{
-  margin:0;
-  padding:0;
-  width:100%;
-  min-height:100%;
-  background:var(--bg);
-  overflow-x:hidden;
-}
-
-/* ✅ 关键：明确滚动容器 + iOS 平滑滚动 + 允许纵向拖动 */
+html,body{margin:0;padding:0}
+html{height:100%}
 body{
+  min-height:100svh; /* iOS 更稳定 */
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
   color:var(--text);
-
-  /* 让页面始终可滚动（而不是某些 WebView 误判不可滚动） */
-  overflow-y:auto;
-  -webkit-overflow-scrolling:touch;
-
-  /* 允许纵向拖动手势 */
-  touch-action: pan-y;
-
-  /* padding 兼容刘海/底部安全区 */
-  padding:
-    calc(18px + env(safe-area-inset-top))
-    16px
-    calc(28px + env(safe-area-inset-bottom))
-    16px;
+  background:transparent;
+  overflow-x:hidden;
+  padding:22px 16px;
+  padding-bottom:calc(22px + env(safe-area-inset-bottom, 0px));
 }
 
-/* ===== ✅ 固定全屏背景：做成“超出屏幕”的画布，解决底部断层 ===== */
+/* ===== 固定全屏背景（防断层） ===== */
 .bg{
   position:fixed;
+  inset:-2px;
   z-index:-3;
-
-  /* 关键：不要 inset:-2px 这种小幅扩展，iOS 橡皮筋回弹会超出这个范围 */
-  left:-35vw;
-  top:-35vh;
-  width:170vw;
-  height:170vh;
-
   background:
     radial-gradient(1200px 700px at 15% 10%, rgba(124,92,255,.28), transparent 55%),
     radial-gradient(1100px 650px at 85% 15%, rgba(102,227,255,.22), transparent 55%),
     linear-gradient(180deg,#050712,var(--bg));
-
-  /* GPU 合成，减少 iOS 拖动时的闪烁/断层 */
-  transform: translateZ(0);
-}
-
-/* 某些 iOS WebView 需要更“夸张”的画布才能完全盖住回弹区域 */
-@supports (-webkit-touch-callout: none){
-  .bg{
-    left:-45vw;
-    top:-45vh;
-    width:190vw;
-    height:190vh;
-  }
 }
 
 /* ===== GW 水印 ===== */
@@ -118,7 +80,6 @@ body{
   margin:0 auto;
   position:relative;
   z-index:1;
-  padding-bottom:12px; /* 轻微兜底，避免底部贴边时的视觉割裂 */
 }
 
 /* ===== 顶部导航 ===== */
@@ -128,7 +89,6 @@ body{
   gap:14px;
   padding:8px 10px;
 }
-
 .brand{
   display:flex;
   align-items:center;
@@ -201,7 +161,7 @@ body{
 /* ===== 欢迎区 ===== */
 .hero{
   text-align:center;
-  padding:22px 10px 10px;
+  padding:22px 10px 14px;
 }
 .hero h1{
   margin:0;
@@ -215,34 +175,120 @@ body{
   color:transparent;
   font-weight:1000;
 }
-.hero p{
-  margin:14px 0 0;
-  color:var(--muted);
-  font-size:16px;
-  line-height:1.8;
+
+/* ===== 人物介绍区 ===== */
+.profile{
+  margin:18px auto 10px;
+  max-width:980px;
+  display:grid;
+  gap:16px;
+  grid-template-columns: 360px 1fr;
+  align-items:stretch;
+}
+.profile-card{
+  border:1px solid rgba(255,255,255,.12);
+  background:
+    radial-gradient(900px 260px at 10% 20%, rgba(102,227,255,.10), transparent 55%),
+    radial-gradient(900px 260px at 90% 20%, rgba(124,92,255,.12), transparent 55%),
+    linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border-radius:18px;
+  padding:16px;
 }
 
-/* ===== 提示条 ===== */
-.notice{
-  margin:18px 0 14px;
-  padding:14px;
-  border-radius:14px;
-  border:1px solid rgba(251,191,36,.45);
-  background:linear-gradient(180deg,rgba(251,191,36,.18),rgba(255,255,255,.02));
-  font-size:14px;
-  line-height:1.75;
+/* 左侧：横滑轮播 */
+.carousel{
+  position:relative;
+  height:260px;
+  overflow:hidden;
 }
-.notice b{color:#fff}
+.carousel-track{
+  display:flex;
+  gap:10px;
+  height:100%;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width:none;
+  padding-bottom:6px;
+}
+.carousel-track::-webkit-scrollbar{display:none}
+.slide{
+  flex:0 0 88%;
+  height:100%;
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.03);
+  scroll-snap-align:center;
+}
+.slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  filter:saturate(1.05) contrast(1.02);
+}
+
+/* 右侧：介绍文本 */
+.bio{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:10px;
+}
+.bio .kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  width:max-content;
+  padding:6px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.04);
+  color:var(--muted);
+  font-size:13px;
+}
+.bio h2{
+  margin:0;
+  font-size:22px;
+  line-height:1.35;
+}
+.bio p{
+  margin:0;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.85;
+}
+.bio .bullets{
+  margin-top:6px;
+  display:grid;
+  gap:8px;
+}
+.bullet{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  padding:10px 12px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(15,22,38,.45);
+}
+.bullet i{
+  width:10px;height:10px;border-radius:50%;
+  background:linear-gradient(90deg,var(--blue),var(--purple));
+  margin-top:6px;
+  flex:0 0 auto;
+}
 
 /* ===== 卡片 ===== */
 .cards{
+  margin-top:18px;
   display:grid;
   gap:16px;
 }
 @media(min-width:900px){
   .cards{grid-template-columns:repeat(4,1fr);}
 }
-
 .card{
   background:var(--panel);
   border:1px solid var(--border);
@@ -276,9 +322,21 @@ body{
 .wx{background:linear-gradient(90deg,var(--green),#34d399aa);color:#06120b}
 .dd{background:linear-gradient(90deg,var(--cyan),#60a5faaa);color:#061018}
 
+/* ===== 提示条（红框内容移到这里） ===== */
+.notice{
+  margin:16px 0 10px;
+  padding:14px 16px;
+  border-radius:14px;
+  border:1px solid rgba(251,191,36,.45);
+  background:linear-gradient(180deg,rgba(251,191,36,.18),rgba(255,255,255,.02));
+  font-size:14px;
+  line-height:1.75;
+}
+.notice b{color:#fff}
+
 /* ===== 风险提示 ===== */
 .risk{
-  margin-top:20px;
+  margin-top:16px;
   padding:18px 20px;
   border-radius:16px;
   border:1px solid rgba(251,113,133,.35);
@@ -305,41 +363,35 @@ body{
   border-top:1px dashed rgba(255,255,255,.2);
   font-weight:900;
 }
-.jump-hint{
-  margin-top:12px;
-  padding-top:12px;
-  border-top:1px dashed rgba(255,255,255,.22);
+
+/* ===== 底部说明（确保不露底色） ===== */
+.hint{
+  margin-top:14px;
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px dashed rgba(255,255,255,.25);
+  background:rgba(255,255,255,.02);
   color:var(--muted);
   font-size:12.5px;
   line-height:1.75;
+  margin-bottom:calc(18px + env(safe-area-inset-bottom, 0px));
 }
-.jump-hint b{color:#fff}
+.hint b{color:#fff}
 
-/* ===== ✅ 手机端强制适配 ===== */
+/* ===== 移动端适配 ===== */
 @media(max-width:900px){
-  .topbar{
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    padding:6px 6px;
-  }
-  .brand{min-width:0}
-  .top-actions{min-width:0}
-  .nav{display:none}
-  .pill{padding:8px 12px;font-size:13px}
-  .panel{padding:20px}
-  .hero{padding:18px 6px 6px}
+  .panel{padding:22px}
   .hero h1{font-size:34px}
-  .hero p{font-size:14px;line-height:1.75}
-  .cards{gap:14px}
-  .card{padding:18px}
-}
-
-@media(max-width:380px){
-  body{padding-left:12px;padding-right:12px}
-  .panel{padding:18px}
-  .hero h1{font-size:30px}
-  .btn{height:46px}
+  .nav{overflow:auto;justify-content:flex-start}
+  .profile{
+    grid-template-columns: 1fr;
+  }
+  .carousel{
+    height:240px;
+  }
+  .slide{
+    flex-basis: 86%;
+  }
 }
 </style>
 </head>
@@ -354,31 +406,59 @@ body{
       <img src="assets/gw-logo.png" alt="GWCAPITAL Logo">
       <div class="name"><b>GWCAPITAL</b></div>
     </div>
-
     <div class="nav">
       <a href="#links">合作入口</a>
-      <a href="#assistant">助理联系</a>
+      <a href="#about">关于我</a>
       <a href="#risk">风险提示</a>
     </div>
-
     <div class="top-actions">
       <a class="pill" href="#links">开始使用 →</a>
     </div>
   </div>
 
   <div class="panel">
-    <div class="hero">
+    <div class="hero" id="about">
       <h1>欢迎来到 <span class="accent">GWCAPITAL</span></h1>
-      <p>合作入口与助理联系方式（开户 / 合作将跳转为外部链接）。</p>
+
+      <!-- 人物介绍区 -->
+      <div class="profile">
+        <!-- 左：轮播 -->
+        <div class="profile-card">
+          <div class="carousel">
+            <div class="carousel-track" id="carouselTrack" aria-label="个人照片轮播">
+              <div class="slide"><img src="images/g1.jpg" alt="Gin - 1"></div>
+              <div class="slide"><img src="images/g2.jpg" alt="Gin - 2"></div>
+              <div class="slide"><img src="images/g3.jpg" alt="Gin - 3"></div>
+              <div class="slide"><img src="images/g4.jpg" alt="Gin - 4"></div>
+              <div class="slide"><img src="images/g5.jpg" alt="Gin - 5"></div>
+              <div class="slide"><img src="images/g6.jpg" alt="Gin - 6"></div>
+              <div class="slide"><img src="images/g7.jpg" alt="Gin - 7"></div>
+              <div class="slide"><img src="images/g8.jpg" alt="Gin - 8"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右：简介 -->
+        <div class="profile-card bio">
+          <div class="kicker">Gin · 杰明｜宏观与行情研究</div>
+          <h2>大家好，我是 Gin-杰明。</h2>
+          <p>
+            深耕交易与市场研究多年，曾任金十数据讲师，并参与金十交易学院的体系搭建。
+            这里是我的专属小站，聚合外汇、黄金、加密资产与美股等方向的<strong>个人观点</strong>与<strong>宏观解读</strong>，
+            合作与开户咨询请直接查看下方入口。
+          </p>
+
+          <div class="bullets">
+            <div class="bullet"><i></i><div>内容以宏观逻辑 + 市场结构为主线，偏“看懂市场节奏”。</div></div>
+            <div class="bullet"><i></i><div>更新涵盖：外汇 / 黄金 / 加密 / 美股，方向清晰、观点直给。</div></div>
+            <div class="bullet"><i></i><div>需要合作或加入 VIP：按下方流程提交邮箱验证即可。</div></div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="notice" id="links">
-      请选择对应入口。开户 / 合作将跳转至外部链接；
-      开户完成后请将 <b>注册邮箱</b> 发送给下方助理验证，
-      验证通过后可进入内部 <b>VIP</b> 群。
-    </div>
-
-    <div class="cards">
+    <!-- 合作入口 -->
+    <div class="cards" id="links">
       <div class="card">
         <span class="badge">美元账户 · TMGM</span>
         <div class="title">TMGM 合作开户链接</div>
@@ -397,10 +477,10 @@ body{
         </div>
       </div>
 
-      <div class="card" id="assistant">
+      <div class="card">
         <span class="badge">咨询助理 · 微信</span>
         <div class="title">助理微信：GINVIP123</div>
-        <div class="desc">点击按钮复制微信号并尝试唤起微信。</div>
+        <div class="desc">点击按钮复制微信号，并尝试唤起微信。</div>
         <div class="actions">
           <button class="btn wx" id="wechat">点击咨询助理微信</button>
         </div>
@@ -409,13 +489,21 @@ body{
       <div class="card">
         <span class="badge">咨询助理 · 钉钉</span>
         <div class="title">助理钉钉：ginvip123</div>
-        <div class="desc">点击按钮复制钉钉号并跳转钉钉名片。</div>
+        <div class="desc">点击按钮复制钉钉号，并跳转钉钉名片。</div>
         <div class="actions">
           <button class="btn dd" id="ding">点击咨询助理钉钉</button>
         </div>
       </div>
     </div>
 
+    <!-- 红框内容：移动到入口下方（更顺、更显眼） -->
+    <div class="notice">
+      请选择对应入口。开户 / 合作将跳转至外部链接；
+      开户完成后请将 <b>注册邮箱</b> 发送给下方助理进行验证，
+      验证通过后可进入内部 <b>VIP</b> 群。
+    </div>
+
+    <!-- 风险提示 -->
     <div class="risk" id="risk">
       <div class="risk-title"><span class="risk-dot"></span>风险提示</div>
       <ul>
@@ -424,35 +512,78 @@ body{
         <li>由此产生的风险与结果（包括账户开立、交易损益、平台规则变化等）均自行承担。</li>
       </ul>
       <div class="confirm">继续访问或点击任意按钮，即视为已阅读、理解并同意上述风险提示。</div>
-
-      <div class="jump-hint">
-        跳转说明：在 <b>iOS</b> 或 <b>微信 / 钉钉内置浏览器</b> 中，可能限制直接唤起 App。
-        建议策略：<b>先复制</b>，再在对应 App 内搜索添加。
-      </div>
     </div>
 
+    <div class="hint">
+      跳转说明：在 <b>iOS</b> 或 <b>微信 / 钉钉内置浏览器</b> 中，可能限制直接唤起 App。
+      建议策略：<b>先复制</b>，再在对应 App 内搜索添加。
+    </div>
   </div>
 </div>
 
 <script>
+/* 外部链接 */
 const TMGM="https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans";
 const DPRIME="https://user.dprimefast.net/signup/H1968038-a01";
+
+/* 助理信息 */
 const WX="GINVIP123";
 const DING_ID="ginvip123";
 const DING_LINK="https://n.dingtalk.com/dingding/h5-profile/outside/index.html?fr_source=13&uidCipher=g0RObbEF3psyySztuGyjSA%3D%3D&cardToken=013c1c6afa&profile=%40kgDODf02bQ";
 
+/* 点击事件 */
 document.getElementById("tmgm").onclick=()=>window.open(TMGM,"_blank");
 document.getElementById("dprime").onclick=()=>window.open(DPRIME,"_blank");
 
 document.getElementById("wechat").onclick=async()=>{
-  try{await navigator.clipboard.writeText(WX);}catch(e){}
+  try{ await navigator.clipboard.writeText(WX); }catch(e){}
+  // 尝试唤起微信（部分浏览器会拦截，正常）
   location.href="weixin://";
 };
 
 document.getElementById("ding").onclick=async()=>{
-  try{await navigator.clipboard.writeText(DING_ID);}catch(e){}
+  try{ await navigator.clipboard.writeText(DING_ID); }catch(e){}
   window.open(DING_LINK,"_blank");
 };
+
+/* 轮播：自动轻推（不影响手动滑动） */
+(function(){
+  const track = document.getElementById("carouselTrack");
+  if(!track) return;
+
+  let autoTimer = null;
+  let index = 0;
+
+  const slides = Array.from(track.querySelectorAll(".slide"));
+  const scrollToIndex = (i)=>{
+    const el = slides[i];
+    if(!el) return;
+    el.scrollIntoView({behavior:"smooth", inline:"center", block:"nearest"});
+  };
+
+  const start = ()=>{
+    stop();
+    autoTimer = setInterval(()=>{
+      index = (index + 1) % slides.length;
+      scrollToIndex(index);
+    }, 3500);
+  };
+  const stop = ()=>{ if(autoTimer) clearInterval(autoTimer); autoTimer=null; };
+
+  // 手动触摸/滚动就暂停一会
+  let resumeTimer=null;
+  const pauseAndResume = ()=>{
+    stop();
+    if(resumeTimer) clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(()=>start(), 4500);
+  };
+
+  track.addEventListener("touchstart", pauseAndResume, {passive:true});
+  track.addEventListener("wheel", pauseAndResume, {passive:true});
+  track.addEventListener("scroll", pauseAndResume, {passive:true});
+
+  start();
+})();
 </script>
 </body>
 </html>
