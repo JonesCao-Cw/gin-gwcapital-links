@@ -19,6 +19,7 @@
       --accent-blue: #6366f1;
       --accent-purple: #a855f7;
       --accent-green: #34d399;
+      --accent-gold: #ffd700; /* 新增金色用于付费 */
       
       /* 玻璃质感系统 */
       --glass-bg: rgba(255, 255, 255, 0.03);
@@ -318,6 +319,9 @@
     
     .btn-blue { background: rgba(99, 102, 241, 0.1); color: var(--accent-blue); border-color: rgba(99, 102, 241, 0.2); }
     .btn-blue:hover { background: var(--accent-blue); color: #fff; box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); }
+    
+    .btn-gold { background: rgba(255, 215, 0, 0.1); color: var(--accent-gold); border-color: rgba(255, 215, 0, 0.25); }
+    .btn-gold:hover { background: var(--accent-gold); color: #000; box-shadow: 0 0 20px rgba(255, 215, 0, 0.4); }
 
     /* 风险提示 */
     .risk {
@@ -357,6 +361,7 @@
       <div class="nav">
         <a href="#about">关于</a>
         <a href="#services">服务</a>
+        <a href="#join">加入</a>
         <a href="#partner">合作</a>
       </div>
       <a class="cta" href="#partner">立即开始</a>
@@ -466,6 +471,57 @@
       </div>
     </div>
 
+    <div class="sectionHead" id="join">
+      <div class="divider"></div>
+      <div class="pill"><div class="dot"></div>加入方式</div>
+      <div class="divider"></div>
+    </div>
+
+    <div class="grid2">
+      <div class="glass-card" style="padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div class="miniTop">
+            <div class="platIcon" style="background: rgba(255, 215, 0, 0.1); color: var(--accent-gold); border: 1px solid rgba(255, 215, 0, 0.2);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 12l-2.5-2.25L12 11zm0 2.5l-5-2.5-5 2.5 10 5 10-5-5-2.5-5 2.5z"/></svg>
+            </div>
+            <span style="font-size:12px; font-weight:700; color: var(--accent-gold); border: 1px solid rgba(255, 215, 0, 0.3); padding: 4px 10px; border-radius: 8px;">方式一</span>
+          </div>
+          <h3 style="margin: 12px 0 6px; font-size: 26px;">8888 <span style="font-size:15px; color:var(--txt-muted); font-weight:500">RMB/一次性</span></h3>
+          <p style="font-size: 14px; color: var(--txt-muted); line-height: 1.6;">
+            适用于已有习惯使用的交易账户，不想更换平台或无开户需求的用户。<br>
+            支付一次性群费，即可永久享受内部群权益。
+          </p>
+        </div>
+        <a class="btn btn-gold" href="#partner" style="margin-top: 24px;">联系助理付费</a>
+      </div>
+
+      <div class="glass-card" style="padding: 24px; position: relative;">
+        <div class="miniTop">
+          <div class="platIcon" style="background: rgba(34, 211, 238, 0.1); color: var(--accent-cyan);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+          </div>
+          <span style="font-size:12px; font-weight:700; color: var(--accent-cyan); border: 1px solid rgba(34, 211, 238, 0.3); padding: 4px 10px; border-radius: 8px;">方式二（推荐）</span>
+        </div>
+        <h3 style="margin: 12px 0 6px; font-size: 26px;">免费 <span style="font-size:15px; color:var(--txt-muted); font-weight:500">/ 开户抵扣</span></h3>
+        <p style="font-size: 14px; color: var(--txt-muted); line-height: 1.6; margin-bottom: 16px;">
+          通过下方合作链接开户（包含跟单），满足资金门槛即可免除群费。
+        </p>
+        
+        <div style="background: rgba(255,255,255,0.03); border-radius: 12px; padding: 14px; border: 1px solid rgba(255,255,255,0.05);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <span style="font-size:13px; color:var(--txt-muted);">净入金门槛</span>
+            <b style="font-size:16px; color: #fff;">$ 2,000 USD</b>
+          </div>
+          <div style="font-size: 12px; color: var(--txt-muted); line-height: 1.6; border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 10px; margin-top: 6px;">
+            <span style="color: #ef4444; font-weight: 700;">⚠ 特别注意：</span><br>
+            • 需保持账户净值与活跃，防止“快进快出”式恶意白嫖。<br>
+            • 满足条件后，请务必联系助理进行<span style="color:#fff;font-weight:700">人工登记核验</span>。
+          </div>
+        </div>
+        
+        <a class="btn btn-cyan" style="margin-top: 20px;" href="#partner">去选择平台开户</a>
+      </div>
+    </div>
     <div class="sectionHead" id="partner">
       <div class="divider"></div>
       <div class="pill"><div class="dot"></div>合作咨询</div>
