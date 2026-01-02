@@ -1,736 +1,951 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<title>GWCAPITAL · 合作链接</title>
-<meta name="description" content="GWCAPITAL 合作链接与助理联系方式" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>GWCAPITAL</title>
 
-<style>
-:root{
-  --bg:#070a12;
-  --panel:#0f1626;
-  --border:rgba(255,255,255,.12);
-  --text:#e8eeff;
-  --muted:#a9b3d1;
+  <style>
+    :root{
+      --bg0:#070B14;
+      --bg1:#0A1021;
+      --card:rgba(255,255,255,.04);
+      --stroke:rgba(255,255,255,.10);
+      --stroke2:rgba(255,255,255,.14);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.70);
+      --muted2:rgba(255,255,255,.55);
 
-  --blue:#66e3ff;
-  --purple:#7c5cff;
-  --green:#34d399;
-  --cyan:#38bdf8;
+      --c1:#66E3FF;
+      --c2:#7C5CFF;
+      --c3:#42F7B8;
 
-  --danger:#fb7185;
-  --orange:#fbbf24;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 22px;
+      --radius2: 18px;
+    }
 
-  --radius:22px;
-}
+    /* --- 基础：避免手机白边/滚动问题 --- */
+    html,body{
+      height:100%;
+      background: radial-gradient(1200px 700px at 20% 0%, rgba(124,92,255,.25), transparent 55%),
+                  radial-gradient(900px 600px at 85% 10%, rgba(102,227,255,.18), transparent 50%),
+                  radial-gradient(900px 700px at 50% 110%, rgba(66,247,184,.12), transparent 60%),
+                  linear-gradient(180deg, var(--bg0), var(--bg1));
+      margin:0;
+      padding:0;
+      color:var(--text);
+      overflow-x:hidden;
+    }
+    body{
+      font-family: -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    a{ color:inherit; text-decoration:none; }
+    *{ box-sizing:border-box; }
 
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;height:100%}
+    .wrap{
+      width:min(1200px, 92vw);
+      margin:0 auto;
+      padding: 22px 0 60px;
+    }
 
-/* 关键：把 html/body 也涂满背景，避免 iOS 回弹露白 */
-html{background:var(--bg);}
-body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
-  color:var(--text);
-  background:var(--bg);
-  overflow-x:hidden;
+    /* --- 顶部导航 --- */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: rgba(6,10,20,.55);
+      border-bottom:1px solid rgba(255,255,255,.07);
+    }
+    .topbar-inner{
+      width:min(1200px, 92vw);
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding: 14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:900; letter-spacing:.02em;
+    }
+    .logo{
+      width:28px;height:28px;border-radius:10px;
+      background: radial-gradient(circle at 30% 30%, rgba(124,92,255,.95), rgba(102,227,255,.55) 55%, rgba(0,0,0,0) 70%),
+                  linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow: 0 10px 30px rgba(124,92,255,.18);
+    }
+    .brand .t{
+      background: linear-gradient(90deg, #BFE9FF, var(--c1), var(--c2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      font-size:18px;
+    }
+    .navlinks{
+      display:flex; align-items:center; gap:18px;
+      color:rgba(255,255,255,.78);
+      font-weight:700;
+      font-size:14px;
+    }
+    .navlinks a{ opacity:.9; }
+    .navlinks a:hover{ opacity:1; }
+    .cta{
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      box-shadow: 0 12px 30px rgba(0,0,0,.35);
+      font-weight:900;
+    }
 
-  /* 关键：适配 iPhone 刘海/底部安全区 */
-  padding:
-    calc(22px + env(safe-area-inset-top))
-    16px
-    calc(22px + env(safe-area-inset-bottom))
-    16px;
+    /* --- 主卡片 --- */
+    .hero{
+      margin-top: 18px;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,.10);
+      background:
+        radial-gradient(900px 450px at 40% 10%, rgba(102,227,255,.12), transparent 55%),
+        radial-gradient(800px 500px at 85% 40%, rgba(124,92,255,.14), transparent 55%),
+        rgba(255,255,255,.03);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .hero-pad{
+      padding: 34px 34px 28px;
+    }
 
-  /* 关键：降低 iOS 回弹带来的“露底”概率 */
-  overscroll-behavior-y:none;
-}
+    .title{
+      text-align:center;
+      margin: 8px 0 10px;
+      font-weight: 1000;
+      letter-spacing:.02em;
+      font-size: clamp(32px, 4vw, 54px);
+      line-height:1.08;
+    }
+    .title .g{
+      background: linear-gradient(90deg, #BFE9FF, var(--c1), var(--c2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .subtitle{
+      text-align:center;
+      color: rgba(255,255,255,.70);
+      font-weight:700;
+      margin: 0 0 22px;
+      line-height:1.6;
+    }
 
-/* ===== 固定全屏背景（更大 inset，进一步防白边） ===== */
-.bg{
-  position:fixed;
-  inset:-18vh -18vw; /* 比之前更大，滚动/回弹也不露底 */
-  z-index:-10;
-  background:
-    radial-gradient(1200px 700px at 15% 10%, rgba(124,92,255,.28), transparent 55%),
-    radial-gradient(1100px 650px at 85% 15%, rgba(102,227,255,.22), transparent 55%),
-    linear-gradient(180deg,#050712,var(--bg));
-  transform:translateZ(0);
-}
+    /* --- 分区：标签 + 分割线（你要的） --- */
+    .section{
+      margin-top: 22px;
+    }
 
-/* ===== GW 水印 ===== */
-.watermark{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:-9;
-}
-.watermark span{
-  font-size:min(48vw,540px);
-  font-weight:900;
-  letter-spacing:.08em;
-  color:transparent;
-  background:linear-gradient(90deg,#66e3ff,#7c5cff);
-  -webkit-background-clip:text;
-  background-clip:text;
-  opacity:.28;
-  transform:rotate(-12deg) translate(-6%,-8%);
-  text-shadow:
-    0 0 22px rgba(102,227,255,.35),
-    0 0 60px rgba(124,92,255,.28);
-}
+    /* 标签行：自动居中 + 左右分割线 */
+    .section-tagline{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 12px;
+      margin: 0 auto 14px;
+      width:100%;
+    }
+    .section-tagline::before,
+    .section-tagline::after{
+      content:"";
+      height:1px;
+      flex: 1 1 auto;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      opacity:.9;
+    }
+    /* 中间胶囊标签：宽度自适应内容 */
+    .section-tag{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      width: fit-content;
+      max-width: 100%;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      font-weight: 900;
+      font-size: 13px;
+      letter-spacing:.02em;
+      color: rgba(255,255,255,.92);
+      box-shadow: 0 10px 24px rgba(0,0,0,.35);
+      white-space: nowrap;
+    }
+    .tag-dot{
+      width:8px;height:8px;border-radius:50%;
+      background: linear-gradient(90deg, var(--c1), var(--c2));
+      box-shadow: 0 0 14px rgba(102,227,255,.35);
+      flex: 0 0 auto;
+    }
 
-/* ===== 主容器 ===== */
-.wrap{
-  max-width:1160px;
-  margin:0 auto;
-  position:relative;
-  z-index:1;
-}
+    /* --- 两列布局（左轮播 + 右介绍） --- */
+    .about-grid{
+      display:grid;
+      grid-template-columns: 1.06fr 1fr;
+      gap: 18px;
+      align-items:stretch;
+    }
 
-/* ===== 顶部导航（已删除右上角“开始使用”按钮） ===== */
-.topbar{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  padding:8px 10px;
-}
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  min-width:200px;
-}
-.brand img{
-  width:28px;height:28px;object-fit:contain;border-radius:8px;
-}
-.brand .name{
-  font-weight:900;
-  letter-spacing:.02em;
-}
-.brand .name b{
-  background:linear-gradient(90deg,#66e3ff,#7c5cff);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-}
-.nav{
-  flex:1;
-  display:flex;
-  justify-content:center;
-  gap:18px;
-  color:var(--muted);
-  font-size:14px;
-  white-space:nowrap;
-}
-.nav a{
-  color:var(--muted);
-  text-decoration:none;
-  padding:8px 10px;
-  border-radius:10px;
-}
-.nav a:hover{
-  color:#fff;
-  background:rgba(255,255,255,.06);
-}
+    .card{
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.035);
+      box-shadow: 0 16px 44px rgba(0,0,0,.40);
+      overflow:hidden;
+    }
+    .card-inner{ padding: 18px; }
 
-/* ===== 面板 ===== */
-.panel{
-  margin-top:14px;
-  background:linear-gradient(180deg,rgba(18,26,43,.94),rgba(15,22,38,.9));
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:28px;
-  box-shadow:0 24px 60px rgba(0,0,0,.55);
-}
+    /* --- 轮播（带“景深电视”效果 + 平滑滚动切换） --- */
+    .carousel{
+      position:relative;
+      width:100%;
+      height: 320px;
+      border-radius: var(--radius);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+    }
+    .carousel .stage{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+    .carousel .slide{
+      position:absolute;
+      width: 82%;
+      height: 78%;
+      border-radius: 20px;
+      overflow:hidden;
+      transform-origin:center;
+      transition: transform 520ms ease, opacity 520ms ease, filter 520ms ease;
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: 0 20px 50px rgba(0,0,0,.55);
+      background:#000;
+    }
+    .carousel img{
+      width:100%;height:100%;
+      object-fit:cover;
+      display:block;
+    }
 
-/* ===== 欢迎区 ===== */
-.hero{
-  text-align:center;
-  padding:22px 10px 14px;
-}
-.hero h1{
-  margin:0;
-  font-size:52px;
-  line-height:1.15;
-}
-.hero .accent{
-  background:linear-gradient(90deg,#66e3ff,#7c5cff);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-  font-weight:1000;
-}
-.hero p{
-  margin:14px 0 0;
-  color:var(--muted);
-  font-size:16px;
-  line-height:1.8;
-}
+    /* 中间主图 */
+    .slide.is-active{
+      opacity:1;
+      filter:none;
+      transform: translateX(0) scale(1);
+      z-index:3;
+    }
+    /* 左右“折叠” */
+    .slide.is-left{
+      opacity:.55;
+      filter: blur(1px) saturate(.95);
+      transform: translateX(-62%) scale(.88) perspective(900px) rotateY(18deg);
+      z-index:2;
+    }
+    .slide.is-right{
+      opacity:.55;
+      filter: blur(1px) saturate(.95);
+      transform: translateX(62%) scale(.88) perspective(900px) rotateY(-18deg);
+      z-index:2;
+    }
+    /* 更远的隐藏 */
+    .slide.is-hidden{
+      opacity:0;
+      filter: blur(6px);
+      transform: translateX(0) scale(.78);
+      z-index:1;
+      pointer-events:none;
+    }
 
-/* ===== “关于我”区域（轮播 + 介绍） ===== */
-.about{
-  margin-top:18px;
-  display:grid;
-  gap:16px;
-  grid-template-columns: 1.05fr 1.25fr;
-  align-items:stretch;
-}
+    /* 左右按钮（你要：透明度低一些） */
+    .cbtn{
+      position:absolute;
+      top:50%;
+      transform: translateY(-50%);
+      width: 44px; height: 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.90);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      user-select:none;
+      opacity:.55;
+      transition: opacity .18s ease, transform .18s ease, background .18s ease;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index:10;
+    }
+    .cbtn:hover{
+      opacity:.95;
+      background: rgba(255,255,255,.10);
+      transform: translateY(-50%) scale(1.03);
+    }
+    .cbtn.left{ left: 12px; }
+    .cbtn.right{ right: 12px; }
 
-/* 左：图片轮播卡 */
-.gallery{
-  background:rgba(255,255,255,.02);
-  border:1px solid var(--border);
-  border-radius:22px;
-  padding:16px;
-  position:relative;
-  overflow:hidden;
-}
+    /* 点点指示器 */
+    .dots{
+      position:absolute;
+      left:50%;
+      bottom: 12px;
+      transform: translateX(-50%);
+      display:flex;
+      gap:8px;
+      z-index:10;
+      padding: 8px 10px;
+      border-radius:999px;
+      background: rgba(0,0,0,.20);
+      border:1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .dot{
+      width:8px;height:8px;border-radius:99px;
+      background: rgba(255,255,255,.22);
+      transition: width .25s ease, background .25s ease, opacity .25s ease;
+      opacity:.9;
+      cursor:pointer;
+    }
+    .dot.active{
+      width:22px;
+      background: linear-gradient(90deg, var(--c1), var(--c2));
+      opacity:1;
+    }
 
-/* 电视景深：用模糊背景做“左右折叠感” */
-.gallery::before{
-  content:"";
-  position:absolute;
-  inset:-24px;
-  background:
-    radial-gradient(700px 380px at 50% 25%, rgba(102,227,255,.10), transparent 60%),
-    radial-gradient(680px 360px at 50% 70%, rgba(124,92,255,.12), transparent 62%);
-  filter:blur(0px);
-  pointer-events:none;
-  z-index:0;
-}
-.gallery-inner{
-  position:relative;
-  z-index:1;
-}
+    /* 右侧介绍 */
+    .who-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.78);
+      font-weight: 800;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+    .who-title{
+      font-size: 28px;
+      font-weight: 1000;
+      margin: 6px 0 8px;
+    }
+    .who-desc{
+      color: rgba(255,255,255,.70);
+      line-height:1.75;
+      margin: 0 0 14px;
+      font-weight:650;
+    }
+    .bullets{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .bullet{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+    }
+    .b-dot{
+      width:10px;height:10px;border-radius:50%;
+      margin-top:5px;
+      background: linear-gradient(90deg, var(--c1), var(--c2));
+      box-shadow: 0 0 18px rgba(102,227,255,.25);
+      flex:0 0 auto;
+    }
+    .b-text{
+      color: rgba(255,255,255,.86);
+      line-height:1.6;
+      font-weight:800;
+    }
+    .b-text span{
+      color: rgba(255,255,255,.65);
+      font-weight:650;
+    }
 
-/* 舞台 */
-.stage{
-  position:relative;
-  border-radius:18px;
-  overflow:hidden;
-  background:rgba(0,0,0,.25);
-  border:1px solid rgba(255,255,255,.10);
-  box-shadow: 0 14px 40px rgba(0,0,0,.45);
-  aspect-ratio: 16 / 11;  /* 视觉更像“电视屏” */
-}
+    /* --- 服务内容：对比 UI --- */
+    .compare{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .compare-card{
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      box-shadow: 0 16px 44px rgba(0,0,0,.36);
+      overflow:hidden;
+      padding: 16px;
+      position:relative;
+    }
+    .compare-title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom: 12px;
+    }
+    .compare-title h3{
+      margin:0;
+      font-size:18px;
+      font-weight:1000;
+      letter-spacing:.01em;
+    }
+    .pill{
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.72);
+      font-weight: 850;
+      font-size: 12px;
+      white-space:nowrap;
+    }
+    .item{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      margin-top: 10px;
+    }
+    .i-dot{
+      width:10px;height:10px;border-radius:50%;
+      margin-top:5px;
+      flex:0 0 auto;
+      background: rgba(102,227,255,.9);
+      box-shadow: 0 0 18px rgba(102,227,255,.20);
+    }
+    .i-dot.purple{
+      background: rgba(124,92,255,.95);
+      box-shadow: 0 0 18px rgba(124,92,255,.22);
+    }
+    .i-text{
+      font-weight:900;
+      color: rgba(255,255,255,.86);
+      line-height:1.55;
+    }
+    .i-text span{
+      font-weight:650;
+      color: rgba(255,255,255,.62);
+    }
 
-/* 侧边“折叠”幻影（用当前图做背景，左右压扁） */
-.fold{
-  position:absolute;
-  top:0;bottom:0;
-  width:26%;
-  background-size:cover;
-  background-position:center;
-  filter:blur(2px) saturate(.9) brightness(.72);
-  opacity:.55;
-  transform-origin:center;
-}
-.fold.left{
-  left:0;
-  transform:skewY(0deg) rotateY(28deg) scaleX(.86);
-  mask-image:linear-gradient(90deg, rgba(0,0,0,1), rgba(0,0,0,0));
-  -webkit-mask-image:linear-gradient(90deg, rgba(0,0,0,1), rgba(0,0,0,0));
-}
-.fold.right{
-  right:0;
-  transform:skewY(0deg) rotateY(-28deg) scaleX(.86);
-  mask-image:linear-gradient(270deg, rgba(0,0,0,1), rgba(0,0,0,0));
-  -webkit-mask-image:linear-gradient(270deg, rgba(0,0,0,1), rgba(0,0,0,0));
-}
+    /* --- 合作咨询入口：四宫格 --- */
+    .grid4{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .mini{
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding: 14px 14px 16px;
+      box-shadow: 0 16px 44px rgba(0,0,0,.34);
+      min-height: 210px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .mini-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom: 10px;
+    }
+    .mini-tag{
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.70);
+      font-weight: 900;
+      font-size: 12px;
+      white-space:nowrap;
+    }
+    .mini h4{
+      margin: 6px 0 6px;
+      font-size: 18px;
+      font-weight: 1000;
+    }
+    .mini p{
+      margin:0;
+      color: rgba(255,255,255,.66);
+      line-height:1.6;
+      font-weight:650;
+      font-size: 13px;
+    }
+    .btn{
+      margin-top: 14px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 12px 12px;
+      font-weight: 1000;
+      cursor:pointer;
+      user-select:none;
+      transition: transform .18s ease, opacity .18s ease;
+      opacity:.95;
+    }
+    .btn:hover{ transform: translateY(-1px); opacity:1; }
+    .btn.cyan{ background: rgba(102,227,255,.16); }
+    .btn.purple{ background: rgba(124,92,255,.16); }
+    .btn.green{ background: rgba(66,247,184,.16); }
+    .btn.blue{ background: rgba(102,170,255,.16); }
 
-/* 中间主图容器：平滑滚动替换 */
-.track{
-  position:absolute;
-  inset:0;
-  display:flex;
-  height:100%;
-  will-change:transform;
-  transition:transform 720ms cubic-bezier(.22,.9,.22,1);
-}
-.slide{
-  min-width:100%;
-  height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:14px;
-}
-.slide img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:14px;
-  transform:scale(1.01);
-  box-shadow: 0 10px 32px rgba(0,0,0,.45);
-}
+    /* --- 风险提示 --- */
+    .risk{
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.10);
+      background: radial-gradient(800px 400px at 20% 0%, rgba(255,68,110,.10), transparent 60%),
+                  rgba(255,255,255,.03);
+      padding: 18px;
+      color: rgba(255,255,255,.78);
+      line-height:1.8;
+      box-shadow: 0 16px 44px rgba(0,0,0,.35);
+    }
+    .risk h3{
+      margin:0 0 8px;
+      font-size:16px;
+      font-weight:1000;
+      color: rgba(255,255,255,.90);
+      display:flex; align-items:center; gap:10px;
+    }
+    .risk .r-dot{
+      width:10px;height:10px;border-radius:50%;
+      background: rgba(255,92,123,.95);
+      box-shadow: 0 0 18px rgba(255,92,123,.20);
+    }
+    .risk ul{ margin:10px 0 0 18px; padding:0; }
+    .risk li{ margin: 6px 0; }
+    .risk .small{
+      margin-top: 10px;
+      color: rgba(255,255,255,.62);
+      font-weight:650;
+      font-size: 12.5px;
+      border-top: 1px dashed rgba(255,255,255,.14);
+      padding-top: 10px;
+    }
 
-/* 左右按钮：透明度低、悬浮 */
-.gbtn{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  width:42px;height:42px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,.16);
-  background:rgba(0,0,0,.22);
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  z-index:5;
-  opacity:.58;              /* 你要的低透明 */
-  transition:opacity .2s ease, transform .2s ease, background .2s ease;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-.gbtn:hover{opacity:.92;background:rgba(0,0,0,.32)}
-.gbtn:active{transform:translateY(-50%) scale(.98)}
-.gbtn.left{left:10px}
-.gbtn.right{right:10px}
-.gbtn svg{width:18px;height:18px}
-
-/* 底部 dots */
-.dots{
-  display:flex;
-  gap:8px;
-  justify-content:center;
-  align-items:center;
-  margin-top:12px;
-}
-.dot{
-  width:7px;height:7px;
-  border-radius:999px;
-  background:rgba(255,255,255,.18);
-  border:1px solid rgba(255,255,255,.10);
-  cursor:pointer;
-  transition:transform .2s ease, background .2s ease, width .2s ease;
-}
-.dot.active{
-  background:linear-gradient(90deg,#66e3ff,#7c5cff);
-  width:22px;
-}
-
-/* 右：人物介绍卡 */
-.bio{
-  background:rgba(255,255,255,.02);
-  border:1px solid var(--border);
-  border-radius:22px;
-  padding:18px 18px;
-}
-.bio-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  padding:7px 12px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,.12);
-  color:var(--muted);
-  font-size:13px;
-  background:rgba(255,255,255,.03);
-}
-.bio h2{
-  margin:12px 0 8px;
-  font-size:26px;
-  line-height:1.2;
-}
-.bio p{
-  margin:0 0 12px;
-  color:var(--muted);
-  line-height:1.85;
-  font-size:14px;
-}
-.bullets{
-  display:grid;
-  gap:10px;
-  margin-top:10px;
-}
-.item{
-  border:1px solid rgba(255,255,255,.10);
-  background:rgba(255,255,255,.02);
-  border-radius:14px;
-  padding:12px 12px;
-  display:flex;
-  gap:10px;
-  align-items:flex-start;
-}
-.bdot{
-  width:10px;height:10px;border-radius:50%;
-  margin-top:5px;
-  background:linear-gradient(90deg,#66e3ff,#7c5cff);
-  box-shadow:0 0 18px rgba(124,92,255,.25);
-}
-.item b{color:#fff}
-
-/* ===== 卡片入口（开户/咨询） ===== */
-.cards{
-  margin-top:18px;
-  display:grid;
-  gap:16px;
-}
-@media(min-width:900px){
-  .cards{grid-template-columns:repeat(4,1fr);}
-}
-.card{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:20px;
-  display:flex;
-  flex-direction:column;
-}
-.badge{
-  font-size:13px;
-  padding:6px 12px;
-  border-radius:999px;
-  border:1px solid var(--border);
-  color:var(--muted);
-  width:max-content;
-}
-.title{margin:14px 0 8px;font-size:18px;font-weight:800}
-.desc{font-size:14px;color:var(--muted);line-height:1.7}
-.actions{margin-top:auto}
-.btn{
-  width:100%;
-  height:48px;
-  border-radius:14px;
-  border:none;
-  font-weight:900;
-  font-size:14px;
-  cursor:pointer;
-}
-.tm{background:linear-gradient(90deg,var(--blue),#66e3ffaa);color:#061018}
-.dp{background:linear-gradient(90deg,var(--purple),#7c5cffaa);color:#0a0914}
-.wx{background:linear-gradient(90deg,var(--green),#34d399aa);color:#06120b}
-.dd{background:linear-gradient(90deg,var(--cyan),#60a5faaa);color:#061018}
-
-/* ===== 风险提示 ===== */
-.risk{
-  margin-top:20px;
-  padding:18px 20px;
-  border-radius:16px;
-  border:1px solid rgba(251,113,133,.35);
-  background:linear-gradient(180deg,rgba(251,113,133,.12),rgba(255,255,255,.02));
-  font-size:13px;
-  line-height:1.85;
-}
-.risk-title{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-weight:900;
-  margin-bottom:10px;
-}
-.risk-dot{
-  width:10px;height:10px;border-radius:50%;
-  background:var(--danger);
-}
-.risk ul{margin:0;padding-left:18px}
-.risk li{margin:6px 0}
-.confirm{
-  margin-top:10px;
-  padding-top:10px;
-  border-top:1px dashed rgba(255,255,255,.2);
-  font-weight:900;
-}
-
-/* ===== 底部说明 ===== */
-.hint{
-  margin-top:14px;
-  padding:12px 14px;
-  border-radius:14px;
-  border:1px dashed rgba(255,255,255,.25);
-  background:rgba(255,255,255,.02);
-  color:var(--muted);
-  font-size:12.5px;
-  line-height:1.75;
-}
-.hint b{color:#fff}
-
-/* ===== 移动端 ===== */
-@media(max-width:980px){
-  .hero h1{font-size:36px}
-  .panel{padding:20px}
-  .about{grid-template-columns: 1fr;}
-  .nav{overflow:auto;justify-content:flex-start}
-  .stage{aspect-ratio: 16/12;}
-}
-
-@media(max-width:520px){
-  .hero h1{font-size:32px}
-  .brand{min-width:auto}
-  .nav{gap:10px;font-size:13px}
-  .gbtn{width:40px;height:40px}
-}
-</style>
+    /* --- 响应式 --- */
+    @media (max-width: 980px){
+      .about-grid{ grid-template-columns: 1fr; }
+      .carousel{ height: 300px; }
+      .grid4{ grid-template-columns: 1fr 1fr; }
+      .navlinks{ display:none; }
+    }
+    @media (max-width: 520px){
+      .hero-pad{ padding: 24px 16px 22px; }
+      .carousel{ height: 260px; }
+      .grid4{ grid-template-columns: 1fr; }
+      .compare{ grid-template-columns: 1fr; }
+      .title{ font-size: 34px; }
+      .who-title{ font-size: 22px; }
+      .section-tagline{ margin-bottom: 12px; }
+      .section-tagline::before,
+      .section-tagline::after{ opacity:.55; }
+    }
+  </style>
 </head>
 
 <body>
-<div class="bg"></div>
-<div class="watermark"><span>GW</span></div>
-
-<div class="wrap">
+  <!-- 顶部 -->
   <div class="topbar">
-    <div class="brand">
-      <img src="assets/gw-logo.png" alt="GWCAPITAL Logo">
-      <div class="name"><b>GWCAPITAL</b></div>
-    </div>
-    <div class="nav">
-      <a href="#links">合作入口</a>
-      <a href="#about">关于我</a>
-      <a href="#risk">风险提示</a>
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo"></div>
+        <div class="t">GWCAPITAL</div>
+      </div>
+
+      <div class="navlinks">
+        <a href="#coop">合作入口</a>
+        <a href="#about">关于我</a>
+        <a href="#risk">风险提示</a>
+      </div>
+
+      <!-- 你说白色框这个按钮要删：这里已经没有多余白框，只有正常按钮 -->
+      <a class="cta" href="#coop">开始使用 →</a>
     </div>
   </div>
 
-  <div class="panel">
+  <div class="wrap">
     <div class="hero">
-      <h1>欢迎来到 <span class="accent">GWCAPITAL</span></h1>
-      <p>合作入口与助理联系方式（开户 / 合作将跳转为外部链接）。</p>
-    </div>
+      <div class="hero-pad">
+        <div class="title">欢迎来到 <span class="g">GWCAPITAL</span></div>
+        <div class="subtitle">
+          合作入口与助理联系方式（开户 / 合作将跳转为外部链接）。
+        </div>
 
-    <!-- 关于我（轮播 + 介绍） -->
-    <div class="about" id="about">
-      <div class="gallery">
-        <div class="gallery-inner">
-          <div class="stage" id="stage">
-            <div class="fold left" id="foldL"></div>
-            <div class="fold right" id="foldR"></div>
+        <!-- 关于我 -->
+        <div class="section" id="about">
+          <div class="section-tagline">
+            <div class="section-tag"><span class="tag-dot"></span>关于我</div>
+          </div>
 
-            <div class="track" id="track">
-              <!-- JS 动态注入 slides -->
+          <div class="about-grid">
+            <!-- 左：景深轮播 -->
+            <div class="card">
+              <div class="card-inner" style="padding:16px;">
+                <div class="carousel" id="carousel">
+                  <div class="stage" id="stage">
+                    <!-- JS 会注入 slide -->
+                  </div>
+
+                  <div class="cbtn left" id="prevBtn" aria-label="上一张">‹</div>
+                  <div class="cbtn right" id="nextBtn" aria-label="下一张">›</div>
+
+                  <div class="dots" id="dots"></div>
+                </div>
+              </div>
             </div>
 
-            <button class="gbtn left" id="prev" aria-label="上一张">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M14.5 5.5L8 12l6.5 6.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-            <button class="gbtn right" id="next" aria-label="下一张">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M9.5 5.5L16 12l-6.5 6.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
+            <!-- 右：介绍 -->
+            <div class="card">
+              <div class="card-inner">
+                <div class="who-badge">Gin · 杰明 | 宏观与行情研究</div>
+                <div class="who-title">大家好，我是 Gin-杰明。</div>
+                <p class="who-desc">
+                  深耕交易与市场研究多年，曾任金十数据讲师，并参与交易学院体系搭建。
+                  这里是我的专属小站，聚合外汇、黄金、加密资产与美股等方向的个人观点与宏观解读；
+                  合作与开户咨询请直接查看下方入口。
+                </p>
+
+                <div class="bullets">
+                  <div class="bullet">
+                    <div class="b-dot"></div>
+                    <div class="b-text">主线方法：<span>以宏观逻辑 + 市场结构为主线，偏“看懂市场节奏”。</span></div>
+                  </div>
+                  <div class="bullet">
+                    <div class="b-dot"></div>
+                    <div class="b-text">更新覆盖：<span>外汇 / 黄金 / 加密 / 美股，方向清晰，观点直给。</span></div>
+                  </div>
+                  <div class="bullet">
+                    <div class="b-dot"></div>
+                    <div class="b-text">合作或加入VIP群：<span>按下方流程开户提交邮箱至小助理验证即可。</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /about -->
+
+        <!-- 服务内容 -->
+        <div class="section">
+          <div class="section-tagline">
+            <div class="section-tag"><span class="tag-dot"></span>服务内容</div>
           </div>
 
-          <div class="dots" id="dots"></div>
-        </div>
-      </div>
+          <div class="compare">
+            <!-- 公开群 -->
+            <div class="compare-card">
+              <div class="compare-title">
+                <h3>公开群（免费）</h3>
+                <div class="pill">轻量跟踪 · 提前通知</div>
+              </div>
 
-      <div class="bio">
-        <span class="bio-badge">Gin · 杰明 | 宏观与行情研究</span>
-        <h2>大家好，我是 Gin-杰明。</h2>
-        <p>
-          深耕交易与市场研究多年，曾任金十数据讲师，并参与交易学院体系搭建。
-          这里是我的专属小站，聚合外汇、黄金、加密资产与美股等方向的个人观点与宏观解读；
-          合作与开户咨询，请直接查看下方入口。
-        </p>
+              <div class="item">
+                <div class="i-dot"></div>
+                <div class="i-text">每周 2 次视频分享 <span>（固定节奏输出）</span></div>
+              </div>
+              <div class="item">
+                <div class="i-dot"></div>
+                <div class="i-text">偶尔分享大级别观点 <span>（宏观方向与结构观察）</span></div>
+              </div>
+              <div class="item">
+                <div class="i-dot"></div>
+                <div class="i-text">公开直播提前通知 <span>（开播前推送提醒）</span></div>
+              </div>
+            </div>
 
-        <div class="bullets">
-          <div class="item">
-            <span class="bdot"></span>
-            <div><b>主线方法：</b>以宏观逻辑 + 市场结构为主线，偏“看懂市场节奏”。</div>
+            <!-- 内部群 -->
+            <div class="compare-card">
+              <div class="compare-title">
+                <h3>内部群（收费）</h3>
+                <div class="pill">更实时 · 更系统</div>
+              </div>
+
+              <div class="item">
+                <div class="i-dot purple"></div>
+                <div class="i-text">实时交易观点 <span>（关键时段更聚焦）</span></div>
+              </div>
+              <div class="item">
+                <div class="i-dot purple"></div>
+                <div class="i-text">自用交易工具、研报共享 <span>（更体系化的资料）</span></div>
+              </div>
+              <div class="item">
+                <div class="i-dot purple"></div>
+                <div class="i-text">交易问题答疑 <span>（集中解答高频问题）</span></div>
+              </div>
+              <div class="item">
+                <div class="i-dot purple"></div>
+                <div class="i-text">内部私密直播 <span>（细节讲解与复盘）</span></div>
+              </div>
+              <div class="item">
+                <div class="i-dot purple"></div>
+                <div class="i-text">付费课程折扣 <span>（长期权益）</span></div>
+              </div>
+            </div>
           </div>
-          <div class="item">
-            <span class="bdot"></span>
-            <div><b>更新覆盖：</b>外汇 / 黄金 / 加密 / 美股，方向清晰，观点直给。</div>
+        </div><!-- /服务内容 -->
+
+        <!-- 合作咨询入口 -->
+        <div class="section" id="coop">
+          <div class="section-tagline">
+            <div class="section-tag"><span class="tag-dot"></span>合作咨询入口</div>
           </div>
-          <div class="item">
-            <span class="bdot"></span>
-            <div><b>合作或加入VIP群：</b>按下方流程开户提交邮箱至小助理验证即可。</div>
+
+          <div class="grid4">
+            <div class="mini">
+              <div>
+                <div class="mini-top">
+                  <div class="mini-tag">美元账户 · TMGM</div>
+                </div>
+                <h4>TMGM 合作开户注册</h4>
+                <p>适用于美元账户开户流程。开户完成后提交注册邮箱给小助理验证。</p>
+              </div>
+              <a class="btn cyan" href="#" onclick="openLink('TMGM')">立即开户</a>
+            </div>
+
+            <div class="mini">
+              <div>
+                <div class="mini-top">
+                  <div class="mini-tag">美分账户 · Dprime</div>
+                </div>
+                <h4>Dprime 美分账户开户</h4>
+                <p>适用于美分账户交易需求。开户完成后提交注册邮箱给小助理验证。</p>
+              </div>
+              <a class="btn purple" href="#" onclick="openLink('Dprime')">立即开户注册</a>
+            </div>
+
+            <div class="mini">
+              <div>
+                <div class="mini-top">
+                  <div class="mini-tag">咨询助理 · 微信</div>
+                </div>
+                <h4>助理微信：GINVIP123</h4>
+                <p>点击按钮复制微信号，并尝试唤起微信添加。若无法唤起请手动搜索。</p>
+              </div>
+              <div class="btn green" onclick="copyText('GINVIP123')">点击咨询助理微信</div>
+            </div>
+
+            <div class="mini">
+              <div>
+                <div class="mini-top">
+                  <div class="mini-tag">咨询助理 · 钉钉</div>
+                </div>
+                <h4>助理钉钉：ginvip123</h4>
+                <p>点击按钮复制钉钉号，并跳转钉钉名片（部分浏览器可能限制）。</p>
+              </div>
+              <div class="btn blue" onclick="copyText('ginvip123')">点击咨询助理钉钉</div>
+            </div>
           </div>
-        </div>
+        </div><!-- /合作咨询入口 -->
+
+        <!-- 风险提示 -->
+        <div class="section" id="risk">
+          <div class="section-tagline">
+            <div class="section-tag"><span class="tag-dot"></span>风险提示</div>
+          </div>
+
+          <div class="risk">
+            <h3><span class="r-dot"></span>风险提示</h3>
+            <ul>
+              <li>本页面仅用于信息展示与合作入口跳转，不构成任何投资建议或收益承诺。</li>
+              <li>所有点击、跳转、注册、咨询等操作均为个人自主行为。</li>
+              <li>由此产生的风险与结果（包括账户开立、交易损益、平台规则变化等）均自行承担。</li>
+            </ul>
+
+            <div class="small">
+              跳转说明：在 iOS 或微信/钉钉内置浏览器中，可能限制直接唤起 App。建议策略：先复制，再在对应 App 内搜索添加。
+            </div>
+          </div>
+        </div><!-- /风险提示 -->
+
       </div>
-    </div>
-
-    <!-- 入口卡片 -->
-    <div class="cards" id="links">
-      <div class="card">
-        <span class="badge">美元账户 · TMGM</span>
-        <div class="title">TMGM 合作开户注册链接</div>
-        <div class="desc">适用于美元账户开户流程。</div>
-        <div class="actions">
-          <button class="btn tm" id="tmgm">立即开户</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="badge">美分账户 · Dprime</span>
-        <div class="title">Dprime 美分账户开户</div>
-        <div class="desc">适用于美分账户交易需求。</div>
-        <div class="actions">
-          <button class="btn dp" id="dprime">立即开户注册</button>
-        </div>
-      </div>
-
-      <div class="card" id="assistant">
-        <span class="badge">咨询助理 · 微信</span>
-        <div class="title">助理微信：GINVIP123</div>
-        <div class="desc">点击按钮复制微信号并尝试唤起微信。</div>
-        <div class="actions">
-          <button class="btn wx" id="wechat">点击咨询助理微信</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="badge">咨询助理 · 钉钉</span>
-        <div class="title">助理钉钉：ginvip123</div>
-        <div class="desc">点击按钮复制钉钉号并跳转钉钉名片。</div>
-        <div class="actions">
-          <button class="btn dd" id="ding">点击咨询助理钉钉</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="risk" id="risk">
-      <div class="risk-title"><span class="risk-dot"></span>风险提示</div>
-      <ul>
-        <li>本页面仅用于信息展示与合作入口跳转，不构成任何投资建议或收益承诺。</li>
-        <li>所有点击、跳转、注册、咨询等操作均为个人自主行为。</li>
-        <li>由此产生的风险与结果（包括账户开立、交易损益、平台规则变化等）均自行承担。</li>
-      </ul>
-      <div class="confirm">继续访问或点击任意按钮，即视为已阅读、理解并同意上述风险提示。</div>
-    </div>
-
-    <div class="hint">
-      跳转说明：在 <b>iOS</b> 或 <b>微信 / 钉钉内置浏览器</b> 中，可能限制直接唤起 App。
-      建议策略：<b>先复制</b>，再在对应 App 内搜索添加。
     </div>
   </div>
-</div>
 
-<script>
-/* ===== 外链 ===== */
-const TMGM="https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans";
-const DPRIME="https://user.dprimefast.net/signup/H1968038-a01";
-const WX="GINVIP123";
-const DING_ID="ginvip123";
-const DING_LINK="https://n.dingtalk.com/dingding/h5-profile/outside/index.html?fr_source=13&uidCipher=g0RObbEF3psyySztuGyjSA%3D%3D&cardToken=013c1c6afa&profile=%40kgDODf02bQ";
+  <script>
+    /* 你把真实开户链接填到这里（没有就先留空也不影响页面） */
+    const LINKS = {
+      TMGM: "",     // 例如 "https://xxxx"
+      Dprime: ""    // 例如 "https://xxxx"
+    };
 
-document.getElementById("tmgm").onclick=()=>window.open(TMGM,"_blank");
-document.getElementById("dprime").onclick=()=>window.open(DPRIME,"_blank");
+    function openLink(key){
+      const url = LINKS[key];
+      if(!url){
+        alert("还没填写开户链接。你把链接发我，我帮你放进去。");
+        return;
+      }
+      window.open(url, "_blank");
+    }
 
-document.getElementById("wechat").onclick=async()=>{
-  try{await navigator.clipboard.writeText(WX);}catch(e){}
-  location.href="weixin://";
-};
+    async function copyText(text){
+      try{
+        await navigator.clipboard.writeText(text);
+        alert("已复制：" + text);
+      }catch(e){
+        // 兼容老浏览器
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        ta.remove();
+        alert("已复制：" + text);
+      }
+    }
 
-document.getElementById("ding").onclick=async()=>{
-  try{await navigator.clipboard.writeText(DING_ID);}catch(e){}
-  window.open(DING_LINK,"_blank");
-};
+    /* 轮播：景深电视效果 + 平滑切换 */
+    const images = [
+      "./images/g1.jpg",
+      "./images/g2.jpg",
+      "./images/g3.jpg",
+      "./images/g4.jpg",
+      "./images/g5.jpg",
+      "./images/g6.jpg",
+      "./images/g7.jpg",
+      "./images/g8.jpg"
+    ];
 
-/* ===== 轮播（顺滑滚动替换 + 自动播放 + 手动切换） ===== */
-const images = [
-  "images/g1.jpg","images/g2.jpg","images/g3.jpg","images/g4.jpg",
-  "images/g5.jpg","images/g6.jpg","images/g7.jpg","images/g8.jpg"
-];
+    const stage = document.getElementById("stage");
+    const dotsWrap = document.getElementById("dots");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
 
-const track = document.getElementById("track");
-const dotsWrap = document.getElementById("dots");
-const foldL = document.getElementById("foldL");
-const foldR = document.getElementById("foldR");
+    let idx = 0;
+    let timer = null;
+    const slides = [];
 
-let idx = 0;
-let timer = null;
-let isDragging = false;
-let startX = 0;
+    function clampIndex(i){
+      const n = images.length;
+      return (i % n + n) % n;
+    }
 
-function buildSlides(){
-  track.innerHTML = images.map(src => `
-    <div class="slide">
-      <img src="${src}" alt="profile" loading="lazy" />
-    </div>
-  `).join("");
+    function build(){
+      stage.innerHTML = "";
+      dotsWrap.innerHTML = "";
+      slides.length = 0;
 
-  dotsWrap.innerHTML = images.map((_,i)=>`
-    <span class="dot ${i===0?'active':''}" data-i="${i}"></span>
-  `).join("");
+      for(let i=0;i<images.length;i++){
+        const s = document.createElement("div");
+        s.className = "slide is-hidden";
+        const img = document.createElement("img");
+        img.src = images[i];
+        img.alt = "photo-" + (i+1);
+        s.appendChild(img);
+        stage.appendChild(s);
+        slides.push(s);
 
-  dotsWrap.querySelectorAll(".dot").forEach(d=>{
-    d.addEventListener("click", ()=> goTo(+d.dataset.i, true));
-  });
+        const d = document.createElement("div");
+        d.className = "dot";
+        d.addEventListener("click", ()=>{ go(i); restart(); });
+        dotsWrap.appendChild(d);
+      }
+      render();
+    }
 
-  updateFolds();
-  applyTransform(false);
-}
+    function render(){
+      const n = images.length;
+      const left = clampIndex(idx - 1);
+      const right = clampIndex(idx + 1);
 
-function updateDots(){
-  dotsWrap.querySelectorAll(".dot").forEach((d,i)=>{
-    d.classList.toggle("active", i===idx);
-  });
-}
+      for(let i=0;i<n;i++){
+        slides[i].className = "slide is-hidden";
+      }
+      slides[left].classList.remove("is-hidden");
+      slides[left].classList.add("is-left");
 
-function applyTransform(animate=true){
-  track.style.transitionDuration = animate ? "720ms" : "0ms";
-  track.style.transform = `translateX(${-idx*100}%)`;
-  updateDots();
-  updateFolds();
-}
+      slides[idx].classList.remove("is-hidden");
+      slides[idx].classList.add("is-active");
 
-/* 电视两侧折叠幻影：用当前图作为背景 */
-function updateFolds(){
-  const src = images[idx];
-  foldL.style.backgroundImage = `url('${src}')`;
-  foldR.style.backgroundImage = `url('${src}')`;
-}
+      slides[right].classList.remove("is-hidden");
+      slides[right].classList.add("is-right");
 
-/* 切换（带一点点“缓动感”） */
-function goTo(i, animate=true){
-  idx = (i + images.length) % images.length;
-  applyTransform(animate);
-}
+      const dots = dotsWrap.querySelectorAll(".dot");
+      dots.forEach((d, i)=> d.classList.toggle("active", i===idx));
+    }
 
-document.getElementById("prev").addEventListener("click", ()=>{
-  stopAuto();
-  goTo(idx-1, true);
-  startAuto();
-});
-document.getElementById("next").addEventListener("click", ()=>{
-  stopAuto();
-  goTo(idx+1, true);
-  startAuto();
-});
+    function go(i){
+      idx = clampIndex(i);
+      render();
+    }
+    function next(){ go(idx + 1); }
+    function prev(){ go(idx - 1); }
 
-/* 自动播放 */
-function startAuto(){
-  stopAuto();
-  timer = setInterval(()=> goTo(idx+1, true), 4200);
-}
-function stopAuto(){
-  if(timer) clearInterval(timer);
-  timer = null;
-}
+    prevBtn.addEventListener("click", ()=>{ prev(); restart(); });
+    nextBtn.addEventListener("click", ()=>{ next(); restart(); });
 
-/* 触摸滑动（手机上更自然） */
-const stage = document.getElementById("stage");
-stage.addEventListener("touchstart", (e)=>{
-  isDragging = true;
-  startX = e.touches[0].clientX;
-  stopAuto();
-},{passive:true});
+    // 自动播放（你要的话保留；不想自动播就把 start() 注释掉）
+    function start(){
+      stop();
+      timer = setInterval(()=> next(), 4500);
+    }
+    function stop(){
+      if(timer) clearInterval(timer);
+      timer = null;
+    }
+    function restart(){
+      start();
+    }
 
-stage.addEventListener("touchend", (e)=>{
-  if(!isDragging) return;
-  isDragging = false;
-  const endX = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientX : startX;
-  const diff = endX - startX;
-  if(Math.abs(diff) > 40){
-    if(diff > 0) goTo(idx-1, true);
-    else goTo(idx+1, true);
-  }
-  startAuto();
-},{passive:true});
+    // 鼠标移入暂停（电脑端体验更好）
+    const carousel = document.getElementById("carousel");
+    carousel.addEventListener("mouseenter", stop);
+    carousel.addEventListener("mouseleave", start);
 
-/* 初始 */
-buildSlides();
-startAuto();
+    // 触摸滑动（手机端）
+    let sx=0, dx=0;
+    carousel.addEventListener("touchstart", (e)=>{
+      sx = e.touches[0].clientX;
+      dx = 0;
+    }, {passive:true});
+    carousel.addEventListener("touchmove", (e)=>{
+      dx = e.touches[0].clientX - sx;
+    }, {passive:true});
+    carousel.addEventListener("touchend", ()=>{
+      if(Math.abs(dx) > 45){
+        dx > 0 ? prev() : next();
+        restart();
+      }
+    });
 
-/* 页面切后台暂停，回来继续 */
-document.addEventListener("visibilitychange", ()=>{
-  if(document.hidden) stopAuto();
-  else startAuto();
-});
-</script>
+    build();
+    start();
+  </script>
 </body>
 </html>
