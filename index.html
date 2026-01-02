@@ -1,839 +1,1148 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>GWCAPITAL</title>
+
   <style>
     :root{
-      --bg0:#050713;
-      --bg1:#0b1023;
-      --glass: rgba(255,255,255,.06);
-      --glass2: rgba(255,255,255,.08);
-      --line: rgba(255,255,255,.10);
-      --text: rgba(255,255,255,.88);
-      --muted: rgba(255,255,255,.62);
-      --muted2: rgba(255,255,255,.48);
-      --shadow: 0 18px 50px rgba(0,0,0,.35);
-      --radius: 20px;
-      --radius2: 16px;
-      --c1:#35d1ff;
-      --c2:#7a5cff;
-      --c3:#4ee29a;
-      --c4:#4aa3ff;
+      --bg0:#070B14;
+      --bg1:#0B1020;
+      --card: rgba(255,255,255,.05);
+      --card2: rgba(255,255,255,.035);
+      --stroke: rgba(255,255,255,.10);
+      --stroke2: rgba(255,255,255,.06);
+      --txt: rgba(255,255,255,.90);
+      --muted: rgba(255,255,255,.68);
+      --muted2: rgba(255,255,255,.55);
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --r16: 16px;
+      --r20: 20px;
+      --r24: 24px;
+      --cyan:#47D7FF;
+      --blue:#6B7CFF;
+      --vio:#7A5CFF;
+      --green:#3EE6A8;
+      --dot:#6CA6FF;
+      --dot2:#A97CFF;
     }
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
     body{
       margin:0;
-      font-family: -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
+      color:var(--txt);
       background:
-        radial-gradient(900px 420px at 12% 6%, rgba(122,92,255,.22), transparent 55%),
-        radial-gradient(760px 380px at 85% 12%, rgba(53,209,255,.20), transparent 60%),
-        radial-gradient(860px 520px at 60% 96%, rgba(78,226,154,.10), transparent 55%),
+        radial-gradient(900px 460px at 18% 8%, rgba(122,92,255,.25), transparent 65%),
+        radial-gradient(780px 520px at 88% 14%, rgba(71,215,255,.20), transparent 62%),
+        radial-gradient(900px 520px at 55% 95%, rgba(62,230,168,.12), transparent 65%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
-      min-height:100%;
-      overflow-x:hidden;
+      overflow-x:hidden; /* 修复移动端“白边/横向溢出” */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a{ color:inherit; text-decoration:none; }
+
+    /* 顶部安全区（iPhone） */
+    .safe-top{ padding-top: env(safe-area-inset-top); }
+
+    /* 容器 */
+    .wrap{
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 18px 18px 44px;
     }
 
-    /* 解决手机底部白边/安全区 */
-    .page{
-      min-height:100svh;
-      padding-bottom: env(safe-area-inset-bottom);
-    }
-
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:1180px;margin:0 auto;padding:22px 18px 44px}
-
-    /* topbar */
+    /* 顶部栏 */
     .topbar{
-      display:flex;align-items:center;justify-content:space-between;
-      gap:14px;
-      padding:14px 14px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
-      position:sticky; top:12px; z-index:20;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding: 12px 12px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.22);
+      border: 1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+      position: sticky;
+      top: 10px;
+      z-index: 50;
     }
-    .brand{display:flex;align-items:center;gap:10px;padding-left:6px}
-    .logoDot{
-      width:26px;height:26px;border-radius:8px;
-      background: radial-gradient(circle at 30% 30%, rgba(53,209,255,.9), rgba(122,92,255,.9));
-      box-shadow: 0 0 0 1px rgba(255,255,255,.10) inset, 0 10px 25px rgba(53,209,255,.12);
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding-left:8px;
+      min-width: 180px;
     }
-    .brandName{
+    .logo{
+      width:34px;height:34px;
+      border-radius:10px;
+      background:
+        radial-gradient(12px 12px at 30% 30%, rgba(122,92,255,.95), rgba(122,92,255,.0) 70%),
+        radial-gradient(12px 12px at 70% 70%, rgba(71,215,255,.85), rgba(71,215,255,.0) 70%),
+        linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: 0 10px 22px rgba(0,0,0,.25);
+    }
+    .brand b{
+      letter-spacing:.4px;
       font-weight:800;
-      letter-spacing:.3px;
-      background: linear-gradient(90deg, var(--c1), var(--c2));
-      -webkit-background-clip:text;background-clip:text;
-      color:transparent;
+      display:inline-block;
+      background: linear-gradient(90deg, rgba(71,215,255,.95), rgba(122,92,255,.95));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
     .nav{
-      display:flex;align-items:center;gap:18px;
-      color:var(--muted);
+      display:flex;
+      align-items:center;
+      gap:18px;
+      color: rgba(255,255,255,.72);
       font-size:14px;
     }
-    .nav a{opacity:.85}
-    .nav a:hover{opacity:1}
-    .cta{
-      padding:10px 14px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
+    .nav a{
+      padding:8px 10px;
+      border-radius: 999px;
+      transition: .2s ease;
+    }
+    .nav a:hover{
       background: rgba(255,255,255,.06);
-      color:rgba(255,255,255,.86);
-      display:inline-flex;align-items:center;gap:8px;
-      transition:.2s ease;
+      color: rgba(255,255,255,.88);
     }
-    .cta:hover{transform: translateY(-1px); background: rgba(255,255,255,.08)}
-    .cta .arrow{opacity:.8}
-
-    /* hero */
-    .hero{
-      margin-top:18px;
-      padding:34px 22px 26px;
-      border-radius:26px;
-      border:1px solid var(--line);
-      background:
-        radial-gradient(900px 520px at 50% 0%, rgba(255,255,255,.06), transparent 60%),
-        rgba(255,255,255,.03);
-      backdrop-filter: blur(16px);
-      box-shadow: var(--shadow);
-      position:relative;
-    }
-    .hero:before{
-      content:"";
-      position:absolute;inset:-2px;
-      border-radius:28px;
-      background: linear-gradient(120deg, rgba(53,209,255,.20), rgba(122,92,255,.18), rgba(78,226,154,.10));
-      filter: blur(18px);
-      z-index:-1;
-      opacity:.55;
-    }
-    .hTitle{
-      text-align:center;
-      font-size:54px;
-      line-height:1.04;
-      margin:0;
-      letter-spacing:.8px;
-      font-weight:900;
-    }
-    .hTitle .grad{
-      background: linear-gradient(90deg, var(--c1), var(--c2));
-      -webkit-background-clip:text;background-clip:text;
-      color:transparent;
-    }
-    .hSub{
-      text-align:center;
-      margin:12px auto 0;
-      max-width:780px;
-      color:var(--muted);
-      font-size:15px;
-      line-height:1.7;
-    }
-
-    /* section label with divider */
-    .sectionHead{
-      display:flex;align-items:center;gap:14px;
-      margin:20px 2px 14px;
-    }
-    .pill{
-      display:inline-flex;align-items:center;gap:10px;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.05);
-      color:rgba(255,255,255,.86);
+    .cta{
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(10px);
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-weight:700;
+      color: rgba(255,255,255,.88);
+      transition: .2s ease;
       white-space:nowrap;
-      width:fit-content; /* 自动适应内容 */
-      max-width:100%;
     }
-    .pill .dot{
-      width:8px;height:8px;border-radius:99px;
-      background: linear-gradient(180deg, var(--c1), var(--c2));
-      box-shadow:0 0 0 3px rgba(53,209,255,.10);
-      flex:0 0 auto;
+    .cta:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); }
+    .arrow{ opacity:.8; }
+
+    /* 主卡片 */
+    .hero{
+      margin-top: 16px;
+      border-radius: 28px;
+      background:
+        radial-gradient(900px 420px at 20% 10%, rgba(122,92,255,.18), transparent 60%),
+        radial-gradient(820px 520px at 80% 10%, rgba(71,215,255,.13), transparent 62%),
+        rgba(0,0,0,.20);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      padding: 26px 22px 26px;
+      backdrop-filter: blur(14px);
+    }
+
+    .title{
+      text-align:center;
+      padding: 8px 12px 2px;
+    }
+    .title h1{
+      margin:0;
+      font-size: clamp(34px, 5vw, 56px);
+      letter-spacing:.6px;
+      font-weight: 900;
+    }
+    .title h1 .grad{
+      background: linear-gradient(90deg, rgba(71,215,255,.95), rgba(122,92,255,.95));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .title p{
+      margin: 10px auto 0;
+      max-width: 720px;
+      color: rgba(255,255,255,.70);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    /* section label with divider (居中) */
+    .sectionHead{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:14px;
+      margin: 18px 2px 14px;
     }
     .divider{
-      height:1px;flex:1;
+      height:1px;
+      width: clamp(40px, 20vw, 260px);
       background: linear-gradient(90deg, rgba(255,255,255,.14), rgba(255,255,255,.06), transparent);
     }
-
-    /* about grid */
-    .grid2{
-      display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap:18px;
-      margin-top:18px;
+    .divider.right{
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.06), rgba(255,255,255,.14));
     }
-    .card{
-      border-radius: var(--radius);
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 14px 40px rgba(0,0,0,.25);
-    }
-    .cardInner{padding:18px}
-    .tagline{
-      display:inline-flex;align-items:center;gap:10px;
-      padding:7px 10px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      color:var(--muted);
-      background: rgba(255,255,255,.04);
-      font-size:13px;
-    }
-    .title2{
-      margin:10px 0 8px;
-      font-size:30px;
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.10);
+      color: rgba(255,255,255,.88);
+      font-weight: 800;
       letter-spacing:.2px;
-      font-weight:850;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+      white-space:nowrap;
     }
-    .p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.85;
-      font-size:14px;
-    }
-
-    .bullets{margin-top:14px;display:grid;gap:10px}
-    .bullet{
-      display:flex;align-items:flex-start;gap:10px;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      color:rgba(255,255,255,.80);
-      line-height:1.75;
-      font-size:14px;
-    }
-    .bDot{
-      width:10px;height:10px;border-radius:99px;margin-top:6px;
-      background: linear-gradient(180deg, var(--c1), var(--c2));
-      box-shadow: 0 0 0 4px rgba(53,209,255,.10);
+    .pill .dot{
+      width:8px;height:8px;border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, rgba(122,92,255,1), rgba(71,215,255,1));
+      box-shadow: 0 0 0 4px rgba(122,92,255,.12);
       flex:0 0 auto;
     }
-    .bullet b{font-weight:800;color:rgba(255,255,255,.92)}
-    .muter{color:var(--muted2)}
 
-    /* Carousel (smooth) */
-    .carousel{
-      position:relative;
-      border-radius: var(--radius);
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      height: 330px;
+    /* grid */
+    .grid2{
+      display:grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 16px;
+      margin-top: 10px;
+      align-items: stretch;
     }
-    .cTrack{
+
+    .card{
+      border-radius: 22px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 18px 60px rgba(0,0,0,.25);
+      backdrop-filter: blur(12px);
+      overflow:hidden;
+    }
+    .cardPad{ padding: 16px 16px; }
+
+    /* 轮播（电视景深/折叠侧边） */
+    .carouselWrap{
+      padding: 14px 14px 16px;
+    }
+    .tvFrame{
+      position: relative;
+      border-radius: 22px;
+      background: rgba(0,0,0,.18);
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
+      padding: 14px;
+      overflow:hidden;
+    }
+    .tvStage{
+      position: relative;
+      border-radius: 18px;
+      height: 310px;
+      overflow:hidden;
+      background: rgba(255,255,255,.02);
+      border: 1px solid rgba(255,255,255,.06);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.03);
+    }
+
+    /* 左右折叠景深层（模糊边缘） */
+    .tvStage::before,
+    .tvStage::after{
+      content:"";
+      position:absolute;
+      top:0; bottom:0;
+      width: 22%;
+      z-index: 3;
+      pointer-events:none;
+      background: linear-gradient(90deg, rgba(7,11,20,.85), rgba(7,11,20,.0));
+      filter: blur(.0px);
+    }
+    .tvStage::before{ left:0; }
+    .tvStage::after{
+      right:0;
+      transform: scaleX(-1);
+    }
+
+    .track{
       height:100%;
       display:flex;
-      transition: transform 650ms cubic-bezier(.22,.9,.2,1);
+      transition: transform 700ms cubic-bezier(.22,.75,.14,1);
       will-change: transform;
     }
-    .cItem{
+    .slide{
       min-width:100%;
       height:100%;
       position:relative;
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:14px;
+      overflow:hidden;
+      background: rgba(0,0,0,.18);
     }
-    .cItem img{
+    .slide img{
       width:100%;
       height:100%;
-      object-fit:cover;
-      border-radius: 18px;
-      box-shadow: 0 18px 40px rgba(0,0,0,.35);
+      object-fit: cover;
+      border-radius: 14px;
+      transform: scale(1.02);
+      filter: saturate(1.05) contrast(1.02);
     }
-    /* “电视景深”侧边虚化层 */
-    .cDepth{
-      pointer-events:none;
-      position:absolute; inset:0;
+
+    /* 让当前画面更“电视景深” */
+    .slide::after{
+      content:"";
+      position:absolute;
+      inset:0;
       background:
-        linear-gradient(90deg, rgba(5,7,19,.55), transparent 28%, transparent 72%, rgba(5,7,19,.55)),
-        radial-gradient(55% 80% at 50% 50%, transparent 40%, rgba(5,7,19,.35) 100%);
-      mix-blend-mode: normal;
+        radial-gradient(520px 220px at 50% 60%, rgba(255,255,255,.10), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.25));
+      pointer-events:none;
+      z-index: 2;
     }
-    .cBtn{
-      position:absolute; top:50%;
+
+    /* 左右按钮（透明度低） */
+    .navBtn{
+      position:absolute;
+      top: 50%;
       transform: translateY(-50%);
-      width:44px;height:44px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.08);
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
       backdrop-filter: blur(10px);
-      display:flex;align-items:center;justify-content:center;
-      color:rgba(255,255,255,.88);
+      color: rgba(255,255,255,.80);
+      display:flex;
+      align-items:center;
+      justify-content:center;
       cursor:pointer;
-      opacity:.22; /* 低透明度 */
-      transition:.2s ease;
-      z-index:5;
+      z-index: 5;
+      transition: .18s ease;
+      opacity: .55; /* 透明度低一些 */
     }
-    .carousel:hover .cBtn{opacity:.55}
-    .cBtn:hover{opacity:.9; transform: translateY(-50%) scale(1.03)}
-    .cPrev{left:14px}
-    .cNext{right:14px}
-    .cBtn svg{width:18px;height:18px}
+    .navBtn:hover{ opacity:.85; transform: translateY(-50%) scale(1.03); }
+    .navBtn:active{ transform: translateY(-50%) scale(.98); }
+    .navPrev{ left: 10px; }
+    .navNext{ right: 10px; }
 
     .dots{
-      position:absolute; left:0; right:0; bottom:12px;
-      display:flex; justify-content:center; gap:7px;
-      z-index:6;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 8px;
+      margin-top: 10px;
+      padding-bottom: 2px;
     }
-    .dot{
-      width:8px;height:8px;border-radius:99px;
-      background: rgba(255,255,255,.22);
-      border:1px solid rgba(255,255,255,.10);
-      transition:.25s ease;
+    .dotBtn{
+      width: 8px; height: 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.20);
+      border: 1px solid rgba(255,255,255,.12);
+      cursor:pointer;
+      transition: .2s ease;
+      opacity:.75;
     }
-    .dot.on{
-      width:22px;
-      background: linear-gradient(90deg, var(--c1), var(--c2));
-      border-color: rgba(255,255,255,.16);
-      box-shadow: 0 0 0 4px rgba(53,209,255,.10);
+    .dotBtn.active{
+      width: 22px;
+      background: linear-gradient(90deg, rgba(71,215,255,.95), rgba(122,92,255,.95));
+      opacity: 1;
     }
 
-    /* white box line text under carousel */
-    .noteBox{
-      margin-top:14px;
-      padding:12px 14px;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.12);
+    /* 白框文案区 */
+    .captionBox{
+      margin-top: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.03);
-      color:rgba(255,255,255,.78);
-      line-height:1.7;
-      font-size:14px;
+      padding: 12px 14px;
+      color: rgba(255,255,255,.78);
+      line-height: 1.7;
+      font-size: 14px;
     }
 
-    /* 4 cards grid */
+    /* 右侧介绍 */
+    .badgeRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      margin-bottom: 12px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.10);
+      color: rgba(255,255,255,.78);
+      font-weight: 700;
+      font-size: 13px;
+      white-space:nowrap;
+    }
+    .hello{
+      margin: 8px 0 10px;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing:.2px;
+    }
+    .desc{
+      margin:0 0 12px;
+      color: rgba(255,255,255,.72);
+      line-height: 1.8;
+      font-size: 14px;
+    }
+    .list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top: 10px;
+    }
+    .li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding: 12px 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .li .bDot{
+      width:10px;height:10px;border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, rgba(71,215,255,1), rgba(122,92,255,1));
+      box-shadow: 0 0 0 4px rgba(71,215,255,.10);
+      flex:0 0 auto;
+      margin-top: 6px;
+    }
+    .li b{ font-weight: 900; }
+    .li span{ color: rgba(255,255,255,.72); line-height: 1.7; }
+
+    /* 4卡入口 */
     .grid4{
       display:grid;
       grid-template-columns: repeat(4, 1fr);
-      gap:14px;
-      margin-top:12px;
+      gap: 14px;
+      margin-top: 12px;
     }
-    .smallCard{padding:16px;border-radius: var(--radius); position:relative}
-    .kicker{
-      display:inline-flex;align-items:center;gap:10px;
-      padding:7px 10px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      color:var(--muted);
-      background: rgba(255,255,255,.04);
-      font-size:13px;
-      width:fit-content;
+    .miniCard{
+      border-radius: 20px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.09);
+      box-shadow: 0 16px 50px rgba(0,0,0,.20);
+      backdrop-filter: blur(12px);
+      padding: 14px 14px 14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      min-height: 184px;
     }
-    .h3{margin:12px 0 8px;font-size:20px;font-weight:850}
-    .desc{margin:0;color:var(--muted);font-size:13px;line-height:1.75;min-height:44px}
+    .miniTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .miniTag{
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.14);
+      color: rgba(255,255,255,.75);
+      font-weight: 800;
+      font-size: 13px;
+      white-space:nowrap;
+    }
+    .miniTitle{
+      font-weight: 900;
+      font-size: 20px;
+      margin: 0;
+    }
+    .miniSub{
+      margin: 0;
+      color: rgba(255,255,255,.68);
+      line-height: 1.7;
+      font-size: 13px;
+      min-height: 44px;
+    }
     .btn{
-      margin-top:14px;
+      margin-top:auto;
       width:100%;
-      padding:12px 14px;
+      padding: 12px 12px;
       border-radius: 14px;
-      border:1px solid rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.06);
-      color:rgba(255,255,255,.88);
+      color: rgba(255,255,255,.88);
+      font-weight: 900;
+      text-align:center;
       cursor:pointer;
-      transition:.18s ease;
-      font-weight:750;
-      letter-spacing:.2px;
+      transition: .18s ease;
+      user-select:none;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
     }
-    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.08)}
-    .btn.cyan{background: rgba(53,209,255,.14)}
-    .btn.purple{background: rgba(122,92,255,.14)}
-    .btn.green{background: rgba(78,226,154,.14)}
-    .btn.blue{background: rgba(74,163,255,.14)}
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); }
+    .btn:active{ transform: translateY(0px) scale(.99); }
 
-    /* Social icons */
-    .iconWrap{
-      width:44px;height:44px;border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
+    .btn.cyan{ background: rgba(71,215,255,.12); border-color: rgba(71,215,255,.24); }
+    .btn.vio{ background: rgba(122,92,255,.12); border-color: rgba(122,92,255,.24); }
+    .btn.green{ background: rgba(62,230,168,.12); border-color: rgba(62,230,168,.24); }
+    .btn.blue{ background: rgba(107,124,255,.12); border-color: rgba(107,124,255,.24); }
+
+    /* 服务内容（对比） */
+    .serviceWrap{
+      margin-top: 12px;
+    }
+    .serviceGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 10px;
+    }
+    .serviceCard{
+      border-radius: 22px;
       background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 18px 60px rgba(0,0,0,.20);
+      padding: 16px 16px 14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .serviceHead{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom: 10px;
+    }
+    .serviceHead h3{
+      margin:0;
+      font-size: 20px;
+      font-weight: 900;
+    }
+    .hint{
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.12);
+      color: rgba(255,255,255,.72);
+      font-weight: 800;
+      font-size: 12px;
+      white-space:nowrap;
+    }
+    .svcList{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top: 10px;
+    }
+    .svcItem{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding: 12px 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .svcDot{
+      width:10px;height:10px;border-radius:999px;
+      margin-top:6px;
+      flex:0 0 auto;
+    }
+    .svcDot.free{
+      background: radial-gradient(circle at 30% 30%, rgba(71,215,255,1), rgba(71,215,255,.35));
+      box-shadow: 0 0 0 4px rgba(71,215,255,.10);
+    }
+    .svcDot.vip{
+      background: radial-gradient(circle at 30% 30%, rgba(122,92,255,1), rgba(122,92,255,.35));
+      box-shadow: 0 0 0 4px rgba(122,92,255,.10);
+    }
+    .svcItem span{
+      color: rgba(255,255,255,.78);
+      line-height: 1.7;
+      font-weight: 700;
+    }
+
+    /* 全网社交分享 - 图标 */
+    .iconWrap{
+      width:42px;height:42px;border-radius: 14px;
       display:flex;align-items:center;justify-content:center;
-      box-shadow: 0 14px 28px rgba(0,0,0,.22);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.14);
+      flex:0 0 auto;
     }
     .socialRow{
-      display:flex; align-items:center; justify-content:space-between; gap:12px;
-      margin-top:12px;
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
     }
-    .socialLeft{display:flex; align-items:center; gap:12px}
-    .socialMeta{display:flex; flex-direction:column; gap:2px}
-    .socialMeta .name{font-weight:850}
-    .socialMeta .hint{color:var(--muted); font-size:12.5px}
-    .go{
-      padding:10px 12px;border-radius:12px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      color:rgba(255,255,255,.86);
-      font-weight:800;
+    .miniSubSmall{
+      margin: 0;
+      color: rgba(255,255,255,.68);
+      line-height: 1.65;
+      font-size: 13px;
+    }
+    .enterPill{
+      margin-left:auto;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.85);
+      font-weight: 900;
+      font-size: 13px;
       cursor:pointer;
       transition:.18s ease;
       white-space:nowrap;
+      display:flex;
+      align-items:center;
+      gap:6px;
+      opacity:.95;
     }
-    .go:hover{transform: translateY(-1px); background: rgba(255,255,255,.08)}
+    .enterPill:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); }
 
-    /* footer risk */
+    /* 风险提示 */
     .risk{
-      margin-top:16px;
-      padding:16px 16px;
-      border-radius: var(--radius);
-      border:1px solid rgba(255,255,255,.10);
-      background:
-        radial-gradient(800px 260px at 20% 0%, rgba(255,95,95,.10), transparent 55%),
-        radial-gradient(760px 260px at 85% 10%, rgba(122,92,255,.10), transparent 55%),
-        rgba(255,255,255,.03);
-      color:rgba(255,255,255,.74);
-      line-height:1.85;
-      font-size:13.5px;
+      margin-top: 12px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.10);
+      padding: 16px 16px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 18px 60px rgba(0,0,0,.20);
     }
-    .risk ul{margin:10px 0 0 18px;padding:0}
-    .risk li{margin:6px 0}
-    .risk .head{
-      display:flex;align-items:center;gap:10px;
-      font-weight:850;color:rgba(255,255,255,.86)
+    .risk .warn{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color: rgba(255,255,255,.86);
+      font-weight: 900;
+      margin-bottom: 8px;
     }
-    .risk .rDot{width:8px;height:8px;border-radius:99px;background: rgba(255,95,95,.9); box-shadow:0 0 0 4px rgba(255,95,95,.12)}
-    .sep{
-      margin:12px 0 0;
-      height:1px;
-      background: linear-gradient(90deg, rgba(255,255,255,.12), rgba(255,255,255,.05), transparent);
+    .risk ul{
+      margin: 8px 0 0 18px;
+      padding: 0;
+      color: rgba(255,255,255,.70);
+      line-height: 1.85;
+      font-size: 14px;
+    }
+    .footSpace{ height: 8px; }
+    .subNote{
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(255,255,255,.14);
+      color: rgba(255,255,255,.60);
+      font-size: 12px;
+      line-height: 1.7;
     }
 
-    /* responsive */
-    @media (max-width: 980px){
-      .grid2{grid-template-columns:1fr}
-      .carousel{height:300px}
-      .grid4{grid-template-columns:1fr 1fr}
-      .hTitle{font-size:44px}
+    /* 响应式 */
+    @media (max-width: 1080px){
+      .grid4{ grid-template-columns: repeat(2, 1fr); }
     }
-    @media (max-width: 560px){
-      .wrap{padding:16px 14px 36px}
-      .topbar{padding:12px 12px}
-      .nav{display:none}
-      .hero{padding:26px 16px 18px}
-      .hTitle{font-size:36px}
-      .carousel{height:250px}
-      .grid4{grid-template-columns:1fr}
-      .cBtn{width:42px;height:42px}
+    @media (max-width: 900px){
+      .grid2{ grid-template-columns: 1fr; }
+      .tvStage{ height: 280px; }
+      .serviceGrid{ grid-template-columns: 1fr; }
+      .nav{ display:none; }
+      .brand{ min-width:auto; }
+    }
+    @media (max-width: 520px){
+      .wrap{ padding: 14px 12px 44px; }
+      .hero{ padding: 20px 14px 22px; }
+      .tvStage{ height: 240px; }
+      .grid4{ grid-template-columns: 1fr; }
+      .navBtn{ width: 42px; height: 42px; }
+      .miniCard{ min-height: 170px; }
     }
   </style>
 </head>
 
 <body>
-<div class="page">
-  <div class="wrap">
+  <div class="safe-top"></div>
 
-    <!-- TOPBAR -->
+  <div class="wrap">
+    <!-- 顶部 -->
     <div class="topbar">
       <div class="brand">
-        <div class="logoDot"></div>
-        <div class="brandName">GWCAPITAL</div>
+        <div class="logo"></div>
+        <b>GWCAPITAL</b>
       </div>
 
       <div class="nav">
-        <a href="#entry">合作入口</a>
+        <a href="#partner">合作入口</a>
         <a href="#about">关于我</a>
         <a href="#risk">风险提示</a>
       </div>
 
-      <a class="cta" href="#entry">
+      <!-- ✅ 已删除你截图里右上角“白色框”那种高亮外框样式：这里就是正常按钮 -->
+      <a class="cta" href="#partner">
         开始使用 <span class="arrow">→</span>
       </a>
     </div>
 
-    <!-- HERO -->
+    <!-- 主区 -->
     <div class="hero">
-      <h1 class="hTitle">欢迎来到 <span class="grad">GWCAPITAL</span></h1>
-      <div class="hSub">合作入口与助理联系方式（开户 / 合作将跳转为外部链接）。</div>
+      <div class="title">
+        <h1>欢迎来到 <span class="grad">GWCAPITAL</span></h1>
+        <!-- ✅ 红色框那句已删除：这里不再显示“合作入口与助理联系方式（开户/合作将跳转为外部链接）” -->
+        <p>合作入口与助理联系方式（开户 / 合作将跳转为外部链接）。</p>
+      </div>
 
-      <!-- ABOUT -->
-      <div id="about" class="sectionHead">
-        <div class="pill"><span class="dot"></span><span>关于我</span></div>
+      <!-- 关于我（标题居中+左右分割线） -->
+      <div class="sectionHead" id="about">
         <div class="divider"></div>
+        <div class="pill"><span class="dot"></span><span>关于我</span></div>
+        <div class="divider right"></div>
       </div>
 
       <div class="grid2">
-        <!-- left: carousel -->
+        <!-- 左：轮播 -->
         <div class="card">
-          <div class="cardInner">
-            <div class="carousel" id="carousel">
-              <div class="cTrack" id="cTrack">
-                <!-- 你已经把照片放在 /images/ 下面了，按你的命名直接引用 -->
-                <div class="cItem"><img src="images/g1.jpg" alt="Gin 1"></div>
-                <div class="cItem"><img src="images/g2.jpg" alt="Gin 2"></div>
-                <div class="cItem"><img src="images/g3.jpg" alt="Gin 3"></div>
-                <div class="cItem"><img src="images/g4.jpg" alt="Gin 4"></div>
-                <div class="cItem"><img src="images/g5.jpg" alt="Gin 5"></div>
-                <div class="cItem"><img src="images/g6.jpg" alt="Gin 6"></div>
-                <div class="cItem"><img src="images/g7.jpg" alt="Gin 7"></div>
-                <div class="cItem"><img src="images/g8.jpg" alt="Gin 8"></div>
+          <div class="carouselWrap">
+            <div class="tvFrame">
+              <div class="tvStage" id="tvStage">
+                <div class="track" id="track">
+                  <!-- ✅ 照片放在 /images/ 目录，名字：g1.jpg ~ g8.jpg -->
+                  <div class="slide"><img src="images/g1.jpg" alt="Gin-1"></div>
+                  <div class="slide"><img src="images/g2.jpg" alt="Gin-2"></div>
+                  <div class="slide"><img src="images/g3.jpg" alt="Gin-3"></div>
+                  <div class="slide"><img src="images/g4.jpg" alt="Gin-4"></div>
+                  <div class="slide"><img src="images/g5.jpg" alt="Gin-5"></div>
+                  <div class="slide"><img src="images/g6.jpg" alt="Gin-6"></div>
+                  <div class="slide"><img src="images/g7.jpg" alt="Gin-7"></div>
+                  <div class="slide"><img src="images/g8.jpg" alt="Gin-8"></div>
+                </div>
+
+                <!-- 左右切换按钮：透明度低 -->
+                <button class="navBtn navPrev" id="prevBtn" aria-label="prev">‹</button>
+                <button class="navBtn navNext" id="nextBtn" aria-label="next">›</button>
               </div>
 
-              <div class="cDepth"></div>
-
-              <button class="cBtn cPrev" id="prevBtn" aria-label="prev">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-              <button class="cBtn cNext" id="nextBtn" aria-label="next">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-
+              <!-- dots -->
               <div class="dots" id="dots"></div>
-            </div>
 
-            <!-- 白色框那句：你要的“教学历程”一句话（已重新编辑） -->
-            <div class="noteBox">
-              线下学员教学与实战打磨历程：从体系搭建到执行复盘，长期沉淀可复用的方法与节奏。
+              <!-- 白框：一句话（你要的“线下学员教学历程”改写） -->
+              <div class="captionBox">
+                多年线下学员教学与实战带教历程，累计沉淀方法与体系化复盘流程。
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- right: intro -->
+        <!-- 右：介绍 -->
         <div class="card">
-          <div class="cardInner">
-            <div class="tagline">Gin · 杰明｜宏观与行情研究</div>
-            <div class="title2">大家好，我是 Gin-杰明。</div>
-            <p class="p">
+          <div class="cardPad">
+            <div class="badgeRow">
+              <div class="badge">Gin · 杰明 | 宏观与行情研究</div>
+            </div>
+
+            <div class="hello">大家好，我是 Gin-杰明。</div>
+
+            <p class="desc">
               深耕交易与市场研究多年，曾任金十数据讲师，并参与交易学院体系搭建。
               这里是我的专属小站，聚合外汇、黄金、加密资产与美股等方向的个人观点与宏观解读；
               合作与开户咨询请直接查看下方入口。
             </p>
 
-            <div class="bullets">
-              <div class="bullet"><span class="bDot"></span><div><b>主线方法：</b> 以宏观逻辑 + 市场结构为主线，偏“看懂市场节奏”。</div></div>
-              <div class="bullet"><span class="bDot"></span><div><b>更新覆盖：</b> 外汇 / 黄金 / 加密 / 美股，方向清晰，观点直给。</div></div>
-              <div class="bullet"><span class="bDot"></span><div><b>合作或加入VIP群：</b> 按下方流程开户提交邮箱至小助理验证即可。</div></div>
+            <div class="list">
+              <div class="li">
+                <div class="bDot"></div>
+                <div>
+                  <b>主线方法：</b>
+                  <span>以宏观逻辑 + 市场结构为主线，偏“看懂市场节奏”。</span>
+                </div>
+              </div>
+
+              <div class="li">
+                <div class="bDot"></div>
+                <div>
+                  <b>更新覆盖：</b>
+                  <span>外汇 / 黄金 / 加密 / 美股，方向清晰、观点直给。</span>
+                </div>
+              </div>
+
+              <div class="li">
+                <div class="bDot"></div>
+                <div>
+                  <b>合作或加入VIP群：</b>
+                  <span>按下方流程开户提交邮箱至小助理验证即可。</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 合作咨询入口（四卡） -->
-      <div id="entry" class="sectionHead" style="margin-top:20px;">
-        <div class="pill"><span class="dot"></span><span>合作咨询入口</span></div>
+      <!-- 服务内容 -->
+      <div class="sectionHead">
         <div class="divider"></div>
+        <div class="pill"><span class="dot"></span><span>服务内容</span></div>
+        <div class="divider right"></div>
+      </div>
+
+      <div class="serviceWrap">
+        <div class="serviceGrid">
+          <div class="serviceCard">
+            <div class="serviceHead">
+              <h3>公开群（免费）</h3>
+              <div class="hint">轻量跟踪 · 提前通知</div>
+            </div>
+
+            <div class="svcList">
+              <div class="svcItem"><div class="svcDot free"></div><span>每周 2 次视频分享</span></div>
+              <div class="svcItem"><div class="svcDot free"></div><span>偶尔分享大级别观点</span></div>
+              <div class="svcItem"><div class="svcDot free"></div><span>公开直播提前通知</span></div>
+            </div>
+          </div>
+
+          <div class="serviceCard">
+            <div class="serviceHead">
+              <h3>内部群（收费）</h3>
+              <div class="hint">更实时 · 更系统</div>
+            </div>
+
+            <div class="svcList">
+              <div class="svcItem"><div class="svcDot vip"></div><span>实时交易观点</span></div>
+              <div class="svcItem"><div class="svcDot vip"></div><span>自用交易工具、研报共享</span></div>
+              <div class="svcItem"><div class="svcDot vip"></div><span>交易问题答疑</span></div>
+              <div class="svcItem"><div class="svcDot vip"></div><span>内部直播</span></div>
+              <div class="svcItem"><div class="svcDot vip"></div><span>付费课程折扣</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 合作咨询入口 -->
+      <div class="sectionHead" id="partner">
+        <div class="divider"></div>
+        <div class="pill"><span class="dot"></span><span>合作咨询入口</span></div>
+        <div class="divider right"></div>
       </div>
 
       <div class="grid4">
-        <div class="card smallCard">
-          <div class="kicker">美元账户 · TMGM</div>
-          <div class="h3">TMGM 合作开户注册</div>
-          <p class="desc">适用于美元账户开户流程。开户完成后提交注册邮箱给小助理验证。</p>
-          <button class="btn cyan" onclick="openLink('#')">立即开户</button>
+        <!-- 1 -->
+        <div class="miniCard">
+          <div class="miniTop">
+            <div class="miniTag">美元账户 · TMGM</div>
+          </div>
+          <p class="miniTitle">TMGM 合作开户注册</p>
+          <p class="miniSub">适用于美元账户开户流程。开户完成后提交注册邮箱给小助理验证。</p>
+          <!-- TODO：把 href 换成你的真实链接 -->
+          <a class="btn cyan" href="#" target="_blank" rel="noopener">立即开户</a>
         </div>
 
-        <div class="card smallCard">
-          <div class="kicker">美分账户 · Dprime</div>
-          <div class="h3">Dprime 美分账户开户</div>
-          <p class="desc">适用于美分账户交易需求。开户完成后提交注册邮箱给小助理验证。</p>
-          <button class="btn purple" onclick="openLink('#')">立即开户注册</button>
+        <!-- 2 -->
+        <div class="miniCard">
+          <div class="miniTop">
+            <div class="miniTag">美分账户 · Dprime</div>
+          </div>
+          <p class="miniTitle">Dprime 美分账户开户</p>
+          <p class="miniSub">适用于美分账户交易需求。开户完成后提交注册邮箱给小助理验证。</p>
+          <a class="btn vio" href="#" target="_blank" rel="noopener">立即开户注册</a>
         </div>
 
-        <div class="card smallCard">
-          <div class="kicker">咨询助理 · 微信</div>
-          <div class="h3">助理微信： GINVIP123</div>
-          <p class="desc">点击按钮复制微信号，并尝试唤起微信添加。若无法唤起请手动搜索。</p>
-          <button class="btn green" onclick="copyText('GINVIP123')">点击咨询助理微信</button>
+        <!-- 3 -->
+        <div class="miniCard">
+          <div class="miniTop">
+            <div class="miniTag">咨询助理 · 微信</div>
+          </div>
+          <p class="miniTitle">助理微信： <b>GINVIP123</b></p>
+          <p class="miniSub">点击复制微信号，并尝试唤起微信添加。若无法唤起请手动搜索。</p>
+          <div class="btn green" data-copy="GINVIP123">点击咨询助理微信</div>
         </div>
 
-        <div class="card smallCard">
-          <div class="kicker">咨询助理 · 钉钉</div>
-          <div class="h3">助理钉钉： ginvip123</div>
-          <p class="desc">点击按钮复制钉钉号，并跳转钉钉名片（部分浏览器可能限制）。</p>
-          <button class="btn blue" onclick="copyText('ginvip123')">点击咨询助理钉钉</button>
+        <!-- 4 -->
+        <div class="miniCard">
+          <div class="miniTop">
+            <div class="miniTag">咨询助理 · 钉钉</div>
+          </div>
+          <p class="miniTitle">助理钉钉： <b>ginvip123</b></p>
+          <p class="miniSub">点击复制钉钉号，并跳转钉钉名片（部分浏览器可能限制）。</p>
+          <div class="btn blue" data-copy="ginvip123">点击咨询助理钉钉</div>
         </div>
       </div>
 
-      <!-- ✅ 新增：全网社交分享（四卡，同风格 + 自带logo） -->
-      <div class="sectionHead" style="margin-top:22px;">
-        <div class="pill"><span class="dot"></span><span>全网社交分享</span></div>
+      <!-- 全网社交分享 -->
+      <div class="sectionHead">
         <div class="divider"></div>
+        <div class="pill"><span class="dot"></span><span>全网社交分享</span></div>
+        <div class="divider right"></div>
       </div>
 
       <div class="grid4">
         <!-- 抖音 -->
-        <div class="card smallCard">
-          <div class="socialRow">
-            <div class="socialLeft">
+        <div class="miniCard">
+          <div class="miniTop">
+            <div class="socialRow">
               <div class="iconWrap" aria-hidden="true">
-                <!-- Douyin style SVG -->
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-                  <path d="M14 4v10.1a3.6 3.6 0 1 1-3.2-3.58" stroke="url(#gdy)" stroke-width="2.2" stroke-linecap="round"/>
-                  <path d="M14 6c1.2 2.2 3.2 3.7 6 4" stroke="url(#gdy2)" stroke-width="2.2" stroke-linecap="round"/>
-                  <defs>
-                    <linearGradient id="gdy" x1="6" y1="20" x2="18" y2="4">
-                      <stop stop-color="#35d1ff"/><stop offset="1" stop-color="#7a5cff"/>
-                    </linearGradient>
-                    <linearGradient id="gdy2" x1="10" y1="10" x2="22" y2="2">
-                      <stop stop-color="#7a5cff"/><stop offset="1" stop-color="#4ee29a"/>
-                    </linearGradient>
-                  </defs>
+                <!-- Douyin (简化风格SVG) -->
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M14.6 3c.6 2.8 2.6 5 5.4 5.5v3c-2.2-.1-4-.8-5.5-2v6.3c0 3.3-2.7 6-6 6s-6-2.7-6-6 2.7-6 6-6c.5 0 1 .1 1.5.2v3.2c-.5-.3-1-.4-1.5-.4-1.7 0-3 1.3-3 3s1.3 3 3 3 3-1.3 3-3V3h2.1z" fill="rgba(255,255,255,.88)"/>
+                  <path d="M14.6 3c.5 2.6 2.3 4.6 4.9 5.3" stroke="rgba(71,215,255,.95)" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M10 12.2c-.5-.3-1-.4-1.5-.4-1.7 0-3 1.3-3 3" stroke="rgba(122,92,255,.95)" stroke-width="2" stroke-linecap="round"/>
                 </svg>
               </div>
-              <div class="socialMeta">
-                <div class="name">抖音</div>
-                <div class="hint">短视频与直播更新</div>
+              <div>
+                <p class="miniTitle" style="margin:0;font-size:18px;">抖音</p>
+                <p class="miniSubSmall">短视频与直播更新</p>
               </div>
             </div>
-            <button class="go" onclick="openLink('#')">进入</button>
+            <!-- TODO：换成你的抖音链接 -->
+            <a class="enterPill" href="#" target="_blank" rel="noopener">进入 <span>→</span></a>
           </div>
-          <div style="margin-top:12px;color:var(--muted);font-size:13px;line-height:1.7;">
-            关注获取最新内容通知与节奏更新。
-          </div>
+
+          <p class="miniSub" style="margin-top:2px;">关注获取最新内容通知与节奏更新。</p>
         </div>
 
         <!-- B站 -->
-        <div class="card smallCard">
-          <div class="socialRow">
-            <div class="socialLeft">
+        <div class="miniCard">
+          <div class="miniTop">
+            <div class="socialRow">
               <div class="iconWrap" aria-hidden="true">
-                <!-- Bilibili style SVG -->
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                  <path d="M8.2 6.6 6.6 5" stroke="#7a5cff" stroke-width="2" stroke-linecap="round"/>
-                  <path d="M15.8 6.6 17.4 5" stroke="#35d1ff" stroke-width="2" stroke-linecap="round"/>
-                  <path d="M7.2 8.2h9.6a3 3 0 0 1 3 3V16a3 3 0 0 1-3 3H7.2a3 3 0 0 1-3-3v-4.8a3 3 0 0 1 3-3Z"
-                        stroke="url(#gb)" stroke-width="2.1" />
-                  <path d="M9.3 13.2h.1M14.6 13.2h.1" stroke="rgba(255,255,255,.85)" stroke-width="2.3" stroke-linecap="round"/>
-                  <defs>
-                    <linearGradient id="gb" x1="4" y1="19" x2="20" y2="7">
-                      <stop stop-color="#35d1ff"/><stop offset="1" stop-color="#7a5cff"/>
-                    </linearGradient>
-                  </defs>
+                <!-- Bilibili -->
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                  <path d="M7.5 7.2h9c1.7 0 3 1.3 3 3v6.6c0 1.7-1.3 3-3 3h-9c-1.7 0-3-1.3-3-3v-6.6c0-1.7 1.3-3 3-3z" stroke="rgba(255,255,255,.86)" stroke-width="1.8"/>
+                  <path d="M9 5.3l2 2M15 5.3l-2 2" stroke="rgba(122,92,255,.95)" stroke-width="1.8" stroke-linecap="round"/>
+                  <path d="M9.6 12.2v2.6M14.4 12.2v2.6" stroke="rgba(71,215,255,.95)" stroke-width="1.8" stroke-linecap="round"/>
                 </svg>
               </div>
-              <div class="socialMeta">
-                <div class="name">B站</div>
-                <div class="hint">长视频与复盘内容</div>
+              <div>
+                <p class="miniTitle" style="margin:0;font-size:18px;">B站</p>
+                <p class="miniSubSmall">长视频与复盘内容</p>
               </div>
             </div>
-            <button class="go" onclick="openLink('#')">进入</button>
+            <!-- TODO：换成你的B站链接 -->
+            <a class="enterPill" href="#" target="_blank" rel="noopener">进入 <span>→</span></a>
           </div>
-          <div style="margin-top:12px;color:var(--muted);font-size:13px;line-height:1.7;">
-            结构化内容整理、复盘与方法论沉淀。
-          </div>
+
+          <p class="miniSub" style="margin-top:2px;">结构化内容整理，复盘与方法论沉淀。</p>
         </div>
 
         <!-- YouTube -->
-        <div class="card smallCard">
-          <div class="socialRow">
-            <div class="socialLeft">
+        <div class="miniCard">
+          <div class="miniTop">
+            <div class="socialRow">
               <div class="iconWrap" aria-hidden="true">
-                <!-- YouTube style SVG -->
-                <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
-                  <path d="M20.6 7.8a2.6 2.6 0 0 0-1.8-1.9C17.3 5.5 12 5.5 12 5.5s-5.3 0-6.8.4A2.6 2.6 0 0 0 3.4 7.8 26 26 0 0 0 3 12s.1 2.7.4 4.2a2.6 2.6 0 0 0 1.8 1.9c1.5.4 6.8.4 6.8.4s5.3 0 6.8-.4a2.6 2.6 0 0 0 1.8-1.9c.3-1.5.4-4.2.4-4.2s-.1-2.7-.4-4.2Z"
-                        stroke="url(#gyt)" stroke-width="1.9" fill="rgba(255,255,255,.03)"/>
-                  <path d="M10.2 9.6 15.6 12l-5.4 2.4V9.6Z" fill="url(#gyt2)"/>
-                  <defs>
-                    <linearGradient id="gyt" x1="3" y1="18.5" x2="21" y2="5.5">
-                      <stop stop-color="#7a5cff"/><stop offset="1" stop-color="#35d1ff"/>
-                    </linearGradient>
-                    <linearGradient id="gyt2" x1="10" y1="14.5" x2="16" y2="9">
-                      <stop stop-color="#35d1ff"/><stop offset="1" stop-color="#4ee29a"/>
-                    </linearGradient>
-                  </defs>
+                <!-- YouTube -->
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                  <path d="M21 12s0-3.3-.4-4.7c-.2-.8-.9-1.5-1.7-1.7C17.5 5 12 5 12 5s-5.5 0-6.9.6c-.8.2-1.5.9-1.7 1.7C3 8.7 3 12 3 12s0 3.3.4 4.7c.2.8.9 1.5 1.7 1.7C6.5 19 12 19 12 19s5.5 0 6.9-.6c.8-.2 1.5-.9 1.7-1.7.4-1.4.4-4.7.4-4.7z" stroke="rgba(255,255,255,.86)" stroke-width="1.6"/>
+                  <path d="M10 9.6l5 2.4-5 2.4V9.6z" fill="rgba(71,215,255,.95)"/>
                 </svg>
               </div>
-              <div class="socialMeta">
-                <div class="name">YouTube</div>
-                <div class="hint">海外平台同步更新</div>
+              <div>
+                <p class="miniTitle" style="margin:0;font-size:18px;">YouTube</p>
+                <p class="miniSubSmall">海外平台同步更新</p>
               </div>
             </div>
-            <button class="go" onclick="openLink('#')">进入</button>
+            <!-- TODO：换成你的YouTube链接 -->
+            <a class="enterPill" href="#" target="_blank" rel="noopener">进入 <span>→</span></a>
           </div>
-          <div style="margin-top:12px;color:var(--muted);font-size:13px;line-height:1.7;">
-            海外内容同步与主题系列整理。
-          </div>
+
+          <p class="miniSub" style="margin-top:2px;">海外内容同步与主题系列整理。</p>
         </div>
 
-        <!-- Telegram -->
-        <div class="card smallCard">
-          <div class="socialRow">
-            <div class="socialLeft">
+        <!-- 纸飞机 -->
+        <div class="miniCard">
+          <div class="miniTop">
+            <div class="socialRow">
               <div class="iconWrap" aria-hidden="true">
-                <!-- Telegram paper plane SVG -->
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                  <path d="M21 3 3.8 10.2c-.9.4-.8 1.7.2 1.9l5.6 1.3 1.9 5.7c.3.9 1.5 1 2 .2l2.8-4.1 4.6 3.4c.8.6 1.9.1 2.1-.9L22 4.7c.2-1.1-.9-2-2-1.7Z"
-                        stroke="url(#gtg)" stroke-width="1.9" fill="rgba(255,255,255,.03)"/>
-                  <path d="M9.6 13.3 20.2 5.6" stroke="url(#gtg2)" stroke-width="2.1" stroke-linecap="round"/>
-                  <defs>
-                    <linearGradient id="gtg" x1="3" y1="20" x2="21" y2="3">
-                      <stop stop-color="#35d1ff"/><stop offset="1" stop-color="#7a5cff"/>
-                    </linearGradient>
-                    <linearGradient id="gtg2" x1="9" y1="14" x2="20" y2="5">
-                      <stop stop-color="#4ee29a"/><stop offset="1" stop-color="#35d1ff"/>
-                    </linearGradient>
-                  </defs>
+                <!-- Telegram -->
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                  <path d="M21 4.6L3.6 11.6c-.9.4-.8 1.7.2 1.9l4.7 1.3 1.8 5.4c.3.9 1.5 1 1.9.2l2.7-4 4.7 3.4c.8.6 1.9.2 2.1-.8l2.4-13c.2-1.1-.9-2-2.1-1.4z" fill="rgba(255,255,255,.84)"/>
+                  <path d="M9 14.8l11.3-8.1" stroke="rgba(71,215,255,.95)" stroke-width="1.8" stroke-linecap="round"/>
                 </svg>
               </div>
-              <div class="socialMeta">
-                <div class="name">纸飞机</div>
-                <div class="hint">频道/群同步推送</div>
+              <div>
+                <p class="miniTitle" style="margin:0;font-size:18px;">纸飞机</p>
+                <p class="miniSubSmall">频道/群同步推送</p>
               </div>
             </div>
-            <button class="go" onclick="openLink('#')">进入</button>
+            <!-- TODO：换成你的TG链接 -->
+            <a class="enterPill" href="#" target="_blank" rel="noopener">进入 <span>→</span></a>
           </div>
-          <div style="margin-top:12px;color:var(--muted);font-size:13px;line-height:1.7;">
-            更及时的通知与内容同步（按你实际链接填写）。
-          </div>
+
+          <p class="miniSub" style="margin-top:2px;">更及时的通知与内容同步（链接填写）。</p>
         </div>
       </div>
 
       <!-- 风险提示 -->
-      <div id="risk" class="sectionHead" style="margin-top:22px;">
-        <div class="pill"><span class="dot"></span><span>风险提示</span></div>
+      <div class="sectionHead" id="risk">
         <div class="divider"></div>
+        <div class="pill"><span class="dot"></span><span>风险提示</span></div>
+        <div class="divider right"></div>
       </div>
 
       <div class="risk">
-        <div class="head"><span class="rDot"></span><span>请务必阅读</span></div>
+        <div class="warn">
+          <span style="width:10px;height:10px;border-radius:999px;background:rgba(255,92,92,.9);box-shadow:0 0 0 4px rgba(255,92,92,.14);"></span>
+          请务必阅读
+        </div>
         <ul>
-          <li>本页面仅用于信息展示与合作入口跳转，不构成任何建议或承诺。</li>
+          <li>本页面仅用于信息展示与合作入口跳转，不构成任何建议或收益承诺。</li>
           <li>所有点击、跳转、注册、咨询等操作均为个人自主行为。</li>
-          <li>由此产生的任何结果（包括但不限于账户开立、平台规则变化等）请自行判断与承担。</li>
+          <li>由此产生的任何结果（包括但不限于开户、交易损益、平台规则变化等）请自行判断与承担。</li>
         </ul>
-        <div class="sep"></div>
-        <div style="margin-top:10px;color:rgba(255,255,255,.60);">
-          iOS/微信/钉钉内置浏览器可能限制直接唤起 App：建议先复制，再到对应 App 内搜索添加。
+
+        <div class="subNote">
+          跳转说明：在 iOS 或微信/钉钉内置浏览器中，可能限制直接唤起 App。建议策略：先复制，再在对应 App 内搜索添加。
         </div>
       </div>
 
-    </div><!-- hero end -->
+      <div class="footSpace"></div>
+    </div>
+  </div>
 
-  </div><!-- wrap end -->
-</div><!-- page end -->
+  <script>
+    // ====== 轮播：平滑滚动替换（不是生硬切换）======
+    const track = document.getElementById('track');
+    const slides = Array.from(track.children);
+    const dotsWrap = document.getElementById('dots');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
 
-<script>
-  // ====== Helpers ======
-  function openLink(url){
-    if(!url || url === '#'){
-      alert('这里先填你的真实链接（抖音/B站/油管/纸飞机/TMGM/Dprime等）');
-      return;
+    let index = 0;
+    let timer = null;
+    const AUTO_MS = 4500;
+
+    function buildDots(){
+      dotsWrap.innerHTML = '';
+      slides.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.className = 'dotBtn' + (i === index ? ' active' : '');
+        b.setAttribute('aria-label', 'go ' + (i+1));
+        b.addEventListener('click', () => go(i, true));
+        dotsWrap.appendChild(b);
+      });
     }
-    window.open(url, '_blank');
-  }
 
-  async function copyText(t){
-    try{
-      await navigator.clipboard.writeText(t);
-      toast('已复制：' + t);
-    }catch(e){
-      // fallback
-      const i=document.createElement('textarea');
-      i.value=t; document.body.appendChild(i);
-      i.select(); document.execCommand('copy');
-      i.remove();
-      toast('已复制：' + t);
+    function setActiveDot(){
+      const dots = Array.from(dotsWrap.children);
+      dots.forEach((d, i) => d.classList.toggle('active', i === index));
     }
-  }
 
-  function toast(text){
-    const el=document.createElement('div');
-    el.textContent=text;
-    Object.assign(el.style,{
-      position:'fixed',left:'50%',bottom:'18px',transform:'translateX(-50%)',
-      padding:'10px 12px',borderRadius:'999px',
-      background:'rgba(0,0,0,.55)',color:'rgba(255,255,255,.92)',
-      border:'1px solid rgba(255,255,255,.16)',
-      backdropFilter:'blur(12px)',zIndex:9999,fontWeight:'700',fontSize:'13px'
-    });
-    document.body.appendChild(el);
-    setTimeout(()=>{el.style.opacity='0'; el.style.transition='opacity .25s';},1100);
-    setTimeout(()=>{el.remove();},1400);
-  }
+    function go(i, userAction=false){
+      index = (i + slides.length) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+      setActiveDot();
 
-  // ====== Carousel Smooth ======
-  const track = document.getElementById('cTrack');
-  const carousel = document.getElementById('carousel');
-  const items = track ? Array.from(track.children) : [];
-  const dotsWrap = document.getElementById('dots');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
+      if(userAction){
+        restartAuto();
+      }
+    }
 
-  let idx = 0;
-  let timer = null;
-  const interval = 4200;
+    function next(userAction=false){ go(index + 1, userAction); }
+    function prev(userAction=false){ go(index - 1, userAction); }
 
-  function buildDots(){
-    if(!dotsWrap) return;
-    dotsWrap.innerHTML = '';
-    items.forEach((_,i)=>{
-      const d=document.createElement('span');
-      d.className = 'dot' + (i===0?' on':'');
-      d.addEventListener('click', ()=>go(i,true));
-      dotsWrap.appendChild(d);
-    });
-  }
+    prevBtn.addEventListener('click', () => prev(true));
+    nextBtn.addEventListener('click', () => next(true));
 
-  function setDots(){
-    if(!dotsWrap) return;
-    const dots = Array.from(dotsWrap.children);
-    dots.forEach((d,i)=>d.classList.toggle('on', i===idx));
-  }
+    function startAuto(){
+      stopAuto();
+      timer = setInterval(() => next(false), AUTO_MS);
+    }
+    function stopAuto(){
+      if(timer) clearInterval(timer);
+      timer = null;
+    }
+    function restartAuto(){
+      stopAuto();
+      startAuto();
+    }
 
-  function go(i, user=false){
-    if(!track || items.length===0) return;
-    idx = (i + items.length) % items.length;
-    track.style.transform = `translateX(-${idx*100}%)`;
-    setDots();
-    if(user){ restart(); }
-  }
-
-  function next(user=false){ go(idx+1, user); }
-  function prev(user=false){ go(idx-1, user); }
-
-  function start(){
-    stop();
-    timer = setInterval(()=>next(false), interval);
-  }
-  function stop(){
-    if(timer){ clearInterval(timer); timer=null; }
-  }
-  function restart(){
-    start();
-  }
-
-  // init
-  if(items.length){
-    buildDots();
-    start();
-
-    // hover pause on desktop
-    carousel.addEventListener('mouseenter', stop);
-    carousel.addEventListener('mouseleave', start);
-
-    // buttons
-    prevBtn.addEventListener('click', ()=>prev(true));
-    nextBtn.addEventListener('click', ()=>next(true));
-
-    // swipe (mobile)
-    let sx=0, dx=0, down=false;
-    carousel.addEventListener('touchstart', (e)=>{
-      stop();
-      down=true;
+    // 触摸滑动（手机更顺手）
+    let sx = 0, dx = 0;
+    const tvStage = document.getElementById('tvStage');
+    tvStage.addEventListener('touchstart', (e) => {
       sx = e.touches[0].clientX;
       dx = 0;
+      stopAuto();
     }, {passive:true});
-
-    carousel.addEventListener('touchmove', (e)=>{
-      if(!down) return;
-      const x = e.touches[0].clientX;
-      dx = x - sx;
+    tvStage.addEventListener('touchmove', (e) => {
+      dx = e.touches[0].clientX - sx;
     }, {passive:true});
-
-    carousel.addEventListener('touchend', ()=>{
-      down=false;
-      if(Math.abs(dx) > 45){
+    tvStage.addEventListener('touchend', () => {
+      if(Math.abs(dx) > 40){
         dx < 0 ? next(true) : prev(true);
       }else{
-        restart();
+        startAuto();
       }
     });
-  }
-</script>
+
+    // 鼠标悬停暂停（PC）
+    tvStage.addEventListener('mouseenter', stopAuto);
+    tvStage.addEventListener('mouseleave', startAuto);
+
+    // ====== 复制按钮 ======
+    function copyText(text){
+      if(navigator.clipboard && window.isSecureContext){
+        navigator.clipboard.writeText(text).then(() => toast('已复制：' + text)).catch(() => fallbackCopy(text));
+      }else{
+        fallbackCopy(text);
+      }
+    }
+    function fallbackCopy(text){
+      const t = document.createElement('textarea');
+      t.value = text;
+      t.style.position = 'fixed';
+      t.style.left = '-9999px';
+      document.body.appendChild(t);
+      t.select();
+      try{
+        document.execCommand('copy');
+        toast('已复制：' + text);
+      }catch(e){
+        toast('复制失败，请手动复制：' + text);
+      }
+      document.body.removeChild(t);
+    }
+
+    document.querySelectorAll('[data-copy]').forEach(el => {
+      el.addEventListener('click', () => copyText(el.getAttribute('data-copy')));
+    });
+
+    // ====== 轻提示 ======
+    let toastEl = null;
+    function toast(msg){
+      if(!toastEl){
+        toastEl = document.createElement('div');
+        toastEl.style.position = 'fixed';
+        toastEl.style.left = '50%';
+        toastEl.style.bottom = '22px';
+        toastEl.style.transform = 'translateX(-50%)';
+        toastEl.style.padding = '10px 14px';
+        toastEl.style.borderRadius = '999px';
+        toastEl.style.background = 'rgba(0,0,0,.55)';
+        toastEl.style.border = '1px solid rgba(255,255,255,.12)';
+        toastEl.style.backdropFilter = 'blur(10px)';
+        toastEl.style.color = 'rgba(255,255,255,.92)';
+        toastEl.style.fontWeight = '800';
+        toastEl.style.fontSize = '13px';
+        toastEl.style.zIndex = '999';
+        toastEl.style.boxShadow = '0 18px 40px rgba(0,0,0,.25)';
+        toastEl.style.maxWidth = '92vw';
+        toastEl.style.textAlign = 'center';
+        document.body.appendChild(toastEl);
+      }
+      toastEl.textContent = msg;
+      toastEl.style.opacity = '1';
+      clearTimeout(toastEl._t);
+      toastEl._t = setTimeout(() => {
+        toastEl.style.opacity = '0';
+      }, 1600);
+    }
+
+    // init
+    buildDots();
+    go(0);
+    startAuto();
+  </script>
 </body>
 </html>
