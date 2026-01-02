@@ -17,15 +17,10 @@
       --muted: rgba(255,255,255,.68);
       --muted2: rgba(255,255,255,.55);
       --shadow: 0 18px 60px rgba(0,0,0,.45);
-      --r16: 16px;
-      --r20: 20px;
-      --r24: 24px;
       --cyan:#47D7FF;
       --blue:#6B7CFF;
       --vio:#7A5CFF;
       --green:#3EE6A8;
-      --dot:#6CA6FF;
-      --dot2:#A97CFF;
     }
 
     *{ box-sizing:border-box; }
@@ -39,23 +34,20 @@
         radial-gradient(780px 520px at 88% 14%, rgba(71,215,255,.20), transparent 62%),
         radial-gradient(900px 520px at 55% 95%, rgba(62,230,168,.12), transparent 65%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
-      overflow-x:hidden; /* 修复移动端“白边/横向溢出” */
+      overflow-x:hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
     a{ color:inherit; text-decoration:none; }
 
-    /* 顶部安全区（iPhone） */
     .safe-top{ padding-top: env(safe-area-inset-top); }
 
-    /* 容器 */
     .wrap{
       max-width: 1180px;
       margin: 0 auto;
       padding: 18px 18px 44px;
     }
 
-    /* 顶部栏 */
     .topbar{
       display:flex;
       align-items:center;
@@ -128,9 +120,7 @@
       white-space:nowrap;
     }
     .cta:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); }
-    .arrow{ opacity:.8; }
 
-    /* 主卡片 */
     .hero{
       margin-top: 16px;
       border-radius: 28px;
@@ -168,7 +158,7 @@
       line-height: 1.65;
     }
 
-    /* section label with divider (居中) */
+    /* section label with divider (居中 + 分割线) */
     .sectionHead{
       display:flex;
       align-items:center;
@@ -206,7 +196,6 @@
       flex:0 0 auto;
     }
 
-    /* grid */
     .grid2{
       display:grid;
       grid-template-columns: 1.05fr 1fr;
@@ -214,7 +203,6 @@
       margin-top: 10px;
       align-items: stretch;
     }
-
     .card{
       border-radius: 22px;
       background: rgba(255,255,255,.04);
@@ -225,10 +213,8 @@
     }
     .cardPad{ padding: 16px 16px; }
 
-    /* 轮播（电视景深/折叠侧边） */
-    .carouselWrap{
-      padding: 14px 14px 16px;
-    }
+    /* 轮播 */
+    .carouselWrap{ padding: 14px 14px 16px; }
     .tvFrame{
       position: relative;
       border-radius: 22px;
@@ -247,8 +233,6 @@
       border: 1px solid rgba(255,255,255,.06);
       box-shadow: inset 0 0 0 1px rgba(255,255,255,.03);
     }
-
-    /* 左右折叠景深层（模糊边缘） */
     .tvStage::before,
     .tvStage::after{
       content:"";
@@ -258,13 +242,9 @@
       z-index: 3;
       pointer-events:none;
       background: linear-gradient(90deg, rgba(7,11,20,.85), rgba(7,11,20,.0));
-      filter: blur(.0px);
     }
     .tvStage::before{ left:0; }
-    .tvStage::after{
-      right:0;
-      transform: scaleX(-1);
-    }
+    .tvStage::after{ right:0; transform: scaleX(-1); }
 
     .track{
       height:100%;
@@ -290,8 +270,6 @@
       transform: scale(1.02);
       filter: saturate(1.05) contrast(1.02);
     }
-
-    /* 让当前画面更“电视景深” */
     .slide::after{
       content:"";
       position:absolute;
@@ -303,7 +281,6 @@
       z-index: 2;
     }
 
-    /* 左右按钮（透明度低） */
     .navBtn{
       position:absolute;
       top: 50%;
@@ -321,10 +298,9 @@
       cursor:pointer;
       z-index: 5;
       transition: .18s ease;
-      opacity: .55; /* 透明度低一些 */
+      opacity: .55;
     }
     .navBtn:hover{ opacity:.85; transform: translateY(-50%) scale(1.03); }
-    .navBtn:active{ transform: translateY(-50%) scale(.98); }
     .navPrev{ left: 10px; }
     .navNext{ right: 10px; }
 
@@ -351,7 +327,6 @@
       opacity: 1;
     }
 
-    /* 白框文案区 */
     .captionBox{
       margin-top: 12px;
       border-radius: 16px;
@@ -363,7 +338,6 @@
       font-size: 14px;
     }
 
-    /* 右侧介绍 */
     .badgeRow{
       display:flex;
       flex-wrap:wrap;
@@ -421,7 +395,7 @@
     .li b{ font-weight: 900; }
     .li span{ color: rgba(255,255,255,.72); line-height: 1.7; }
 
-    /* 4卡入口 */
+    /* 4卡 */
     .grid4{
       display:grid;
       grid-template-columns: repeat(4, 1fr);
@@ -488,16 +462,13 @@
     }
     .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); }
     .btn:active{ transform: translateY(0px) scale(.99); }
-
     .btn.cyan{ background: rgba(71,215,255,.12); border-color: rgba(71,215,255,.24); }
     .btn.vio{ background: rgba(122,92,255,.12); border-color: rgba(122,92,255,.24); }
     .btn.green{ background: rgba(62,230,168,.12); border-color: rgba(62,230,168,.24); }
     .btn.blue{ background: rgba(107,124,255,.12); border-color: rgba(107,124,255,.24); }
 
     /* 服务内容（对比） */
-    .serviceWrap{
-      margin-top: 12px;
-    }
+    .serviceWrap{ margin-top: 12px; }
     .serviceGrid{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -570,7 +541,7 @@
       font-weight: 700;
     }
 
-    /* 全网社交分享 - 图标 */
+    /* 全网社交分享：图标 */
     .iconWrap{
       width:42px;height:42px;border-radius: 14px;
       display:flex;align-items:center;justify-content:center;
@@ -589,13 +560,13 @@
       line-height: 1.65;
       font-size: 13px;
     }
-    .enterPill{
+    .enterBtn{
       margin-left:auto;
-      padding: 9px 12px;
+      padding: 10px 12px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
-      color: rgba(255,255,255,.85);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.88);
       font-weight: 900;
       font-size: 13px;
       cursor:pointer;
@@ -606,7 +577,7 @@
       gap:6px;
       opacity:.95;
     }
-    .enterPill:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); }
+    .enterBtn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); }
 
     /* 风险提示 */
     .risk{
@@ -633,7 +604,6 @@
       line-height: 1.85;
       font-size: 14px;
     }
-    .footSpace{ height: 8px; }
     .subNote{
       margin-top: 10px;
       padding-top: 10px;
@@ -643,7 +613,6 @@
       line-height: 1.7;
     }
 
-    /* 响应式 */
     @media (max-width: 1080px){
       .grid4{ grid-template-columns: repeat(2, 1fr); }
     }
@@ -669,7 +638,6 @@
   <div class="safe-top"></div>
 
   <div class="wrap">
-    <!-- 顶部 -->
     <div class="topbar">
       <div class="brand">
         <div class="logo"></div>
@@ -682,21 +650,15 @@
         <a href="#risk">风险提示</a>
       </div>
 
-      <!-- ✅ 已删除你截图里右上角“白色框”那种高亮外框样式：这里就是正常按钮 -->
-      <a class="cta" href="#partner">
-        开始使用 <span class="arrow">→</span>
-      </a>
+      <a class="cta" href="#partner">开始使用 <span style="opacity:.85">→</span></a>
     </div>
 
-    <!-- 主区 -->
     <div class="hero">
       <div class="title">
         <h1>欢迎来到 <span class="grad">GWCAPITAL</span></h1>
-        <!-- ✅ 红色框那句已删除：这里不再显示“合作入口与助理联系方式（开户/合作将跳转为外部链接）” -->
         <p>合作入口与助理联系方式（开户 / 合作将跳转为外部链接）。</p>
       </div>
 
-      <!-- 关于我（标题居中+左右分割线） -->
       <div class="sectionHead" id="about">
         <div class="divider"></div>
         <div class="pill"><span class="dot"></span><span>关于我</span></div>
@@ -704,13 +666,11 @@
       </div>
 
       <div class="grid2">
-        <!-- 左：轮播 -->
         <div class="card">
           <div class="carouselWrap">
             <div class="tvFrame">
               <div class="tvStage" id="tvStage">
                 <div class="track" id="track">
-                  <!-- ✅ 照片放在 /images/ 目录，名字：g1.jpg ~ g8.jpg -->
                   <div class="slide"><img src="images/g1.jpg" alt="Gin-1"></div>
                   <div class="slide"><img src="images/g2.jpg" alt="Gin-2"></div>
                   <div class="slide"><img src="images/g3.jpg" alt="Gin-3"></div>
@@ -720,16 +680,12 @@
                   <div class="slide"><img src="images/g7.jpg" alt="Gin-7"></div>
                   <div class="slide"><img src="images/g8.jpg" alt="Gin-8"></div>
                 </div>
-
-                <!-- 左右切换按钮：透明度低 -->
                 <button class="navBtn navPrev" id="prevBtn" aria-label="prev">‹</button>
                 <button class="navBtn navNext" id="nextBtn" aria-label="next">›</button>
               </div>
 
-              <!-- dots -->
               <div class="dots" id="dots"></div>
 
-              <!-- 白框：一句话（你要的“线下学员教学历程”改写） -->
               <div class="captionBox">
                 多年线下学员教学与实战带教历程，累计沉淀方法与体系化复盘流程。
               </div>
@@ -737,7 +693,6 @@
           </div>
         </div>
 
-        <!-- 右：介绍 -->
         <div class="card">
           <div class="cardPad">
             <div class="badgeRow">
@@ -781,7 +736,6 @@
         </div>
       </div>
 
-      <!-- 服务内容 -->
       <div class="sectionHead">
         <div class="divider"></div>
         <div class="pill"><span class="dot"></span><span>服务内容</span></div>
@@ -820,7 +774,6 @@
         </div>
       </div>
 
-      <!-- 合作咨询入口 -->
       <div class="sectionHead" id="partner">
         <div class="divider"></div>
         <div class="pill"><span class="dot"></span><span>合作咨询入口</span></div>
@@ -828,18 +781,15 @@
       </div>
 
       <div class="grid4">
-        <!-- 1 -->
         <div class="miniCard">
           <div class="miniTop">
             <div class="miniTag">美元账户 · TMGM</div>
           </div>
           <p class="miniTitle">TMGM 合作开户注册</p>
           <p class="miniSub">适用于美元账户开户流程。开户完成后提交注册邮箱给小助理验证。</p>
-          <!-- TODO：把 href 换成你的真实链接 -->
           <a class="btn cyan" href="#" target="_blank" rel="noopener">立即开户</a>
         </div>
 
-        <!-- 2 -->
         <div class="miniCard">
           <div class="miniTop">
             <div class="miniTag">美分账户 · Dprime</div>
@@ -849,28 +799,27 @@
           <a class="btn vio" href="#" target="_blank" rel="noopener">立即开户注册</a>
         </div>
 
-        <!-- 3 -->
         <div class="miniCard">
           <div class="miniTop">
             <div class="miniTag">咨询助理 · 微信</div>
           </div>
           <p class="miniTitle">助理微信： <b>GINVIP123</b></p>
-          <p class="miniSub">点击复制微信号，并尝试唤起微信添加。若无法唤起请手动搜索。</p>
-          <div class="btn green" data-copy="GINVIP123">点击咨询助理微信</div>
+          <p class="miniSub">点击按键复制微信号，再到微信内搜索添加。</p>
+          <div class="btn green" data-copy="GINVIP123">点击复制微信号</div>
         </div>
 
-        <!-- 4 -->
         <div class="miniCard">
           <div class="miniTop">
             <div class="miniTag">咨询助理 · 钉钉</div>
           </div>
           <p class="miniTitle">助理钉钉： <b>ginvip123</b></p>
-          <p class="miniSub">点击复制钉钉号，并跳转钉钉名片（部分浏览器可能限制）。</p>
-          <div class="btn blue" data-copy="ginvip123">点击咨询助理钉钉</div>
+          <p class="miniSub">点击按键复制钉钉号，再到钉钉内搜索添加。</p>
+          <div class="btn blue" data-copy="ginvip123">点击复制钉钉号</div>
         </div>
       </div>
 
-      <!-- 全网社交分享 -->
+      <!-- ✅ 全网社交分享：已删除你白框里的那几行小字（平台名下面的小说明全删了） -->
+      <!-- ✅ 每个卡片只保留：平台名 + 一句描述 + 跳转按钮 -->
       <div class="sectionHead">
         <div class="divider"></div>
         <div class="pill"><span class="dot"></span><span>全网社交分享</span></div>
@@ -883,7 +832,6 @@
           <div class="miniTop">
             <div class="socialRow">
               <div class="iconWrap" aria-hidden="true">
-                <!-- Douyin (简化风格SVG) -->
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <path d="M14.6 3c.6 2.8 2.6 5 5.4 5.5v3c-2.2-.1-4-.8-5.5-2v6.3c0 3.3-2.7 6-6 6s-6-2.7-6-6 2.7-6 6-6c.5 0 1 .1 1.5.2v3.2c-.5-.3-1-.4-1.5-.4-1.7 0-3 1.3-3 3s1.3 3 3 3 3-1.3 3-3V3h2.1z" fill="rgba(255,255,255,.88)"/>
                   <path d="M14.6 3c.5 2.6 2.3 4.6 4.9 5.3" stroke="rgba(71,215,255,.95)" stroke-width="2" stroke-linecap="round"/>
@@ -895,11 +843,8 @@
                 <p class="miniSubSmall">短视频与直播更新</p>
               </div>
             </div>
-            <!-- TODO：换成你的抖音链接 -->
-            <a class="enterPill" href="#" target="_blank" rel="noopener">进入 <span>→</span></a>
+            <a class="enterBtn" href="#" target="_blank" rel="noopener">跳转 <span>→</span></a>
           </div>
-
-          <p class="miniSub" style="margin-top:2px;">关注获取最新内容通知与节奏更新。</p>
         </div>
 
         <!-- B站 -->
@@ -907,7 +852,6 @@
           <div class="miniTop">
             <div class="socialRow">
               <div class="iconWrap" aria-hidden="true">
-                <!-- Bilibili -->
                 <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
                   <path d="M7.5 7.2h9c1.7 0 3 1.3 3 3v6.6c0 1.7-1.3 3-3 3h-9c-1.7 0-3-1.3-3-3v-6.6c0-1.7 1.3-3 3-3z" stroke="rgba(255,255,255,.86)" stroke-width="1.8"/>
                   <path d="M9 5.3l2 2M15 5.3l-2 2" stroke="rgba(122,92,255,.95)" stroke-width="1.8" stroke-linecap="round"/>
@@ -919,11 +863,8 @@
                 <p class="miniSubSmall">长视频与复盘内容</p>
               </div>
             </div>
-            <!-- TODO：换成你的B站链接 -->
-            <a class="enterPill" href="#" target="_blank" rel="noopener">进入 <span>→</span></a>
+            <a class="enterBtn" href="#" target="_blank" rel="noopener">跳转 <span>→</span></a>
           </div>
-
-          <p class="miniSub" style="margin-top:2px;">结构化内容整理，复盘与方法论沉淀。</p>
         </div>
 
         <!-- YouTube -->
@@ -931,7 +872,6 @@
           <div class="miniTop">
             <div class="socialRow">
               <div class="iconWrap" aria-hidden="true">
-                <!-- YouTube -->
                 <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
                   <path d="M21 12s0-3.3-.4-4.7c-.2-.8-.9-1.5-1.7-1.7C17.5 5 12 5 12 5s-5.5 0-6.9.6c-.8.2-1.5.9-1.7 1.7C3 8.7 3 12 3 12s0 3.3.4 4.7c.2.8.9 1.5 1.7 1.7C6.5 19 12 19 12 19s5.5 0 6.9-.6c.8-.2 1.5-.9 1.7-1.7.4-1.4.4-4.7.4-4.7z" stroke="rgba(255,255,255,.86)" stroke-width="1.6"/>
                   <path d="M10 9.6l5 2.4-5 2.4V9.6z" fill="rgba(71,215,255,.95)"/>
@@ -942,11 +882,8 @@
                 <p class="miniSubSmall">海外平台同步更新</p>
               </div>
             </div>
-            <!-- TODO：换成你的YouTube链接 -->
-            <a class="enterPill" href="#" target="_blank" rel="noopener">进入 <span>→</span></a>
+            <a class="enterBtn" href="#" target="_blank" rel="noopener">跳转 <span>→</span></a>
           </div>
-
-          <p class="miniSub" style="margin-top:2px;">海外内容同步与主题系列整理。</p>
         </div>
 
         <!-- 纸飞机 -->
@@ -954,7 +891,6 @@
           <div class="miniTop">
             <div class="socialRow">
               <div class="iconWrap" aria-hidden="true">
-                <!-- Telegram -->
                 <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
                   <path d="M21 4.6L3.6 11.6c-.9.4-.8 1.7.2 1.9l4.7 1.3 1.8 5.4c.3.9 1.5 1 1.9.2l2.7-4 4.7 3.4c.8.6 1.9.2 2.1-.8l2.4-13c.2-1.1-.9-2-2.1-1.4z" fill="rgba(255,255,255,.84)"/>
                   <path d="M9 14.8l11.3-8.1" stroke="rgba(71,215,255,.95)" stroke-width="1.8" stroke-linecap="round"/>
@@ -965,15 +901,11 @@
                 <p class="miniSubSmall">频道/群同步推送</p>
               </div>
             </div>
-            <!-- TODO：换成你的TG链接 -->
-            <a class="enterPill" href="#" target="_blank" rel="noopener">进入 <span>→</span></a>
+            <a class="enterBtn" href="#" target="_blank" rel="noopener">跳转 <span>→</span></a>
           </div>
-
-          <p class="miniSub" style="margin-top:2px;">更及时的通知与内容同步（链接填写）。</p>
         </div>
       </div>
 
-      <!-- 风险提示 -->
       <div class="sectionHead" id="risk">
         <div class="divider"></div>
         <div class="pill"><span class="dot"></span><span>风险提示</span></div>
@@ -995,13 +927,11 @@
           跳转说明：在 iOS 或微信/钉钉内置浏览器中，可能限制直接唤起 App。建议策略：先复制，再在对应 App 内搜索添加。
         </div>
       </div>
-
-      <div class="footSpace"></div>
     </div>
   </div>
 
   <script>
-    // ====== 轮播：平滑滚动替换（不是生硬切换）======
+    // ====== 轮播：平滑滚动替换 ======
     const track = document.getElementById('track');
     const slides = Array.from(track.children);
     const dotsWrap = document.getElementById('dots');
@@ -1022,22 +952,16 @@
         dotsWrap.appendChild(b);
       });
     }
-
     function setActiveDot(){
       const dots = Array.from(dotsWrap.children);
       dots.forEach((d, i) => d.classList.toggle('active', i === index));
     }
-
     function go(i, userAction=false){
       index = (i + slides.length) % slides.length;
       track.style.transform = `translateX(-${index * 100}%)`;
       setActiveDot();
-
-      if(userAction){
-        restartAuto();
-      }
+      if(userAction) restartAuto();
     }
-
     function next(userAction=false){ go(index + 1, userAction); }
     function prev(userAction=false){ go(index - 1, userAction); }
 
@@ -1053,11 +977,10 @@
       timer = null;
     }
     function restartAuto(){
-      stopAuto();
-      startAuto();
+      stopAuto(); startAuto();
     }
 
-    // 触摸滑动（手机更顺手）
+    // 触摸滑动（手机）
     let sx = 0, dx = 0;
     const tvStage = document.getElementById('tvStage');
     tvStage.addEventListener('touchstart', (e) => {
@@ -1076,7 +999,6 @@
       }
     });
 
-    // 鼠标悬停暂停（PC）
     tvStage.addEventListener('mouseenter', stopAuto);
     tvStage.addEventListener('mouseleave', startAuto);
 
@@ -1103,7 +1025,6 @@
       }
       document.body.removeChild(t);
     }
-
     document.querySelectorAll('[data-copy]').forEach(el => {
       el.addEventListener('click', () => copyText(el.getAttribute('data-copy')));
     });
@@ -1134,9 +1055,7 @@
       toastEl.textContent = msg;
       toastEl.style.opacity = '1';
       clearTimeout(toastEl._t);
-      toastEl._t = setTimeout(() => {
-        toastEl.style.opacity = '0';
-      }, 1600);
+      toastEl._t = setTimeout(() => { toastEl.style.opacity = '0'; }, 1600);
     }
 
     // init
