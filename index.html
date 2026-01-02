@@ -25,7 +25,6 @@
       --radius2: 18px;
     }
 
-    /* --- 基础：避免手机白边/滚动问题 --- */
     html,body{
       height:100%;
       background: radial-gradient(1200px 700px at 20% 0%, rgba(124,92,255,.25), transparent 55%),
@@ -52,7 +51,7 @@
       padding: 22px 0 60px;
     }
 
-    /* --- 顶部导航 --- */
+    /* 顶部导航 */
     .topbar{
       position:sticky;
       top:0;
@@ -106,7 +105,7 @@
       font-weight:900;
     }
 
-    /* --- 主卡片 --- */
+    /* 主卡片 */
     .hero{
       margin-top: 18px;
       border-radius: 28px;
@@ -136,20 +135,20 @@
       background-clip:text;
       color:transparent;
     }
+
+    /* ✅ 红色框那行副标题：已删除，所以这里 subtitle 只留空间更自然 */
     .subtitle{
       text-align:center;
       color: rgba(255,255,255,.70);
       font-weight:700;
-      margin: 0 0 22px;
+      margin: 0 0 10px;
       line-height:1.6;
     }
 
-    /* --- 分区：标签 + 分割线（你要的） --- */
+    /* 分区：标签 + 分割线 */
     .section{
       margin-top: 22px;
     }
-
-    /* 标签行：自动居中 + 左右分割线 */
     .section-tagline{
       display:flex;
       align-items:center;
@@ -166,7 +165,6 @@
       background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
       opacity:.9;
     }
-    /* 中间胶囊标签：宽度自适应内容 */
     .section-tag{
       display:inline-flex;
       align-items:center;
@@ -194,7 +192,7 @@
       flex: 0 0 auto;
     }
 
-    /* --- 两列布局（左轮播 + 右介绍） --- */
+    /* 两列布局 */
     .about-grid{
       display:grid;
       grid-template-columns: 1.06fr 1fr;
@@ -211,7 +209,12 @@
     }
     .card-inner{ padding: 18px; }
 
-    /* --- 轮播（带“景深电视”效果 + 平滑滚动切换） --- */
+    /* 轮播 */
+    .carousel-wrap{
+      display:flex;
+      flex-direction:column;
+      gap: 14px;
+    }
     .carousel{
       position:relative;
       width:100%;
@@ -246,15 +249,12 @@
       object-fit:cover;
       display:block;
     }
-
-    /* 中间主图 */
     .slide.is-active{
       opacity:1;
       filter:none;
       transform: translateX(0) scale(1);
       z-index:3;
     }
-    /* 左右“折叠” */
     .slide.is-left{
       opacity:.55;
       filter: blur(1px) saturate(.95);
@@ -267,7 +267,6 @@
       transform: translateX(62%) scale(.88) perspective(900px) rotateY(-18deg);
       z-index:2;
     }
-    /* 更远的隐藏 */
     .slide.is-hidden{
       opacity:0;
       filter: blur(6px);
@@ -276,7 +275,6 @@
       pointer-events:none;
     }
 
-    /* 左右按钮（你要：透明度低一些） */
     .cbtn{
       position:absolute;
       top:50%;
@@ -305,7 +303,6 @@
     .cbtn.left{ left: 12px; }
     .cbtn.right{ right: 12px; }
 
-    /* 点点指示器 */
     .dots{
       position:absolute;
       left:50%;
@@ -332,6 +329,24 @@
       width:22px;
       background: linear-gradient(90deg, var(--c1), var(--c2));
       opacity:1;
+    }
+
+    /* ✅ 白色框（你图里那块） */
+    .note-box{
+      width: 100%;
+      border-radius: 18px;
+      border: 2px solid rgba(255,255,255,.85);
+      background: rgba(255,255,255,.03);
+      box-shadow: 0 16px 40px rgba(0,0,0,.35);
+      padding: 14px 14px;
+      color: rgba(255,255,255,.88);
+      line-height: 1.55;
+      font-weight: 900;
+      text-align:center;
+    }
+    .note-box span{
+      font-weight: 750;
+      color: rgba(255,255,255,.70);
     }
 
     /* 右侧介绍 */
@@ -390,7 +405,7 @@
       font-weight:650;
     }
 
-    /* --- 服务内容：对比 UI --- */
+    /* 服务内容：对比 UI */
     .compare{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -459,7 +474,7 @@
       color: rgba(255,255,255,.62);
     }
 
-    /* --- 合作咨询入口：四宫格 --- */
+    /* 合作咨询入口：四宫格 */
     .grid4{
       display:grid;
       grid-template-columns: repeat(4, 1fr);
@@ -526,7 +541,7 @@
     .btn.green{ background: rgba(66,247,184,.16); }
     .btn.blue{ background: rgba(102,170,255,.16); }
 
-    /* --- 风险提示 --- */
+    /* 风险提示 */
     .risk{
       border-radius: var(--radius);
       border: 1px solid rgba(255,255,255,.10);
@@ -560,7 +575,6 @@
       padding-top: 10px;
     }
 
-    /* --- 响应式 --- */
     @media (max-width: 980px){
       .about-grid{ grid-template-columns: 1fr; }
       .carousel{ height: 300px; }
@@ -577,12 +591,12 @@
       .section-tagline{ margin-bottom: 12px; }
       .section-tagline::before,
       .section-tagline::after{ opacity:.55; }
+      .note-box{ border-width: 2px; }
     }
   </style>
 </head>
 
 <body>
-  <!-- 顶部 -->
   <div class="topbar">
     <div class="topbar-inner">
       <div class="brand">
@@ -596,7 +610,6 @@
         <a href="#risk">风险提示</a>
       </div>
 
-      <!-- 你说白色框这个按钮要删：这里已经没有多余白框，只有正常按钮 -->
       <a class="cta" href="#coop">开始使用 →</a>
     </div>
   </div>
@@ -605,9 +618,9 @@
     <div class="hero">
       <div class="hero-pad">
         <div class="title">欢迎来到 <span class="g">GWCAPITAL</span></div>
-        <div class="subtitle">
-          合作入口与助理联系方式（开户 / 合作将跳转为外部链接）。
-        </div>
+
+        <!-- ✅ 红色框那句已删除：这里留空一行更干净（也可直接删掉这行 subtitle） -->
+        <div class="subtitle"></div>
 
         <!-- 关于我 -->
         <div class="section" id="about">
@@ -616,18 +629,23 @@
           </div>
 
           <div class="about-grid">
-            <!-- 左：景深轮播 -->
+            <!-- 左：轮播 + 白色框 -->
             <div class="card">
               <div class="card-inner" style="padding:16px;">
-                <div class="carousel" id="carousel">
-                  <div class="stage" id="stage">
-                    <!-- JS 会注入 slide -->
+                <div class="carousel-wrap">
+                  <div class="carousel" id="carousel">
+                    <div class="stage" id="stage"></div>
+
+                    <div class="cbtn left" id="prevBtn" aria-label="上一张">‹</div>
+                    <div class="cbtn right" id="nextBtn" aria-label="下一张">›</div>
+
+                    <div class="dots" id="dots"></div>
                   </div>
 
-                  <div class="cbtn left" id="prevBtn" aria-label="上一张">‹</div>
-                  <div class="cbtn right" id="nextBtn" aria-label="下一张">›</div>
-
-                  <div class="dots" id="dots"></div>
+                  <!-- ✅ 白色框内加一句（已重新编辑） -->
+                  <div class="note-box">
+                    线下学员教学历程：<span>累计授课与实战训练学员 1000+</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -669,7 +687,6 @@
           </div>
 
           <div class="compare">
-            <!-- 公开群 -->
             <div class="compare-card">
               <div class="compare-title">
                 <h3>公开群（免费）</h3>
@@ -690,7 +707,6 @@
               </div>
             </div>
 
-            <!-- 内部群 -->
             <div class="compare-card">
               <div class="compare-title">
                 <h3>内部群（收费）</h3>
@@ -711,7 +727,7 @@
               </div>
               <div class="item">
                 <div class="i-dot purple"></div>
-                <div class="i-text">内部私密直播 <span>（细节讲解与复盘）</span></div>
+                <div class="i-text">内部直播 <span>（细节讲解与复盘）</span></div>
               </div>
               <div class="item">
                 <div class="i-dot purple"></div>
@@ -719,7 +735,7 @@
               </div>
             </div>
           </div>
-        </div><!-- /服务内容 -->
+        </div>
 
         <!-- 合作咨询入口 -->
         <div class="section" id="coop">
@@ -772,7 +788,7 @@
               <div class="btn blue" onclick="copyText('ginvip123')">点击咨询助理钉钉</div>
             </div>
           </div>
-        </div><!-- /合作咨询入口 -->
+        </div>
 
         <!-- 风险提示 -->
         <div class="section" id="risk">
@@ -792,17 +808,16 @@
               跳转说明：在 iOS 或微信/钉钉内置浏览器中，可能限制直接唤起 App。建议策略：先复制，再在对应 App 内搜索添加。
             </div>
           </div>
-        </div><!-- /风险提示 -->
+        </div>
 
       </div>
     </div>
   </div>
 
   <script>
-    /* 你把真实开户链接填到这里（没有就先留空也不影响页面） */
     const LINKS = {
-      TMGM: "",     // 例如 "https://xxxx"
-      Dprime: ""    // 例如 "https://xxxx"
+      TMGM: "",
+      Dprime: ""
     };
 
     function openLink(key){
@@ -819,7 +834,6 @@
         await navigator.clipboard.writeText(text);
         alert("已复制：" + text);
       }catch(e){
-        // 兼容老浏览器
         const ta = document.createElement("textarea");
         ta.value = text;
         document.body.appendChild(ta);
@@ -830,7 +844,6 @@
       }
     }
 
-    /* 轮播：景深电视效果 + 平滑切换 */
     const images = [
       "./images/g1.jpg",
       "./images/g2.jpg",
@@ -910,7 +923,6 @@
     prevBtn.addEventListener("click", ()=>{ prev(); restart(); });
     nextBtn.addEventListener("click", ()=>{ next(); restart(); });
 
-    // 自动播放（你要的话保留；不想自动播就把 start() 注释掉）
     function start(){
       stop();
       timer = setInterval(()=> next(), 4500);
@@ -923,12 +935,10 @@
       start();
     }
 
-    // 鼠标移入暂停（电脑端体验更好）
     const carousel = document.getElementById("carousel");
     carousel.addEventListener("mouseenter", stop);
     carousel.addEventListener("mouseleave", start);
 
-    // 触摸滑动（手机端）
     let sx=0, dx=0;
     carousel.addEventListener("touchstart", (e)=>{
       sx = e.touches[0].clientX;
