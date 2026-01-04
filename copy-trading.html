@@ -6,6 +6,7 @@
   <title>GW Capital | 智能跟单系统</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
   <style>
+    /* 复用主页核心样式 */
     :root{ --bg-dark:#030508; --bg-card:rgba(255,255,255,0.03); --border:rgba(255,255,255,0.08); --accent-blue:#6366f1; --accent-cyan:#22d3ee; --accent-green:#34d399; --txt:rgba(255,255,255,0.95); --muted:rgba(255,255,255,0.65); }
     body{ margin:0; font-family:"Inter",sans-serif; background:var(--bg-dark); color:var(--txt); background-image:radial-gradient(800px 400px at 50% 0,rgba(99,102,241,0.15),transparent); }
     .wrap{ max-width:1280px; margin:0 auto; padding:20px; }
@@ -17,61 +18,47 @@
     .back-btn{ padding:8px 16px; background:rgba(255,255,255,0.1); border-radius:99px; text-decoration:none; color:#fff; font-size:13px; font-weight:700; transition:.3s; }
     .back-btn:hover{ background:#fff; color:#000; }
 
-    /* === 顶部介绍区 === */
+    /* === 模块1: 复刻图二 (轮播+介绍) === */
     .hero-split{ display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:40px; }
-    .glass-box{ background:var(--bg-card); border:1px solid var(--border); border-radius:24px; padding:30px; overflow:hidden; display:flex; flex-direction:column; justify-content:center; }
+    .glass-box{ background:var(--bg-card); border:1px solid var(--border); border-radius:24px; padding:30px; overflow:hidden; }
     
-    /* 🔥 升级版：带按钮的轮播图 */
-    .tv-stage{ 
-      position: relative; 
-      border-radius:16px; 
-      overflow:hidden; 
-      aspect-ratio:16/9; 
-      background:#000;
-      box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
-    }
-    .track{ display:flex; height:100%; transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); }
-    .slide{ min-width:100%; height:100%; position:relative; }
-    .slide img{ width:100%; height:100%; object-fit:cover; display:block; }
+    /* 轮播图样式 */
+    .tv-stage{ border-radius:16px; overflow:hidden; aspect-ratio:16/9; position:relative; }
+    .track{ display:flex; height:100%; animation:slide 9s infinite; }
+    .track img{ width:100%; height:100%; object-fit:cover; flex-shrink:0; }
+    @keyframes slide { 0%,30%{transform:translateX(0)} 33%,63%{transform:translateX(-100%)} 66%,100%{transform:translateX(-200%)} }
     
-    /* 左右切换按钮 */
-    .navBtn{ 
-      position: absolute; top: 50%; transform: translateY(-50%); 
-      width: 36px; height: 36px; border-radius: 50%; 
-      background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); 
-      color: #fff; display: grid; place-items: center; 
-      cursor: pointer; z-index: 10; opacity: 0; transition: 0.3s;
-    }
-    .navBtn:hover{ background: #fff; color: #000; opacity: 1; }
-    .tv-stage:hover .navBtn{ opacity: 1; } /* 鼠标移入显示按钮 */
-    .prev{ left: 10px; } 
-    .next{ right: 10px; }
-
     .info-content h2{ font-size:32px; margin:0 0 10px; background:linear-gradient(90deg,#fff,var(--accent-cyan)); -webkit-background-clip:text; color:transparent; }
     .tags{ display:flex; gap:10px; margin-bottom:20px; }
     .tag{ padding:4px 12px; background:rgba(99,102,241,0.2); color:var(--accent-blue); border-radius:99px; font-size:12px; font-weight:700; }
 
-    /* 数据看板 */
+    /* === 模块2: 数据看板 === */
     .stats-section{ margin-top:60px; }
     .section-title{ text-align:center; font-size:36px; font-weight:900; margin-bottom:10px; }
     .section-sub{ text-align:center; color:var(--muted); margin-bottom:40px; max-width:600px; margin-left:auto; margin-right:auto; }
+    
+    /* 核心数据卡片 */
     .stats-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-bottom:30px; }
     .stat-card{ background:linear-gradient(145deg,rgba(255,255,255,0.05),rgba(255,255,255,0.01)); border:1px solid var(--border); padding:24px; border-radius:16px; text-align:center; }
     .stat-num{ font-size:32px; font-weight:800; color:var(--accent-green); margin-bottom:5px; }
     .stat-label{ font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; }
 
+    /* 资金曲线图容器 */
     .chart-box{ background:rgba(0,0,0,0.4); border:1px solid var(--border); border-radius:24px; padding:20px; position:relative; overflow:hidden; }
     .chart-box img{ width:100%; height:auto; border-radius:12px; filter:brightness(0.9); }
     .chart-badge{ position:absolute; top:30px; right:30px; background:rgba(0,0,0,0.7); padding:10px 20px; border-radius:12px; border:1px solid var(--border); backdrop-filter:blur(10px); }
 
+    /* 合作条款与流程 */
     .terms-grid{ display:grid; grid-template-columns:1.5fr 1fr; gap:30px; margin-top:40px; }
     .term-list{ display:flex; flex-direction:column; gap:15px; }
     .term-item{ display:flex; gap:15px; padding:20px; background:var(--bg-card); border-radius:16px; align-items:center; }
     .icon-box{ width:40px; height:40px; background:rgba(34,211,238,0.1); color:var(--accent-cyan); display:grid; place-items:center; border-radius:10px; font-weight:900; }
+    
     .price-card{ background:linear-gradient(135deg,rgba(99,102,241,0.2),rgba(99,102,241,0.05)); border:1px solid var(--accent-blue); border-radius:24px; padding:40px; text-align:center; display:flex; flex-direction:column; justify-content:center; }
     .price-val{ font-size:48px; font-weight:900; color:#fff; margin:10px 0; }
     .btn-join{ display:block; padding:15px; background:#fff; color:#000; font-weight:800; border-radius:12px; text-decoration:none; margin-top:20px; transition:.3s; }
     .btn-join:hover{ transform:scale(1.05); box-shadow:0 0 30px rgba(255,255,255,0.3); }
+
     .disclaimer{ margin-top:60px; padding:30px; border-top:1px solid var(--border); color:rgba(255,255,255,0.3); font-size:12px; line-height:1.8; text-align:justify; }
 
     @media(max-width:900px){ .hero-split, .stats-grid, .terms-grid{ grid-template-columns:1fr; } .stats-grid{ grid-template-columns:1fr 1fr; } }
@@ -86,18 +73,13 @@
     </div>
 
     <div class="hero-split">
-      <div class="glass-box" style="padding:10px;">
+      <div class="glass-box">
         <div class="tv-stage">
-          <div class="track" id="track">
-            <div class="slide"><img src="images/t1.jpg" alt="展示图1"></div>
-            <div class="slide"><img src="images/t2.jpg" alt="展示图2"></div>
-            <div class="slide"><img src="images/t3.jpg" alt="展示图3"></div>
+          <div class="track">
+            <img src="images/g1.jpg"><img src="images/g2.jpg"><img src="images/g3.jpg">
           </div>
-          <button class="navBtn prev" id="prevBtn">‹</button>
-          <button class="navBtn next" id="nextBtn">›</button>
         </div>
       </div>
-
       <div class="glass-box info-content">
         <div class="tags"><span class="tag">GW Capital</span><span class="tag">Future Investment</span></div>
         <h2>智能托管跟单系统</h2>
@@ -114,18 +96,20 @@
     <div class="stats-section">
       <div class="section-title">实盘核心数据</div>
       <div class="section-sub">基于真实市场环境的量化策略表现</div>
+
       <div class="stats-grid">
         <div class="stat-card"><div class="stat-num">+450.61%</div><div class="stat-label">历史总收益 (All Time)</div></div>
         <div class="stat-card"><div class="stat-num">325.12%</div><div class="stat-label">季度增长 (Quarterly)</div></div>
         <div class="stat-card"><div class="stat-num" style="color:var(--accent-blue)">$5,000</div><div class="stat-label">起投门槛 (Min Deposit)</div></div>
         <div class="stat-card"><div class="stat-num" style="color:var(--accent-purple)">TMGM</div><div class="stat-label">指定合作券商</div></div>
       </div>
+
       <div class="chart-box">
         <div class="chart-badge">
           <div style="font-size:12px;color:#aaa">本月收益 (Monthly)</div>
           <div style="font-size:20px;font-weight:700;color:var(--accent-green)">+77.67% 🚀</div>
         </div>
-        <img src="images/chart.png" alt="资金曲线图" onerror="this.src='https://via.placeholder.com/1200x600/1a1a2e/ffffff?text=Fund+Growth+Curve'">
+        <img src="images/chart.png" alt="资金曲线图">
       </div>
     </div>
 
@@ -137,6 +121,7 @@
         <div class="term-item"><div class="icon-box">03</div><div><b>费用结构：</b>每月仅收 $1 管理费 + $1 订阅费（象征性）。</div></div>
         <div class="term-item"><div class="icon-box">04</div><div><b>利润结算：</b>每月结算一次，自动扣取 30% 利润作为绩效费（高水位机制）。</div></div>
       </div>
+
       <div class="price-card">
         <div style="color:var(--accent-blue);font-weight:700;letter-spacing:2px">PROFIT SHARE</div>
         <div class="price-val">30%</div>
@@ -152,33 +137,5 @@
     </div>
   </div>
 
-  <script>
-    // 轮播图逻辑
-    const track = document.getElementById('track');
-    const slides = document.querySelectorAll('.slide');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    let idx = 0;
-    let timer = null;
-
-    function showSlide(index) {
-      idx = (index + slides.length) % slides.length;
-      track.style.transform = `translateX(-${idx * 100}%)`;
-    }
-
-    function next() { showSlide(idx + 1); }
-    function prev() { showSlide(idx - 1); }
-
-    // 自动播放
-    function startAuto() { timer = setInterval(next, 3000); }
-    function stopAuto() { clearInterval(timer); }
-
-    // 事件监听
-    nextBtn.onclick = () => { next(); stopAuto(); startAuto(); };
-    prevBtn.onclick = () => { prev(); stopAuto(); startAuto(); };
-    
-    // 初始化
-    startAuto();
-  </script>
 </body>
 </html>
