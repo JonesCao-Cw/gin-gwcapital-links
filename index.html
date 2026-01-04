@@ -20,8 +20,8 @@
       --accent-purple: #a855f7;
       --accent-green: #34d399;
       --accent-gold: #ffd700;
-      --accent-red: #ff2442;
-      --accent-binance: #F3BA2F;
+      --accent-red: #ff2442; /* 小红书红 */
+      --accent-binance: #F3BA2F; /* 币安黄 */
       
       /* 玻璃质感 */
       --glass-bg: rgba(255, 255, 255, 0.03);
@@ -89,6 +89,18 @@
     .title h1 { margin: 0; font-size: clamp(32px, 5vw, 52px); font-weight: 900; line-height: 1.1; }
     .grad { background: linear-gradient(135deg, #fff 20%, var(--accent-cyan) 100%); -webkit-background-clip: text; color: transparent; }
     .title p { color: var(--txt-muted); font-size: 15px; margin-top: 12px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+    /* 🔥 新增：跟单按钮样式 */
+    .btn-copy-trade {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 24px;
+      padding: 14px 36px; border-radius: 99px;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+      color: #fff; font-size: 16px; font-weight: 800; text-decoration: none;
+      box-shadow: 0 0 20px rgba(99,102,241,0.4); border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.3s ease;
+    }
+    .btn-copy-trade:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 0 40px rgba(99,102,241,0.6); filter: brightness(1.1); }
 
     /* Components */
     .sectionHead { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 40px 0 24px; }
@@ -256,6 +268,10 @@
       <div class="title">
         <h1>欢迎来到 <span class="grad">GWCAPITAL</span></h1>
         <p>个人合作入口与资源聚合站。连接宏观逻辑与实战交易的桥梁。</p>
+        
+        <a href="copy-trading.html" class="btn-copy-trade">
+          🚀 立即跟单
+        </a>
       </div>
     </div>
 
@@ -567,7 +583,7 @@
       <div class="glass-card miniCard" style="min-height:auto">
         <div class="miniTop" style="margin-bottom:4px">
            <div class="platIcon" style="background:transparent;border:none;width:auto;height:auto;color:#fff;">
-            <svg width="28" height="28" viewBox="0 0 1024 1024" fill="currentColor"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
           </div>
           <a class="btn btn-red" style="width:auto;padding:6px 14px;margin:0" href="#" target="_blank">Go →</a>
         </div>
