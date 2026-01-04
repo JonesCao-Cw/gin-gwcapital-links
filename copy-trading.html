@@ -6,10 +6,10 @@
   <title>GW Capital | 智能跟单系统</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
   <style>
-    /* === 全局变量 === */
+    /* === 核心风格保持不变 === */
     :root{ 
-      --bg-dark:#050a14; 
-      --bg-card:rgba(20, 25, 40, 0.6); 
+      --bg-dark:#030508; 
+      --bg-card:rgba(255,255,255,0.035); 
       --border:rgba(255,255,255,0.08); 
       --accent-blue:#6366f1; 
       --accent-cyan:#22d3ee; 
@@ -18,189 +18,164 @@
       --accent-gold:#ffd700; 
       --accent-red:#ff4757; 
       --txt:rgba(255,255,255,0.95); 
-      --muted:rgba(255,255,255,0.6); 
+      --muted:rgba(255,255,255,0.65); 
     }
     
     body{ 
       margin:0; font-family:"Inter",sans-serif; color:var(--txt); 
       background-color: var(--bg-dark);
-      /* 极光背景 */
       background-image: 
-        radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.15), transparent 50%),
-        radial-gradient(circle at 100% 20%, rgba(34, 211, 238, 0.1), transparent 50%);
+        radial-gradient(circle at 20% 10%, rgba(99, 102, 241, 0.18), transparent 50%),
+        radial-gradient(circle at 80% 30%, rgba(168, 85, 247, 0.12), transparent 50%);
       background-attachment: fixed;
       -webkit-font-smoothing: antialiased; 
     }
-    .wrap{ max-width:1280px; margin:0 auto; padding:20px 20px 100px; }
+    .wrap{ max-width:1280px; margin:0 auto; padding:20px 20px 80px; }
     
     /* 导航栏 */
-    .topbar{ display:flex; justify-content:space-between; padding:12px 24px; background:rgba(15,20,30,0.8); border:1px solid var(--border); border-radius:99px; backdrop-filter:blur(20px); position:sticky; top:16px; z-index:100; align-items:center; box-shadow:0 10px 30px rgba(0,0,0,0.4); }
-    .brand{ font-weight:900; font-size:18px; display:flex; gap:10px; align-items:center; letter-spacing: -0.5px; }
-    .logo{ width:32px; height:32px; background:linear-gradient(135deg,var(--accent-blue),var(--accent-cyan)); border-radius:8px; }
-    .back-btn{ padding:8px 20px; background:rgba(255,255,255,0.05); border-radius:99px; text-decoration:none; color:#fff; font-size:13px; font-weight:700; transition:.3s; white-space: nowrap; border:1px solid var(--border); }
+    .topbar{ display:flex; justify-content:space-between; padding:12px 20px; background:rgba(10,12,18,0.85); border:1px solid var(--border); border-radius:20px; backdrop-filter:blur(20px); position:sticky; top:10px; z-index:100; align-items:center; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+    .brand{ font-weight:900; font-size:18px; display:flex; gap:10px; align-items:center; }
+    .logo{ width:40px; height:40px; border-radius:10px; box-shadow:0 0 15px rgba(99,102,241,0.3); }
+    .back-btn{ padding:8px 16px; background:rgba(255,255,255,0.1); border-radius:99px; text-decoration:none; color:#fff; font-size:13px; font-weight:700; transition:.3s; white-space: nowrap; }
     .back-btn:hover{ background:#fff; color:#000; }
 
-    /* === 模块1: 轮播+介绍 === */
-    .hero-split{ display:grid; grid-template-columns:1.2fr 1fr; gap:40px; margin-top:40px; align-items:center; }
-    .glass-box{ background:var(--bg-card); border:1px solid var(--border); border-radius:24px; padding:30px; overflow:hidden; backdrop-filter: blur(12px); box-shadow:0 20px 50px -10px rgba(0,0,0,0.3); }
-    
-    .tv-stage{ border-radius:16px; overflow:hidden; aspect-ratio:16/9; position:relative; background:#000; border:1px solid rgba(255,255,255,0.1); }
-    .track{ display:flex; height:100%; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+    /* 模块1: 轮播 */
+    .hero-split{ display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:40px; }
+    .glass-box{ background:var(--bg-card); border:1px solid var(--border); border-radius:24px; padding:30px; overflow:hidden; backdrop-filter: blur(12px); }
+    .tv-stage{ border-radius:16px; overflow:hidden; aspect-ratio:16/9; position:relative; background:#000; }
+    .track{ display:flex; height:100%; transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); }
     .track img{ width:100%; height:100%; object-fit:cover; flex-shrink:0; }
-    .navBtn{ position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.1); color: #fff; display: grid; place-items: center; cursor: pointer; z-index: 10; opacity: 0; transition: .3s; }
+    .navBtn{ position: absolute; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: 50%; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2); color: #fff; display: grid; place-items: center; cursor: pointer; z-index: 10; opacity: 0; transition: .3s; }
     .tv-stage:hover .navBtn{ opacity: 1; }
-    .prev{ left: 15px; } .next{ right: 15px; }
-
-    .info-content h2{ font-size:36px; margin:0 0 15px; background:linear-gradient(90deg,#fff,var(--accent-cyan)); -webkit-background-clip:text; color:transparent; font-weight: 900; }
+    .prev{ left: 10px; } .next{ right: 10px; }
+    .info-content h2{ font-size:32px; margin:0 0 10px; background:linear-gradient(90deg,#fff,var(--accent-cyan)); -webkit-background-clip:text; color:transparent; }
     .tags{ display:flex; gap:10px; margin-bottom:20px; }
-    .tag{ padding:6px 14px; background:rgba(99,102,241,0.15); color:var(--accent-blue); border-radius:6px; font-size:12px; font-weight:700; letter-spacing: 0.5px; border:1px solid rgba(99,102,241,0.2); }
+    .tag{ padding:4px 12px; background:rgba(99,102,241,0.2); color:var(--accent-blue); border-radius:99px; font-size:12px; font-weight:700; }
 
-    /* === 🔥 模块2: 数据与图表 (左图右数据) === */
-    .data-layout { 
-      display: grid; 
-      grid-template-columns: 1.6fr 1fr; /* 左侧宽，右侧窄 */
-      gap: 24px; 
-      margin-top: 60px; 
-    }
-
-    /* 左侧：图表框 */
-    .chart-container {
-      background: linear-gradient(180deg, rgba(20,25,35,0.8), rgba(10,10,15,0.95));
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 20px;
-      position: relative;
+    /* 模块2: 数据看板 */
+    .stats-section{ margin-top:60px; }
+    .section-title{ text-align:center; font-size:36px; font-weight:900; margin-bottom:10px; }
+    .section-sub{ text-align:center; color:var(--muted); margin-bottom:40px; max-width:600px; margin-left:auto; margin-right:auto; }
+    .data-container { display: grid; grid-template-columns: 1.6fr 1fr; gap: 24px; }
+    
+    .tv-frame-outer {
+      background: #15151a; border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px; padding: 12px;
+      box-shadow: 0 30px 60px -10px rgba(0,0,0,0.6);
       display: flex; flex-direction: column; justify-content: center;
     }
-    .chart-header { display: flex; justify-content: space-between; margin-bottom: 15px; padding: 0 10px; }
-    .chart-title { font-size: 16px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 8px; }
-    .live-dot { width: 8px; height: 8px; background: var(--accent-success); border-radius: 50%; box-shadow: 0 0 8px var(--accent-success); animation: pulse 2s infinite; }
-    
-    .tv-screen {
-      background: #000; border-radius: 12px; overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.1); position: relative;
-    }
+    .tv-screen { position: relative; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
     .tv-screen img { width:100%; height:auto; display:block; filter: brightness(0.95); }
-    .chart-badge { 
-      position: absolute; top: 15px; right: 15px; 
-      background: rgba(0,0,0,0.8); backdrop-filter: blur(4px);
-      padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);
-      text-align: right;
-    }
+    .chart-badge{ position:absolute; top:20px; right:20px; background:rgba(0,0,0,0.8); padding:8px 16px; border-radius:8px; border:1px solid var(--border); backdrop-filter:blur(4px); }
+    .chart-note { text-align:center; margin-top:12px; font-size:12px; color:var(--muted); opacity:0.6; }
 
-    /* 右侧：数据网格 (2x2) */
-    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; height: 100%; }
-    .stat-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 16px; padding: 20px;
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
-      transition: .3s;
+    .stats-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; height: 100%; }
+    .stat-card{ 
+      background:var(--bg-card); border:1px solid var(--border); 
+      padding:20px; border-radius:16px; text-align:center; 
+      display: flex; flex-direction: column; justify-content: center;
+      transition:.3s; backdrop-filter: blur(10px); 
     }
-    .stat-card:hover { transform: translateY(-3px); border-color: var(--accent-blue); background: rgba(99,102,241,0.05); }
-    .stat-num { font-size: 28px; font-weight: 800; color: #fff; margin-bottom: 4px; font-family: "Inter", monospace; letter-spacing: -1px; }
-    .stat-label { font-size: 12px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+    .stat-card:hover{ transform:translateY(-5px); border-color:var(--accent-blue); }
+    .stat-num{ font-size:28px; font-weight:800; color:var(--accent-green); margin-bottom:5px; }
+    .stat-label{ font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; }
 
-    /* === 🔥 模块3: 合作流程 (垂直流) & 操作卡片 === */
-    .process-layout { 
-      display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; margin-top: 60px; 
-    }
-
-    /* 左侧：垂直步骤流 */
-    .process-container { display: flex; flex-direction: column; }
-    .section-head { font-size: 20px; font-weight: 800; margin-bottom: 24px; color: #fff; display: flex; align-items: center; gap: 10px; }
+    /* === 🔥 模块3: 合作条款 (紧凑对齐版) === */
+    .big-section-head { margin: 80px 0 30px; font-size: 24px; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 12px; }
     
+    .terms-layout{ 
+      display:grid; grid-template-columns: 1.4fr 1fr; gap:24px; 
+      /* 让两边顶部对齐 */
+      align-items: start; 
+    }
+    
+    /* 左侧：压缩流程图，使其高度变小 */
+    .process-list { display: flex; flex-direction: column; }
+    
+    /* 缩小卡片内边距和间距 */
     .step-card {
       background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 16px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;
-      transition: .3s;
+      border-radius: 12px; /* 稍微减小圆角 */
+      padding: 14px 18px; /* 减小内边距 */
+      display: flex; gap: 14px; align-items: center; /* 垂直居中对齐 */
+      backdrop-filter: blur(10px); transition: .3s;
     }
-    .step-card:hover { border-color: var(--accent-cyan); background: rgba(34,211,238,0.05); }
+    .step-card:hover { background: rgba(255,255,255,0.06); border-color: var(--accent-cyan); }
     
-    .step-num { 
-      background: rgba(255,255,255,0.05); width: 36px; height: 36px; border-radius: 10px; 
-      display: grid; place-items: center; font-weight: 800; color: var(--accent-cyan); 
-      border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;
+    .step-idx { 
+      width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
+      background: rgba(34,211,238,0.15); color: var(--accent-cyan);
+      display: grid; place-items: center; font-weight: 800; font-size: 13px;
     }
-    .step-content h4 { margin: 0 0 4px; font-size: 15px; color: #fff; }
-    .step-content p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .step-txt h4 { margin: 0; font-size: 14px; color: #fff; } /* 缩小标题 */
+    .step-txt p { margin: 2px 0 0; font-size: 12px; color: var(--muted); line-height: 1.4; }
 
-    /* 连接箭头 */
+    /* 🔥 箭头修复：超高亮、紧凑 */
     .step-arrow { 
-      display: flex; justify-content: center; padding: 8px 0; color: var(--border); 
-      margin-left: -52px; /* 调整箭头位置对齐 */
+      display: flex; justify-content: flex-start; 
+      padding: 4px 0 4px 11px; /* 减少上下间距 */
+      color: var(--accent-cyan); /* 亮青色 */
+      font-size: 20px; font-weight: 900;
+      text-shadow: 0 0 8px rgba(34,211,238,0.6); /* 发光 */
+      animation: pulseArrow 1.5s infinite alternate;
     }
-    .step-arrow svg { opacity: 0.5; }
+    @keyframes pulseArrow { from{opacity:0.6} to{opacity:1} }
 
-    /* 右侧：操作卡片 */
+    /* 右侧：操作卡片 (保持高度适应内容) */
     .action-card {
-      background: linear-gradient(145deg, rgba(20,25,40,0.9), rgba(10,10,15,0.95));
+      background: linear-gradient(145deg, rgba(20,20,25,0.8), rgba(10,10,15,0.9));
       border: 1px solid var(--accent-blue);
-      border-radius: 24px; padding: 36px;
-      text-align: center; height: fit-content; position: sticky; top: 100px;
-      box-shadow: 0 0 40px rgba(99,102,241,0.15);
+      border-radius: 24px; padding: 24px; /* 减小内边距适配 */
+      text-align: center; 
+      box-shadow: 0 10px 40px rgba(99,102,241,0.15);
     }
-    .profit-val { font-size: 56px; font-weight: 900; color: #fff; margin: 12px 0; letter-spacing: -2px; text-shadow: 0 0 20px rgba(99,102,241,0.6); }
     
-    /* 按钮组 */
-    .btn-group { display: flex; gap: 12px; margin-top: 24px; }
+    .profit-val { font-size: 48px; font-weight: 900; color: #fff; margin: 10px 0; }
+    
+    .btn-group { display: flex; gap: 10px; margin-top: 20px; }
     .btn-act { 
-      flex: 1; padding: 16px; border-radius: 12px; font-weight: 800; font-size: 14px; 
+      flex: 1; padding: 12px; border-radius: 12px; font-weight: 700; font-size: 14px; 
       cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; transition: .2s;
     }
-    .btn-act:active { transform: scale(0.98); }
-    
     .btn-l { background: rgba(34,211,238,0.1); color: var(--accent-cyan); border: 1px solid rgba(34,211,238,0.3); }
-    .btn-l:hover { background: var(--accent-cyan); color: #000; box-shadow: 0 0 20px rgba(34,211,238,0.4); }
-    
+    .btn-l:hover { background: var(--accent-cyan); color: #000; }
     .btn-r { background: var(--accent-blue); color: #fff; border: 1px solid var(--accent-blue); }
-    .btn-r:hover { background: #4f46e5; box-shadow: 0 0 25px rgba(99,102,241,0.6); }
+    .btn-r:hover { background: #4f46e5; box-shadow: 0 0 20px rgba(99,102,241,0.5); }
 
-    /* 警示框 */
     .notice-box {
-      margin-top: 24px; background: rgba(255, 71, 87, 0.06); 
-      border: 1px dashed rgba(255, 71, 87, 0.3); border-radius: 12px; padding: 16px; text-align: left;
+      margin-top: 20px; background: rgba(255, 71, 87, 0.08); 
+      border: 1px dashed rgba(255, 71, 87, 0.4); border-radius: 12px; padding: 14px; text-align: left;
     }
-    .notice-title { font-size: 12px; color: var(--accent-red); font-weight: 800; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
-    .notice-list { margin: 0; padding-left: 16px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+    .notice-list { margin: 0; padding-left: 16px; color: var(--muted); font-size: 12px; line-height: 1.6; }
     .highlight { color: #fff; font-weight: 700; }
 
-    .footer-copy { margin-top: 80px; padding-top: 30px; border-top: 1px solid var(--border); text-align: center; color: rgba(255,255,255,0.2); font-size: 12px; line-height: 1.6; }
+    .disclaimer{ margin-top:60px; padding:30px; border-top:1px solid var(--border); color:rgba(255,255,255,0.3); font-size:12px; line-height:1.8; text-align:justify; }
 
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-
-    /* === 弹窗 === */
+    /* 弹窗 */
     .modal-wrap { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 999; display: none; align-items: center; justify-content: center; opacity: 0; transition: .3s; }
     .modal-wrap.show { display: flex; opacity: 1; }
-    .modal-panel { background: #12141c; border: 1px solid var(--border); border-radius: 24px; padding: 32px; width: 90%; max-width: 500px; text-align: center; box-shadow: 0 25px 80px rgba(0,0,0,0.8); transform: scale(0.95); transition: transform 0.3s; }
+    .modal-panel { background: #1a1a2e; border: 1px solid var(--border); border-radius: 24px; padding: 32px; width: 90%; max-width: 480px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.6); transform: scale(0.95); transition: transform 0.3s; }
     .modal-wrap.show .modal-panel { transform: scale(1); }
-    .m-title { font-size: 22px; font-weight: 800; margin-bottom: 12px; color: #fff; }
+    .m-title { font-size: 22px; font-weight: 900; margin-bottom: 12px; }
     .m-desc { color: var(--txt); font-size: 15px; line-height: 1.6; margin-bottom: 24px; white-space: normal; }
     .m-btns { display: flex; flex-direction: column; gap: 12px; }
-    .m-btn { padding: 16px; border-radius: 12px; font-weight: 700; cursor: pointer; text-decoration: none; transition:.2s; display: flex; align-items: center; justify-content: center; }
-    
-    .mb-1 { background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); color: #fff; box-shadow: 0 4px 20px rgba(99,102,241,0.4); }
-    .mb-1:hover { filter: brightness(1.1); transform: translateY(-2px); }
-    .mb-2 { background: rgba(255,255,255,0.08); color: var(--accent-cyan); }
-    .mb-2:hover { background: rgba(255,255,255,0.12); color: #fff; }
+    .m-btn { padding: 16px; border-radius: 12px; font-weight: 800; font-size: 15px; cursor: pointer; text-decoration: none; transition:.2s; display: flex; align-items: center; justify-content: center; }
+    .mb-1 { background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); color: #fff; box-shadow: 0 4px 15px rgba(99,102,241,0.4); }
+    .mb-2 { background: rgba(255,255,255,0.1); color: var(--accent-cyan); border: 1px solid rgba(255,255,255,0.1); }
     .mb-3 { background: transparent; color: var(--muted); font-size: 13px; padding: 10px; }
     .mb-3:hover { color: #fff; text-decoration: underline; }
-    .close-icon { position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; background: rgba(255,255,255,0.1); border-radius: 50%; display: grid; place-items: center; cursor: pointer; color: #aaa; transition:.2s; }
-    .close-icon:hover { background: rgba(255,255,255,0.2); color: #fff; }
+    .close-icon { position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; background: rgba(255,255,255,0.1); border-radius: 50%; display: grid; place-items: center; cursor: pointer; color: #aaa; }
 
-    /* 📱 手机端适配 */
     @media(max-width:900px){ 
-      .hero-split, .data-layout, .process-layout { grid-template-columns: 1fr; gap: 30px; }
-      .data-layout { display: flex; flex-direction: column; } /* 手机端图表在上，数据在下 */
-      .stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; } /* 数据卡片2列 */
+      .hero-split, .data-container, .terms-layout { grid-template-columns: 1fr; gap: 20px; }
+      .data-container { display: flex; flex-direction: column; }
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; } 
       .stat-card { padding: 16px; } .stat-num { font-size: 24px; }
-      
-      .step-arrow { display: none; } /* 手机端不需要箭头，紧凑一点 */
-      .process-layout { gap: 40px; }
-      .action-card { position: static; } /* 取消吸附 */
-      
+      .tv-frame-outer { padding: 8px; }
       .btn-group { flex-direction: row; } 
-      .wrap { padding: 16px 16px 80px; }
-      .topbar { top: 10px; }
+      .wrap { padding: 14px 14px 80px; }
+      .step-arrow { display: flex; padding-left: 20px; } /* 手机端箭头依然保留 */
+      .action-card { height: auto; }
     }
   </style>
 </head>
@@ -208,7 +183,7 @@
 
   <div class="wrap">
     <div class="topbar">
-      <div class="brand"><div class="logo"></div>GW Capital</div>
+      <div class="brand"><img src="images/logo.svg" alt="Logo" class="logo"> GW Capital</div>
       <a href="index.html" class="back-btn">← 返回首页</a>
     </div>
 
@@ -222,8 +197,8 @@
           <div class="navBtn next" id="nextBtn">›</div>
         </div>
       </div>
-      <div class="glass-box info-content">
-        <div class="tags"><span class="tag">GW Capital</span><span class="tag">System V2.0</span></div>
+      <div class="glass-box info-content" style="display:flex;flex-direction:column;justify-content:center;">
+        <div class="tags"><span class="tag">GW Capital</span><span class="tag">Future Investment</span></div>
         <h2>智能托管跟单系统</h2>
         <p style="color:var(--muted);line-height:1.7;font-size:14px;">
           技术方提供交易信号，由程序自动同步开平仓。
@@ -235,65 +210,69 @@
       </div>
     </div>
 
-    <div class="data-layout">
-      <div class="chart-container">
-        <div class="chart-header">
-          <div class="chart-title"><div class="live-dot"></div> 资金曲线 (Equity Curve)</div>
-        </div>
-        <div class="tv-screen">
-          <div class="chart-badge">
-            <div style="font-size:11px;color:rgba(255,255,255,0.7)">本月收益</div>
-            <div style="font-size:18px;font-weight:700;color:var(--accent-green)">+77.67% 🚀</div>
-          </div>
-          <img src="images/chart.png" alt="资金曲线图">
-        </div>
-        <div style="text-align:center;margin-top:12px;font-size:12px;color:var(--muted);opacity:0.6">*过往收益不代表未来表现，投资需谨慎</div>
-      </div>
+    <div class="stats-section">
+      <div class="section-title">实盘核心数据</div>
+      <div class="section-sub">基于真实市场环境的量化策略表现</div>
 
-      <div class="stats-grid">
-        <div class="stat-card"><div class="stat-num" style="color:var(--accent-green)">+450.6%</div><div class="stat-label">历史总收益</div></div>
-        <div class="stat-card"><div class="stat-num">325.1%</div><div class="stat-label">季度增长</div></div>
-        <div class="stat-card"><div class="stat-num" style="color:var(--accent-cyan)">$5,000</div><div class="stat-label">起投门槛</div></div>
-        <div class="stat-card"><div class="stat-num" style="color:var(--accent-purple)">TMGM</div><div class="stat-label">指定券商</div></div>
+      <div class="data-container">
+        <div class="tv-frame-outer">
+          <div class="tv-screen">
+            <div class="chart-badge">
+              <div style="font-size:12px;color:#aaa">本月收益</div>
+              <div style="font-size:20px;font-weight:700;color:var(--accent-green)">+77.67% 🚀</div>
+            </div>
+            <img src="images/chart.png" alt="资金曲线图">
+          </div>
+          <div class="chart-note">*过往收益数据仅供参考，不代表未来结果。市场有风险，投资需谨慎。</div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-num">+450.61%</div><div class="stat-label">历史总收益</div></div>
+          <div class="stat-card"><div class="stat-num">325.12%</div><div class="stat-label">季度增长</div></div>
+          <div class="stat-card"><div class="stat-num" style="color:var(--accent-blue)">$5,000</div><div class="stat-label">起投门槛</div></div>
+          <div class="stat-card"><div class="stat-num" style="color:var(--accent-purple)">TMGM</div><div class="stat-label">指定券商</div></div>
+        </div>
       </div>
     </div>
 
-    <div class="process-layout">
-      <div class="process-container">
-        <div class="section-head">
-          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
-          运作机制 & 门槛
+    <div class="big-section-head">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+      运作机制 & 门槛
+    </div>
+
+    <div class="terms-layout">
+      <div class="process-list">
+        <div class="step-card">
+          <div class="step-idx">01</div>
+          <div class="step-txt"><h4>开户入金</h4><p>在 TMGM 开设账户并入金 ($5000起)，提供 MT4 账号给技术方。</p></div>
         </div>
+        <div class="step-arrow">↓</div>
 
         <div class="step-card">
-          <div class="step-num">01</div>
-          <div class="step-content"><h4>开户入金</h4><p>在 TMGM 开设账户并入金 ($5000起)，提供 MT4 账号给技术方。</p></div>
+          <div class="step-idx">02</div>
+          <div class="step-txt"><h4>绑定托管</h4><p>技术方接入跟单系统，您的账户将毫秒级自动同步信号源操作。</p></div>
         </div>
-        <div class="step-arrow"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg></div>
+        <div class="step-arrow">↓</div>
 
         <div class="step-card">
-          <div class="step-num">02</div>
-          <div class="step-content"><h4>绑定托管</h4><p>技术方接入跟单系统，您的账户将毫秒级自动同步信号源操作。</p></div>
+          <div class="step-idx">03</div>
+          <div class="step-txt"><h4>费用结构</h4><p>每月仅收 $1 管理费 + $1 订阅费（象征性）。</p></div>
         </div>
-        <div class="step-arrow"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg></div>
+        <div class="step-arrow">↓</div>
 
         <div class="step-card">
-          <div class="step-num">03</div>
-          <div class="step-content"><h4>费用结构</h4><p>每月仅收 $1 管理费 + $1 订阅费（象征性）。</p></div>
-        </div>
-        <div class="step-arrow"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg></div>
-
-        <div class="step-card">
-          <div class="step-num">04</div>
-          <div class="step-content"><h4>利润结算</h4><p>每月结算一次，自动扣取 30% 利润作为绩效费（高水位机制）。</p></div>
+          <div class="step-idx">04</div>
+          <div class="step-txt"><h4>利润结算</h4><p>每月结算一次，自动扣取 30% 利润作为绩效费（高水位机制）。</p></div>
         </div>
       </div>
 
       <div class="action-card">
-        <div style="color:var(--accent-blue);font-weight:800;letter-spacing:2px;font-size:13px">PROFIT SHARE</div>
-        <div style="font-size:14px;color:#fff;margin-top:4px">利润分成</div>
-        <div class="profit-val">30%</div>
-        <div style="color:var(--muted);font-size:13px">采用高水位法则 (High Water Mark)</div>
+        <div>
+          <div style="color:var(--accent-blue);font-weight:700;letter-spacing:2px;font-size:13px">PROFIT SHARE</div>
+          <div style="font-size:14px;color:#fff;margin-top:4px">利润分成</div>
+          <div class="profit-val">30%</div>
+          <div style="color:var(--muted);font-size:13px">采用高水位法则 (High Water Mark)</div>
+        </div>
         
         <div class="btn-group">
           <a href="https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans" target="_blank" class="btn-act btn-l">立即开户</a>
@@ -301,10 +280,7 @@
         </div>
 
         <div class="notice-box">
-          <div class="notice-title">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-            跟单必读：
-          </div>
+          <div style="font-size:13px;color:var(--accent-red);font-weight:800;margin-bottom:8px">⚠️ 跟单必读注意事项：</div>
           <ul class="notice-list">
             <li><b>资金门槛：</b>账户净入金必须满足 <span class="highlight">$5,000</span>。</li>
             <li><b>接入流程：</b>开启前，请务必点击“立即跟单”联系助理。</li>
@@ -315,8 +291,9 @@
       </div>
     </div>
 
-    <div class="footer-copy">
-      免责声明：杠杆交易可能带来高回报，但风险同样很大，请不要使用承受不起的资金参与。过往收益数据仅供参考，不代表未来结果。技术方不对任何最终亏损承担责任。
+    <div class="disclaimer">
+      <strong>免责声明：</strong>
+      杠杆交易可能带来高回报，但风险同样很大，请不要使用承受不起的资金参与。过往收益数据仅供参考，不代表未来结果。技术方不对任何最终亏损承担责任，包括但不限于策略失效、市场突发、软件故障、交易商问题等。一旦参与资金托管或跟单，即视为接受本免责声明全部内容。
     </div>
   </div>
 
@@ -349,7 +326,6 @@
       track.style.transform = `translateX(-${idx * 100}%)`;
     }
     let timer = setInterval(() => showSlide(idx + 1), 3000);
-    
     nextBtn.onclick = () => { showSlide(idx + 1); clearInterval(timer); timer = setInterval(() => showSlide(idx + 1), 3000); };
     prevBtn.onclick = () => { showSlide(idx - 1); clearInterval(timer); timer = setInterval(() => showSlide(idx + 1), 3000); };
 
