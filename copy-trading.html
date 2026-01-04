@@ -39,7 +39,15 @@
     /* 导航栏 */
     .topbar{ display:flex; justify-content:space-between; padding:12px 20px; background:rgba(10,12,18,0.7); border:1px solid var(--border); border-radius:20px; backdrop-filter:blur(20px); position:sticky; top:10px; z-index:100; align-items:center; box-shadow:0 10px 30px rgba(0,0,0,0.3); }
     .brand{ font-weight:900; font-size:18px; display:flex; gap:10px; align-items:center; }
-    .logo{ width:32px; height:32px; background:linear-gradient(135deg,var(--accent-blue),var(--accent-cyan)); border-radius:8px; }
+    
+    /* 🔥 这里的 .logo 修改了：增加了居中对齐和字体样式，用来显示 "G" */
+    .logo{ 
+      width:32px; height:32px; 
+      background:linear-gradient(135deg,var(--accent-blue),var(--accent-cyan)); 
+      border-radius:8px; 
+      display: grid; place-items: center; color: #fff; font-size: 20px; font-weight: 900; /* 新增样式 */
+    }
+    
     .back-btn{ padding:8px 16px; background:rgba(255,255,255,0.1); border-radius:99px; text-decoration:none; color:#fff; font-size:13px; font-weight:700; transition:.3s; white-space: nowrap; }
     .back-btn:hover{ background:#fff; color:#000; }
 
@@ -236,7 +244,7 @@
 
   <div class="wrap">
     <div class="topbar">
-      <div class="brand"><div class="logo"></div>GW Capital</div>
+      <div class="brand"><div class="logo">G</div>GW Capital</div>
       <a href="index.html" class="back-btn">← 返回首页</a>
     </div>
 
