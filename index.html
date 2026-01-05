@@ -63,24 +63,43 @@
       z-index: 1; 
     }
 
-    /* Topbar */
+    /* === Topbar (修复版) === */
     .topbar {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 10px 14px; border-radius: 20px;
-      background: rgba(10, 12, 18, 0.6); border: 1px solid var(--glass-border);
+      padding: 8px 16px; border-radius: 16px; /* 稍微紧凑一点，像图二 */
+      background: rgba(15, 20, 30, 0.85); /* 深色背景 */
+      border: 1px solid rgba(255,255,255,0.08);
       backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      position: sticky; top: 16px; z-index: 100; box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+      position: sticky; top: 16px; z-index: 100; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
-    .brand { display: flex; align-items: center; gap: 12px; }
-    .logo { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan)); position: relative; box-shadow: 0 0 15px rgba(99, 102, 241, 0.4); }
-    .logo::after { content: "G"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #fff; font-size: 18px; }
-    .brand b { font-size: 18px; font-weight: 800; background: linear-gradient(90deg, #fff, rgba(255,255,255,0.7)); -webkit-background-clip: text; color: transparent; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; letter-spacing: -0.5px; }
+    
+    /* 🔥 修复 Logo：纯代码绘制，绝对不乱码 */
+    .logo-box {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+      border-radius: 8px;
+      display: grid; place-items: center;
+      color: #fff; font-weight: 900; font-size: 18px;
+      box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+    }
 
-    .nav { display: flex; gap: 6px; }
-    .nav a { font-size: 14px; color: var(--txt-muted); font-weight: 500; padding: 8px 16px; border-radius: 12px; }
-    .nav a:hover { color: #fff; background: rgba(255,255,255,0.06); }
-    .cta { padding: 8px 18px; border-radius: 12px; background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan)); color: #fff; font-weight: 700; font-size: 14px; box-shadow: 0 4px 15px rgba(34, 211, 238, 0.3); }
-    .cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(34, 211, 238, 0.5); }
+    .nav { display: flex; gap: 8px; }
+    .nav a { 
+      font-size: 14px; color: var(--txt-muted); font-weight: 600; 
+      padding: 8px 16px; border-radius: 8px; 
+      transition: .3s;
+    }
+    .nav a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+    
+    .cta { 
+      padding: 8px 20px; border-radius: 10px; 
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan)); 
+      color: #fff; font-weight: 700; font-size: 13px; 
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); 
+    }
+    .cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5); }
 
     /* Hero */
     .hero { margin-top: 24px; border-radius: 32px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 40px 20px; text-align: center; position: relative; overflow: hidden; }
@@ -135,11 +154,7 @@
     }
     .feedback-card:hover { transform: scale(1.02); border-color: var(--accent-blue); }
     .feedback-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9); }
-    
-    @keyframes scroll-left {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); } 
-    }
+    @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
     /* Grid 2 & Slides */
     .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
@@ -171,21 +186,21 @@
     .svcLi { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--txt-muted); margin-bottom:12px; line-height: 1.5; }
     .check { width: 16px; height: 16px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; font-size: 10px; margin-top: 2px;}
 
-    /* 1. 公开群 */
+    /* 1. 公开群 (灰白) */
     .svc-free { border-top-color: rgba(255,255,255,0.2); }
     .svc-free:hover { border-color: rgba(255,255,255,0.3); box-shadow: 0 10px 40px -10px rgba(255,255,255,0.05); }
     .svc-free .svc-icon { background: rgba(255,255,255,0.1); color: #fff; }
     .svc-free .svcTag { background: rgba(255,255,255,0.1); color: var(--txt-muted); }
     .svc-free .check { background: rgba(255,255,255,0.15); color: #fff; }
 
-    /* 2. 内部会员群 */
+    /* 2. 内部会员群 (紫色) */
     .svc-vip { border-top-color: var(--accent-purple); background: linear-gradient(160deg, rgba(168,85,247,0.05), var(--glass-bg)); }
     .svc-vip:hover { border-color: var(--accent-purple); box-shadow: 0 10px 40px -10px rgba(168,85,247,0.2); }
     .svc-vip .svc-icon { background: var(--accent-purple); color: #fff; }
     .svc-vip .svcTag { background: rgba(168, 85, 247, 0.15); color: var(--accent-purple); border-color: rgba(168, 85, 247, 0.3); }
     .svc-vip .check { background: var(--accent-purple); color: #fff; }
 
-    /* 3. 跟单交易 */
+    /* 3. 跟单交易 (青色) */
     .svc-copy { border-top-color: var(--accent-cyan); background: linear-gradient(160deg, rgba(34,211,238,0.05), var(--glass-bg)); }
     .svc-copy:hover { border-color: var(--accent-cyan); box-shadow: 0 10px 40px -10px rgba(34,211,238,0.2); }
     .svc-copy .svc-icon { background: var(--accent-cyan); color: #000; }
@@ -265,8 +280,17 @@
 
   <div class="wrap">
     <div class="topbar">
-      <div class="brand"><div class="logo">G</div>GW Capital</div>
-      <a href="index.html" class="back-btn">← 返回首页</a>
+      <div class="brand">
+        <div class="logo-box">G</div>
+        GWCAPITAL
+      </div>
+      <div class="nav">
+        <a href="#about">关于</a>
+        <a href="#feedback">战绩</a>
+        <a href="#services">服务</a>
+        <a href="#partner">开户</a>
+      </div>
+      <a class="cta" href="#partner">立即开始</a>
     </div>
 
     <div class="hero">
@@ -274,7 +298,7 @@
         <h1>欢迎来到 <span class="grad">GWCAPITAL</span></h1>
         <p>个人合作入口与资源聚合站</p>
         <p>你与财富自由，只差一个牛市</p>
-        <a href="copy-trading.html" class="btn-copy-trade">
+        <a href="#services" class="btn-copy-trade">
           🚀 加入我们
         </a>
       </div>
@@ -686,16 +710,12 @@
       document.body.removeChild(ta);
     }
 
-    // 🔥 抖音 VIP 验证逻辑 (手机/电脑智能判断)
+    // 🔥 抖音 VIP 验证逻辑
     function handleDouyinVIP() {
-      // 简单判断是否为移动端
       const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      
       if (isMobile) {
-        // 尝试唤起 App
         window.location.href = "snssdk1128://";
       } else {
-        // 电脑端直接打开官网
         window.open("https://www.douyin.com/", "_blank");
       }
     }
