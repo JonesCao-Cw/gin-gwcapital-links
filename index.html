@@ -39,45 +39,42 @@
     body {
       margin: 0; font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
       color: var(--txt-main); 
-      background-color: var(--bg-dark);
+      background-color: var(--bg-dark); 
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* === 🔥 全局流体背景动画 (修复回来) === */
+    /* === 动态流体背景动画 === */
     .bg-fixed {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       z-index: -1; pointer-events: none; overflow: hidden;
-      background: #030508; /* 深色底 */
+      background: #030508;
     }
     .blob {
       position: absolute; border-radius: 50%;
-      filter: blur(80px); opacity: 0.4; /* 调低透明度，保持深邃 */
+      filter: blur(80px); opacity: 0.5; 
       animation: float 20s infinite ease-in-out alternate;
     }
-    /* 光球1: 紫色 */
     .blob-1 {
-      top: -10%; left: -10%; width: 50vw; height: 50vw;
+      top: -10%; left: -10%; width: 60vw; height: 60vw;
       background: radial-gradient(circle, var(--accent-purple), transparent 70%);
       animation-duration: 25s;
     }
-    /* 光球2: 青色 */
     .blob-2 {
-      bottom: -10%; right: -10%; width: 60vw; height: 60vw;
+      bottom: -10%; right: -10%; width: 70vw; height: 70vw;
       background: radial-gradient(circle, var(--accent-cyan), transparent 70%);
       animation-duration: 30s; animation-direction: reverse;
     }
-    /* 光球3: 蓝色 */
     .blob-3 {
-      top: 40%; left: 30%; width: 40vw; height: 40vw;
+      top: 30%; left: 30%; width: 50vw; height: 50vw;
       background: radial-gradient(circle, var(--accent-blue), transparent 70%);
       animation-duration: 22s;
     }
 
     @keyframes float {
       0% { transform: translate(0, 0) scale(1); }
-      33% { transform: translate(30px, -30px) scale(1.1); }
-      66% { transform: translate(-20px, 20px) scale(0.9); }
+      33% { transform: translate(50px, -50px) scale(1.1); }
+      66% { transform: translate(-30px, 30px) scale(0.9); }
       100% { transform: translate(0, 0) scale(1); }
     }
 
@@ -97,7 +94,7 @@
       z-index: 1; 
     }
 
-    /* Topbar */
+    /* === Topbar === */
     .topbar {
       display: flex; align-items: center; justify-content: space-between;
       padding: 8px 16px; border-radius: 16px;
@@ -126,74 +123,33 @@
     }
     .nav a:hover { color: #fff; background: rgba(255,255,255,0.08); }
     
-    /* 🔥 顶部右上角按钮：现在是“立即跟单”，触发弹窗 */
     .cta { 
       padding: 8px 20px; border-radius: 10px; 
       background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan)); 
       color: #fff; font-weight: 700; font-size: 13px; 
       box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); 
-      cursor: pointer; /* 鼠标手势 */
     }
     .cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5); }
 
-    /* === Hero 区域 === */
-    .hero { 
-      margin-top: 24px; 
-      border-radius: 32px; 
-      background: rgba(255,255,255,0.02); 
-      border: 1px solid rgba(255,255,255,0.08); 
-      padding: 60px 20px; 
-      text-align: center; 
-      position: relative; 
-      overflow: hidden; 
-      z-index: 1; 
-    }
-    
-    /* Hero 内部光效增强 */
-    .hero-glow-container {
-      position: absolute; inset: 0; z-index: -1; pointer-events: none;
-      overflow: hidden;
-    }
-    .hero-blob {
-      position: absolute; border-radius: 50%;
-      filter: blur(60px); opacity: 0.6;
-      animation: heroFloat 10s infinite ease-in-out alternate;
-    }
-    .hb-1 {
-      top: -20%; left: -10%; width: 50%; height: 100%;
-      background: radial-gradient(circle, var(--accent-purple), transparent 70%);
-    }
-    .hb-2 {
-      bottom: -20%; right: -10%; width: 60%; height: 120%;
-      background: radial-gradient(circle, var(--accent-cyan), transparent 70%);
-      animation-delay: -5s;
-    }
-    @keyframes heroFloat {
-      0% { transform: scale(1) translate(0,0); }
-      100% { transform: scale(1.1) translate(20px, -20px); }
-    }
-
-    .title h1 { margin: 0; font-size: clamp(32px, 5vw, 52px); font-weight: 900; line-height: 1.1; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    /* Hero */
+    .hero { margin-top: 24px; border-radius: 32px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 40px 20px; text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%); animation: rotate 20s linear infinite; pointer-events: none; }
+    @keyframes rotate { from {transform: rotate(0deg);} to {transform: rotate(360deg);} }
+    .title h1 { margin: 0; font-size: clamp(32px, 5vw, 52px); font-weight: 900; line-height: 1.1; }
     .grad { background: linear-gradient(135deg, #fff 20%, var(--accent-cyan) 100%); -webkit-background-clip: text; color: transparent; }
-    .title p { color: var(--txt-muted); font-size: 15px; margin-top: 12px; max-width: 600px; margin-left: auto; margin-right: auto; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+    .title p { color: var(--txt-muted); font-size: 15px; margin-top: 12px; max-width: 600px; margin-left: auto; margin-right: auto; }
 
-    /* 🔥 Hero 中间大按钮：现在是“加入我们”，跳转到开户 */
-    .btn-hero-copy {
+    /* 加入我们按钮 */
+    .btn-copy-trade {
       display: inline-flex; align-items: center; gap: 8px; justify-content: center;
-      margin-top: 32px;
-      padding: 16px 48px; border-radius: 99px;
+      margin-top: 24px;
+      padding: 14px 36px; border-radius: 99px;
       background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
-      color: #fff; font-size: 18px; font-weight: 800; text-decoration: none;
-      box-shadow: 0 0 30px rgba(99,102,241,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
-      border: 1px solid rgba(255,255,255,0.1);
-      transition: all 0.3s ease;
-      cursor: pointer;
+      color: #fff; font-size: 16px; font-weight: 800; text-decoration: none;
+      box-shadow: 0 0 20px rgba(99,102,241,0.4); border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.3s ease; cursor: pointer;
     }
-    .btn-hero-copy:hover { 
-      transform: translateY(-4px) scale(1.05); 
-      box-shadow: 0 0 50px rgba(99,102,241,0.8); 
-      filter: brightness(1.1); 
-    }
+    .btn-copy-trade:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 0 40px rgba(99,102,241,0.6); filter: brightness(1.1); }
 
     /* Components */
     .sectionHead { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 40px 0 24px; }
@@ -260,21 +216,21 @@
     .svcLi { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--txt-muted); margin-bottom:12px; line-height: 1.5; }
     .check { width: 16px; height: 16px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; font-size: 10px; margin-top: 2px;}
 
-    /* 1. 公开群 */
+    /* 1. 公开群 (灰白) */
     .svc-free { border-top-color: rgba(255,255,255,0.2); }
     .svc-free:hover { border-color: rgba(255,255,255,0.3); box-shadow: 0 10px 40px -10px rgba(255,255,255,0.05); }
     .svc-free .svc-icon { background: rgba(255,255,255,0.1); color: #fff; }
     .svc-free .svcTag { background: rgba(255,255,255,0.1); color: var(--txt-muted); }
     .svc-free .check { background: rgba(255,255,255,0.15); color: #fff; }
 
-    /* 2. 内部会员群 */
+    /* 2. 内部会员群 (紫色) */
     .svc-vip { border-top-color: var(--accent-purple); background: linear-gradient(160deg, rgba(168,85,247,0.05), var(--glass-bg)); }
     .svc-vip:hover { border-color: var(--accent-purple); box-shadow: 0 10px 40px -10px rgba(168,85,247,0.2); }
     .svc-vip .svc-icon { background: var(--accent-purple); color: #fff; }
     .svc-vip .svcTag { background: rgba(168, 85, 247, 0.15); color: var(--accent-purple); border-color: rgba(168, 85, 247, 0.3); }
     .svc-vip .check { background: var(--accent-purple); color: #fff; }
 
-    /* 3. 跟单交易 */
+    /* 3. 跟单交易 (青色) */
     .svc-copy { border-top-color: var(--accent-cyan); background: linear-gradient(160deg, rgba(34,211,238,0.05), var(--glass-bg)); }
     .svc-copy:hover { border-color: var(--accent-cyan); box-shadow: 0 10px 40px -10px rgba(34,211,238,0.2); }
     .svc-copy .svc-icon { background: var(--accent-cyan); color: #000; }
@@ -286,7 +242,7 @@
     .btn::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); transform: translateX(-100%); transition: 0.5s; }
     .btn:hover::before { transform: translateX(100%); }
 
-    /* 立即跟单实心按钮 (服务对比处) */
+    /* 立即跟单实心按钮 */
     .btn-copy-solid {
       background: var(--accent-cyan); color: #000; border: none;
       box-shadow: 0 0 15px rgba(34,211,238,0.3);
@@ -333,7 +289,7 @@
     .risk-title { display: flex; align-items: center; gap: 8px; color: #ef4444; font-weight: 800; font-size: 14px; margin-bottom: 10px; }
     .risk ul { margin: 0; padding-left: 18px; color: var(--txt-muted); font-size: 12px; line-height: 1.8; }
     
-    /* === 🔥 首页Hero弹窗样式 === */
+    /* === 🔥 弹窗样式 (Hero按钮专用) === */
     .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 999; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
     .modal-overlay.active { display: flex; opacity: 1; }
     .modal-box { 
@@ -392,22 +348,17 @@
         <a href="#services">服务</a>
         <a href="#partner">开户</a>
       </div>
-      <div class="cta" onclick="openHeroModal()">立即跟单</div>
+      <a class="cta" href="#partner">立即开始</a>
     </div>
 
     <div class="hero">
-      <div class="hero-glow-container">
-        <div class="hero-blob hb-1"></div>
-        <div class="hero-blob hb-2"></div>
-      </div>
-
       <div class="title">
         <h1>欢迎来到 <span class="grad">GWCAPITAL</span></h1>
         <p>个人合作入口与资源聚合站</p>
         <p>你与财富自由，只差一个牛市</p>
-        <a href="#partner" class="btn-hero-copy">
-          🚀 加入我们
-        </a>
+        <div onclick="openHeroModal()" class="btn-copy-trade" style="cursor: pointer;">
+          🚀 立即跟单
+        </div>
       </div>
     </div>
 
@@ -483,7 +434,6 @@
         <div class="feedback-card"><img src="images/f3.jpg" alt="反馈3"></div>
         <div class="feedback-card"><img src="images/f4.jpg" alt="反馈4"></div>
         <div class="feedback-card"><img src="images/f5.jpg" alt="反馈5"></div>
-        
         <div class="feedback-card"><img src="images/f1.jpg" alt="反馈1"></div>
         <div class="feedback-card"><img src="images/f2.jpg" alt="反馈2"></div>
         <div class="feedback-card"><img src="images/f3.jpg" alt="反馈3"></div>
@@ -757,9 +707,10 @@
       </p>
       
       <div class="modal-btns">
-        <div class="m-btn m-btn-contact" onclick="closeHeroModal(); document.getElementById('services').scrollIntoView({behavior: 'smooth'});">
+        <div class="m-btn m-btn-contact" onclick="closeHeroModal(); document.getElementById('services').scrollIntoView();">
           前去阅读
         </div>
+
         <a href="copy-trading.html" class="m-btn m-btn-confirm">
           我已阅读，前往跟单 →
         </a>
