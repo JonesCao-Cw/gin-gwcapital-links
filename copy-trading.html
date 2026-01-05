@@ -130,7 +130,7 @@
       padding: 24px;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: center; /* 居中内容 */
       gap: 16px;
       box-shadow: 0 0 30px rgba(244, 63, 94, 0.15), inset 0 0 20px rgba(244, 63, 94, 0.05);
       position: relative;
@@ -153,6 +153,9 @@
     }
 
     /* 文字样式 */
+    .risk-content {
+      text-align: center; /* 文字居中 */
+    }
     .risk-content h3 {
       margin: 0; font-size: 20px; font-weight: 800; color: #fff;
       letter-spacing: 1px;
@@ -161,6 +164,15 @@
     .risk-content p {
       margin: 4px 0 0; font-size: 13px; color: var(--accent-red); 
       font-weight: 600; opacity: 0.9;
+    }
+
+    /* 最后一句话放大特效 */
+    .final-warn {
+      font-size: 18px !important; 
+      font-weight: 900 !important;
+      color: #fff !important;
+      margin-top: 8px !important;
+      letter-spacing: 1px;
     }
 
     /* 呼吸灯动画 */
@@ -413,6 +425,8 @@
     @media(max-width:900px){
       .risk-banner { flex-direction: column; text-align: center; gap: 8px; padding: 20px; }
       .risk-banner::before { width: 100%; height: 4px; top: 0; left: 0; bottom: auto; }
+      .final-warn { font-size: 15px !important; } /* 移动端字号修正 */
+      
       .hero-split, .data-container, .terms-layout { grid-template-columns: 1fr; gap: 24px; }
       .stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; } 
       .stat-item { padding: 16px; } .stat-num { font-size: 24px; }
@@ -488,8 +502,9 @@
       <div class="risk-banner">
         <div class="risk-icon-box">⚠️</div>
         <div class="risk-content">
-          <h3>投资有风险，理财需谨慎！</h3>
-          <p>RISK WARNING: MARKET TRADING INVOLVES SUBSTANTIAL RISKS.</p>
+          <h3>跟单交易属于高风险行为，存在亏损本金可能性</h3>
+          <p>跟单不是余额宝理财，不承诺收益，一切盈亏自负，风险承受能力低者不建议参与。</p>
+          <p class="final-warn">参与跟单默认理解认可接受所有风险。</p>
         </div>
       </div>
     </div>
