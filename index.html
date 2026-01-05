@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  
+  <link rel="icon" href="images/logo.png" type="image/png">
+
   <title>GWCAPITAL | 杰明</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,7 +47,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* === 🔥 全局流体背景动画 (已恢复) === */
+    /* === 🔥 全局流体背景动画 === */
     .bg-fixed {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       z-index: -1; pointer-events: none; overflow: hidden;
@@ -52,19 +55,22 @@
     }
     .blob {
       position: absolute; border-radius: 50%;
-      filter: blur(80px); opacity: 0.4; /* 保持深邃 */
+      filter: blur(80px); opacity: 0.4; /* 保持深邃，不干扰阅读 */
       animation: float 20s infinite ease-in-out alternate;
     }
+    /* 光球1: 紫色 */
     .blob-1 {
       top: -10%; left: -10%; width: 50vw; height: 50vw;
       background: radial-gradient(circle, var(--accent-purple), transparent 70%);
       animation-duration: 25s;
     }
+    /* 光球2: 青色 */
     .blob-2 {
       bottom: -10%; right: -10%; width: 60vw; height: 60vw;
       background: radial-gradient(circle, var(--accent-cyan), transparent 70%);
       animation-duration: 30s; animation-direction: reverse;
     }
+    /* 光球3: 蓝色 */
     .blob-3 {
       top: 40%; left: 30%; width: 40vw; height: 40vw;
       background: radial-gradient(circle, var(--accent-blue), transparent 70%);
@@ -94,7 +100,7 @@
       z-index: 1; 
     }
 
-    /* Topbar */
+    /* === Topbar === */
     .topbar {
       display: flex; align-items: center; justify-content: space-between;
       padding: 8px 16px; border-radius: 16px;
@@ -106,12 +112,11 @@
     }
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; letter-spacing: -0.5px; }
     
-    .logo-box {
-      width: 32px; height: 32px;
-      background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
-      border-radius: 8px;
-      display: grid; place-items: center;
-      color: #fff; font-weight: 900; font-size: 18px;
+    /* 图片 Logo 样式 */
+    .logo-img {
+      width: 32px; height: 32px; 
+      border-radius: 8px; 
+      object-fit: cover;
       box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
     }
 
@@ -123,7 +128,7 @@
     }
     .nav a:hover { color: #fff; background: rgba(255,255,255,0.08); }
     
-    /* 🔥 顶部右上角按钮：现在是“立即跟单”，触发弹窗 */
+    /* 🔥 顶部右上角按钮：立即跟单 -> 触发弹窗 */
     .cta { 
       padding: 8px 20px; border-radius: 10px; 
       background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan)); 
@@ -174,7 +179,7 @@
     .grad { background: linear-gradient(135deg, #fff 20%, var(--accent-cyan) 100%); -webkit-background-clip: text; color: transparent; }
     .title p { color: var(--txt-muted); font-size: 15px; margin-top: 12px; max-width: 600px; margin-left: auto; margin-right: auto; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
 
-    /* 🔥 Hero 中间大按钮：现在是“加入我们”，跳转到开户 */
+    /* 🔥 Hero 中间大按钮：加入我们 -> 跳转开户 #partner */
     .btn-hero-copy {
       display: inline-flex; align-items: center; gap: 8px; justify-content: center;
       margin-top: 32px;
@@ -203,22 +208,12 @@
 
     /* === 跑马灯滚动样式 === */
     .marquee-wrap {
-      position: relative;
-      margin-top: 10px;
-      padding: 10px 0;
-      overflow: hidden;
+      position: relative; margin-top: 10px; padding: 10px 0; overflow: hidden;
       mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
       -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     }
-    .marquee-track {
-      display: flex;
-      gap: 20px;
-      width: max-content;
-      animation: scroll-left 40s linear infinite; 
-    }
-    .marquee-track:hover {
-      animation-play-state: paused; 
-    }
+    .marquee-track { display: flex; gap: 20px; width: max-content; animation: scroll-left 40s linear infinite; }
+    .marquee-track:hover { animation-play-state: paused; }
     .feedback-card {
       width: 260px; height: 340px; border-radius: 16px; overflow: hidden; flex-shrink: 0;
       border: 1px solid var(--glass-border); background: rgba(255,255,255,0.02); transition: transform 0.3s;
@@ -382,7 +377,10 @@
 
   <div class="wrap">
     <div class="topbar">
-      <div class="brand"><div class="logo-box">G</div>GW Capital</div>
+      <div class="brand">
+        <img src="images/logo.png" alt="Logo" class="logo-img">
+        GW Capital
+      </div>
       <div class="nav">
         <a href="#about">关于</a>
         <a href="#feedback">战绩</a>
@@ -763,6 +761,7 @@
         <div class="m-btn m-btn-contact" onclick="closeHeroModal(); document.getElementById('services').scrollIntoView();">
           前去阅读
         </div>
+
         <a href="copy-trading.html" class="m-btn m-btn-confirm">
           我已阅读，前往跟单 →
         </a>
