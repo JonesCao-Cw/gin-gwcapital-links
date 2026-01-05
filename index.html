@@ -40,7 +40,7 @@
       margin: 0; font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
       color: var(--txt-main); 
       background-color: var(--bg-dark);
-      /* 🔥 恢复全局背景为静态、深邃的样式 */
+      /* 恢复全局静态深邃背景 */
       background-image: 
         radial-gradient(circle at 15% 10%, rgba(99, 102, 241, 0.15), transparent 40%),
         radial-gradient(circle at 85% 20%, rgba(34, 211, 238, 0.12), transparent 40%),
@@ -94,15 +94,17 @@
     }
     .nav a:hover { color: #fff; background: rgba(255,255,255,0.08); }
     
+    /* 🔥 顶部右侧按钮：现在是“立即跟单”，点击触发弹窗 */
     .cta { 
       padding: 8px 20px; border-radius: 10px; 
       background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan)); 
       color: #fff; font-weight: 700; font-size: 13px; 
       box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); 
+      cursor: pointer;
     }
     .cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5); }
 
-    /* === Hero 区域 (强化光影交互) === */
+    /* === Hero 区域 === */
     .hero { 
       margin-top: 24px; 
       border-radius: 32px; 
@@ -112,11 +114,10 @@
       text-align: center; 
       position: relative; 
       overflow: hidden; 
-      /* 🔥 关键：让这个区域可以容纳绝对定位的光效 */
       z-index: 1; 
     }
     
-    /* 🔥 Hero 专属的强力动态背景 */
+    /* Hero 光效 */
     .hero-glow-container {
       position: absolute; inset: 0; z-index: -1; pointer-events: none;
       overflow: hidden;
@@ -144,12 +145,12 @@
     .grad { background: linear-gradient(135deg, #fff 20%, var(--accent-cyan) 100%); -webkit-background-clip: text; color: transparent; }
     .title p { color: var(--txt-muted); font-size: 15px; margin-top: 12px; max-width: 600px; margin-left: auto; margin-right: auto; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
 
-    /* 🔥 首页 Hero 立即跟单大按钮 */
+    /* 🔥 Hero 中间大按钮：现在是“加入我们”，点击跳转开户 */
     .btn-hero-copy {
       display: inline-flex; align-items: center; gap: 8px; justify-content: center;
       margin-top: 32px;
       padding: 16px 48px; border-radius: 99px;
-      /* 强烈的蓝紫渐变 */
+      /* 保持醒目渐变 */
       background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
       color: #fff; font-size: 18px; font-weight: 800; text-decoration: none;
       box-shadow: 0 0 30px rgba(99,102,241,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
@@ -354,7 +355,7 @@
         <a href="#services">服务</a>
         <a href="#partner">开户</a>
       </div>
-      <a class="cta" href="#partner">立即开始</a>
+      <div class="cta" onclick="openHeroModal()">立即跟单</div>
     </div>
 
     <div class="hero">
@@ -367,9 +368,9 @@
         <h1>欢迎来到 <span class="grad">GWCAPITAL</span></h1>
         <p>个人合作入口与资源聚合站</p>
         <p>你与财富自由，只差一个牛市</p>
-        <div onclick="openHeroModal()" class="btn-hero-copy">
-          🚀 立即跟单
-        </div>
+        <a href="#partner" class="btn-hero-copy">
+          🚀 加入我们
+        </a>
       </div>
     </div>
 
@@ -445,6 +446,7 @@
         <div class="feedback-card"><img src="images/f3.jpg" alt="反馈3"></div>
         <div class="feedback-card"><img src="images/f4.jpg" alt="反馈4"></div>
         <div class="feedback-card"><img src="images/f5.jpg" alt="反馈5"></div>
+        
         <div class="feedback-card"><img src="images/f1.jpg" alt="反馈1"></div>
         <div class="feedback-card"><img src="images/f2.jpg" alt="反馈2"></div>
         <div class="feedback-card"><img src="images/f3.jpg" alt="反馈3"></div>
