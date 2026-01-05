@@ -170,19 +170,6 @@
       100% { transform: scale(1); opacity: 1; filter: drop-shadow(0 0 0 rgba(244,63,94,0)); }
     }
 
-    /* 移动端适配 */
-    @media(max-width:900px){
-      .risk-banner { flex-direction: column; text-align: center; gap: 8px; padding: 20px; }
-      .risk-banner::before { width: 100%; height: 4px; top: 0; left: 0; bottom: auto; }
-      .hero-split, .data-container, .terms-layout { grid-template-columns: 1fr; gap: 24px; }
-      .stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; } 
-      .stat-item { padding: 16px; } .stat-num { font-size: 24px; }
-      .tv-frame, .chart-panel { padding: 8px; }
-      .btn-group { flex-direction: row; } 
-      .wrap { padding: 16px 16px 80px; }
-      .action-panel { height: auto; }
-    }
-
     /* === 模块2: 数据看板 === */
     .stats-section{ margin-top: 80px; }
     .section-header { text-align: center; margin-bottom: 40px; }
@@ -351,7 +338,102 @@
     .notice-list { margin: 0; padding-left: 16px; color: var(--txt-muted); font-size: 12px; line-height: 1.7; }
     .notice-list b { color: #fff; font-weight: 600; }
 
+    /* === 🆚 新增：对比表格模块 === */
+    .compare-section { margin-top: 100px; }
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px; margin-top: 40px;
+      align-items: start;
+    }
+    .compare-col { display: flex; flex-direction: column; gap: 8px; }
+    
+    /* 表头 */
+    .c-head {
+      padding: 24px; border-radius: 16px; text-align: center;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      height: 140px; margin-bottom: 12px;
+    }
+    .ch-mid { background: transparent; justify-content: flex-end; padding-bottom: 10px; }
+    .ch-left { 
+      background: linear-gradient(160deg, rgba(168, 85, 247, 0.1), rgba(20, 25, 35, 0.6));
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      box-shadow: 0 10px 40px -10px rgba(168, 85, 247, 0.15);
+    }
+    .ch-right { 
+      background: linear-gradient(160deg, rgba(34, 211, 238, 0.1), rgba(20, 25, 35, 0.6));
+      border: 1px solid rgba(34, 211, 238, 0.3);
+      box-shadow: 0 10px 40px -10px rgba(34, 211, 238, 0.15);
+    }
+    
+    .ch-icon { font-size: 32px; margin-bottom: 8px; }
+    .ch-title { font-size: 18px; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
+    .ch-sub { font-size: 12px; color: var(--txt-muted); margin-top: 4px; opacity: 0.8; }
+    .ch-badge { 
+      margin-top: 8px; padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: 700; text-transform: uppercase;
+    }
+
+    /* 表格行 */
+    .c-row {
+      display: flex; align-items: center; justify-content: center;
+      min-height: 64px; padding: 12px 16px; border-radius: 12px;
+      font-size: 14px; color: var(--txt-muted); text-align: center;
+      transition: .2s;
+    }
+    
+    /* 中间列：标签 */
+    .mid-label { font-size: 12px; font-weight: 700; color: #fff; letter-spacing: 1px; opacity: 0.4; text-transform: uppercase; }
+
+    /* 内容列 */
+    .c-val { 
+      background: rgba(255,255,255,0.02); border: 1px solid transparent; 
+      color: #fff; font-weight: 500;
+    }
+    
+    /* 悬停高亮逻辑 */
+    .c-val:hover { background: rgba(255,255,255,0.05); transform: scale(1.02); z-index: 10; }
+    .c-left .c-val:hover { border-color: rgba(168, 85, 247, 0.3); }
+    .c-right .c-val:hover { border-color: rgba(34, 211, 238, 0.3); }
+
+    /* 文本强调色 */
+    .txt-purp { color: var(--accent-purple); font-weight: 700; }
+    .txt-cyan { color: var(--accent-cyan); font-weight: 700; }
+    .txt-warn { color: var(--accent-gold); }
+    .txt-red { color: var(--accent-red); }
+
+    /* 对比备注 */
+    .compare-note {
+      margin-top: 30px; text-align: center; font-size: 12px; color: var(--txt-muted); opacity: 0.6;
+      border-top: 1px dashed var(--border-light); padding-top: 20px;
+    }
+
     .footer { margin-top: 80px; padding-top: 30px; border-top: 1px solid var(--border-light); text-align: center; color: rgba(255,255,255,0.2); font-size: 12px; line-height: 1.6; }
+
+    /* 移动端适配 */
+    @media(max-width:900px){
+      .risk-banner { flex-direction: column; text-align: center; gap: 8px; padding: 20px; }
+      .risk-banner::before { width: 100%; height: 4px; top: 0; left: 0; bottom: auto; }
+      .hero-split, .data-container, .terms-layout { grid-template-columns: 1fr; gap: 24px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; } 
+      .stat-item { padding: 16px; } .stat-num { font-size: 24px; }
+      .tv-frame, .chart-panel { padding: 8px; }
+      .btn-group { flex-direction: row; } 
+      .wrap { padding: 16px 16px 80px; }
+      .action-panel { height: auto; }
+      
+      /* 对比表移动端 */
+      .compare-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .c-mid { display: none; } /* 隐藏中间标签列 */
+      .c-head { height: 110px; padding: 16px; }
+      .ch-title { font-size: 15px; }
+      .c-row { font-size: 12px; padding: 10px; flex-direction: column; gap: 4px; }
+      
+      /* 移动端每一格加小标签 */
+      .c-val::before {
+        content: attr(data-label);
+        display: block; font-size: 9px; opacity: 0.4; margin-bottom: 2px;
+      }
+    }
 
     /* 弹窗 */
     .modal-wrap { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 999; display: none; align-items: center; justify-content: center; opacity: 0; transition: .3s; }
@@ -566,14 +648,14 @@
 
         <div class="glass-panel step-item">
           <div class="step-idx idx-cyan">04</div>
-          <div class="step-txt"><h4>利润结算</h4><p>每月结算一次，自动扣取 30% 利润作为绩效费（高水位机制）。</p></div>
+          <div class="step-txt"><h4>利润结算</h4><p>每月结算一次，自动扣取 20% 利润作为绩效费（高水位机制）。</p></div>
         </div>
       </div>
 
       <div class="glass-panel action-panel panel-sys1">
         <div>
           <div class="profit-title" style="color:var(--accent-blue)">PROFIT SHARE</div>
-          <div class="profit-val">30%</div>
+          <div class="profit-val">20%</div>
           <div class="profit-sub">利润分成 (高水位机制)</div>
           
           <div class="btn-group">
@@ -591,6 +673,61 @@
             <li><b>严厉处罚：</b>若发现<span style="color:#f43f5e">不在名下私自跟单</span>，永久拉黑。</li>
           </ul>
         </div>
+      </div>
+    </div>
+
+    <div class="compare-section">
+      <div class="section-header">
+        <div class="section-title">全系策略深度对比</div>
+        <div class="section-sub">为您匹配最适合的投资方案</div>
+      </div>
+
+      <div class="compare-grid">
+        <div class="compare-col c-left">
+          <div class="c-head ch-left">
+            <div class="ch-icon">🤖</div>
+            <div class="ch-title">智能量化拆单系统</div>
+            <div class="ch-badge" style="background:rgba(168,85,247,0.2);color:var(--accent-purple)">SYSTEM 01</div>
+          </div>
+          <div class="c-row c-val" data-label="交易品种">黄金 XAU / 欧美 EURUSD</div>
+          <div class="c-row c-val" data-label="操作逻辑">全天候自动化程序运行</div>
+          <div class="c-row c-val" data-label="资金门槛">20万 USC (约$2000)</div>
+          <div class="c-row c-val" data-label="月化收益">0 ~ 30% (稳健)</div>
+          <div class="c-row c-val" data-label="风险设置"><span class="txt-warn">净值50% 强平保护</span></div>
+          <div class="c-row c-val" data-label="合作模式"><span class="txt-purp">0% (内测期免分成)</span></div>
+          <div class="c-row c-val" data-label="适合人群">存钱吃息 / 闲置资金</div>
+        </div>
+
+        <div class="compare-col c-mid">
+          <div class="c-head ch-mid">
+            </div>
+          <div class="c-row mid-label">核心品种</div>
+          <div class="c-row mid-label">运行模式</div>
+          <div class="c-row mid-label">资金要求</div>
+          <div class="c-row mid-label">预期收益</div>
+          <div class="c-row mid-label">风控底线</div>
+          <div class="c-row mid-label">费用分成</div>
+          <div class="c-row mid-label">投资画像</div>
+        </div>
+
+        <div class="compare-col c-right">
+          <div class="c-head ch-right">
+            <div class="ch-icon">🧠</div>
+            <div class="ch-title">杰明自有交易Copy</div>
+            <div class="ch-badge" style="background:rgba(34,211,238,0.2);color:var(--accent-cyan)">SYSTEM 02</div>
+          </div>
+          <div class="c-row c-val" data-label="交易品种">美股 / 黄金 / 外汇 / 加密</div>
+          <div class="c-row c-val" data-label="操作逻辑">人工主观波段 / 中长线</div>
+          <div class="c-row c-val" data-label="资金门槛">$15,000 (建议) / $5,000 (起)</div>
+          <div class="c-row c-val" data-label="月化收益">0 ~ 50% (起伏较大)</div>
+          <div class="c-row c-val" data-label="风险设置"><span class="txt-red">本金30% 硬止损</span></div>
+          <div class="c-row c-val" data-label="合作模式"><span class="txt-cyan">20% 盈利分成</span></div>
+          <div class="c-row c-val" data-label="适合人群">有耐心 / 追求高盈亏比</div>
+        </div>
+      </div>
+
+      <div class="compare-note">
+        *过往盈利不保证未来收益。跟单有风险，一切盈亏自负。请确保您的风险认知与资金实力匹配后再进行操作。
       </div>
     </div>
 
