@@ -133,84 +133,91 @@
     }
     .cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5); }
 
-    /* === 🔥 NEW: 科技感 Hero 区域更新 === */
+    /* === 🔥 NEW: 科幻扩散光影 Hero === */
     .hero { 
       margin-top: 24px; 
       border-radius: 32px; 
-      background: rgba(10, 15, 29, 0.4); /* 更深的底色 */
+      background: #050810; /* 纯深色底 */
       border: 1px solid rgba(255,255,255,0.1); 
       padding: 60px 20px; 
       text-align: center; 
       position: relative; 
       overflow: hidden; 
       z-index: 1; 
-      /* 添加微妙的科技网格背景 */
-      background-image: 
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
+      box-shadow: inset 0 0 80px rgba(0,0,0,0.8);
     }
     
+    /* 1. 科幻网格背景 */
+    .hero-grid {
+      position: absolute; inset: 0; z-index: -2;
+      background-image: 
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 50px 50px;
+      /* 网格遮罩：中间清晰，四周渐隐 */
+      mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+      -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+      pointer-events: none;
+    }
+
     .hero-glow-container {
       position: absolute; inset: 0; z-index: -1; pointer-events: none;
       overflow: hidden;
     }
     
-    /* 新的科技感光球 */
-    .hero-blob {
+    /* 通用光球样式 */
+    .hero-light {
       position: absolute; border-radius: 50%;
-      filter: blur(50px); 
-      opacity: 0.7;
-      mix-blend-mode: screen; /* 关键：混合模式让颜色叠加更亮 */
+      mix-blend-mode: screen; /* 滤色模式，让光影叠加更亮 */
+      filter: blur(50px);
     }
 
-    /* 左侧紫色光球 - 轨道运动 */
-    .hb-1 {
-      top: 10%; left: 10%; width: 40%; height: 80%;
-      background: radial-gradient(circle, #a855f7, transparent 60%);
-      animation: orbitLeft 8s infinite linear;
-      transform-origin: center center;
-    }
-    
-    /* 右侧青色光球 - 轨道运动 */
-    .hb-2 {
-      bottom: 10%; right: 10%; width: 45%; height: 90%;
-      background: radial-gradient(circle, #22d3ee, transparent 60%);
-      animation: orbitRight 12s infinite linear;
+    /* 左侧：紫色能量波 (来回扩散) */
+    .hl-purple {
+      top: 50%; left: 0%; 
+      width: 50%; height: 120%;
+      background: radial-gradient(circle at center, #a855f7, transparent 70%);
+      transform: translateY(-50%) translateX(-20%);
+      opacity: 0.6;
+      animation: diffuseLeft 8s infinite ease-in-out;
     }
 
-    /* 中间蓝色核心 - 呼吸脉冲 */
-    .hb-3 {
-      top: 50%; left: 50%; width: 60%; height: 60%;
-      transform: translate(-50%, -50%);
-      background: radial-gradient(circle, rgba(99,102,241,0.4), transparent 70%);
-      animation: pulseCore 4s infinite ease-in-out;
-      opacity: 0.4;
+    /* 右侧：青色能量波 (来回扩散) */
+    .hl-cyan {
+      top: 50%; right: 0%; 
+      width: 50%; height: 120%;
+      background: radial-gradient(circle at center, #22d3ee, transparent 70%);
+      transform: translateY(-50%) translateX(20%);
+      opacity: 0.6;
+      animation: diffuseRight 8s infinite ease-in-out;
     }
 
-    /* 科技感网格遮罩 */
-    .hero-grid-mask {
-      position: absolute; inset: 0; z-index: -1;
-      background: radial-gradient(circle at center, transparent 0%, var(--bg-dark) 90%);
+    /* 中间：横向极光扫描线 (上下扫描) */
+    .hl-scanner {
+      top: 50%; left: 50%;
+      width: 120%; height: 15%;
+      background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.8), transparent);
+      transform: translate(-50%, -50%) rotate(-5deg);
+      filter: blur(40px);
+      opacity: 0.5;
+      animation: scanMove 10s infinite ease-in-out;
     }
 
-    @keyframes orbitLeft {
-      0% { transform: translate(0, 0) scale(1); }
-      33% { transform: translate(30px, 40px) scale(1.1); }
-      66% { transform: translate(-20px, 20px) scale(0.9); }
-      100% { transform: translate(0, 0) scale(1); }
-    }
-    
-    @keyframes orbitRight {
-      0% { transform: translate(0, 0) rotate(0deg) scale(1); }
-      50% { transform: translate(-40px, -20px) rotate(180deg) scale(1.2); }
-      100% { transform: translate(0, 0) rotate(360deg) scale(1); }
+    /* 动画定义：来回扩散效果 */
+    @keyframes diffuseLeft {
+      0%, 100% { transform: translateY(-50%) translateX(-20%) scale(1); opacity: 0.5; }
+      50% { transform: translateY(-50%) translateX(10%) scale(1.3); opacity: 0.2; } /* 向右扩散并变淡 */
     }
 
-    @keyframes pulseCore {
-      0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.3; }
-      50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.6; }
-      100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.3; }
+    @keyframes diffuseRight {
+      0%, 100% { transform: translateY(-50%) translateX(20%) scale(1); opacity: 0.5; }
+      50% { transform: translateY(-50%) translateX(-10%) scale(1.3); opacity: 0.2; } /* 向左扩散并变淡 */
+    }
+
+    /* 动画定义：缓慢的上下扫描 */
+    @keyframes scanMove {
+      0%, 100% { transform: translate(-50%, -80%) rotate(-5deg) scaleX(1); opacity: 0.3; }
+      50% { transform: translate(-50%, -20%) rotate(5deg) scaleX(1.2); opacity: 0.7; }
     }
 
     .title h1 { margin: 0; font-size: clamp(32px, 5vw, 52px); font-weight: 900; line-height: 1.1; text-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; }
@@ -428,12 +435,12 @@
     </div>
 
     <div class="hero">
-      <div class="hero-grid-mask"></div>
+      <div class="hero-grid"></div>
       
       <div class="hero-glow-container">
-        <div class="hero-blob hb-1"></div>
-        <div class="hero-blob hb-2"></div>
-        <div class="hero-blob hb-3"></div>
+        <div class="hero-light hl-purple"></div>
+        <div class="hero-light hl-cyan"></div>
+        <div class="hero-light hl-scanner"></div>
       </div>
 
       <div class="title">
