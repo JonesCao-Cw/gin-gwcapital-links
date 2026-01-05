@@ -175,17 +175,21 @@
     .feat-item { display: flex; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.02); margin-top:10px;}
     .feat-icon { width: 20px; height: 20px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); flex-shrink: 0; margin-top: 2px; }
 
-    /* Services */
-    .serviceGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 20px; }
+    /* Services - Updated to 3 Columns */
+    .serviceGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 20px; }
     .svcHead { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
     .svcHead h3 { margin: 0; font-size: 20px; }
     .svcTag { font-size: 12px; padding: 4px 10px; border-radius: 8px; font-weight: 700; }
+    
     .svc-free .svcTag { background: rgba(255,255,255,0.1); color: var(--txt-muted); }
     .svc-vip .svcTag { background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue)); color: #fff; }
+    .svc-copy .svcTag { background: rgba(34, 211, 238, 0.15); color: var(--accent-cyan); border: 1px solid rgba(34, 211, 238, 0.3); }
+
     .svcLi { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--txt-muted); margin-bottom:10px; }
     .check { width: 16px; height: 16px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; }
     .svc-free .check { background: rgba(255,255,255,0.15); color: #fff; font-size: 10px; }
     .svc-vip .check { background: var(--accent-purple); color: #fff; font-size: 10px; }
+    .svc-copy .check { background: var(--accent-cyan); color: #000; font-size: 10px; }
 
     /* Buttons */
     .btn { margin-top: 16px; width: 100%; padding: 12px; border-radius: 12px; font-size: 13px; font-weight: 700; text-align: center; cursor: pointer; border: 1px solid transparent; transition: 0.2s; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; gap: 6px; user-select: none;}
@@ -368,6 +372,7 @@
         <div class="svcLi"><div class="check">✓</div>不定期交易观点推送</div>
         <div class="svcLi"><div class="check">✓</div>公开直播开播提醒</div>
       </div>
+
       <div class="glass-card svc-vip" style="padding:24px;">
         <div class="svcHead"><h3>内部会员群</h3><span class="svcTag">核心实战</span></div>
         <div class="svcLi"><div class="check">★</div>实时进出场交易观点推送</div>
@@ -375,6 +380,17 @@
         <div class="svcLi"><div class="check">★</div>杰明自研Tradingview指标共享</div>
         <div class="svcLi"><div class="check">★</div>专属群内答疑</div>
         <div class="svcLi"><div class="check">★</div>付费课程大额折扣</div>
+      </div>
+
+      <div class="glass-card svc-copy" style="padding:24px; display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <div class="svcHead"><h3>跟单交易</h3><span class="svcTag" style="color:var(--accent-cyan);border-color:var(--accent-cyan)">加入方式</span></div>
+          <div style="font-size:14px;color:var(--txt-muted);line-height:1.6;">
+            跟单交易和内部会员群属于独立项目。<br><br>
+            跟单交易入金资金到达会员群门槛要求后，可以申请解锁<b style="color:#fff">内部会员群</b>。
+          </div>
+        </div>
+        <a href="copy-trading.html" class="btn btn-cyan" style="margin-top:20px;">立即跟单</a>
       </div>
     </div>
 
@@ -471,12 +487,6 @@
       </div>
     </div>
 
-    <div style="text-align:center; margin-top: 30px;">
-      <a href="copy-trading.html" class="btn-copy-trade" style="width:100%; max-width:400px; display:inline-flex; justify-content:center;">
-        🔥 立即跟单 🔥
-      </a>
-    </div>
-
     <div class="sectionHead" id="contact">
       <div class="divider"></div>
       <div class="pill"><div class="dot"></div>合作咨询</div>
@@ -525,11 +535,11 @@
            <div class="platIcon" style="color:var(--accent-cyan)">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
           </div>
-          <a class="btn btn-cyan" style="width:auto;padding:6px 14px;margin:0" href="#" target="_blank">跳转</a>
+          <a class="btn btn-cyan" style="width:auto;padding:6px 14px;margin:0" href="https://t.me/+8613120683725" target="_blank">跳转</a>
         </div>
         <p class="miniTitle">Telegram</p>
-        <p class="miniDesc">消息推送频道。</p>
-        <a class="btn btn-cyan" href="#" target="_blank">联系 / 跳转</a>
+        <p class="miniDesc">境外不断连咨询。</p>
+        <a class="btn btn-cyan" href="https://t.me/+8613120683725" target="_blank">联系 / 跳转</a>
       </div>
     </div>
 
@@ -545,7 +555,7 @@
           <div class="platIcon" style="background:transparent;border:none;width:auto;height:auto;">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
           </div>
-          <a class="btn btn-blue" style="width:auto;padding:6px 14px;margin:0" href="#" target="_blank">Go →</a>
+          <a class="btn btn-blue" style="width:auto;padding:6px 14px;margin:0" href="https://v.douyin.com/0HriFjI7p-I/" target="_blank">Go →</a>
         </div>
         <p class="miniTitle">抖音</p>
         <p class="miniDesc">短视频与直播</p>
@@ -556,7 +566,7 @@
            <div class="platIcon" style="background:transparent;border:none;width:auto;height:auto;">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M8 8v8M12 8v8M16 8v8"/></svg>
           </div>
-          <a class="btn btn-blue" style="width:auto;padding:6px 14px;margin:0" href="#" target="_blank">Go →</a>
+          <a class="btn btn-blue" style="width:auto;padding:6px 14px;margin:0" href="https://b23.tv/jKqXRQj" target="_blank">Go →</a>
         </div>
         <p class="miniTitle">B站</p>
         <p class="miniDesc">深度复盘</p>
@@ -567,7 +577,7 @@
            <div class="platIcon" style="background:transparent;border:none;width:auto;height:auto;">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor"/></svg>
           </div>
-          <a class="btn btn-blue" style="width:auto;padding:6px 14px;margin:0" href="#" target="_blank">Go →</a>
+          <a class="btn btn-blue" style="width:auto;padding:6px 14px;margin:0" href="https://www.youtube.com/@GWCAPITAL_OFFICAL" target="_blank">Go →</a>
         </div>
         <p class="miniTitle">YouTube</p>
         <p class="miniDesc">Global Views</p>
@@ -578,7 +588,7 @@
            <div class="platIcon" style="background:transparent;border:none;width:auto;height:auto;color:#fff;">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
           </div>
-          <a class="btn btn-red" style="width:auto;padding:6px 14px;margin:0" href="#" target="_blank">Go →</a>
+          <a class="btn btn-red" style="width:auto;padding:6px 14px;margin:0" href="https://xhslink.com/m/2uZSTgl6a8P" target="_blank">Go →</a>
         </div>
         <p class="miniTitle">小红书</p>
         <p class="miniDesc">图文观点分享</p>
