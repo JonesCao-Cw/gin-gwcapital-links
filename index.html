@@ -38,13 +38,47 @@
     
     body {
       margin: 0; font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
-      color: var(--txt-main); background-color: var(--bg-dark);
-      background-image: 
-        radial-gradient(circle at 15% 10%, rgba(99, 102, 241, 0.18), transparent 40%),
-        radial-gradient(circle at 85% 20%, rgba(34, 211, 238, 0.15), transparent 40%),
-        radial-gradient(circle at 50% 90%, rgba(168, 85, 247, 0.12), transparent 50%);
-      background-attachment: fixed; overflow-x: hidden;
+      color: var(--txt-main); 
+      background-color: var(--bg-dark); /* 纯黑底色，交给动态背景层处理 */
+      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+    }
+
+    /* === 🔥 新增：酷炫流体背景动画 === */
+    .bg-fixed {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1; pointer-events: none; overflow: hidden;
+      background: #030508;
+    }
+    .blob {
+      position: absolute; border-radius: 50%;
+      filter: blur(80px); opacity: 0.5; /* 调整透明度让文字更清晰 */
+      animation: float 20s infinite ease-in-out alternate;
+    }
+    /* 光球1: 左上紫色 */
+    .blob-1 {
+      top: -10%; left: -10%; width: 60vw; height: 60vw;
+      background: radial-gradient(circle, var(--accent-purple), transparent 70%);
+      animation-duration: 25s;
+    }
+    /* 光球2: 右下青色 */
+    .blob-2 {
+      bottom: -10%; right: -10%; width: 70vw; height: 70vw;
+      background: radial-gradient(circle, var(--accent-cyan), transparent 70%);
+      animation-duration: 30s; animation-direction: reverse;
+    }
+    /* 光球3: 中间蓝色游走 */
+    .blob-3 {
+      top: 30%; left: 30%; width: 50vw; height: 50vw;
+      background: radial-gradient(circle, var(--accent-blue), transparent 70%);
+      animation-duration: 22s;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(50px, -50px) scale(1.1); }
+      66% { transform: translate(-30px, 30px) scale(0.9); }
+      100% { transform: translate(0, 0) scale(1); }
     }
 
     ::-webkit-scrollbar { width: 6px; }
@@ -63,11 +97,11 @@
       z-index: 1; 
     }
 
-    /* === Topbar (修复版) === */
+    /* === Topbar (完美还原深色版) === */
     .topbar {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 8px 16px; border-radius: 16px; /* 稍微紧凑一点，像图二 */
-      background: rgba(15, 20, 30, 0.85); /* 深色背景 */
+      padding: 8px 16px; border-radius: 16px;
+      background: rgba(15, 20, 30, 0.85); 
       border: 1px solid rgba(255,255,255,0.08);
       backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
       position: sticky; top: 16px; z-index: 100; 
@@ -75,7 +109,7 @@
     }
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; letter-spacing: -0.5px; }
     
-    /* 🔥 修复 Logo：纯代码绘制，绝对不乱码 */
+    /* Logo：代码生成，不乱码 */
     .logo-box {
       width: 32px; height: 32px;
       background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
@@ -109,7 +143,7 @@
     .grad { background: linear-gradient(135deg, #fff 20%, var(--accent-cyan) 100%); -webkit-background-clip: text; color: transparent; }
     .title p { color: var(--txt-muted); font-size: 15px; margin-top: 12px; max-width: 600px; margin-left: auto; margin-right: auto; }
 
-    /* 跟单按钮样式 */
+    /* 加入我们按钮 */
     .btn-copy-trade {
       display: inline-flex; align-items: center; gap: 8px; justify-content: center;
       margin-top: 24px;
@@ -276,14 +310,17 @@
 </head>
 
 <body>
+  <div class="bg-fixed">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
   <div class="safe-top"></div>
 
   <div class="wrap">
     <div class="topbar">
-      <div class="brand">
-        <div class="logo-box">G</div>
-        GWCAPITAL
-      </div>
+      <div class="brand"><div class="logo-box">G</div>GW Capital</div>
       <div class="nav">
         <a href="#about">关于</a>
         <a href="#feedback">战绩</a>
