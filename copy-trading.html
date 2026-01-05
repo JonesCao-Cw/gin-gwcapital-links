@@ -118,68 +118,80 @@
     p { color: var(--txt-muted); line-height: 1.8; font-size: 15px; margin: 0; }
     p b { color: var(--txt-main); font-weight: 600; }
 
-    /* === ⚠️ 新增：风险提示模块样式 === */
-    .risk-banner-wrap {
-      margin-top: 40px; /* 距离上方间距 */
-      position: relative;
-    }
+    /* === 🔥 新版：高级风险提示模块 === */
+    .risk-banner-wrap { margin-top: 40px; position: relative; }
+    
     .risk-banner {
-      background: rgba(244, 63, 94, 0.08); /* 红色半透明背景 */
-      border: 1px solid var(--accent-red); /* 醒目的红色边框 */
-      border-radius: 16px;
-      padding: 24px;
+      /* 高级渐变背景 */
+      background: linear-gradient(180deg, rgba(244, 63, 94, 0.15) 0%, rgba(20, 25, 35, 0.4) 100%);
+      border: 1px solid rgba(244, 63, 94, 0.4); 
+      border-radius: 20px;
+      padding: 32px 24px;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center; /* 居中内容 */
-      gap: 16px;
-      box-shadow: 0 0 30px rgba(244, 63, 94, 0.15), inset 0 0 20px rgba(244, 63, 94, 0.05);
+      justify-content: center;
+      text-align: center;
       position: relative;
       overflow: hidden;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 40px rgba(244, 63, 94, 0.1);
     }
     
-    /* 左侧高亮条 */
+    /* 顶部红色光条 */
     .risk-banner::before {
-      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-      width: 6px; background: var(--accent-red);
-      box-shadow: 0 0 15px var(--accent-red);
+      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 60%; height: 1px; 
+      background: linear-gradient(90deg, transparent, rgba(244, 63, 94, 1), transparent);
+      box-shadow: 0 0 15px rgba(244, 63, 94, 0.8);
     }
 
-    /* 警示图标动画 */
+    /* 图标样式 */
     .risk-icon-box {
-      font-size: 28px;
-      display: grid; place-items: center;
+      font-size: 32px; margin-bottom: 12px;
+      filter: drop-shadow(0 0 10px rgba(244, 63, 94, 0.6));
       animation: alert-pulse 2s infinite ease-in-out;
     }
 
-    /* 文字样式 */
-    .risk-content {
-      text-align: center; /* 文字居中 */
+    /* 标题样式 */
+    .risk-title {
+      margin: 0 0 12px; font-size: 20px; font-weight: 800; color: #fff;
+      letter-spacing: 0.5px;
     }
-    .risk-content h3 {
-      margin: 0; font-size: 20px; font-weight: 800; color: #fff;
-      letter-spacing: 1px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    }
-    .risk-content p {
-      margin: 4px 0 0; font-size: 13px; color: var(--accent-red); 
-      font-weight: 600; opacity: 0.9;
+    
+    /* 正文样式 */
+    .risk-desc {
+      margin: 0 0 20px; font-size: 13px; color: #feaebc; /* 柔和的粉红灰色 */
+      line-height: 1.6; max-width: 800px;
     }
 
-    /* 最后一句话放大特效 */
+    /* 🔴 核心修改：最后一句做成徽章样式 */
+    .risk-badge-box {
+      display: inline-block;
+      background: rgba(244, 63, 94, 0.15);
+      border: 1px solid rgba(244, 63, 94, 0.5);
+      padding: 8px 20px;
+      border-radius: 50px;
+      box-shadow: 0 0 20px rgba(244, 63, 94, 0.1) inset;
+    }
+
     .final-warn {
-      font-size: 18px !important; 
-      font-weight: 900 !important;
-      color: #fff !important;
-      margin-top: 8px !important;
-      letter-spacing: 1px;
+      margin: 0; font-size: 14px; font-weight: 700; color: #fff;
+      letter-spacing: 1px; text-shadow: 0 0 10px rgba(244, 63, 94, 0.5);
     }
 
     /* 呼吸灯动画 */
     @keyframes alert-pulse {
-      0% { transform: scale(1); opacity: 1; filter: drop-shadow(0 0 0 rgba(244,63,94,0)); }
-      50% { transform: scale(1.1); opacity: 0.8; filter: drop-shadow(0 0 10px rgba(244,63,94,0.5)); }
-      100% { transform: scale(1); opacity: 1; filter: drop-shadow(0 0 0 rgba(244,63,94,0)); }
+      0% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 0 15px rgba(255, 200, 0, 0.8)); }
+      100% { transform: scale(1); opacity: 0.9; }
+    }
+
+    /* 移动端适配 */
+    @media(max-width:900px){
+      .risk-banner { padding: 24px 16px; }
+      .risk-desc { font-size: 12px; }
+      .risk-badge-box { width: 100%; border-radius: 12px; padding: 12px; }
     }
 
     /* === 模块2: 数据看板 === */
@@ -423,10 +435,6 @@
 
     /* 移动端适配 */
     @media(max-width:900px){
-      .risk-banner { flex-direction: column; text-align: center; gap: 8px; padding: 20px; }
-      .risk-banner::before { width: 100%; height: 4px; top: 0; left: 0; bottom: auto; }
-      .final-warn { font-size: 15px !important; } /* 移动端字号修正 */
-      
       .hero-split, .data-container, .terms-layout { grid-template-columns: 1fr; gap: 24px; }
       .stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; } 
       .stat-item { padding: 16px; } .stat-num { font-size: 24px; }
@@ -501,10 +509,15 @@
     <div class="risk-banner-wrap">
       <div class="risk-banner">
         <div class="risk-icon-box">⚠️</div>
-        <div class="risk-content">
-          <h3>跟单交易属于高风险行为，存在亏损本金可能性</h3>
-          <p>跟单不是余额宝理财，不承诺收益，一切盈亏自负，风险承受能力低者不建议参与。</p>
-          <p class="final-warn">参与跟单默认理解认可接受所有风险。</p>
+        
+        <h3 class="risk-title">跟单交易属于高风险行为，存在亏损本金可能性</h3>
+        
+        <p class="risk-desc">
+          跟单不是余额宝理财，不承诺收益，一切盈亏自负，风险承受能力低者不建议参与。
+        </p>
+        
+        <div class="risk-badge-box">
+          <p class="final-warn">参与跟单默认理解认可接受所有风险</p>
         </div>
       </div>
     </div>
