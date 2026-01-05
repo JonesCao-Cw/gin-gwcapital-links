@@ -154,7 +154,7 @@
     /* === 系统分割线 === */
     .system-divider {
       display: flex; align-items: center; justify-content: center; gap: 20px;
-      margin: 100px 0 60px;
+      margin: 100px 0 40px; /* 调整了下边距 */
     }
     .line { height: 1px; width: 100px; background: linear-gradient(90deg, transparent, var(--border-light), transparent); }
     .sys-badge {
@@ -169,14 +169,21 @@
       display: flex; align-items: center; gap: 12px; 
       padding-left: 10px; border-left: 4px solid var(--accent-cyan);
     }
-    
-    /* 🔥 居中大标题样式 (System 02专用) */
+    .head-sys2 { border-left-color: var(--accent-purple); }
+
+    /* 🔥 居中大标题通用样式 */
     .center-head {
       text-align: center; justify-content: center; 
-      font-size: 28px; margin: 0 0 40px; 
+      font-size: 32px; margin: 0 0 40px; 
       border-left: none; padding-left: 0;
-      background: linear-gradient(90deg, #fff, var(--accent-purple)); -webkit-background-clip: text; color: transparent;
+      background-clip: text; -webkit-background-clip: text; color: transparent;
+      letter-spacing: -1px;
     }
+    /* System 01 蓝色主题 */
+    .head-sys1-center { background-image: linear-gradient(90deg, #fff, var(--accent-cyan)); }
+    /* System 02 紫色主题 */
+    .head-sys2-center { background-image: linear-gradient(90deg, #fff, var(--accent-purple)); }
+
 
     /* === 🔥 图片滚动 Marquee === */
     .marquee-wrap {
@@ -362,6 +369,10 @@
       <div class="line"></div><div class="sys-badge">SYSTEM 01</div><div class="line"></div>
     </div>
 
+    <div class="big-section-head center-head head-sys1-center">
+      杰明自有交易Copy
+    </div>
+
     <div class="big-section-head">
       <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
       运作机制 & 门槛
@@ -421,7 +432,7 @@
       <div class="line"></div><div class="sys-badge" style="color:var(--accent-purple)">SYSTEM 02</div><div class="line"></div>
     </div>
 
-    <div class="big-section-head center-head">
+    <div class="big-section-head center-head head-sys2-center">
       杰明智能量化拆单系统
     </div>
 
@@ -436,6 +447,11 @@
         <div class="ea-shot"><img src="images/ea3.jpg" alt="EA Shot 3"></div>
         <div class="ea-shot"><img src="images/ea4.jpg" alt="EA Shot 4"></div>
       </div>
+    </div>
+
+    <div class="big-section-head head-sys2">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+      运作机制 & 门槛
     </div>
 
     <div class="terms-layout">
