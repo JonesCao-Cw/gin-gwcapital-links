@@ -90,7 +90,7 @@
     .grad { background: linear-gradient(135deg, #fff 20%, var(--accent-cyan) 100%); -webkit-background-clip: text; color: transparent; }
     .title p { color: var(--txt-muted); font-size: 15px; margin-top: 12px; max-width: 600px; margin-left: auto; margin-right: auto; }
 
-    /* 跟单按钮样式 (顶部) */
+    /* 跟单按钮样式 */
     .btn-copy-trade {
       display: inline-flex; align-items: center; gap: 8px; justify-content: center;
       margin-top: 24px;
@@ -113,19 +113,33 @@
 
     /* === 跑马灯滚动样式 === */
     .marquee-wrap {
-      position: relative; margin-top: 10px; padding: 10px 0; overflow: hidden;
+      position: relative;
+      margin-top: 10px;
+      padding: 10px 0;
+      overflow: hidden;
       mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
       -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     }
-    .marquee-track { display: flex; gap: 20px; width: max-content; animation: scroll-left 40s linear infinite; }
-    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-track {
+      display: flex;
+      gap: 20px;
+      width: max-content;
+      animation: scroll-left 40s linear infinite; 
+    }
+    .marquee-track:hover {
+      animation-play-state: paused; 
+    }
     .feedback-card {
       width: 260px; height: 340px; border-radius: 16px; overflow: hidden; flex-shrink: 0;
       border: 1px solid var(--glass-border); background: rgba(255,255,255,0.02); transition: transform 0.3s;
     }
     .feedback-card:hover { transform: scale(1.02); border-color: var(--accent-blue); }
     .feedback-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9); }
-    @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); } 
+    }
 
     /* Grid 2 & Slides */
     .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
@@ -147,11 +161,9 @@
     .feat-item { display: flex; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.02); margin-top:10px;}
     .feat-icon { width: 20px; height: 20px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); flex-shrink: 0; margin-top: 2px; }
 
-    /* Services - Updated to 3 Columns */
+    /* Services */
     .serviceGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 20px; }
-    
     .svcHead { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-    /* 🔥 图标样式 */
     .svcHead h3 { margin: 0; font-size: 18px; display: flex; align-items: center; gap: 8px; }
     .svc-icon { width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; font-size: 12px; font-weight: 900; }
     
@@ -159,26 +171,25 @@
     .svcLi { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--txt-muted); margin-bottom:12px; line-height: 1.5; }
     .check { width: 16px; height: 16px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; font-size: 10px; margin-top: 2px;}
 
-    /* 1. 公开群 (灰白) */
+    /* 1. 公开群 */
     .svc-free { border-top-color: rgba(255,255,255,0.2); }
     .svc-free:hover { border-color: rgba(255,255,255,0.3); box-shadow: 0 10px 40px -10px rgba(255,255,255,0.05); }
     .svc-free .svc-icon { background: rgba(255,255,255,0.1); color: #fff; }
     .svc-free .svcTag { background: rgba(255,255,255,0.1); color: var(--txt-muted); }
     .svc-free .check { background: rgba(255,255,255,0.15); color: #fff; }
 
-    /* 2. 内部会员群 (紫色) */
+    /* 2. 内部会员群 */
     .svc-vip { border-top-color: var(--accent-purple); background: linear-gradient(160deg, rgba(168,85,247,0.05), var(--glass-bg)); }
     .svc-vip:hover { border-color: var(--accent-purple); box-shadow: 0 10px 40px -10px rgba(168,85,247,0.2); }
     .svc-vip .svc-icon { background: var(--accent-purple); color: #fff; }
     .svc-vip .svcTag { background: rgba(168, 85, 247, 0.15); color: var(--accent-purple); border-color: rgba(168, 85, 247, 0.3); }
     .svc-vip .check { background: var(--accent-purple); color: #fff; }
 
-    /* 3. 跟单交易 (青色) */
+    /* 3. 跟单交易 */
     .svc-copy { border-top-color: var(--accent-cyan); background: linear-gradient(160deg, rgba(34,211,238,0.05), var(--glass-bg)); }
     .svc-copy:hover { border-color: var(--accent-cyan); box-shadow: 0 10px 40px -10px rgba(34,211,238,0.2); }
     .svc-copy .svc-icon { background: var(--accent-cyan); color: #000; }
     .svc-copy .svcTag { background: rgba(34, 211, 238, 0.15); color: var(--accent-cyan); border-color: rgba(34, 211, 238, 0.3); }
-    /* 🔥 实心方块图标 */
     .svc-copy .check { background: transparent; color: var(--accent-cyan); font-size: 14px; line-height: 1; }
 
     /* Buttons */
@@ -186,11 +197,11 @@
     .btn::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); transform: translateX(-100%); transition: 0.5s; }
     .btn:hover::before { transform: translateX(100%); }
 
-    /* 🔥 显眼的立即跟单按钮 (实心青色) */
+    /* 立即跟单实心按钮 */
     .btn-copy-solid {
       background: var(--accent-cyan); color: #000; border: none;
       box-shadow: 0 0 15px rgba(34,211,238,0.3);
-      margin-top: auto; /* 底部对齐 */
+      margin-top: auto; 
     }
     .btn-copy-solid:hover {
       background: #fff; box-shadow: 0 0 25px rgba(34,211,238,0.6); transform: translateY(-2px);
@@ -423,7 +434,7 @@
                 <span style="color: var(--accent-gold); font-weight: 800;">👑 抖音VIP特权：</span><br>
                 如您已是抖音专属VIP成员，请联系助理可直接申请加入《内部会员群》。
             </div>
-            <a href="snssdk1128://" class="btn" style="background: var(--accent-gold); color: #000; font-weight: 800; border: none; font-size: 12px; margin-top: 0; padding: 10px;">
+            <a href="javascript:void(0)" onclick="handleDouyinVIP()" class="btn" style="background: var(--accent-gold); color: #000; font-weight: 800; border: none; font-size: 12px; margin-top: 0; padding: 10px;">
                 🎵 点击跳转抖音核验身份
             </a>
           </div>
@@ -673,6 +684,20 @@
         showToast('复制失败，请手动复制：' + text);
       }
       document.body.removeChild(ta);
+    }
+
+    // 🔥 抖音 VIP 验证逻辑 (手机/电脑智能判断)
+    function handleDouyinVIP() {
+      // 简单判断是否为移动端
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      
+      if (isMobile) {
+        // 尝试唤起 App
+        window.location.href = "snssdk1128://";
+      } else {
+        // 电脑端直接打开官网
+        window.open("https://www.douyin.com/", "_blank");
+      }
     }
 
     // 轻提示
