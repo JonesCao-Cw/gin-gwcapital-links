@@ -1,137 +1,260 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>在线学习资源共享平台 | 2024班级主页</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Noto Sans SC', sans-serif;
-            background-color: #f5f7fa;
-            color: #2c3e50;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GW内部量化研习社 | 资料库</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="icon" href="images/logo.png" type="image/png">
 
-        .container {
-            text-align: center;
-            background: white;
-            padding: 60px 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            max-width: 600px;
-            width: 90%;
-        }
+  <style>
+    /* === 与主页一致的暗黑科技风 === */
+    :root {
+      --bg-dark: #030508;
+      --accent-cyan: #22d3ee;
+      --accent-blue: #6366f1;
+      --accent-purple: #a855f7;
+      --glass-bg: rgba(20, 25, 35, 0.6);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --txt-main: rgba(255, 255, 255, 0.95);
+      --txt-muted: rgba(255, 255, 255, 0.65);
+    }
 
-        .icon-box {
-            width: 80px;
-            height: 80px;
-            background: #e1f5fe;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 24px;
-            color: #039be5;
-        }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--txt-main);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      /* 静态深邃背景 */
+      background-image: 
+        radial-gradient(circle at 15% 10%, rgba(99, 102, 241, 0.15), transparent 40%),
+        radial-gradient(circle at 85% 90%, rgba(34, 211, 238, 0.12), transparent 40%);
+    }
 
-        h1 {
-            margin: 0 0 12px;
-            font-size: 24px;
-            font-weight: 700;
-            color: #333;
-        }
+    /* === 核心卡片 === */
+    .container {
+      width: 90%;
+      max-width: 480px;
+      padding: 40px 30px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      transform: translateY(0);
+      animation: float 6s ease-in-out infinite;
+    }
 
-        p {
-            margin: 0 0 32px;
-            color: #666;
-            font-size: 15px;
-            line-height: 1.6;
-        }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
 
-        .btn-start {
-            display: inline-block;
-            padding: 16px 48px;
-            background-color: #039be5; /* 沉稳的教育蓝 */
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(3, 155, 229, 0.3);
-        }
+    /* 图标 */
+    .icon-box {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 24px;
+      background: linear-gradient(135deg, rgba(34, 211, 238, 0.1), rgba(99, 102, 241, 0.1));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
+    }
+    .icon-box svg { width: 32px; height: 32px; color: var(--accent-cyan); }
 
-        .btn-start:hover {
-            background-color: #0288d1;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(3, 155, 229, 0.4);
-        }
+    h1 {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      background: linear-gradient(90deg, #fff, var(--accent-cyan));
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
 
-        .footer {
-            margin-top: 40px;
-            font-size: 12px;
-            color: #999;
-        }
+    p {
+      font-size: 14px;
+      color: var(--txt-muted);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
 
-        /* 装饰性的虚假列表 */
-        .fake-list {
-            text-align: left;
-            margin-top: 30px;
-            border-top: 1px solid #eee;
-            padding-top: 20px;
-        }
-        .fake-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 12px;
-            font-size: 13px;
-            color: #555;
-        }
-        .fake-icon {
-            width: 8px; height: 8px;
-            background: #ddd;
-            border-radius: 50%;
-        }
-    </style>
+    /* 按钮 */
+    .btn-start {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+      text-decoration: none;
+    }
+
+    .btn-start:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(34, 211, 238, 0.5);
+    }
+
+    /* 列表区域 */
+    .info-list {
+      margin-top: 32px;
+      text-align: left;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 24px;
+    }
+
+    .list-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 13px;
+      color: var(--txt-muted);
+    }
+    
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-cyan);
+      box-shadow: 0 0 8px var(--accent-cyan);
+    }
+    
+    .notice {
+      color: var(--accent-purple);
+      font-weight: 600;
+    }
+    .dot-notice {
+      background: var(--accent-purple);
+      box-shadow: 0 0 8px var(--accent-purple);
+    }
+
+    /* === 🔥 科技感过场动画 Overlay === */
+    .tech-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: #000;
+      z-index: 9999;
+      display: none; /* 默认隐藏 */
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .loader-ring {
+      width: 80px; height: 80px;
+      border: 4px solid rgba(34, 211, 238, 0.2);
+      border-top: 4px solid var(--accent-cyan);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+    
+    .loading-text {
+      font-family: monospace;
+      color: var(--accent-cyan);
+      font-size: 14px;
+      letter-spacing: 2px;
+      animation: blink 1s infinite;
+    }
+
+    .code-lines {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      color: rgba(255,255,255,0.3);
+      font-family: monospace;
+      font-size: 10px;
+      text-align: left;
+    }
+
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="icon-box">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-            </svg>
-        </div>
-
-        <h1>2025年度 师生学习资料共享库</h1>
-        <p>
-            欢迎访问班级内部资源站。<br>
-            请点击下方按钮进入系统，查阅最新教学课件与参考资料。
-        </p>
-
-        <a href="home.html" class="btn-start">
-            进入学习系统
-        </a>
-
-        <div class="fake-list">
-            <div class="fake-item"><div class="fake-icon"></div>近期更新：微积分基础课程.pdf</div>
-            <div class="fake-item"><div class="fake-icon"></div>近期更新：英语四六级听力素材.zip</div>
-            <div class="fake-item"><div class="fake-icon"></div>通知：本周五下午教研组会议纪要</div>
-        </div>
+  <div class="container">
+    <div class="icon-box">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+      </svg>
     </div>
 
-    <div class="footer">
-        © 2025 Education Resources Platform. Internal Use Only.
+    <h1>学习职业交易员的系统交易术</h1>
+    <p>欢迎访问内部量化研习社。<br>点击下方按钮接入系统，获取最新策略与教研资料。</p>
+
+    <button class="btn-start" onclick="startSystem()">
+      马上开始
+    </button>
+
+    <div class="info-list">
+      <div class="list-item">
+        <div class="dot"></div>
+        <span>近期更新：实战技术分析 (Technical Analysis)</span>
+      </div>
+      <div class="list-item">
+        <div class="dot"></div>
+        <span>近期更新：全球宏观经济分析 (Macro)</span>
+      </div>
+      <div class="list-item notice">
+        <div class="dot dot-notice"></div>
+        <span>通知：每周四晚上九点教研组会议</span>
+      </div>
     </div>
+  </div>
+
+  <div class="tech-overlay" id="overlay">
+    <div class="loader-ring"></div>
+    <div class="loading-text" id="loadingText">SYSTEM INITIALIZING...</div>
+    <div class="code-lines">
+      > Connecting to GW Server...<br>
+      > Verifying User Token...<br>
+      > Access Granted.
+    </div>
+  </div>
+
+  <script>
+    function startSystem() {
+      const overlay = document.getElementById('overlay');
+      const text = document.getElementById('loadingText');
+      
+      // 1. 显示过场动画
+      overlay.style.display = 'flex';
+      
+      // 2. 模拟文字变化
+      setTimeout(() => { text.innerText = "CONNECTING..."; }, 800);
+      setTimeout(() => { text.innerText = "ACCESS GRANTED"; text.style.color = "#34d399"; }, 1800);
+
+      // 3. 跳转 (2秒后)
+      setTimeout(() => {
+        // 🔥 这里跳转到您真正的交易主页
+        window.location.href = 'home.html';
+      }, 2200);
+    }
+  </script>
 
 </body>
 </html>
