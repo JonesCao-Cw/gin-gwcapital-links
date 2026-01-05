@@ -20,8 +20,8 @@
       --accent-purple: #a855f7;
       --accent-green: #34d399;
       --accent-gold: #ffd700;
-      --accent-red: #ff2442; /* 小红书红 */
-      --accent-binance: #F3BA2F; /* 币安黄 */
+      --accent-red: #ff2442; 
+      --accent-binance: #F3BA2F;
       
       /* 玻璃质感 */
       --glass-bg: rgba(255, 255, 255, 0.03);
@@ -90,7 +90,7 @@
     .grad { background: linear-gradient(135deg, #fff 20%, var(--accent-cyan) 100%); -webkit-background-clip: text; color: transparent; }
     .title p { color: var(--txt-muted); font-size: 15px; margin-top: 12px; max-width: 600px; margin-left: auto; margin-right: auto; }
 
-    /* 跟单按钮样式 */
+    /* 跟单按钮样式 (顶部) */
     .btn-copy-trade {
       display: inline-flex; align-items: center; gap: 8px; justify-content: center;
       margin-top: 24px;
@@ -113,47 +113,19 @@
 
     /* === 跑马灯滚动样式 === */
     .marquee-wrap {
-      position: relative;
-      margin-top: 10px;
-      padding: 10px 0;
-      overflow: hidden;
+      position: relative; margin-top: 10px; padding: 10px 0; overflow: hidden;
       mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
       -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     }
-    .marquee-track {
-      display: flex;
-      gap: 20px;
-      width: max-content;
-      animation: scroll-left 40s linear infinite; 
-    }
-    .marquee-track:hover {
-      animation-play-state: paused; 
-    }
+    .marquee-track { display: flex; gap: 20px; width: max-content; animation: scroll-left 40s linear infinite; }
+    .marquee-track:hover { animation-play-state: paused; }
     .feedback-card {
-      width: 260px; 
-      height: 340px; 
-      border-radius: 16px;
-      overflow: hidden;
-      flex-shrink: 0;
-      border: 1px solid var(--glass-border);
-      background: rgba(255,255,255,0.02);
-      transition: transform 0.3s;
+      width: 260px; height: 340px; border-radius: 16px; overflow: hidden; flex-shrink: 0;
+      border: 1px solid var(--glass-border); background: rgba(255,255,255,0.02); transition: transform 0.3s;
     }
-    .feedback-card:hover {
-      transform: scale(1.02);
-      border-color: var(--accent-blue);
-    }
-    .feedback-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; 
-      filter: brightness(0.9);
-    }
-    
-    @keyframes scroll-left {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); } 
-    }
+    .feedback-card:hover { transform: scale(1.02); border-color: var(--accent-blue); }
+    .feedback-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9); }
+    @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
     /* Grid 2 & Slides */
     .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
@@ -177,26 +149,54 @@
 
     /* Services - Updated to 3 Columns */
     .serviceGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 20px; }
-    .svcHead { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-    .svcHead h3 { margin: 0; font-size: 20px; }
-    .svcTag { font-size: 12px; padding: 4px 10px; border-radius: 8px; font-weight: 700; }
     
-    .svc-free .svcTag { background: rgba(255,255,255,0.1); color: var(--txt-muted); }
-    .svc-vip .svcTag { background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue)); color: #fff; }
-    .svc-copy .svcTag { background: rgba(34, 211, 238, 0.15); color: var(--accent-cyan); border: 1px solid rgba(34, 211, 238, 0.3); }
+    .svcHead { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    /* 🔥 图标样式 */
+    .svcHead h3 { margin: 0; font-size: 18px; display: flex; align-items: center; gap: 8px; }
+    .svc-icon { width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; font-size: 12px; font-weight: 900; }
+    
+    .svcTag { font-size: 12px; padding: 4px 10px; border-radius: 8px; font-weight: 700; border: 1px solid transparent; }
+    .svcLi { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--txt-muted); margin-bottom:12px; line-height: 1.5; }
+    .check { width: 16px; height: 16px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; font-size: 10px; margin-top: 2px;}
 
-    .svcLi { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--txt-muted); margin-bottom:10px; }
-    .check { width: 16px; height: 16px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; }
-    .svc-free .check { background: rgba(255,255,255,0.15); color: #fff; font-size: 10px; }
-    .svc-vip .check { background: var(--accent-purple); color: #fff; font-size: 10px; }
-    .svc-copy .check { background: var(--accent-cyan); color: #000; font-size: 10px; }
+    /* 1. 公开群 (灰白) */
+    .svc-free { border-top-color: rgba(255,255,255,0.2); }
+    .svc-free:hover { border-color: rgba(255,255,255,0.3); box-shadow: 0 10px 40px -10px rgba(255,255,255,0.05); }
+    .svc-free .svc-icon { background: rgba(255,255,255,0.1); color: #fff; }
+    .svc-free .svcTag { background: rgba(255,255,255,0.1); color: var(--txt-muted); }
+    .svc-free .check { background: rgba(255,255,255,0.15); color: #fff; }
+
+    /* 2. 内部会员群 (紫色) */
+    .svc-vip { border-top-color: var(--accent-purple); background: linear-gradient(160deg, rgba(168,85,247,0.05), var(--glass-bg)); }
+    .svc-vip:hover { border-color: var(--accent-purple); box-shadow: 0 10px 40px -10px rgba(168,85,247,0.2); }
+    .svc-vip .svc-icon { background: var(--accent-purple); color: #fff; }
+    .svc-vip .svcTag { background: rgba(168, 85, 247, 0.15); color: var(--accent-purple); border-color: rgba(168, 85, 247, 0.3); }
+    .svc-vip .check { background: var(--accent-purple); color: #fff; }
+
+    /* 3. 跟单交易 (青色) */
+    .svc-copy { border-top-color: var(--accent-cyan); background: linear-gradient(160deg, rgba(34,211,238,0.05), var(--glass-bg)); }
+    .svc-copy:hover { border-color: var(--accent-cyan); box-shadow: 0 10px 40px -10px rgba(34,211,238,0.2); }
+    .svc-copy .svc-icon { background: var(--accent-cyan); color: #000; }
+    .svc-copy .svcTag { background: rgba(34, 211, 238, 0.15); color: var(--accent-cyan); border-color: rgba(34, 211, 238, 0.3); }
+    /* 🔥 实心方块图标 */
+    .svc-copy .check { background: transparent; color: var(--accent-cyan); font-size: 14px; line-height: 1; }
 
     /* Buttons */
     .btn { margin-top: 16px; width: 100%; padding: 12px; border-radius: 12px; font-size: 13px; font-weight: 700; text-align: center; cursor: pointer; border: 1px solid transparent; transition: 0.2s; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; gap: 6px; user-select: none;}
     .btn::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); transform: translateX(-100%); transition: 0.5s; }
     .btn:hover::before { transform: translateX(100%); }
 
-    /* 按钮颜色变种 */
+    /* 🔥 显眼的立即跟单按钮 (实心青色) */
+    .btn-copy-solid {
+      background: var(--accent-cyan); color: #000; border: none;
+      box-shadow: 0 0 15px rgba(34,211,238,0.3);
+      margin-top: auto; /* 底部对齐 */
+    }
+    .btn-copy-solid:hover {
+      background: #fff; box-shadow: 0 0 25px rgba(34,211,238,0.6); transform: translateY(-2px);
+    }
+
+    /* 其他按钮变种 */
     .btn-cyan { background: rgba(34, 211, 238, 0.1); color: var(--accent-cyan); border-color: rgba(34, 211, 238, 0.2); }
     .btn-cyan:hover { background: var(--accent-cyan); color: #000; box-shadow: 0 0 20px rgba(34, 211, 238, 0.4); }
     
@@ -254,17 +254,8 @@
 
   <div class="wrap">
     <div class="topbar">
-      <div class="brand">
-        <div class="logo"></div>
-        <b>GWCAPITAL</b>
-      </div>
-      <div class="nav">
-        <a href="#about">关于</a>
-        <a href="#feedback">战绩</a>
-        <a href="#services">服务</a>
-        <a href="#partner">开户</a>
-      </div>
-      <a class="cta" href="#partner">立即开始</a>
+      <div class="brand"><div class="logo">G</div>GW Capital</div>
+      <a href="index.html" class="back-btn">← 返回首页</a>
     </div>
 
     <div class="hero">
@@ -272,7 +263,7 @@
         <h1>欢迎来到 <span class="grad">GWCAPITAL</span></h1>
         <p>个人合作入口与资源聚合站</p>
         <p>你与财富自由，只差一个牛市</p>
-        <a href="#services" class="btn-copy-trade">
+        <a href="copy-trading.html" class="btn-copy-trade">
           🚀 加入我们
         </a>
       </div>
@@ -367,14 +358,20 @@
 
     <div class="serviceGrid">
       <div class="glass-card svc-free" style="padding:24px;">
-        <div class="svcHead"><h3>公开免费群</h3><span class="svcTag">免费追踪</span></div>
+        <div class="svcHead">
+          <h3><div class="svc-icon">01</div>公开免费群</h3>
+          <span class="svcTag">免费追踪</span>
+        </div>
         <div class="svcLi"><div class="check">✓</div>获取市场一手资讯</div>
         <div class="svcLi"><div class="check">✓</div>不定期交易观点推送</div>
         <div class="svcLi"><div class="check">✓</div>公开直播开播提醒</div>
       </div>
 
       <div class="glass-card svc-vip" style="padding:24px;">
-        <div class="svcHead"><h3>内部会员群</h3><span class="svcTag">核心实战</span></div>
+        <div class="svcHead">
+          <h3><div class="svc-icon">02</div>内部会员群</h3>
+          <span class="svcTag">核心实战</span>
+        </div>
         <div class="svcLi"><div class="check">★</div>实时进出场交易观点推送</div>
         <div class="svcLi"><div class="check">★</div>自用指标工具、深度研报共享</div>
         <div class="svcLi"><div class="check">★</div>杰明自研Tradingview指标共享</div>
@@ -384,13 +381,20 @@
 
       <div class="glass-card svc-copy" style="padding:24px; display:flex; flex-direction:column; justify-content:space-between;">
         <div>
-          <div class="svcHead"><h3>跟单交易</h3><span class="svcTag" style="color:var(--accent-cyan);border-color:var(--accent-cyan)">加入方式</span></div>
-          <div style="font-size:14px;color:var(--txt-muted);line-height:1.6;">
-            跟单交易和内部会员群属于独立项目。<br><br>
-            跟单交易入金资金到达会员群门槛要求后，可以申请解锁<b style="color:#fff">内部会员群</b>。
+          <div class="svcHead">
+            <h3><div class="svc-icon">03</div>跟单交易</h3>
+            <span class="svcTag">加入方式</span>
+          </div>
+          <div class="svcLi">
+            <div class="check">■</div> 
+            <span>跟单交易和内部会员群属于独立项目。</span>
+          </div>
+          <div class="svcLi">
+            <div class="check">■</div> 
+            <span>入金达标后，可申请解锁<b style="color:#fff;margin-left:4px">内部会员群</b>。</span>
           </div>
         </div>
-        <a href="copy-trading.html" class="btn btn-cyan" style="margin-top:20px;">立即跟单</a>
+        <a href="copy-trading.html" class="btn btn-copy-solid">立即跟单</a>
       </div>
     </div>
 
@@ -527,7 +531,7 @@
         </div>
         <p class="miniTitle">2133589751</p>
         <p class="miniDesc">点击按钮自动复制QQ号并跳转QQ。</p>
-        <div class="btn btn-blue" onclick="handleSocial('2133589751', 'mqq://')">复制并跳转QQ</div>
+        <div class="btn btn-blue" onclick="handleSocial('2133589751', 'tencent://message/?uin=2133589751&Site=GWCapital&Menu=yes')">复制并跳转QQ</div>
       </div>
 
       <div class="glass-card miniCard">
