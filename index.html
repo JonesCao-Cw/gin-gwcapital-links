@@ -39,12 +39,12 @@
     body {
       margin: 0; font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
       color: var(--txt-main); 
-      background-color: var(--bg-dark); /* 纯黑底色，交给动态背景层处理 */
+      background-color: var(--bg-dark); 
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* === 🔥 新增：酷炫流体背景动画 === */
+    /* === 动态流体背景动画 === */
     .bg-fixed {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       z-index: -1; pointer-events: none; overflow: hidden;
@@ -52,22 +52,19 @@
     }
     .blob {
       position: absolute; border-radius: 50%;
-      filter: blur(80px); opacity: 0.5; /* 调整透明度让文字更清晰 */
+      filter: blur(80px); opacity: 0.5; 
       animation: float 20s infinite ease-in-out alternate;
     }
-    /* 光球1: 左上紫色 */
     .blob-1 {
       top: -10%; left: -10%; width: 60vw; height: 60vw;
       background: radial-gradient(circle, var(--accent-purple), transparent 70%);
       animation-duration: 25s;
     }
-    /* 光球2: 右下青色 */
     .blob-2 {
       bottom: -10%; right: -10%; width: 70vw; height: 70vw;
       background: radial-gradient(circle, var(--accent-cyan), transparent 70%);
       animation-duration: 30s; animation-direction: reverse;
     }
-    /* 光球3: 中间蓝色游走 */
     .blob-3 {
       top: 30%; left: 30%; width: 50vw; height: 50vw;
       background: radial-gradient(circle, var(--accent-blue), transparent 70%);
@@ -97,7 +94,7 @@
       z-index: 1; 
     }
 
-    /* === Topbar (完美还原深色版) === */
+    /* === Topbar === */
     .topbar {
       display: flex; align-items: center; justify-content: space-between;
       padding: 8px 16px; border-radius: 16px;
@@ -109,7 +106,6 @@
     }
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; letter-spacing: -0.5px; }
     
-    /* Logo：代码生成，不乱码 */
     .logo-box {
       width: 32px; height: 32px;
       background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
@@ -151,7 +147,7 @@
       background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
       color: #fff; font-size: 16px; font-weight: 800; text-decoration: none;
       box-shadow: 0 0 20px rgba(99,102,241,0.4); border: 1px solid rgba(255,255,255,0.2);
-      transition: all 0.3s ease;
+      transition: all 0.3s ease; cursor: pointer;
     }
     .btn-copy-trade:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 0 40px rgba(99,102,241,0.6); filter: brightness(1.1); }
 
@@ -293,7 +289,32 @@
     .risk-title { display: flex; align-items: center; gap: 8px; color: #ef4444; font-weight: 800; font-size: 14px; margin-bottom: 10px; }
     .risk ul { margin: 0; padding-left: 18px; color: var(--txt-muted); font-size: 12px; line-height: 1.8; }
     
-    @media (max-width: 900px) {
+    /* === 🔥 弹窗样式 (Hero按钮专用) === */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 999; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
+    .modal-overlay.active { display: flex; opacity: 1; }
+    .modal-box { 
+      background: #1a1a2e; border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 32px; 
+      max-width: 480px; width: 90%; text-align: center; box-shadow: 0 30px 80px rgba(0,0,0,0.8); 
+      transform: scale(0.95); transition: transform 0.3s; 
+    }
+    .modal-overlay.active .modal-box { transform: scale(1); }
+    
+    .modal-title { font-size: 22px; font-weight: 900; margin-bottom: 16px; color: #fff; }
+    .modal-desc { color: var(--txt-muted); font-size: 15px; line-height: 1.6; margin-bottom: 28px; }
+    .modal-close { position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; background: rgba(255,255,255,0.05); border-radius: 50%; display: grid; place-items: center; cursor: pointer; color: #aaa; transition:.2s; }
+    .modal-close:hover { background: rgba(255,255,255,0.15); color: #fff; }
+
+    .modal-btns { display: flex; flex-direction: column; gap: 12px; }
+    .m-btn { 
+      padding: 16px; border-radius: 12px; font-weight: 700; cursor: pointer; text-decoration: none; 
+      display: flex; align-items: center; justify-content: center; transition:.2s; 
+    }
+    .m-btn-confirm { background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); color: #fff; box-shadow: 0 4px 20px rgba(99,102,241,0.3); }
+    .m-btn-confirm:hover { filter: brightness(1.1); transform: translateY(-2px); }
+    .m-btn-contact { background: rgba(255,255,255,0.05); color: var(--accent-cyan); border: 1px solid rgba(255,255,255,0.1); }
+    .m-btn-contact:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+    @media(max-width:900px){ 
       .grid2, .serviceGrid { grid-template-columns: 1fr; gap: 20px; }
       .grid4 { grid-template-columns: 1fr 1fr; gap: 16px; }
       .nav { display: none; }
@@ -335,9 +356,9 @@
         <h1>欢迎来到 <span class="grad">GWCAPITAL</span></h1>
         <p>个人合作入口与资源聚合站</p>
         <p>你与财富自由，只差一个牛市</p>
-        <a href="#services" class="btn-copy-trade">
-          🚀 加入我们
-        </a>
+        <div onclick="openHeroModal()" class="btn-copy-trade" style="cursor: pointer;">
+          🚀 立即跟单
+        </div>
       </div>
     </div>
 
@@ -413,7 +434,6 @@
         <div class="feedback-card"><img src="images/f3.jpg" alt="反馈3"></div>
         <div class="feedback-card"><img src="images/f4.jpg" alt="反馈4"></div>
         <div class="feedback-card"><img src="images/f5.jpg" alt="反馈5"></div>
-        
         <div class="feedback-card"><img src="images/f1.jpg" alt="反馈1"></div>
         <div class="feedback-card"><img src="images/f2.jpg" alt="反馈2"></div>
         <div class="feedback-card"><img src="images/f3.jpg" alt="反馈3"></div>
@@ -457,14 +477,8 @@
             <h3><div class="svc-icon">03</div>跟单交易</h3>
             <span class="svcTag">加入方式</span>
           </div>
-          <div class="svcLi">
-            <div class="check">■</div> 
-            <span>跟单交易和内部会员群属于独立项目。</span>
-          </div>
-          <div class="svcLi">
-            <div class="check">■</div> 
-            <span>入金达标后，可申请解锁<b style="color:#fff;margin-left:4px">内部会员群</b>。</span>
-          </div>
+          <div class="svcLi"><div class="check">■</div><span>跟单交易和内部会员群属于独立项目。</span></div>
+          <div class="svcLi"><div class="check">■</div><span>入金达标后，可申请解锁<b style="color:#fff;margin-left:4px">内部会员群</b>。</span></div>
         </div>
         <a href="copy-trading.html" class="btn btn-copy-solid">立即跟单</a>
       </div>
@@ -684,6 +698,26 @@
     </div>
   </div>
 
+  <div class="modal-overlay" id="heroModal">
+    <div class="modal-box">
+      <div class="modal-close" onclick="closeHeroModal()">×</div>
+      <h2 class="modal-title">温馨提示 🔔</h2>
+      <p class="modal-desc">
+        请仔细阅读当前界面合作信息，了解风险与规则后再进行操作。
+      </p>
+      
+      <div class="modal-btns">
+        <div class="m-btn m-btn-contact" onclick="closeHeroModal(); document.getElementById('services').scrollIntoView();">
+          前去阅读
+        </div>
+
+        <a href="copy-trading.html" class="m-btn m-btn-confirm">
+          我已阅读，前往跟单 →
+        </a>
+      </div>
+    </div>
+  </div>
+
   <script>
     // 轮播图逻辑
     const track = document.getElementById('track');
@@ -747,7 +781,7 @@
       document.body.removeChild(ta);
     }
 
-    // 🔥 抖音 VIP 验证逻辑
+    // 🔥 抖音 VIP 验证逻辑 (电脑开官网，手机开APP)
     function handleDouyinVIP() {
       const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
       if (isMobile) {
@@ -756,6 +790,18 @@
         window.open("https://www.douyin.com/", "_blank");
       }
     }
+
+    // 🔥 弹窗控制逻辑
+    function openHeroModal() {
+      document.getElementById('heroModal').classList.add('active');
+    }
+    function closeHeroModal() {
+      document.getElementById('heroModal').classList.remove('active');
+    }
+    // 点击遮罩关闭
+    document.getElementById('heroModal').addEventListener('click', (e) => {
+      if(e.target === document.getElementById('heroModal')) closeHeroModal();
+    });
 
     // 轻提示
     function showToast(msg){
