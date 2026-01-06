@@ -75,21 +75,20 @@
     }
     .back-btn:hover{ background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.2); }
 
-    /* === 通用玻璃卡片样式 (已升级交互效果) === */
+    /* === 通用玻璃卡片样式 === */
     .glass-panel {
       background: var(--bg-glass);
       border: 1px solid var(--border-light);
       border-radius: 24px;
       backdrop-filter: blur(16px);
       box-shadow: 0 4px 24px -1px rgba(0,0,0,0.2);
-      transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s, border-color 0.3s; /* 优化动画曲线 */
+      transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s, border-color 0.3s;
     }
-    
-    /* 🔥 新增：鼠标悬停高亮+上浮效果 */
+    /* 鼠标悬停高亮+上浮效果 */
     .glass-panel:hover {
-      transform: translateY(-6px); /* 向上浮动 */
-      box-shadow: 0 20px 40px -5px rgba(0,0,0,0.4); /* 阴影加深 */
-      border-color: rgba(255,255,255,0.25); /* 边框变亮 */
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px -5px rgba(0,0,0,0.4);
+      border-color: rgba(255,255,255,0.25);
     }
 
     /* === 模块1: 顶部轮播 === */
@@ -114,23 +113,16 @@
       font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
       border: 1px solid rgba(99, 102, 241, 0.2);
     }
-
-    /* 🔥 优化后的 Hero 标题样式 */
     .hero-title { 
-      font-size: 42px; /* 稍微加大字号 */
-      margin: 0 0 24px; /* 增加底部间距 */
-      /* 优化渐变色，使其更通透 */
+      font-size: 42px; margin: 0 0 24px; 
       background: linear-gradient(135deg, #fff 30%, #cffafe 100%); 
       -webkit-background-clip: text; color: transparent;
-      line-height: 1.3; /* 增加行高，解决拥挤问题 */
-      letter-spacing: -0.5px;
-      font-weight: 900;
+      line-height: 1.3; letter-spacing: -0.5px; font-weight: 900;
     }
-    
     p { color: var(--txt-muted); line-height: 1.8; font-size: 15px; margin: 0; }
     p b { color: var(--txt-main); font-weight: 600; }
 
-    /* === 🔥 新版：高级风险提示模块 === */
+    /* === 风险提示模块 === */
     .risk-banner-wrap { margin-top: 40px; position: relative; }
     
     .risk-banner {
@@ -143,20 +135,17 @@
       backdrop-filter: blur(12px);
       box-shadow: 0 0 40px rgba(244, 63, 94, 0.1);
     }
-    
     .risk-banner::before {
       content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
       width: 60%; height: 1px; 
       background: linear-gradient(90deg, transparent, rgba(244, 63, 94, 1), transparent);
       box-shadow: 0 0 15px rgba(244, 63, 94, 0.8);
     }
-
     .risk-icon-box {
       font-size: 32px; margin-bottom: 12px;
       filter: drop-shadow(0 0 10px rgba(244, 63, 94, 0.6));
       animation: alert-pulse 2s infinite ease-in-out;
     }
-
     .risk-title { margin: 0 0 12px; font-size: 20px; font-weight: 800; color: #fff; letter-spacing: 0.5px; }
     .risk-desc { margin: 0 0 20px; font-size: 13px; color: #feaebc; line-height: 1.6; max-width: 800px; }
 
@@ -167,7 +156,6 @@
       padding: 8px 20px; border-radius: 50px;
       box-shadow: 0 0 20px rgba(244, 63, 94, 0.1) inset;
     }
-
     .final-warn { margin: 0; font-size: 14px; font-weight: 700; color: #fff; letter-spacing: 1px; text-shadow: 0 0 10px rgba(244, 63, 94, 0.5); }
 
     @keyframes alert-pulse {
@@ -176,7 +164,6 @@
       100% { transform: scale(1); opacity: 0.9; }
     }
 
-    /* 移动端适配 */
     @media(max-width:900px){
       .risk-banner { padding: 24px 16px; }
       .risk-desc { font-size: 12px; }
@@ -210,8 +197,6 @@
     .chart-note { text-align:center; margin-top:16px; font-size:12px; color:var(--txt-muted); opacity:0.7; }
 
     .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; height: 100%; }
-    
-    /* 单独的 stat-item 也继承 glass-panel 的 hover 效果，这里只需微调内部布局 */
     .stat-item { 
       padding: 24px; text-align: center; 
       display: flex; flex-direction: column; justify-content: center;
@@ -237,8 +222,6 @@
       display: flex; align-items: center; gap: 12px; 
       padding-left: 10px; border-left: 4px solid var(--accent-cyan);
     }
-    
-    /* 居中大标题 (System 01 & 02 & 03) */
     .center-head {
       text-align: center; justify-content: center; 
       font-size: 32px; margin: 0 0 40px; 
@@ -276,15 +259,11 @@
     /* === 合作条款布局 === */
     .terms-layout { 
       display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; 
-      align-items: stretch; /* 关键：强制等高 */
+      align-items: stretch; 
     }
-    
     .process-list { display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
     
-    .step-item {
-      padding: 20px 24px; display: flex; gap: 20px; align-items: center;
-      /* hover 效果由 .glass-panel 提供，这里只需微调 */
-    }
+    .step-item { padding: 20px 24px; display: flex; gap: 20px; align-items: center; }
     
     .step-idx { 
       width: 32px; height: 32px; border-radius: 10px; flex-shrink: 0;
@@ -341,9 +320,10 @@
     .btn-gold-r:hover { filter: brightness(1.1); box-shadow: 0 0 25px rgba(255, 215, 0, 0.5); transform: translateY(-2px); }
 
 
-    /* 警示框 */
+    /* === 🔴 统一的红色警示框 (所有系统通用) === */
     .notice-box {
       margin-top: auto; 
+      /* 强制使用红色主题 */
       background: rgba(244, 63, 94, 0.06); 
       border: 1px dashed rgba(244, 63, 94, 0.3); 
       border-radius: 12px; padding: 16px; text-align: left;
@@ -352,7 +332,34 @@
     .notice-list { margin: 0; padding-left: 16px; color: var(--txt-muted); font-size: 12px; line-height: 1.7; }
     .notice-list b { color: #fff; font-weight: 600; }
 
-    /* === 🆚 新增：对比表格模块 === */
+    /* === 🔥 严厉处罚条款样式 === */
+    .punish-row {
+      margin-top: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      list-style: none; /* 去除原有列表点 */
+      margin-left: -16px; /* 修正缩进 */
+      padding-left: 16px;
+    }
+    .punish-badge {
+      background: #f59e0b; /* 醒目的橙黄色 */
+      color: #000;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 900;
+      font-size: 11px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .punish-text {
+      color: #ff4d4f; /* 高亮红色 */
+      font-weight: 700;
+      font-size: 13px; /* 字体加大 */
+      line-height: 1.4;
+    }
+
+    /* === 🆚 对比表格模块 === */
     .compare-section { margin-top: 100px; }
     .compare-grid {
       display: grid;
@@ -425,14 +432,13 @@
       .btn-group { flex-direction: row; } 
       .wrap { padding: 16px 16px 80px; }
       .action-panel { height: auto; }
-      .hero-title { font-size: 32px; } /* 移动端标题适配 */
+      .hero-title { font-size: 32px; }
       
       .compare-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
       .c-mid { display: none; }
       .c-head { height: 110px; padding: 16px; }
       .ch-title { font-size: 15px; }
       .c-row { font-size: 12px; padding: 10px; flex-direction: column; gap: 4px; }
-      
       .c-val::before {
         content: attr(data-label);
         display: block; font-size: 9px; opacity: 0.4; margin-bottom: 2px;
@@ -610,12 +616,17 @@
         </div>
 
         <div class="notice-box">
-          <div class="notice-title" style="color:var(--accent-purple)">⚠️ 参与必读事项：</div>
+          <div class="notice-title">⚠️ 参与必读事项：</div>
           <ul class="notice-list">
             <li><b>资金门槛：</b>账户净入金必须满足 <span style="color:#fff;border-bottom:1px dashed #fff">$2,000</span>。</li>
             <li><b>指定券商：</b>Dprime (支持美分账户)。</li>
             <li><b>接入流程：</b>开户入金后，请点击“立即跟单”联系助理挂载系统。</li>
             <li><b>风险提示：</b>量化交易存在风险，请使用闲钱参与。</li>
+            
+            <li class="punish-row">
+              <span class="punish-badge">严厉处罚</span>
+              <span class="punish-text">若发现不在名下私自跟单，永久拉黑。</span>
+            </li>
           </ul>
         </div>
       </div>
@@ -680,7 +691,11 @@
             <li><b>资金门槛：</b>账户净入金必须满足 <span style="color:#fff;border-bottom:1px dashed #fff">$5,000</span>。</li>
             <li><b>指定券商：</b>TMGM (Trademax)。</li>
             <li><b>风险自担：</b>私自跟单所产生的风险与亏损，自行承担。</li>
-            <li><b>严厉处罚：</b>若发现<span style="color:#f43f5e">不在名下私自跟单</span>，永久拉黑。</li>
+            
+            <li class="punish-row">
+              <span class="punish-badge">严厉处罚</span>
+              <span class="punish-text">若发现不在名下私自跟单，永久拉黑。</span>
+            </li>
           </ul>
         </div>
       </div>
@@ -752,12 +767,17 @@
         </div>
 
         <div class="notice-box">
-          <div class="notice-title" style="color:var(--accent-gold)">⚠️ 长线美股必读：</div>
+          <div class="notice-title">⚠️ 长线美股必读：</div>
           <ul class="notice-list">
             <li><b>资金门槛：</b>账户净入金必须满足 <span style="color:#fff;border-bottom:1px dashed #fff">$10,000</span>。</li>
             <li><b>指定券商：</b>TMGM (Trademax)。</li>
             <li><b>投资风格：</b>超长线持有，需具备极强的耐心。</li>
             <li><b>风控说明：</b>低杠杆运行，默认无硬止损 (可定制)。</li>
+            
+            <li class="punish-row">
+              <span class="punish-badge">严厉处罚</span>
+              <span class="punish-text">若发现不在名下私自跟单，永久拉黑。</span>
+            </li>
           </ul>
         </div>
       </div>
