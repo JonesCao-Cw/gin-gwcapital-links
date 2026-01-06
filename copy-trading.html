@@ -22,7 +22,8 @@
       --accent-green: #10b981; 
       --accent-purple: #a855f7; 
       --accent-red: #f43f5e; 
-      --accent-gold: #ffd700;
+      --accent-gold: #ffd700; /* SYSTEM 03 主色 */
+      --accent-orange: #f97316;
       
       --txt-main: #ffffff; 
       --txt-muted: #94a3b8; 
@@ -249,7 +250,7 @@
       padding-left: 10px; border-left: 4px solid var(--accent-cyan);
     }
     
-    /* 居中大标题 (System 01 & 02) */
+    /* 居中大标题 (System 01 & 02 & 03) */
     .center-head {
       text-align: center; justify-content: center; 
       font-size: 32px; margin: 0 0 40px; 
@@ -259,7 +260,11 @@
     }
     .head-sys1-center { background-image: linear-gradient(90deg, #fff, var(--accent-cyan)); }
     .head-sys2-center { background-image: linear-gradient(90deg, #fff, var(--accent-purple)); }
+    /* System 3 标题渐变 */
+    .head-sys3-center { background-image: linear-gradient(90deg, #fff, var(--accent-gold)); }
+
     .head-sys2 { border-left-color: var(--accent-purple); }
+    .head-sys3 { border-left-color: var(--accent-gold); }
 
     /* === 图片滚动 Marquee === */
     .marquee-wrap {
@@ -310,6 +315,8 @@
     }
     .idx-cyan { color: var(--accent-cyan); border-color: rgba(34, 211, 238, 0.3); background: rgba(34, 211, 238, 0.1); }
     .idx-purp { color: var(--accent-purple); border-color: rgba(168, 85, 247, 0.3); background: rgba(168, 85, 247, 0.1); }
+    /* System 03 序号颜色 */
+    .idx-gold { color: var(--accent-gold); border-color: rgba(255, 215, 0, 0.3); background: rgba(255, 215, 0, 0.1); }
 
     .step-txt h4 { margin: 0 0 4px; font-size: 15px; color: #fff; font-weight: 700; }
     .step-txt p { margin: 0; font-size: 13px; color: var(--txt-muted); line-height: 1.5; }
@@ -327,7 +334,8 @@
       box-shadow: 0 20px 50px -10px rgba(0,0,0,0.5);
     }
     .panel-sys1 { border: 1px solid rgba(99, 102, 241, 0.3); }
-    .panel-sys2 { border: 1px solid rgba(168, 85, 247, 0.3); } /* 紫色边框 */
+    .panel-sys2 { border: 1px solid rgba(168, 85, 247, 0.3); } 
+    .panel-sys3 { border: 1px solid rgba(255, 215, 0, 0.3); } /* 金色边框 */
     
     .profit-title { font-size: 12px; font-weight: 700; letter-spacing: 2px; opacity: 0.9; margin-bottom: 4px; }
     .profit-val { font-size: 56px; font-weight: 900; color: #fff; margin: 12px 0; letter-spacing: -2px; text-shadow: 0 0 30px rgba(255,255,255,0.1); }
@@ -339,17 +347,24 @@
       cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; 
       transition: .3s;
     }
-    /* TMGM 按钮 */
+    /* TMGM 按钮 (Blue/Cyan) */
     .btn-tmgm-l { background: rgba(34, 211, 238, 0.08); color: var(--accent-cyan); border: 1px solid rgba(34, 211, 238, 0.2); }
     .btn-tmgm-l:hover { background: var(--accent-cyan); color: #000; box-shadow: 0 0 20px rgba(34, 211, 238, 0.3); }
     .btn-tmgm-r { background: var(--accent-blue); color: #fff; border: 1px solid var(--accent-blue); }
     .btn-tmgm-r:hover { background: #4f46e5; box-shadow: 0 0 25px rgba(99, 102, 241, 0.5); transform: translateY(-2px); }
 
-    /* Dprime 按钮 */
+    /* Dprime 按钮 (Purple) */
     .btn-dprime-l { background: rgba(168, 85, 247, 0.08); color: var(--accent-purple); border: 1px solid rgba(168, 85, 247, 0.2); }
     .btn-dprime-l:hover { background: var(--accent-purple); color: #fff; box-shadow: 0 0 20px rgba(168, 85, 247, 0.3); }
     .btn-dprime-r { background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue)); color: #fff; border: 1px solid rgba(168, 85, 247, 0.3); }
     .btn-dprime-r:hover { filter: brightness(1.1); box-shadow: 0 0 25px rgba(168, 85, 247, 0.5); transform: translateY(-2px); }
+
+    /* Gold 按钮 (System 3) */
+    .btn-gold-l { background: rgba(255, 215, 0, 0.08); color: var(--accent-gold); border: 1px solid rgba(255, 215, 0, 0.2); }
+    .btn-gold-l:hover { background: var(--accent-gold); color: #000; box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+    .btn-gold-r { background: linear-gradient(90deg, var(--accent-gold), var(--accent-orange)); color: #fff; border: 1px solid rgba(255, 215, 0, 0.3); }
+    .btn-gold-r:hover { filter: brightness(1.1); box-shadow: 0 0 25px rgba(255, 215, 0, 0.5); transform: translateY(-2px); }
+
 
     /* 警示框 */
     .notice-box {
@@ -704,6 +719,83 @@
       </div>
     </div>
 
+    <div class="system-divider">
+      <div class="line"></div>
+      <div class="sys-badge" style="color:var(--accent-gold)">SYSTEM 03</div>
+      <div class="line"></div>
+    </div>
+
+    <div class="big-section-head center-head head-sys3-center">
+      杰明自有长线美股
+    </div>
+
+    <div class="big-section-head head-sys3">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+      运作机制 & 门槛
+    </div>
+
+    <div class="terms-layout">
+      <div class="process-list">
+        <div class="glass-panel step-item">
+          <div class="step-idx idx-gold">01</div>
+          <div class="step-txt">
+            <h4>专属账户开户</h4>
+            <p>在 TMGM 开设专属美股账户，净入金门槛 <b>$10,000</b> 起。</p>
+          </div>
+        </div>
+        <div class="step-arrow">↓</div>
+
+        <div class="glass-panel step-item">
+          <div class="step-idx idx-gold">02</div>
+          <div class="step-txt">
+            <h4>宏观博弈 & 品种聚焦</h4>
+            <p>只做美股相关核心品种，基于宏观经济周期进行布局，大盈亏比策略。</p>
+          </div>
+        </div>
+        <div class="step-arrow">↓</div>
+
+        <div class="glass-panel step-item">
+          <div class="step-idx idx-gold">03</div>
+          <div class="step-txt">
+            <h4>低杠杆 & 超长线</h4>
+            <p>实用极低杠杆长线持有，适合有耐心、追求资产长期增值的投资者。</p>
+          </div>
+        </div>
+        <div class="step-arrow">↓</div>
+
+        <div class="glass-panel step-item">
+          <div class="step-idx idx-gold">04</div>
+          <div class="step-txt">
+            <h4>弹性风控机制</h4>
+            <p>默认不设硬止损以利用低杠杆抗波动。如需设置止损，可联系助理单独调整。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-panel action-panel panel-sys3">
+        <div>
+          <div class="profit-title" style="color:var(--accent-gold)">PROFIT SHARE</div>
+          <div class="profit-val">30%</div>
+          <div class="profit-sub">利润分成 (高水位机制)</div>
+          
+          <div class="btn-group">
+            <a href="https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans" target="_blank" class="btn-act btn-gold-l">立即开户</a>
+            <div class="btn-act btn-gold-r" onclick="openStockModal()">立即跟单</div>
+          </div>
+        </div>
+
+        <div class="notice-box">
+          <div class="notice-title" style="color:var(--accent-gold)">⚠️ 长线美股必读：</div>
+          <ul class="notice-list">
+            <li><b>资金门槛：</b>账户净入金必须满足 <span style="color:#fff;border-bottom:1px dashed #fff">$10,000</span>。</li>
+            <li><b>指定券商：</b>TMGM (Trademax)。</li>
+            <li><b>投资风格：</b>超长线持有，需具备极强的耐心。</li>
+            <li><b>风控说明：</b>低杠杆运行，默认无硬止损 (可定制)。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
     <div class="compare-section">
       <div class="section-header">
         <div class="section-title">全系策略深度对比</div>
@@ -780,6 +872,22 @@
     </div>
   </div>
 
+  <div class="modal-wrap" id="stockModal">
+    <div class="modal-panel">
+      <div class="close-icon" onclick="closeModal('stockModal')">×</div>
+      <h2 class="modal-title" style="color:var(--accent-gold)">美股长线 挂载确认 🇺🇸</h2>
+      <p class="modal-desc">
+        该策略为超长线低杠杆模式，请确认您已完成 <b>TMGM 开户</b><br>且账户净值满足 <b>$10,000</b> 起步？
+      </p>
+      
+      <div class="m-btns">
+        <a href="#" target="_blank" class="m-btn mb-1" style="background:linear-gradient(90deg, var(--accent-gold), var(--accent-orange))">我已知晓，联系助理挂载！🚀</a>
+        <div class="m-btn mb-2" onclick="goContact()">已有账户，联系助理核实</div>
+        <div class="m-btn mb-3" onclick="goPartner()">没有账户？前往开户 →</div>
+      </div>
+    </div>
+  </div>
+
   <div class="modal-wrap" id="dprimeModal">
     <div class="modal-panel">
       <div class="close-icon" onclick="closeModal('dprimeModal')">×</div>
@@ -811,6 +919,7 @@
     // 弹窗逻辑
     function openTMGMModal() { document.getElementById('tmgmModal').classList.add('show'); }
     function openDprimeModal() { document.getElementById('dprimeModal').classList.add('show'); }
+    function openStockModal() { document.getElementById('stockModal').classList.add('show'); }
     
     function closeModal(id) { document.getElementById(id).classList.remove('show'); }
 
