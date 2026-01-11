@@ -443,6 +443,65 @@
       .miniCard { min-height: auto; }
       .title h1 { font-size: 28px; }
     }
+
+    /* === 🔥 NEW: 鹤立鸡群的教程板块标题设计 === */
+    .tut-header-distinct {
+      text-align: center;
+      margin: 80px 0 50px; /* 加大间距，独立成区 */
+      position: relative;
+    }
+
+    .tut-big-title {
+      font-size: clamp(32px, 5vw, 48px); /* 响应式超大字体 */
+      font-weight: 900;
+      /* 黄金流光渐变 */
+      background: linear-gradient(to right, #eab308, #fef08a, #eab308); 
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -1px;
+      text-shadow: 0 10px 40px rgba(234, 179, 8, 0.3); /* 金色氛围光 */
+      display: inline-block;
+      position: relative;
+    }
+
+    /* 标题右上角的“必看”小标签 */
+    .tut-badge-pop {
+      position: absolute;
+      top: -15px;
+      right: -30px;
+      background: #ff2442;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 10px 10px 10px 0;
+      box-shadow: 0 4px 15px rgba(255, 36, 66, 0.5);
+      transform: rotate(10deg);
+    }
+
+    .tut-subtitle {
+      margin-top: 10px;
+      color: var(--txt-muted);
+      font-size: 15px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    /* === 🔥 文字高亮框样式 === */
+    .highlight-box {
+      display: block;
+      background: rgba(255, 215, 0, 0.08); /* 极淡的金色背景 */
+      border: 1px solid rgba(255, 215, 0, 0.5); /* 金色边框 */
+      color: #ffffff; /* 纯白高亮文字 */
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+      box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.05); /* 内发光 */
+      font-weight: 500;
+    }
   </style>
 </head>
 
@@ -619,10 +678,12 @@
       </div>
     </div>
 
-    <div class="sectionHead" id="tutorials">
-      <div class="divider"></div>
-      <div class="pill"><div class="dot" style="background:var(--accent-gold);box-shadow:0 0 8px var(--accent-gold)"></div>硬核干货 · 快速上手</div>
-      <div class="divider"></div>
+    <div id="tutorials" class="tut-header-distinct">
+      <div class="tut-big-title">
+        硬核教程 · 快速上手
+        <div class="tut-badge-pop">必看</div>
+      </div>
+      <div class="tut-subtitle">TUTORIALS & GUIDES</div>
     </div>
 
     <div class="grid2">
@@ -631,7 +692,7 @@
           <div class="tut-icon-box" style="color:var(--accent-blue)">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
           </div>
-          <div class="tut-tag" style="background:rgba(99,102,241,0.1);color:var(--accent-blue)">网站介绍</div>
+          <div class="tut-tag" style="background:rgba(99,102,241,0.1);color:var(--accent-blue)">Website Guide</div>
         </div>
         <h3 class="miniTitle" style="font-size:18px;">全站功能深度导览</h3>
         <p class="miniDesc" style="font-size:13px; margin-bottom:16px;">
@@ -645,7 +706,7 @@
           <div class="tut-icon-box" style="color:var(--accent-cyan)">
              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
           </div>
-          <div class="tut-tag" style="background:rgba(34,211,238,0.1);color:var(--accent-cyan)">开户跟单</div>
+          <div class="tut-tag" style="background:rgba(34,211,238,0.1);color:var(--accent-cyan)">Step by Step</div>
         </div>
         <h3 class="miniTitle" style="font-size:18px;">开户跟单保姆级教程</h3>
         <p class="miniDesc" style="font-size:13px; margin-bottom:16px;">
@@ -662,9 +723,11 @@
           <div class="tut-tag">内部核心</div>
         </div>
         <h3 class="miniTitle" style="font-size:18px; color:var(--accent-gold);">内部群点位逻辑拆解</h3>
-        <p class="miniDesc" style="font-size:13px; margin-bottom:16px; color:rgba(255,255,255,0.8);">
-          <b></b>深度拆解内部会员群。为什么在这里进场？止损怎么设？止盈怎么看？针对不是线下学员的详细教学。
-        </p>
+        
+        <div class="highlight-box">
+          深度拆解内部会员群。为什么在这里进场？止损怎么设？止盈怎么看？针对不是线下学员的详细教学。
+        </div>
+
         <a href="#" class="btn btn-gold" style="margin-top:auto;">查看核心复盘 (即将上线)</a>
       </div>
 
@@ -673,12 +736,14 @@
           <div class="tut-icon-box">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
           </div>
-          <div class="tut-tag">公开免费必修（全网最详细入门教程）</div>
+          <div class="tut-tag">免费必修</div>
         </div>
         <h3 class="miniTitle" style="font-size:18px; color:var(--accent-red);">外汇交易入门免费公开课</h3>
-        <p class="miniDesc" style="font-size:13px; margin-bottom:16px; color:rgba(255,255,255,0.8);">
+        
+        <div class="highlight-box" style="border-color:rgba(255,36,66,0.5); background:rgba(255,36,66,0.08);">
           零基础系统入门，逐步拆解外汇市场的运行逻辑、交易方式和核心规则。避免盲目入场，先懂规则再赚钱。
-        </p>
+        </div>
+
         <a href="https://space.bilibili.com/3690997307410528/lists/7141651?type=season" target="_blank" class="btn btn-red" style="margin-top:auto;">立即免费观看</a>
       </div>
     </div>
