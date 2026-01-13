@@ -562,6 +562,39 @@
       box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.05); /* 内发光 */
       font-weight: 500;
     }
+
+    /* === 🔥 NEW: 开户弹窗专用特效 === */
+    .btn-pulse-action {
+        background: linear-gradient(90deg, #22d3ee, #3b82f6) !important; /* 亮青色到蓝色渐变 */
+        color: #fff !important;
+        border: none !important;
+        font-size: 16px !important;
+        font-weight: 800 !important;
+        box-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+        animation: pulseBig 1.5s infinite ease-in-out; /* 持续跳动动画 */
+    }
+
+    .btn-pulse-action:hover {
+        filter: brightness(1.1);
+        transform: scale(1.05); /* 悬停时进一步放大 */
+    }
+
+    /* 呼吸放大动画 */
+    @keyframes pulseBig {
+        0% { transform: scale(1); box-shadow: 0 0 15px rgba(34, 211, 238, 0.4); }
+        50% { transform: scale(1.03); box-shadow: 0 0 35px rgba(34, 211, 238, 0.8); }
+        100% { transform: scale(1); box-shadow: 0 0 15px rgba(34, 211, 238, 0.4); }
+    }
+
+    /* 提示文本框样式微调 */
+    .modal-tip-box {
+        text-align: left;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 24px;
+    }
   </style>
 </head>
 
@@ -1090,33 +1123,32 @@
   <div class="modal-overlay" id="partnerModal">
     <div class="modal-box">
       <div class="modal-close" onclick="closePartnerModal()">×</div>
-      <h2 class="modal-title" style="color:#eab308">⚠️ 开户前必读</h2>
       
-      <div class="modal-desc" style="text-align:left; background:rgba(255,255,255,0.03); padding:20px; border-radius:12px; margin-bottom:24px;">
-        <p style="margin-top:0; color:#fff; font-weight:700; font-size:16px;">
-            🛑 <span style="border-bottom:2px solid #ff2442;">请勿直接盲目开户！</span>
+      <h2 class="modal-title" style="color:#22d3ee">🔔 开户后续指引</h2>
+      
+      <div class="modal-tip-box">
+        <p style="margin-top:0; color:#fff; font-weight:700; font-size:16px; display:flex; align-items:center; gap:8px;">
+            <span style="font-size:18px">📢</span> 重要提示
         </p>
-        <p style="line-height:1.7;">
-            自行开户极易导致<strong>账户类型选择错误</strong>，从而无法通过系统审核，最终导致<strong>无法加入内部会员群</strong>。
+        <p style="line-height:1.7; color:var(--txt-muted); font-size:14px; margin-bottom:12px;">
+            注册开户仅仅是第一步！
         </p>
-        
-        <p style="margin-bottom:0; color:#4ade80; font-weight:700; font-size:15px; margin-top:16px;">
-            ✅ 正确姿势：
-        </p>
-        <p style="margin-top:4px; line-height:1.7;">
-            请点击下方绿色按钮，<strong>先添加助理微信</strong>。<br>
-            助理会100%全程协助您。
+        <p style="line-height:1.7; color:var(--txt-muted); font-size:14px; margin:0;">
+            完成开户后，请<strong style="color:#eab308; text-decoration:underline; text-underline-offset:4px;">务必联系助理</strong>提供后续服务和更新动态。
+           
         </p>
       </div>
       
       <div class="modal-btns">
-        <div class="m-btn m-btn-confirm" onclick="goToWeChat()" style="background:linear-gradient(90deg, #34d399, #22d3ee);">
-          立刻添加助理 (协助开户) 👩‍💻
+        
+        <div class="m-btn m-btn-confirm btn-pulse-action" onclick="confirmPartnerLink()">
+           🚀 立即注册开户 (Go)
         </div>
 
-        <div class="m-btn m-btn-contact" onclick="confirmPartnerLink()">
-           已添加，立即开户！→
+        <div class="m-btn m-btn-contact" onclick="goToWeChat()">
+          联系助理 (协助开户) 👩‍💻
         </div>
+
       </div>
     </div>
   </div>
