@@ -418,12 +418,10 @@
     .miniCard { padding: 20px; display: flex; flex-direction: column; min-height: 200px; position: relative; }
     .miniTop { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
     
-    /* === 🔥 Modified for Images 🔥 === */
+    /* === 🔥 Modified for Images (Default Square Icons) 🔥 === */
     .platIcon { 
       width: 44px; height: 44px; 
       border-radius: 12px; 
-      /* background: rgba(255,255,255,0.05);  <-- Removed default background to let PNG transparency work better or controlled by inline styles */
-      /* border: 1px solid rgba(255,255,255,0.1); <-- Removed default border */
       display: flex; align-items: center; justify-content: center;
       overflow: hidden; /* Ensure image fits in rounded corners */
       flex-shrink: 0;
@@ -434,6 +432,24 @@
       object-fit: contain; /* or cover, depending on your preference */
       display: block;
       border-radius: 12px;
+    }
+
+    /* === 🔥 NEW: 合作伙伴宽幅 Logo 专用样式 (修复Logo过小问题) 🔥 === */
+    .platIcon-wide { 
+      width: 130px; /* 足够宽，容纳长Logo */
+      height: 50px; /* 适当增高 */
+      border-radius: 8px; 
+      display: flex; align-items: center; justify-content: flex-start; /* 靠左对齐 */
+      overflow: hidden; 
+      flex-shrink: 0;
+      background: transparent;
+    }
+    .platIcon-wide img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* 完整显示长条Logo，不裁剪 */
+      object-position: left center; /* 靠左显示 */
+      display: block;
     }
 
     .miniTitle { font-size: 16px; font-weight: 700; margin: 0 0 6px; }
@@ -929,8 +945,7 @@
     <div class="grid2">
       <div class="glass-card miniCard">
         <div class="miniTop">
-          <div class="platIcon">
-             <img src="images/tmgm.png" alt="TMGM">
+          <div class="platIcon-wide"> <img src="images/tmgm.png" alt="TMGM">
           </div>
           <span style="font-size:12px;color:var(--accent-cyan);font-weight:700">美元账户</span>
         </div>
@@ -941,8 +956,7 @@
 
       <div class="glass-card miniCard">
         <div class="miniTop">
-          <div class="platIcon">
-            <img src="images/dprime.png" alt="Dprime">
+          <div class="platIcon-wide"> <img src="images/dprime.png" alt="Dprime">
           </div>
           <span style="font-size:12px;color:var(--accent-purple);font-weight:700">美分账户</span>
         </div>
