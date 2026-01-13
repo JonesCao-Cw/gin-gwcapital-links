@@ -356,6 +356,56 @@
     .btn-red { background: rgba(255, 36, 66, 0.1); color: var(--accent-red); border-color: rgba(255, 36, 66, 0.2); }
     .btn-red:hover { background: var(--accent-red); color: #fff; box-shadow: 0 0 20px rgba(255, 36, 66, 0.4); }
 
+    /* === 🔥 NEW: 按钮高亮与卡片闪烁特效 === */
+    /* 1. 开户按钮的高亮流光闪烁 */
+    .btn-highlight-pulse {
+        background: linear-gradient(90deg, rgba(34,211,238,0.2), rgba(255,255,255,0.2), rgba(34,211,238,0.2));
+        background-size: 200% 100%;
+        color: var(--accent-cyan) !important;
+        border: 1px solid var(--accent-cyan) !important;
+        box-shadow: 0 0 15px rgba(34,211,238,0.3);
+        animation: gradientMove 3s linear infinite, glowPulse 2s ease-in-out infinite;
+    }
+    .btn-highlight-pulse:hover {
+        background: var(--accent-cyan);
+        color: #000 !important;
+        box-shadow: 0 0 30px rgba(34,211,238,0.8);
+    }
+    @keyframes gradientMove { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+    @keyframes glowPulse { 0%, 100% { box-shadow: 0 0 15px rgba(34,211,238,0.3); } 50% { box-shadow: 0 0 25px rgba(34,211,238,0.6); } }
+
+    /* 2. 微信卡片紧急提示闪烁 */
+    .card-urgent-flash {
+        animation: urgentFlash 3s cubic-bezier(0.25, 1, 0.5, 1);
+        z-index: 50 !important;
+        position: relative;
+    }
+    @keyframes urgentFlash {
+        0%, 100% { 
+            transform: scale(1); 
+            border-color: rgba(255,255,255,0.08); 
+            box-shadow: 0 4px 24px -1px rgba(0,0,0,0.2);
+        }
+        10%, 30%, 50% { 
+            transform: scale(1.05); 
+            border-color: var(--accent-green); 
+            box-shadow: 0 0 40px rgba(52, 211, 153, 0.4), inset 0 0 20px rgba(52, 211, 153, 0.2); 
+            background: rgba(52, 211, 153, 0.05);
+        }
+        20%, 40%, 60% { 
+            transform: scale(1.02); 
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 40px rgba(34, 211, 238, 0.4), inset 0 0 20px rgba(34, 211, 238, 0.2);
+            background: rgba(34, 211, 238, 0.05);
+        }
+        80% {
+             transform: scale(1); 
+             border-color: var(--accent-green);
+             box-shadow: 0 0 20px rgba(52, 211, 153, 0.2);
+        }
+    }
+
+
     /* Grid4 布局 */
     .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 20px; }
     .miniCard { padding: 20px; display: flex; flex-direction: column; min-height: 200px; position: relative; }
@@ -405,7 +455,7 @@
     .risk-title { display: flex; align-items: center; gap: 8px; color: #ef4444; font-weight: 800; font-size: 14px; margin-bottom: 10px; }
     .risk ul { margin: 0; padding-left: 18px; color: var(--txt-muted); font-size: 12px; line-height: 1.8; }
     
-    /* === 🔥 首页Hero弹窗样式 === */
+    /* === 🔥 首页Hero弹窗 & 开户提醒弹窗通用样式 === */
     .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 999; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
     .modal-overlay.active { display: flex; opacity: 1; }
     .modal-box { 
@@ -429,6 +479,9 @@
     .m-btn-confirm:hover { filter: brightness(1.1); transform: translateY(-2px); }
     .m-btn-contact { background: rgba(255,255,255,0.05); color: var(--accent-cyan); border: 1px solid rgba(255,255,255,0.1); }
     .m-btn-contact:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+    /* Partner Modal Specific */
+    .partner-warning { color:#f0b90b; font-weight:800; margin-bottom:8px; display:block;}
 
     @media(max-width:900px){ 
       .grid2, .serviceGrid { grid-template-columns: 1fr; gap: 20px; }
@@ -825,7 +878,7 @@
         </div>
         <p class="miniTitle">TMGM 开户（推荐）</p>
         <p class="miniDesc">美元标准账户。平台合作多年，监管优，出入金稳定，支持大资金。</p>
-        <a class="btn btn-cyan" href="https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans" target="_blank">立即开户注册</a>
+        <a class="btn btn-cyan btn-highlight-pulse" href="javascript:void(0)" onclick="openPartnerModal('https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans')">立即开户注册</a>
       </div>
 
       <div class="glass-card miniCard">
@@ -837,7 +890,7 @@
         </div>
         <p class="miniTitle">Dprime 开户</p>
         <p class="miniDesc">适合小资金测试策略，支持美分账户交易，适合美分类型跟单策略。</p>
-        <a class="btn btn-purple" href="https://user.dprimefast.net/signup/H1968038-a01" target="_blank">立即开户注册</a>
+        <a class="btn btn-purple btn-highlight-pulse" href="javascript:void(0)" onclick="openPartnerModal('https://user.dprimefast.net/signup/H1968038-a01')">立即开户注册</a>
       </div>
     </div>
 
@@ -848,7 +901,7 @@
     </div>
 
     <div class="grid4">
-      <div class="glass-card miniCard">
+      <div class="glass-card miniCard" id="wechatCard">
         <div class="miniTop">
           <div class="platIcon" style="color:var(--accent-green)">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 12h8v2H8zm0-4h8v2H8zm-6 2c0 4.418 3.582 8 8 8h1.253l2.96 2.553A.5.5 0 0 0 15 20.125V18h1c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8z"/></svg>
@@ -1027,6 +1080,30 @@
     </div>
   </div>
 
+  <div class="modal-overlay" id="partnerModal">
+    <div class="modal-box">
+      <div class="modal-close" onclick="closePartnerModal()">×</div>
+      <h2 class="modal-title">⚠️ 关键步骤提示</h2>
+      
+      <p class="modal-desc" style="text-align:left; background:rgba(255,255,255,0.03); padding:16px; border-radius:12px;">
+        <span class="partner-warning">开户前请务必阅读：</span>
+        为确保您的账户权益及返佣设置正确，以及后续能顺利加入会员群，建议您<strong style="color:#fff">先添加助理</strong>协助开户。
+        <br><br>
+        自行盲目开户可能导致账户归属错误，无法享受会员群权益！
+      </p>
+      
+      <div class="modal-btns">
+        <div class="m-btn m-btn-confirm" onclick="goToWeChat()" style="background:linear-gradient(90deg, #34d399, #22d3ee);">
+          立刻添加助理 (协助开户)
+        </div>
+
+        <div class="m-btn m-btn-contact" onclick="confirmPartnerLink()">
+           已添加，立即开户！→
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     // 强制页面加载时回到顶部
     if (history.scrollRestoration) {
@@ -1108,7 +1185,7 @@
       }
     }
 
-    // 🔥 弹窗控制逻辑
+    // 🔥 首页弹窗控制逻辑
     function openHeroModal() {
       document.getElementById('heroModal').classList.add('active');
     }
@@ -1120,10 +1197,53 @@
       if(e.target === document.getElementById('heroModal')) closeHeroModal();
     });
 
+    // === 🔥 NEW: 开户提醒弹窗与跳转逻辑 ===
+    let currentPartnerLink = ''; // 存储当前要去的开户链接
+
+    function openPartnerModal(url) {
+      currentPartnerLink = url;
+      document.getElementById('partnerModal').classList.add('active');
+    }
+
+    function closePartnerModal() {
+      document.getElementById('partnerModal').classList.remove('active');
+    }
+
+    // 点击 "已添加，立即开户"
+    function confirmPartnerLink() {
+      if(currentPartnerLink) {
+        window.open(currentPartnerLink, '_blank');
+        closePartnerModal();
+      }
+    }
+
+    // 点击 "立刻添加助理"
+    function goToWeChat() {
+      closePartnerModal();
+      const wechatCard = document.getElementById('wechatCard');
+      // 1. 滚动到微信卡片
+      wechatCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // 2. 触发 CSS 动画 (先移除再添加以保证每次都触发)
+      wechatCard.classList.remove('card-urgent-flash');
+      void wechatCard.offsetWidth; // 强制重绘
+      wechatCard.classList.add('card-urgent-flash');
+      
+      // 3. 提示文字
+      setTimeout(() => {
+          showToast('请先添加微信助理咨询开户事宜');
+      }, 500);
+    }
+    
+    // 点击 Partner 弹窗遮罩关闭
+    document.getElementById('partnerModal').addEventListener('click', (e) => {
+      if(e.target === document.getElementById('partnerModal')) closePartnerModal();
+    });
+
+
     // 轻提示
     function showToast(msg){
       let d = document.createElement('div');
-      d.style.cssText = "position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,0.9);color:#000;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,0.5);z-index:999;animation:up 0.3s ease-out;";
+      d.style.cssText = "position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,0.9);color:#000;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,0.5);z-index:9999;animation:up 0.3s ease-out;";
       d.innerText = msg;
       document.body.appendChild(d);
       setTimeout(() => { d.style.opacity='0';d.style.transition='0.5s'; }, 1500);
