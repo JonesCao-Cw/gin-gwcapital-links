@@ -434,24 +434,6 @@
       border-radius: 12px;
     }
 
-    /* === 🔥 NEW: 合作伙伴宽幅 Logo 专用样式 (修复Logo过小问题) 🔥 === */
-    .platIcon-wide { 
-      width: 130px; /* 足够宽，容纳长Logo */
-      height: 50px; /* 适当增高 */
-      border-radius: 8px; 
-      display: flex; align-items: center; justify-content: flex-start; /* 靠左对齐 */
-      overflow: hidden; 
-      flex-shrink: 0;
-      background: transparent;
-    }
-    .platIcon-wide img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain; /* 完整显示长条Logo，不裁剪 */
-      object-position: left center; /* 靠左显示 */
-      display: block;
-    }
-
     /* === 🔥 NEW: 全网关注 Logo 专用样式 (大尺寸自适应) 🔥 === */
     .platIcon-social {
       height: 48px;        /* 增高到 48px，视觉更饱满 */
@@ -471,6 +453,96 @@
       object-position: left center;
       display: block;
     }
+
+    /* === 🔥 NEW: 重新设计的开户卡片 (左右 1:2 结构) 🔥 === */
+    .partner-card-new {
+      display: flex;
+      flex-direction: row; /* 水平排列 */
+      align-items: stretch; /* 等高 */
+      padding: 0; /* 移除内边距，由内部子元素控制 */
+      overflow: hidden;
+      transition: 0.3s;
+    }
+    
+    /* 左侧 Logo 区域 (35%) */
+    .p-col-logo {
+      width: 35%;
+      background: rgba(255,255,255,0.02); /* 稍微区分背景 */
+      border-right: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .p-big-logo {
+      width: 100%;
+      max-width: 120px; /* 限制最大宽度 */
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(255,255,255,0.1)); /* 轻微投影增加立体感 */
+      transition: 0.3s;
+    }
+    .partner-card-new:hover .p-big-logo {
+      transform: scale(1.05); /* 悬停微放大 */
+    }
+
+    /* 右侧 内容区域 (65%) */
+    .p-col-info {
+      width: 65%;
+      padding: 24px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .p-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .p-title {
+      font-size: 20px;
+      font-weight: 800;
+      margin: 0;
+      letter-spacing: -0.5px;
+    }
+    .p-tag {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid currentColor;
+      text-transform: uppercase;
+    }
+
+    .p-desc {
+      font-size: 13px;
+      color: var(--txt-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    /* 移动端适配 */
+    @media (max-width: 600px) {
+      .partner-card-new {
+        flex-direction: column; /* 手机端上下排列 */
+      }
+      .p-col-logo {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--glass-border);
+        padding: 30px 20px;
+      }
+      .p-col-info {
+        width: 100%;
+        padding: 20px;
+      }
+      .p-big-logo {
+        max-width: 140px; /* 手机上Logo再大一点 */
+      }
+    }
+
 
     .miniTitle { font-size: 16px; font-weight: 700; margin: 0 0 6px; }
     .miniDesc { font-size: 12px; color: var(--txt-muted); line-height: 1.5; margin: 0; flex: 1; }
@@ -963,27 +1035,45 @@
     </div>
 
     <div class="grid2">
-      <div class="glass-card miniCard">
-        <div class="miniTop">
-          <div class="platIcon-wide"> <img src="images/tmgm.png" alt="TMGM">
-          </div>
-          <span style="font-size:12px;color:var(--accent-cyan);font-weight:700">美元账户</span>
+      
+      <div class="glass-card partner-card-new">
+        <div class="p-col-logo">
+           <img src="images/tmgm.png" alt="TMGM" class="p-big-logo">
         </div>
-        <p class="miniTitle">TMGM 开户（推荐）</p>
-        <p class="miniDesc">美元标准账户。平台合作多年，监管优，出入金稳定，支持大资金。</p>
-        <a class="btn btn-cyan btn-highlight-pulse" href="javascript:void(0)" onclick="openPartnerModal('https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans')">立即开户注册</a>
+        
+        <div class="p-col-info">
+          <div class="p-header">
+             <h3 class="p-title">TMGM (推荐)</h3>
+             <span class="p-tag" style="color:var(--accent-cyan);border-color:var(--accent-cyan)">美元账户</span>
+          </div>
+          <p class="p-desc">
+             美元标准账户。平台合作多年，监管优，出入金稳定，支持大资金。
+          </p>
+          <a class="btn btn-cyan btn-highlight-pulse" style="margin-top:auto" href="javascript:void(0)" onclick="openPartnerModal('https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans')">
+            立即开户注册
+          </a>
+        </div>
       </div>
 
-      <div class="glass-card miniCard">
-        <div class="miniTop">
-          <div class="platIcon-wide"> <img src="images/dprime.png" alt="Dprime">
-          </div>
-          <span style="font-size:12px;color:var(--accent-purple);font-weight:700">美分账户</span>
+      <div class="glass-card partner-card-new">
+        <div class="p-col-logo">
+           <img src="images/dprime.png" alt="Dprime" class="p-big-logo">
         </div>
-        <p class="miniTitle">Dprime 开户</p>
-        <p class="miniDesc">适合小资金测试策略，支持美分账户交易，适合美分类型跟单策略。</p>
-        <a class="btn btn-purple btn-highlight-pulse" href="javascript:void(0)" onclick="openPartnerModal('https://user.dprimefast.net/signup/H1968038-a01')">立即开户注册</a>
+        
+        <div class="p-col-info">
+          <div class="p-header">
+             <h3 class="p-title">Dprime 开户</h3>
+             <span class="p-tag" style="color:var(--accent-purple);border-color:var(--accent-purple)">美分账户</span>
+          </div>
+          <p class="p-desc">
+             适合小资金测试策略，支持美分账户交易，适合美分类型跟单策略。
+          </p>
+          <a class="btn btn-purple btn-highlight-pulse" style="margin-top:auto" href="javascript:void(0)" onclick="openPartnerModal('https://user.dprimefast.net/signup/H1968038-a01')">
+            立即开户注册
+          </a>
+        </div>
       </div>
+
     </div>
 
     <div class="sectionHead" id="contact">
