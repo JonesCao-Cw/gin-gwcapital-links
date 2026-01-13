@@ -374,23 +374,25 @@
     @keyframes gradientMove { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
     @keyframes glowPulse { 0%, 100% { box-shadow: 0 0 15px rgba(34,211,238,0.3); } 50% { box-shadow: 0 0 25px rgba(34,211,238,0.6); } }
 
-    /* 2. 微信卡片 - 常态化高亮跳动 (新增) */
+    /* 2. 微信卡片 - 强制常态化高亮跳动 (已增强) */
     #wechatCard {
-        border-color: rgba(52, 211, 153, 0.5) !important; /* 默认边框带点绿 */
-        box-shadow: 0 0 20px rgba(52, 211, 153, 0.1);
-        animation: wechatPulseNormal 3s infinite ease-in-out; /* 持续跳动 */
-        z-index: 2;
+        border-color: #34d399 !important; /* 明显的绿色边框 */
+        box-shadow: 0 0 25px rgba(52, 211, 153, 0.4); /* 基础发光 */
+        background: rgba(52, 211, 153, 0.05); /* 轻微背景色 */
+        animation: wechatPulseAlways 2s infinite ease-in-out; /* 持续跳动动画 */
+        z-index: 5; /* 保证层级较高 */
     }
-    @keyframes wechatPulseNormal {
+    
+    @keyframes wechatPulseAlways {
         0%, 100% { 
             transform: scale(1); 
-            box-shadow: 0 0 15px rgba(52, 211, 153, 0.1); 
-            border-color: rgba(52, 211, 153, 0.4);
+            box-shadow: 0 0 20px rgba(52, 211, 153, 0.3); 
+            border-color: rgba(52, 211, 153, 0.6);
         }
         50% { 
-            transform: scale(1.03); /* 轻微放大 */
-            box-shadow: 0 0 30px rgba(52, 211, 153, 0.3); 
-            border-color: rgba(52, 211, 153, 0.8);
+            transform: scale(1.04); /* 放大 */
+            box-shadow: 0 0 40px rgba(52, 211, 153, 0.6); /* 强烈发光 */
+            border-color: #34d399; /* 亮绿色 */
         }
     }
 
@@ -1212,7 +1214,7 @@
       if(e.target === document.getElementById('heroModal')) closeHeroModal();
     });
 
-    // === 🔥 NEW: 开户提醒弹窗与跳转逻辑 ===
+    // === 🔥 开户提醒弹窗与跳转逻辑 ===
     let currentPartnerLink = ''; // 存储当前要去的开户链接
 
     function openPartnerModal(url) {
