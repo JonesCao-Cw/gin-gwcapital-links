@@ -454,7 +454,7 @@
       display: block;
     }
 
-    /* === 🔥 NEW: 重新设计的开户卡片 (左右 1:2 结构) 🔥 === */
+    /* === 🔥 NEW: 重新设计的开户卡片 (左右 1:2 结构) & 独立配色 🔥 === */
     .partner-card-new {
       display: flex;
       flex-direction: row; /* 水平排列 */
@@ -464,26 +464,53 @@
       transition: 0.3s;
     }
     
+    /* 1. TMGM 专属色 (青色系) */
+    .card-tmgm {
+      border-color: rgba(34, 211, 238, 0.2);
+      background: linear-gradient(135deg, rgba(34, 211, 238, 0.03), rgba(255, 255, 255, 0.01));
+    }
+    .card-tmgm:hover {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 10px 40px -10px rgba(34, 211, 238, 0.15);
+    }
+    .card-tmgm .p-col-logo {
+      background: rgba(34, 211, 238, 0.05); /* 淡淡的青色背景 */
+      border-right: 1px solid rgba(34, 211, 238, 0.1);
+    }
+
+    /* 2. Dprime 专属色 (紫色系) */
+    .card-dprime {
+      border-color: rgba(168, 85, 247, 0.2);
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.03), rgba(255, 255, 255, 0.01));
+    }
+    .card-dprime:hover {
+      border-color: var(--accent-purple);
+      box-shadow: 0 10px 40px -10px rgba(168, 85, 247, 0.15);
+    }
+    .card-dprime .p-col-logo {
+      background: rgba(168, 85, 247, 0.05); /* 淡淡的紫色背景 */
+      border-right: 1px solid rgba(168, 85, 247, 0.1);
+    }
+
     /* 左侧 Logo 区域 (35%) */
     .p-col-logo {
       width: 35%;
-      background: rgba(255,255,255,0.02); /* 稍微区分背景 */
-      border-right: 1px solid var(--glass-border);
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 20px;
     }
+    /* 🔥 巨型 Logo */
     .p-big-logo {
       width: 100%;
-      max-width: 120px; /* 限制最大宽度 */
+      max-width: 180px; /* 大幅增加 Logo 限制，让它看起来更大 */
       height: auto;
       object-fit: contain;
-      filter: drop-shadow(0 0 10px rgba(255,255,255,0.1)); /* 轻微投影增加立体感 */
+      filter: drop-shadow(0 0 15px rgba(255,255,255,0.05)); 
       transition: 0.3s;
     }
     .partner-card-new:hover .p-big-logo {
-      transform: scale(1.05); /* 悬停微放大 */
+      transform: scale(1.08); /* 悬停时稍微放大 */
     }
 
     /* 右侧 内容区域 (65%) */
@@ -506,7 +533,31 @@
       font-weight: 800;
       margin: 0;
       letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
+    
+    /* 🔥 推荐标签 (金色流光呼吸) */
+    .rec-badge {
+        font-size: 12px;
+        font-weight: 800;
+        background: linear-gradient(90deg, #FFD700, #FFA500); /* 纯金渐变 */
+        color: #000; /* 黑色字体 */
+        padding: 2px 8px;
+        border-radius: 6px;
+        vertical-align: middle;
+        display: inline-block;
+        animation: recPulse 2s infinite ease-in-out;
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+    }
+    
+    @keyframes recPulse {
+        0% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); }
+        50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); } /* 变大变亮 */
+        100% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); }
+    }
+
     .p-tag {
       font-size: 11px;
       font-weight: 800;
@@ -539,7 +590,7 @@
         padding: 20px;
       }
       .p-big-logo {
-        max-width: 140px; /* 手机上Logo再大一点 */
+        max-width: 160px; 
       }
     }
 
@@ -1036,14 +1087,17 @@
 
     <div class="grid2">
       
-      <div class="glass-card partner-card-new">
+      <div class="glass-card partner-card-new card-tmgm">
         <div class="p-col-logo">
            <img src="images/tmgm.png" alt="TMGM" class="p-big-logo">
         </div>
         
         <div class="p-col-info">
           <div class="p-header">
-             <h3 class="p-title">TMGM (推荐)</h3>
+             <h3 class="p-title">
+               TMGM 
+               <span class="rec-badge">推荐</span>
+             </h3>
              <span class="p-tag" style="color:var(--accent-cyan);border-color:var(--accent-cyan)">美元账户</span>
           </div>
           <p class="p-desc">
@@ -1055,7 +1109,7 @@
         </div>
       </div>
 
-      <div class="glass-card partner-card-new">
+      <div class="glass-card partner-card-new card-dprime">
         <div class="p-col-logo">
            <img src="images/dprime.png" alt="Dprime" class="p-big-logo">
         </div>
