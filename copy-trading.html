@@ -460,6 +460,18 @@
     .mb-3:hover { color: #fff; text-decoration: underline; }
     .close-icon { position: absolute; top: 20px; right: 20px; width: 32px; height: 32px; background: rgba(255,255,255,0.05); border-radius: 50%; display: grid; place-items: center; cursor: pointer; color: #aaa; transition:.2s; }
     .close-icon:hover { background: rgba(255,255,255,0.15); color: #fff; }
+
+    /* === 🌊 NEW: 滚动渐显动画 (Scroll Reveal) === */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+      will-change: opacity, transform;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body>
@@ -473,7 +485,7 @@
     <a href="home.html" class="back-btn">← 返回首页</a>
     </div>
 
-    <div class="hero-split">
+    <div class="hero-split reveal">
       <div class="glass-panel tv-frame">
         <div class="tv-stage">
           <div class="track">
@@ -494,7 +506,7 @@
       </div>
     </div>
 
-    <div class="risk-banner-wrap">
+    <div class="risk-banner-wrap reveal">
       <div class="risk-banner">
         <div class="risk-icon-box">⚠️</div>
         
@@ -510,7 +522,7 @@
       </div>
     </div>
 
-    <div class="stats-section">
+    <div class="stats-section reveal">
       <div class="section-header">
         <div class="section-title">实盘核心数据</div>
         <div class="section-sub">基于真实市场环境的量化策略表现</div>
@@ -537,17 +549,17 @@
       </div>
     </div>
 
-    <div class="system-divider">
+    <div class="system-divider reveal">
       <div class="line"></div>
       <div class="sys-badge" style="color:var(--accent-purple)">SYSTEM 01</div>
       <div class="line"></div>
     </div>
 
-    <div class="big-section-head center-head head-sys2-center">
+    <div class="big-section-head center-head head-sys2-center reveal">
       杰明智能量化拆单系统
     </div>
 
-    <div class="marquee-wrap">
+    <div class="marquee-wrap reveal">
       <div class="marquee-track">
         <div class="ea-shot"><img src="images/ea1.jpg" alt="EA Shot 1"></div>
         <div class="ea-shot"><img src="images/ea2.jpg" alt="EA Shot 2"></div>
@@ -560,12 +572,12 @@
       </div>
     </div>
 
-    <div class="big-section-head head-sys2">
+    <div class="big-section-head head-sys2 reveal">
       <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
       运作机制 & 门槛
     </div>
 
-    <div class="terms-layout">
+    <div class="terms-layout reveal">
       <div class="process-list">
         <div class="glass-panel step-item">
           <div class="step-idx idx-purp">01</div>
@@ -632,22 +644,22 @@
       </div>
     </div>
 
-    <div class="system-divider">
+    <div class="system-divider reveal">
       <div class="line"></div>
       <div class="sys-badge">SYSTEM 02</div>
       <div class="line"></div>
     </div>
 
-    <div class="big-section-head center-head head-sys1-center">
+    <div class="big-section-head center-head head-sys1-center reveal">
       杰明自有交易Copy
     </div>
 
-    <div class="big-section-head">
+    <div class="big-section-head reveal">
       <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
       运作机制 & 门槛
     </div>
 
-    <div class="terms-layout">
+    <div class="terms-layout reveal">
       <div class="process-list">
         <div class="glass-panel step-item">
           <div class="step-idx idx-cyan">01</div>
@@ -701,22 +713,22 @@
       </div>
     </div>
 
-    <div class="system-divider">
+    <div class="system-divider reveal">
       <div class="line"></div>
       <div class="sys-badge" style="color:var(--accent-gold)">SYSTEM 03</div>
       <div class="line"></div>
     </div>
 
-    <div class="big-section-head center-head head-sys3-center">
+    <div class="big-section-head center-head head-sys3-center reveal">
       杰明自有长线美股
     </div>
 
-    <div class="big-section-head head-sys3">
+    <div class="big-section-head head-sys3 reveal">
       <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
       运作机制 & 门槛
     </div>
 
-    <div class="terms-layout">
+    <div class="terms-layout reveal">
       <div class="process-list">
         <div class="glass-panel step-item">
           <div class="step-idx idx-gold">01</div>
@@ -783,7 +795,7 @@
       </div>
     </div>
     
-    <div class="compare-section">
+    <div class="compare-section reveal">
       <div class="section-header">
         <div class="section-title">全系策略深度对比</div>
         <div class="section-sub">为您匹配最适合的投资方案</div>
@@ -920,6 +932,27 @@
     // 页面跳转逻辑修改为 home.html 对应的锚点
     function goPartner() { window.location.href = 'home.html#partner'; }
     function goContact() { window.location.href = 'home.html#contact'; }
+
+    // === 🔥 🌊 新增：滚动渐显动画逻辑 (Intersection Observer) ===
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1 // 元素出现10%时触发
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target); // 动画只播放一次
+            }
+        });
+    }, observerOptions);
+
+    // 监听所有带 .reveal 类的元素
+    document.querySelectorAll('.reveal').forEach(el => {
+        observer.observe(el);
+    });
   </script>
 
 </body>
