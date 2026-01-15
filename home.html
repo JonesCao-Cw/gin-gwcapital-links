@@ -807,6 +807,132 @@
       opacity: 1;
       transform: translateY(0);
     }
+    
+    /* =========================================
+       🔥 NEW ADDITION: 视频同款 运作机制 & 门槛演示动画
+       ========================================= */
+       
+    .process-section {
+      margin-top: 20px;
+      position: relative;
+    }
+
+    /* 容器 */
+    .process-container {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 40px 0 60px; /* 底部留空间给鼠标 */
+    }
+
+    /* 单个卡片 */
+    .process-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 24px;
+      position: relative;
+      transition: all 0.3s ease;
+      /* 动画绑定：每2秒轮播一个，总周期8秒 */
+      animation: cardActive 8s infinite; 
+    }
+
+    /* 序号圆圈 */
+    .pc-num {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--txt-muted);
+      font-weight: 800;
+      font-size: 14px;
+      display: grid; place-items: center;
+      margin-bottom: 16px;
+      transition: 0.3s;
+    }
+
+    .pc-title {
+      font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px;
+    }
+    .pc-desc {
+      font-size: 12px; color: var(--txt-muted); line-height: 1.5;
+    }
+    
+    /* 假鼠标样式 (纯CSS/SVG) */
+    .fake-cursor {
+      position: absolute;
+      width: 32px; height: 32px;
+      z-index: 20;
+      pointer-events: none;
+      /* 动画绑定：移动轨迹 */
+      animation: moveCursor 8s infinite cubic-bezier(0.45, 0, 0.55, 1);
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+    }
+    
+    /* Keyframes: 
+      假设容器宽100%。4个卡片中心点大约在 12.5%, 37.5%, 62.5%, 87.5% 
+      时间轴: 8秒总长。每2秒跳一个。
+    */
+
+    @keyframes moveCursor {
+      0%   { top: 60%; left: 12.5%; transform: translate(-20%, -20%) scale(1); }
+      
+      /* 第一步：点击 */
+      15%  { top: 60%; left: 12.5%; transform: translate(-20%, -20%) scale(1); } 
+      20%  { top: 60%; left: 12.5%; transform: translate(-20%, -20%) scale(0.85); } /* Press */
+      25%  { top: 60%; left: 12.5%; transform: translate(-20%, -20%) scale(1); } /* Release */
+      
+      /* 移动到第二步 */
+      30%  { top: 60%; left: 37.5%; transform: translate(-20%, -20%) scale(1); }
+      40%  { top: 60%; left: 37.5%; transform: translate(-20%, -20%) scale(1); }
+      45%  { top: 60%; left: 37.5%; transform: translate(-20%, -20%) scale(0.85); } /* Press */
+      50%  { top: 60%; left: 37.5%; transform: translate(-20%, -20%) scale(1); }
+
+      /* 移动到第三步 */
+      55%  { top: 60%; left: 62.5%; transform: translate(-20%, -20%) scale(1); }
+      65%  { top: 60%; left: 62.5%; transform: translate(-20%, -20%) scale(1); }
+      70%  { top: 60%; left: 62.5%; transform: translate(-20%, -20%) scale(0.85); } /* Press */
+      75%  { top: 60%; left: 62.5%; transform: translate(-20%, -20%) scale(1); }
+
+      /* 移动到第四步 */
+      80%  { top: 60%; left: 87.5%; transform: translate(-20%, -20%) scale(1); }
+      90%  { top: 60%; left: 87.5%; transform: translate(-20%, -20%) scale(1); }
+      95%  { top: 60%; left: 87.5%; transform: translate(-20%, -20%) scale(0.85); } /* Press */
+      100% { top: 60%; left: 87.5%; transform: translate(-20%, -20%) scale(1); }
+    }
+
+    /* 卡片对应跳动动画 - 依次延迟 */
+    .pc-1 { animation-delay: 0s; }
+    .pc-2 { animation-delay: 2s; }
+    .pc-3 { animation-delay: 4s; }
+    .pc-4 { animation-delay: 6s; }
+
+    @keyframes cardActive {
+      0%, 100% { transform: scale(1); border-color: var(--glass-border); box-shadow: none; background: rgba(255, 255, 255, 0.02); }
+      18%      { transform: scale(1); }
+      20%      { transform: scale(0.96); background: rgba(255, 255, 255, 0.05); } /* 被按下 */
+      22%      { transform: scale(1.05); border-color: var(--accent-purple); box-shadow: 0 10px 30px rgba(168,85,247,0.2); background: linear-gradient(160deg, rgba(168,85,247,0.1), var(--glass-bg)); } /* 弹起高亮 */
+      25%      { transform: scale(1); }
+      30%      { transform: scale(1); border-color: var(--glass-border); box-shadow: none; background: rgba(255, 255, 255, 0.02); }
+    }
+    
+    /* 移动端适配：取消鼠标动画，改为垂直排列 */
+    @media (max-width: 900px) {
+      .process-container {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding-bottom: 20px;
+      }
+      .fake-cursor { display: none; } /* 手机端不显示假鼠标 */
+      .process-card {
+        animation: none; /* 手机端取消自动跳动，防止眼花 */
+      }
+      .process-card:active {
+        transform: scale(0.98);
+        border-color: var(--accent-purple);
+      }
+    }
   </style>
 </head>
 
@@ -907,7 +1033,46 @@
         </div>
       </div>
     </div>
+    
+    <div class="sectionHead reveal">
+      <div class="divider"></div>
+      <div class="pill"><div class="dot" style="background:#a855f7;box-shadow:0 0 8px #a855f7;"></div>运作机制 & 门槛</div>
+      <div class="divider"></div>
+    </div>
 
+    <div class="process-section reveal">
+      <div class="fake-cursor">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+           <path d="M5.5 3.2C5.5 2.4 6.4 1.9 7.1 2.3L19.5 9.3C20.3 9.7 20.1 11.0 19.1 11.2L13.5 12.5L16.8 18.2C17.1 18.7 16.9 19.4 16.4 19.7L14.7 20.7C14.2 21.0 13.5 20.8 13.2 20.3L9.9 14.6L6.5 17.5C5.7 18.2 4.5 17.6 4.5 16.5L4.5 4.2C4.5 3.8 4.9 3.3 5.5 3.2Z" fill="#ff2442" stroke="white" stroke-width="1.5"/>
+        </svg>
+      </div>
+
+      <div class="process-container">
+        <div class="process-card pc-1">
+          <div class="pc-num" style="border-color:#ff2442; color:#ff2442;">01</div>
+          <div class="pc-title">策略核心 · 降维打击</div>
+          <div class="pc-desc">Smart Split Pro v23 风控系统，核心理念“断头求生，中间瘦身”，告别传统马丁死扛。</div>
+        </div>
+
+        <div class="process-card pc-2">
+          <div class="pc-num" style="border-color:#a855f7; color:#a855f7;">02</div>
+          <div class="pc-title">双模驱动 & 风控隔离</div>
+          <div class="pc-desc">多空逻辑物理隔离，独立计算账号。杜绝因对冲损耗产生的浮亏误判。</div>
+        </div>
+
+        <div class="process-card pc-3">
+          <div class="pc-num" style="border-color:#22d3ee; color:#22d3ee;">03</div>
+          <div class="pc-title">动态严选 & 智投释放</div>
+          <div class="pc-desc">EA自动运行数学演算，只有当“利润覆盖亏损”公式成立时，才执行平台释放。</div>
+        </div>
+
+        <div class="process-card pc-4">
+          <div class="pc-num" style="border-color:#F0B90B; color:#F0B90B;">04</div>
+          <div class="pc-title">零费用 & 美分账户</div>
+          <div class="pc-desc">死全免费，0利润分成。支持 Dprime 美分账户，适合小资金。</div>
+        </div>
+      </div>
+    </div>
     <div class="sectionHead reveal" id="feedback">
       <div class="divider"></div>
       <div class="pill"><div class="dot"></div>社群反馈</div>
