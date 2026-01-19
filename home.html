@@ -657,6 +657,32 @@
     .tut-gold .tut-tag { background: #ffd700; color: #000; box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); }
     .tut-gold .tut-icon-box { color: #ffd700; background: rgba(255, 215, 0, 0.1); border-color: rgba(255, 215, 0, 0.2); }
 
+    /* === 🔥 NEW: 教程按钮组样式 === */
+    .tut-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: auto;
+    }
+    .tut-action-item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .tut-tip {
+        font-size: 11px;
+        color: var(--txt-muted);
+        text-align: center;
+        margin-top: 6px;
+        opacity: 0.8;
+        line-height: 1.4;
+    }
+    /* 移动端按钮组垂直排列 */
+    @media (max-width: 500px) {
+        .tut-actions { flex-direction: column; gap: 16px; }
+        .tut-tip { font-size: 10px; margin-top: 4px; }
+    }
+
 
     .risk { margin-top: 40px; padding: 24px; border-left: 4px solid #ef4444; background: linear-gradient(90deg, rgba(239, 68, 68, 0.05), transparent); }
     .risk-title { display: flex; align-items: center; gap: 8px; color: #ef4444; font-weight: 800; font-size: 14px; margin-bottom: 10px; }
@@ -999,11 +1025,25 @@
           </div>
           <div class="tut-tag" style="background:rgba(99,102,241,0.1);color:var(--accent-blue)">网站教学</div>
         </div>
-        <h3 class="miniTitle" style="font-size:18px;">全站功能深度导览（需魔法上网）</h3>
+        <h3 class="miniTitle" style="font-size:18px;">全站功能深度导览</h3>
         <p class="miniDesc" style="font-size:13px; margin-bottom:16px;">
           针对很多不明白不了解小站功能的查看此视频👇，深度视频介绍小站所有板块。
         </p>
-        <a href="#" class="btn btn-blue" style="margin-top:auto;">视频详解 (即将上线)</a>
+        
+        <div class="tut-actions">
+           <div class="tut-action-item">
+               <a href="https://youtu.be/-HoxR0E_25k" target="_blank" class="btn btn-red" style="width:100%">
+                   ▶ 外网观看
+               </a>
+               <span class="tut-tip">需魔法上网，稳定长期观看</span>
+           </div>
+           <div class="tut-action-item">
+               <a href="https://zcndb8m3iov2.feishu.cn/wiki/UR51wAaeMinj3PkISSFcPt8CnYf?from=from_copylink" target="_blank" class="btn btn-blue" style="width:100%">
+                   📄 内网观看
+               </a>
+               <span class="tut-tip">如果遇打不开，建议切换外网</span>
+           </div>
+        </div>
       </div>
 
       <div class="glass-card tut-card reveal">
@@ -1013,11 +1053,25 @@
           </div>
           <div class="tut-tag" style="background:rgba(34,211,238,0.1);color:var(--accent-cyan)">开户跟单教学</div>
         </div>
-        <h3 class="miniTitle" style="font-size:18px;">开户跟单保姆级教程（需魔法上网）</</h3>
+        <h3 class="miniTitle" style="font-size:18px;">开户跟单保姆级教程</</h3>
         <p class="miniDesc" style="font-size:13px; margin-bottom:16px;">
           拒绝繁琐，手把手教你完成注册、入金及绑定跟单。从零开始，一个视频学会所有操作配置。
         </p>
-        <a href="#" class="btn btn-cyan" style="margin-top:auto;">立即学习 (即将上线)</a>
+        
+        <div class="tut-actions">
+           <div class="tut-action-item">
+               <a href="https://youtu.be/WL5OVGrv79w" target="_blank" class="btn btn-red" style="width:100%">
+                   ▶ 外网观看
+               </a>
+               <span class="tut-tip">需魔法上网，稳定长期观看</span>
+           </div>
+           <div class="tut-action-item">
+               <a href="https://zcndb8m3iov2.feishu.cn/wiki/GSa6wn2m2irQWskDZfncnKAJnJd?from=from_copylink" target="_blank" class="btn btn-cyan" style="width:100%">
+                   📄 内网观看
+               </a>
+               <span class="tut-tip">如果遇打不开，建议切换外网</span>
+           </div>
+        </div>
       </div>
 
       <div class="glass-card tut-card tut-gold reveal">
@@ -1027,13 +1081,26 @@
           </div>
           <div class="tut-tag">内部核心</div>
         </div>
-        <h3 class="miniTitle" style="font-size:18px; color:var(--accent-gold);">内部群点位逻辑拆解（需魔法上网）</</h3>
+        <h3 class="miniTitle" style="font-size:18px; color:var(--accent-gold);">内部群点位逻辑拆解</</h3>
         
         <div class="highlight-box">
           深度拆解内部会员群。杰明老师点位怎么看？盈亏比图如何设置进出场点位？止损怎么设置？
         </div>
 
-        <a href="#" class="btn btn-gold" style="margin-top:auto;">查看核心复盘 (即将上线)</a>
+        <div class="tut-actions">
+           <div class="tut-action-item">
+               <a href="https://youtu.be/vYTK7yTcyJA" target="_blank" class="btn btn-red" style="width:100%">
+                   ▶ 外网观看
+               </a>
+               <span class="tut-tip">需魔法上网，稳定长期观看</span>
+           </div>
+           <div class="tut-action-item">
+               <a href="https://zcndb8m3iov2.feishu.cn/wiki/H6Nwwi8cMi1qjPkH2CDce2nhnRc?from=from_copylink" target="_blank" class="btn btn-gold" style="width:100%">
+                   📄 内网观看
+               </a>
+               <span class="tut-tip">如果遇打不开，建议切换外网</span>
+           </div>
+        </div>
       </div>
 
       <div class="glass-card tut-card tut-core reveal">
