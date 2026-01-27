@@ -11,125 +11,80 @@
   <style>
     /* === 🎨 核心视觉系统 === */
     :root{ 
-      /* 🌟 修改1：底色不再是纯黑，而是带有深蓝倾向的夜空色 */
-      --bg-dark: #0f172a; 
-      
-      /* 🌟 修改2：玻璃面板稍微调亮，增加通透感 */
-      --bg-glass: rgba(30, 41, 59, 0.4); 
-      --bg-glass-hover: rgba(51, 65, 85, 0.5);
-      --border-light: rgba(255,255,255,0.1); 
+      /* 修改：背景色调整为与 Home 一致 */
+      --bg-dark: #030508; 
+      --bg-glass: rgba(20, 25, 35, 0.5); 
+      --bg-glass-hover: rgba(30, 35, 50, 0.6);
+      --border-light: rgba(255,255,255,0.08); 
       
       /* 品牌色 */
       --accent-blue: #6366f1; 
       --accent-cyan: #22d3ee; 
       --accent-green: #10b981; 
-      --accent-purple: #c084fc; 
+      --accent-purple: #a855f7; 
       --accent-red: #f43f5e; 
       --accent-gold: #ffd700; 
       --accent-orange: #f97316;
       
-      --txt-main: #f8fafc; 
+      --txt-main: #ffffff; 
       --txt-muted: #94a3b8; 
     }
     
     body{ 
       margin:0; font-family:"Inter",sans-serif; color:var(--txt-main); 
       background-color: var(--bg-dark);
-      overflow-x: hidden; /* 防止光斑溢出出现滚动条 */
+      /* 修改：移除了原有的 body 渐变背景，改用下方的 bg-fixed 动画层 */
       -webkit-font-smoothing: antialiased; 
-    }
-    
-    /* === 🌌 核心：高亮版动态流光背景 === */
-    .ambient-bg {
-      position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      z-index: -1; /* 放在最底层 */
-      background: var(--bg-dark); /* 深蓝底色 */
-      overflow: hidden;
-      pointer-events: none; /* 确保不挡住点击 */
-    }
-
-    /* 增加噪点纹理，提升质感 */
-    .noise-overlay {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      opacity: 0.04; 
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    }
-
-    .light-blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px); /* 柔化边缘 */
-      opacity: 0.6; /* ✅ 亮度提升，光影更清晰 */
-      mix-blend-mode: screen; /* 让光叠加变得更亮 */
-      will-change: transform;
-      animation: float 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* 左上：紫罗兰极光 */
-    .blob-1 {
-      top: -10%; left: -10%;
-      width: 60vw; height: 60vw;
-      background: radial-gradient(circle, #7c3aed, transparent 70%);
-      animation-duration: 25s;
-    }
-    
-    /* 右下：青色流光 */
-    .blob-2 {
-      bottom: -10%; right: -10%;
-      width: 70vw; height: 70vw;
-      background: radial-gradient(circle, #06b6d4, transparent 70%);
-      animation-duration: 30s;
-      animation-direction: alternate-reverse;
-    }
-    
-    /* 中间：游走的蓝色光雾 */
-    .blob-3 {
-      top: 40%; left: 30%;
-      width: 40vw; height: 40vw;
-      background: radial-gradient(circle, #2563eb, transparent 70%);
-      opacity: 0.4;
-      animation: drift 40s infinite linear;
-    }
-
-    @keyframes float {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(5%, 10%) scale(1.1); }
-    }
-    
-    @keyframes drift {
-      0% { transform: translate(-20%, -20%) rotate(0deg); }
-      50% { transform: translate(10%, 10%) rotate(180deg); }
-      100% { transform: translate(-20%, -20%) rotate(360deg); }
-    }
-
-    /* === 通用玻璃卡片样式 (适配新背景) === */
-    .glass-panel {
-      background: var(--bg-glass);
-      border: 1px solid var(--border-light);
-      border-radius: 24px;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 4px 30px rgba(0,0,0,0.2);
-      transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s, border-color 0.3s, background 0.3s;
-    }
-    /* 鼠标悬停高亮+上浮效果 */
-    .glass-panel:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px -5px rgba(0,0,0,0.4);
-      border-color: rgba(255,255,255,0.3);
-      background: var(--bg-glass-hover);
     }
     
     * { box-sizing: border-box; }
     
-    .wrap{ max-width:1240px; margin:0 auto; padding:20px 24px 100px; position: relative; z-index: 1; }
+    /* 修改：增加定位和层级，确保内容在动态背景之上 */
+    .wrap{ 
+      max-width:1240px; margin:0 auto; padding:20px 24px 100px; 
+      position: relative; z-index: 1;
+    }
+
+    /* === 🔥 新增：移植自 Home 的动态背景样式 === */
+    .bg-fixed {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1; pointer-events: none; overflow: hidden;
+      background: #030508;
+    }
+    .blob {
+      position: absolute; border-radius: 50%;
+      filter: blur(80px); opacity: 0.4;
+      animation: float 20s infinite ease-in-out alternate;
+    }
+    .blob-1 {
+      top: -10%; left: -10%; width: 50vw; height: 50vw;
+      background: radial-gradient(circle, var(--accent-purple), transparent 70%);
+      animation-duration: 25s;
+    }
+    .blob-2 {
+      bottom: -10%; right: -10%; width: 60vw; height: 60vw;
+      background: radial-gradient(circle, var(--accent-cyan), transparent 70%);
+      animation-duration: 30s; animation-direction: reverse;
+    }
+    .blob-3 {
+      top: 40%; left: 30%; width: 40vw; height: 40vw;
+      background: radial-gradient(circle, var(--accent-blue), transparent 70%);
+      animation-duration: 22s;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -30px) scale(1.1); }
+      66% { transform: translate(-20px, 20px) scale(0.9); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
     
     /* === 导航栏 === */
     .topbar{ 
       display:flex; justify-content:space-between; align-items:center;
       padding:8px 16px; 
-      background: rgba(15, 23, 42, 0.7); /* 适配蓝底 */
-      border: 1px solid rgba(255,255,255,0.1); 
+      background: rgba(15, 20, 30, 0.85); 
+      border: 1px solid rgba(255,255,255,0.08); 
       border-radius: 16px; 
       backdrop-filter: blur(20px); 
       position: sticky; top: 16px; z-index: 100; 
@@ -154,6 +109,22 @@
       transition: .3s; 
     }
     .back-btn:hover{ background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.2); }
+
+    /* === 通用玻璃卡片样式 === */
+    .glass-panel {
+      background: var(--bg-glass);
+      border: 1px solid var(--border-light);
+      border-radius: 24px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 4px 24px -1px rgba(0,0,0,0.2);
+      transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s, border-color 0.3s;
+    }
+    /* 鼠标悬停高亮+上浮效果 */
+    .glass-panel:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px -5px rgba(0,0,0,0.4);
+      border-color: rgba(255,255,255,0.25);
+    }
 
     /* === 模块1: 顶部轮播 === */
     .hero-split{ 
@@ -190,40 +161,42 @@
     .risk-banner-wrap { margin-top: 40px; position: relative; }
     
     .risk-banner {
-      background: linear-gradient(180deg, rgba(244, 63, 94, 0.1) 0%, rgba(30, 41, 59, 0.6) 100%);
-      border: 1px solid rgba(244, 63, 94, 0.3); 
+      background: linear-gradient(180deg, rgba(244, 63, 94, 0.15) 0%, rgba(20, 25, 35, 0.4) 100%);
+      border: 1px solid rgba(244, 63, 94, 0.4); 
       border-radius: 20px;
       padding: 32px 24px;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       text-align: center; position: relative; overflow: hidden;
       backdrop-filter: blur(12px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      box-shadow: 0 0 40px rgba(244, 63, 94, 0.1);
     }
     .risk-banner::before {
       content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
       width: 60%; height: 1px; 
-      background: linear-gradient(90deg, transparent, rgba(244, 63, 94, 0.8), transparent);
+      background: linear-gradient(90deg, transparent, rgba(244, 63, 94, 1), transparent);
+      box-shadow: 0 0 15px rgba(244, 63, 94, 0.8);
     }
     .risk-icon-box {
       font-size: 32px; margin-bottom: 12px;
       filter: drop-shadow(0 0 10px rgba(244, 63, 94, 0.6));
-      animation: alert-pulse 3s infinite ease-in-out;
+      animation: alert-pulse 2s infinite ease-in-out;
     }
     .risk-title { margin: 0 0 12px; font-size: 20px; font-weight: 800; color: #fff; letter-spacing: 0.5px; }
     .risk-desc { margin: 0 0 20px; font-size: 13px; color: #feaebc; line-height: 1.6; max-width: 800px; }
 
     .risk-badge-box {
       display: inline-block;
-      background: rgba(244, 63, 94, 0.1);
-      border: 1px solid rgba(244, 63, 94, 0.4);
+      background: rgba(244, 63, 94, 0.15);
+      border: 1px solid rgba(244, 63, 94, 0.5);
       padding: 8px 20px; border-radius: 50px;
+      box-shadow: 0 0 20px rgba(244, 63, 94, 0.1) inset;
     }
-    .final-warn { margin: 0; font-size: 14px; font-weight: 700; color: #fff; letter-spacing: 1px; }
+    .final-warn { margin: 0; font-size: 14px; font-weight: 700; color: #fff; letter-spacing: 1px; text-shadow: 0 0 10px rgba(244, 63, 94, 0.5); }
 
     @keyframes alert-pulse {
-      0% { transform: scale(1); opacity: 0.8; }
-      50% { transform: scale(1.05); opacity: 1; }
-      100% { transform: scale(1); opacity: 0.8; }
+      0% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 0 15px rgba(255, 200, 0, 0.8)); }
+      100% { transform: scale(1); opacity: 0.9; }
     }
 
     @media(max-width:900px){
@@ -242,17 +215,17 @@
     
     .chart-panel {
       padding: 12px; display: flex; flex-direction: column; justify-content: center;
-      background: linear-gradient(180deg, rgba(30,41,59,0.3), rgba(15,23,42,0.6));
+      background: linear-gradient(180deg, rgba(20,25,35,0.4), rgba(10,12,16,0.8));
     }
     .chart-screen { 
       position: relative; border-radius: 16px; overflow: hidden; 
-      border: 1px solid rgba(255,255,255,0.08); background: #0f172a;
+      border: 1px solid rgba(255,255,255,0.08); background: #050508;
     }
     .chart-screen img { width:100%; height:auto; display:block; filter: brightness(0.95); }
     
     .chart-badge { 
       position: absolute; top: 20px; right: 20px; 
-      background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px);
+      background: rgba(10, 10, 15, 0.85); backdrop-filter: blur(8px);
       padding: 8px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1);
       text-align: right; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
@@ -349,7 +322,7 @@
     .action-panel {
       padding: 32px; text-align: center;
       display: flex; flex-direction: column; justify-content: space-between;
-      background: linear-gradient(160deg, rgba(30,41,59,0.8), rgba(15,23,42,0.95));
+      background: linear-gradient(160deg, rgba(20,25,40,0.8), rgba(10,12,16,0.95));
       box-shadow: 0 20px 50px -10px rgba(0,0,0,0.5);
     }
     .panel-sys1 { border: 1px solid rgba(99, 102, 241, 0.3); }
@@ -438,12 +411,12 @@
     }
     .ch-mid { background: transparent; justify-content: flex-end; padding-bottom: 10px; }
     .ch-left { 
-      background: linear-gradient(160deg, rgba(168, 85, 247, 0.1), rgba(30, 41, 59, 0.6));
+      background: linear-gradient(160deg, rgba(168, 85, 247, 0.1), rgba(20, 25, 35, 0.6));
       border: 1px solid rgba(168, 85, 247, 0.3);
       box-shadow: 0 10px 40px -10px rgba(168, 85, 247, 0.15);
     }
     .ch-right { 
-      background: linear-gradient(160deg, rgba(34, 211, 238, 0.1), rgba(30, 41, 59, 0.6));
+      background: linear-gradient(160deg, rgba(34, 211, 238, 0.1), rgba(20, 25, 35, 0.6));
       border: 1px solid rgba(34, 211, 238, 0.3);
       box-shadow: 0 10px 40px -10px rgba(34, 211, 238, 0.15);
     }
@@ -538,11 +511,10 @@
 </head>
 <body>
 
-  <div class="ambient-bg">
-    <div class="noise-overlay"></div>
-    <div class="light-blob blob-1"></div>
-    <div class="light-blob blob-2"></div>
-    <div class="light-blob blob-3"></div>
+  <div class="bg-fixed">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
   </div>
 
   <div class="wrap">
@@ -1002,7 +974,7 @@
     function goPartner() { window.location.href = 'home.html#partner'; }
     function goContact() { window.location.href = 'home.html#contact'; }
 
-    // === 🔥 🌊 新增：滚动渐显动画逻辑 (Intersection Observer) ===
+    // === 🔥 🌊 NEW: 滚动渐显动画逻辑 (Intersection Observer) ===
     const observerOptions = {
         root: null,
         rootMargin: '0px',
