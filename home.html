@@ -124,14 +124,37 @@
     }
     .nav a:hover { color: #fff; background: rgba(255,255,255,0.08); }
     
+    /* === 🔥 修改：顶部按钮 CTA 动画 === */
     .cta { 
       padding: 8px 20px; border-radius: 10px; 
       background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan)); 
       color: #fff; font-weight: 700; font-size: 13px; 
       box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); 
       cursor: pointer;
+      /* 添加边框以增强发光效果 */
+      border: 1px solid rgba(255,255,255,0.1);
     }
+    
+    /* 定义 CTA 呼吸跳动动画 */
+    .cta-pulse {
+        animation: ctaPulseAnim 2s infinite ease-in-out;
+    }
+
+    @keyframes ctaPulseAnim {
+        0%, 100% { 
+            transform: scale(1); 
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); 
+        }
+        50% { 
+            transform: scale(1.05); 
+            box-shadow: 0 0 25px rgba(34, 211, 238, 0.6); 
+            border-color: rgba(255,255,255,0.5);
+            background: linear-gradient(90deg, var(--accent-blue), #22d3ee); 
+        }
+    }
+
     .cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5); }
+
 
     /* === 🔥 NEW: 科幻扩散光影 Hero === */
     .hero { 
@@ -858,7 +881,7 @@
         <a href="#partner">开户</a>
         <a href="#tools">工具</a>
       </div>
-      <div class="cta" onclick="openHeroModal()">立即跟单</div>
+      <div class="cta cta-pulse" onclick="openHeroModal()">跟单网页 ➡️ 立即跟单</div>
     </div>
 
     <div class="hero reveal">
@@ -1002,7 +1025,7 @@
           </div>
           <div class="svcLi">
             <div class="check">■</div> 
-            <span>跟单交易资金门槛达到内部会员群资金门槛要求时，可直接解锁 <b style="color:#fff">内部会员群（详情查看加入方式二）</b>。</span>
+            <span>跟单交易资金门槛 <b style="color:#fbbf24">(3000USD)</b> 达到内部会员群资金门槛要求时，可直接解锁 <b style="color:#fbbf24">内部会员群</b>（详情查看加入方式二）。</span>
           </div>
         </div>
         <a href="copy-trading.html" class="btn btn-copy-solid">立即跟单</a>
@@ -1512,14 +1535,8 @@
   </div>
 
   <script>
-    // 强制页面加载时回到顶部
-    if (history.scrollRestoration) {
-        history.scrollRestoration = 'manual';
-    }
-    window.onload = function() {
-        window.scrollTo(0, 0);
-    };
-
+    // 强制页面加载时回到顶部 - 🔥 已删除此功能，恢复默认滚动行为
+    
     // 轮播图逻辑
     const track = document.getElementById('track');
     const slides = Array.from(track.children);
@@ -1663,7 +1680,7 @@
 
     startAuto();
 
-    // === 🔥 🌊 新增：滚动渐显动画逻辑 (Intersection Observer) ===
+    // === 🔥 🌊 NEW: 滚动渐显动画逻辑 (Intersection Observer) ===
     const observerOptions = {
         root: null,
         rootMargin: '0px',
