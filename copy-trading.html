@@ -585,7 +585,7 @@
           <div class="glass-panel stat-item"><div class="stat-num" style="color:var(--accent-green)">+450.6%</div><div class="stat-label">历史总收益</div></div>
           <div class="glass-panel stat-item"><div class="stat-num">325.1%</div><div class="stat-label">季度增长</div></div>
           <div class="glass-panel stat-item"><div class="stat-num" style="color:var(--accent-blue)">$2,000</div><div class="stat-label">起投门槛</div></div>
-          <div class="glass-panel stat-item"><div class="stat-num" style="color:var(--accent-purple)">TMGM/Dprime</div><div class="stat-label">支持券商</div></div>
+          <div class="glass-panel stat-item"><div class="stat-num" style="color:var(--accent-purple)">TMGM/EXNESS</div><div class="stat-label">支持券商</div></div>
         </div>
       </div>
     </div>
@@ -650,8 +650,8 @@
         <div class="glass-panel step-item">
           <div class="step-idx idx-purp">04</div>
           <div class="step-txt">
-            <h4>零费用 & 美分账户</h4>
-            <p>完全免费，0利润分成。支持 Dprime 美分账户，适合小资金。</p>
+            <h4>美分账户 & 利润分成</h4>
+            <p>30% 利润分成。支持 EXNESS 美分账户，适合小资金。</p>
           </div>
         </div>
       </div>
@@ -659,12 +659,12 @@
       <div class="glass-panel action-panel panel-sys2">
         <div>
           <div class="profit-title" style="color:var(--accent-purple)">PROFIT SHARE</div>
-          <div class="profit-val">0%</div>
-          <div class="profit-sub">杰明自研策略 (无任何分成)</div>
+          <div class="profit-val">30%</div>
+          <div class="profit-sub">利润分成 (高水位机制)</div>
           
           <div class="btn-group">
-            <a href="https://user.dprimefast.net/signup/H1968038-a01" target="_blank" class="btn-act btn-dprime-l">立即开户</a>
-            <div class="btn-act btn-dprime-r" onclick="openDprimeModal()">立即跟单</div>
+            <a href="https://one.exnessonelink.com/a/bc1v3yl4bf" target="_blank" class="btn-act btn-dprime-l">立即开户</a>
+            <div class="btn-act btn-dprime-r" onclick="openExnessModal()">立即跟单</div>
           </div>
         </div>
 
@@ -672,7 +672,7 @@
           <div class="notice-title">⚠️ 参与必读事项：</div>
           <ul class="notice-list">
             <li><b>资金门槛：</b>账户净入金必须满足 <span style="color:#fff;border-bottom:1px dashed #fff">$2,000</span>。</li>
-            <li><b>指定券商：</b>Dprime (支持美分账户)。</li>
+            <li><b>指定券商：</b>EXNESS (支持美分账户)。</li>
             <li><b>接入流程：</b>开户入金后，请点击“立即跟单”联系助理挂载系统。</li>
             <li><b>风险提示：</b>量化交易存在风险，请使用闲钱参与。</li>
             
@@ -854,7 +854,7 @@
           <div class="c-row c-val" data-label="资金门槛">20万 USC (约$2000)</div>
           <div class="c-row c-val" data-label="月化收益">0 ~ 30% (稳健)</div>
           <div class="c-row c-val" data-label="风险设置"><span class="txt-warn">净值50% 强平保护</span></div>
-          <div class="c-row c-val" data-label="合作模式"><span class="txt-purp">0% (免分成)</span></div>
+          <div class="c-row c-val" data-label="合作模式"><span class="txt-purp">30% 利润分成</span></div>
           <div class="c-row c-val" data-label="适合人群">存钱吃息 / 闲置资金</div>
         </div>
 
@@ -928,16 +928,16 @@
     </div>
   </div>
 
-  <div class="modal-wrap" id="dprimeModal">
+  <div class="modal-wrap" id="exnessModal">
     <div class="modal-panel">
-      <div class="close-icon" onclick="closeModal('dprimeModal')">×</div>
-      <h2 class="modal-title" style="color:var(--accent-purple)">Dprime 挂载确认 🤖</h2>
+      <div class="close-icon" onclick="closeModal('exnessModal')">×</div>
+      <h2 class="modal-title" style="color:var(--accent-purple)">EXNESS 挂载确认 🤖</h2>
       <p class="modal-desc">
-        请确认您是否已经完成了 <b>Dprime 开户</b> <br>并满足 <b>$2,000</b> (或等值美分) 入金门槛？
+        请确认您是否已经完成了 <b>EXNESS 开户</b> <br>并满足 <b>$2,000</b> (或等值美分) 入金门槛？
       </p>
       
       <div class="m-btns">
-        <a href="https://live.dpcopytrading.asia/portal/registration/subscription/97116/GWCHAIDAN" target="_blank" class="m-btn mb-1" style="background:linear-gradient(90deg, var(--accent-purple), var(--accent-blue))">我已知晓，确定立即跟单！🚀</a>
+        <div class="m-btn mb-1" style="background:linear-gradient(90deg, var(--accent-purple), var(--accent-blue))" onclick="handleExnessRedirect()">我已知晓，确定立即跟单！🚀</div>
         <div class="m-btn mb-2" onclick="goContact()">已有账户，联系助理核实</div>
         <div class="m-btn mb-3" onclick="goPartner()">没有账户？前往开户 →</div>
       </div>
@@ -958,7 +958,7 @@
 
     // 弹窗逻辑
     function openTMGMModal() { document.getElementById('tmgmModal').classList.add('show'); }
-    function openDprimeModal() { document.getElementById('dprimeModal').classList.add('show'); }
+    function openExnessModal() { document.getElementById('exnessModal').classList.add('show'); }
     function openStockModal() { document.getElementById('stockModal').classList.add('show'); }
     
     function closeModal(id) { document.getElementById(id).classList.remove('show'); }
@@ -973,6 +973,12 @@
     // 页面跳转逻辑修改为 home.html 对应的锚点
     function goPartner() { window.location.href = 'home.html#partner'; }
     function goContact() { window.location.href = 'home.html#contact'; }
+
+    // EXNESS 特殊跳转逻辑
+    function handleExnessRedirect() {
+        alert("Exness跟单需要单独链接，请联系小助理获取。");
+        window.location.href = 'home.html#contact';
+    }
 
     // === 🔥 🌊 NEW: 滚动渐显动画逻辑 (Intersection Observer) ===
     const observerOptions = {
