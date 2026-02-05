@@ -58,9 +58,21 @@
       filter: blur(80px); opacity: 0.4;
       animation: float 20s infinite ease-in-out alternate;
     }
-    .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, var(--accent-purple), transparent 70%); animation-duration: 25s; }
-    .blob-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: radial-gradient(circle, var(--accent-cyan), transparent 70%); animation-duration: 30s; animation-direction: reverse; }
-    .blob-3 { top: 40%; left: 30%; width: 40vw; height: 40vw; background: radial-gradient(circle, var(--accent-blue), transparent 70%); animation-duration: 22s; }
+    .blob-1 {
+      top: -10%; left: -10%; width: 50vw; height: 50vw;
+      background: radial-gradient(circle, var(--accent-purple), transparent 70%);
+      animation-duration: 25s;
+    }
+    .blob-2 {
+      bottom: -10%; right: -10%; width: 60vw; height: 60vw;
+      background: radial-gradient(circle, var(--accent-cyan), transparent 70%);
+      animation-duration: 30s; animation-direction: reverse;
+    }
+    .blob-3 {
+      top: 40%; left: 30%; width: 40vw; height: 40vw;
+      background: radial-gradient(circle, var(--accent-blue), transparent 70%);
+      animation-duration: 22s;
+    }
 
     @keyframes float {
       0% { transform: translate(0, 0) scale(1); }
@@ -76,7 +88,13 @@
     a { text-decoration: none; color: inherit; transition: 0.3s; }
     .safe-top { padding-top: env(safe-area-inset-top); }
 
-    .wrap { max-width: 1280px; margin: 0 auto; padding: 20px 20px 60px; position: relative; z-index: 1; }
+    .wrap {
+      max-width: 1280px; 
+      margin: 0 auto; 
+      padding: 20px 20px 60px; 
+      position: relative; 
+      z-index: 1; 
+    }
 
     /* === Topbar === */
     .topbar {
@@ -89,33 +107,101 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; letter-spacing: -0.5px; }
-    .logo-img { width: 32px; height: 32px; border-radius: 8px; object-fit: cover; box-shadow: 0 0 15px rgba(99, 102, 241, 0.4); }
+    
+    .logo-img {
+      width: 32px; height: 32px; 
+      border-radius: 8px; 
+      object-fit: cover;
+      box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+    }
+
     .nav { display: flex; gap: 8px; }
-    .nav a { font-size: 14px; color: var(--txt-muted); font-weight: 600; padding: 8px 16px; border-radius: 8px; transition: .3s; }
+    .nav a { 
+      font-size: 14px; color: var(--txt-muted); font-weight: 600; 
+      padding: 8px 16px; border-radius: 8px; 
+      transition: .3s;
+    }
     .nav a:hover { color: #fff; background: rgba(255,255,255,0.08); }
     
-    .cta { padding: 8px 20px; border-radius: 10px; background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan)); color: #fff; font-weight: 700; font-size: 13px; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); cursor: pointer; border: 1px solid rgba(255,255,255,0.1); }
-    .cta-pulse { animation: ctaPulseAnim 2s infinite ease-in-out; }
-    @keyframes ctaPulseAnim { 0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); } 50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(34, 211, 238, 0.6); border-color: rgba(255,255,255,0.5); background: linear-gradient(90deg, var(--accent-blue), #22d3ee); } }
+    .cta { 
+      padding: 8px 20px; border-radius: 10px; 
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan)); 
+      color: #fff; font-weight: 700; font-size: 13px; 
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); 
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .cta-pulse {
+        animation: ctaPulseAnim 2s infinite ease-in-out;
+    }
+
+    @keyframes ctaPulseAnim {
+        0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); }
+        50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(34, 211, 238, 0.6); border-color: rgba(255,255,255,0.5); background: linear-gradient(90deg, var(--accent-blue), #22d3ee); }
+    }
+
+    .cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5); }
+
 
     /* === Hero Section === */
-    .hero { margin-top: 24px; border-radius: 32px; background: #050810; border: 1px solid rgba(255,255,255,0.1); padding: 60px 20px; text-align: center; position: relative; overflow: hidden; z-index: 1; box-shadow: inset 0 0 80px rgba(0,0,0,0.8); }
-    .hero-grid { position: absolute; inset: 0; z-index: -2; background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 50px 50px; mask-image: radial-gradient(circle at center, black 30%, transparent 80%); -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%); pointer-events: none; }
+    .hero { 
+      margin-top: 24px; 
+      border-radius: 32px; 
+      background: #050810; 
+      border: 1px solid rgba(255,255,255,0.1); 
+      padding: 60px 20px; 
+      text-align: center; 
+      position: relative; 
+      overflow: hidden; 
+      z-index: 1; 
+      box-shadow: inset 0 0 80px rgba(0,0,0,0.8);
+    }
+    
+    .hero-grid {
+      position: absolute; inset: 0; z-index: -2;
+      background-image: 
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 50px 50px;
+      mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+      -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+      pointer-events: none;
+    }
+
     .hero-glow-container { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
     .hero-light { position: absolute; border-radius: 50%; mix-blend-mode: screen; filter: blur(50px); }
+
     .hl-purple { top: 50%; left: 0%; width: 50%; height: 120%; background: radial-gradient(circle at center, #a855f7, transparent 70%); transform: translateY(-50%) translateX(-20%); opacity: 0.6; animation: diffuseLeft 8s infinite ease-in-out; }
     .hl-cyan { top: 50%; right: 0%; width: 50%; height: 120%; background: radial-gradient(circle at center, #22d3ee, transparent 70%); transform: translateY(-50%) translateX(20%); opacity: 0.6; animation: diffuseRight 8s infinite ease-in-out; }
     .hl-scanner { top: 50%; left: 50%; width: 120%; height: 15%; background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.8), transparent); transform: translate(-50%, -50%) rotate(-5deg); filter: blur(40px); opacity: 0.5; animation: scanMove 10s infinite ease-in-out; }
 
-    @keyframes diffuseLeft { 0%, 100% { transform: translateY(-50%) translateX(-20%) scale(1); opacity: 0.5; } 50% { transform: translateY(-50%) translateX(10%) scale(1.3); opacity: 0.2; } }
-    @keyframes diffuseRight { 0%, 100% { transform: translateY(-50%) translateX(20%) scale(1); opacity: 0.5; } 50% { transform: translateY(-50%) translateX(-10%) scale(1.3); opacity: 0.2; } }
-    @keyframes scanMove { 0%, 100% { transform: translate(-50%, -80%) rotate(-5deg) scaleX(1); opacity: 0.3; } 50% { transform: translate(-50%, -20%) rotate(5deg) scaleX(1.2); opacity: 0.7; } }
+    @keyframes diffuseLeft {
+      0%, 100% { transform: translateY(-50%) translateX(-20%) scale(1); opacity: 0.5; }
+      50% { transform: translateY(-50%) translateX(10%) scale(1.3); opacity: 0.2; }
+    }
+    @keyframes diffuseRight {
+      0%, 100% { transform: translateY(-50%) translateX(20%) scale(1); opacity: 0.5; }
+      50% { transform: translateY(-50%) translateX(-10%) scale(1.3); opacity: 0.2; }
+    }
+    @keyframes scanMove {
+      0%, 100% { transform: translate(-50%, -80%) rotate(-5deg) scaleX(1); opacity: 0.3; }
+      50% { transform: translate(-50%, -20%) rotate(5deg) scaleX(1.2); opacity: 0.7; }
+    }
 
     .title h1 { margin: 0; font-size: clamp(32px, 5vw, 52px); font-weight: 900; line-height: 1.1; text-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; }
     .grad { background: linear-gradient(135deg, #fff 20%, var(--accent-cyan) 100%); -webkit-background-clip: text; color: transparent; }
     .title p { color: var(--txt-muted); font-size: 15px; margin-top: 12px; max-width: 600px; margin-left: auto; margin-right: auto; text-shadow: 0 2px 10px rgba(0,0,0,0.5); position: relative; }
 
-    .btn-hero-copy { display: inline-flex; align-items: center; gap: 8px; justify-content: center; margin-top: 32px; padding: 16px 48px; border-radius: 99px; background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); color: #fff; font-size: 18px; font-weight: 800; text-decoration: none; box-shadow: 0 0 30px rgba(99,102,241,0.5), inset 0 1px 0 rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s ease; cursor: pointer; position: relative; z-index: 2; }
+    .btn-hero-copy {
+      display: inline-flex; align-items: center; gap: 8px; justify-content: center;
+      margin-top: 32px; padding: 16px 48px; border-radius: 99px;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+      color: #fff; font-size: 18px; font-weight: 800; text-decoration: none;
+      box-shadow: 0 0 30px rgba(99,102,241,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s ease; cursor: pointer; position: relative; z-index: 2;
+    }
     .btn-hero-copy:hover { transform: translateY(-4px) scale(1.05); box-shadow: 0 0 50px rgba(99,102,241,0.8); filter: brightness(1.1); }
 
     /* Components */
@@ -125,7 +211,16 @@
     .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-cyan); box-shadow: 0 0 8px var(--accent-cyan); }
     
     /* === Glass Card === */
-    .glass-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-top: 1px solid var(--glass-highlight); border-radius: 24px; backdrop-filter: blur(16px); box-shadow: 0 4px 24px -1px rgba(0,0,0,0.2); overflow: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .glass-card { 
+      background: var(--glass-bg); 
+      border: 1px solid var(--glass-border); 
+      border-top: 1px solid var(--glass-highlight); 
+      border-radius: 24px; 
+      backdrop-filter: blur(16px); 
+      box-shadow: 0 4px 24px -1px rgba(0,0,0,0.2); 
+      overflow: hidden; 
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    }
     .glass-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -5px rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.12); }
 
     /* === 跑马灯 === */
@@ -279,7 +374,8 @@
     .tut-actions { display: flex; gap: 12px; margin-top: auto; }
     .tut-action-item { flex: 1; display: flex; flex-direction: column; align-items: center; }
     .tut-tip { font-size: 11px; color: var(--txt-muted); text-align: center; margin-top: 6px; opacity: 0.8; line-height: 1.4; }
-    
+    @media (max-width: 500px) { .tut-actions { flex-direction: column; gap: 16px; } .tut-tip { font-size: 10px; margin-top: 4px; } }
+
     .risk { margin-top: 40px; padding: 24px; border-left: 4px solid #ef4444; background: linear-gradient(90deg, rgba(239, 68, 68, 0.05), transparent); }
     .risk-title { display: flex; align-items: center; gap: 8px; color: #ef4444; font-weight: 800; font-size: 14px; margin-bottom: 10px; }
     .risk ul { margin: 0; padding-left: 18px; color: var(--txt-muted); font-size: 12px; line-height: 1.8; }
@@ -299,70 +395,22 @@
     .m-btn-confirm:hover { filter: brightness(1.1); transform: translateY(-2px); }
     .m-btn-contact { background: rgba(255,255,255,0.05); color: var(--accent-cyan); border: 1px solid rgba(255,255,255,0.1); }
     .m-btn-contact:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    .partner-warning { color:#f0b90b; font-weight:800; margin-bottom:8px; display:block;}
 
-    /* === 🔥 新增优化：全球资讯头部组件 === */
-    .news-header {
-      padding: 24px 32px;
-      background: linear-gradient(to bottom, rgba(10, 15, 29, 0.95), rgba(10, 15, 29, 0.8));
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-      position: relative;
-      z-index: 10;
+    @media(max-width:900px){ 
+      .grid2, .serviceGrid { grid-template-columns: 1fr; gap: 20px; }
+      .grid4 { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .nav { display: none; }
+      .tvStage { aspect-ratio: 16/9; }
+    }
+    @media (max-width: 500px) {
+      .grid4 { grid-template-columns: 1fr; }
+      .wrap { padding: 16px 16px 40px; }
+      .hero { padding: 30px 16px; }
+      .miniCard { min-height: auto; }
+      .title h1 { font-size: 28px; }
     }
 
-    .news-info { flex: 1; }
-    .news-title-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .news-title-row h3 { margin: 0; font-size: 22px; font-weight: 900; color: #fff; }
-    .news-desc { font-size: 14px; color: var(--txt-muted); margin: 6px 0 0; }
-    
-    /* 黄色梯子提示改为 inline-block 随文字流走 */
-    .ladder-tip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-left: 12px;
-      padding: 4px 10px;
-      background: rgba(243, 186, 47, 0.1);
-      border: 1px solid rgba(243, 186, 47, 0.3);
-      border-radius: 6px;
-      color: #F3BA2F;
-      font-size: 12px;
-      font-weight: 600;
-      vertical-align: middle;
-    }
-
-    /* 手机端资讯头部适配 */
-    @media (max-width: 900px) {
-      .news-header { flex-direction: column; text-align: center; padding: 24px 16px; gap: 16px; }
-      .news-title-row { justify-content: center; }
-      .news-desc { margin-top: 10px; }
-      .ladder-tip { margin: 10px 0 0; display: inline-flex; }
-    }
-
-    /* 全球资讯容器 */
-    .news-container { width: 100%; height: 650px; position: relative; background: #050810; overflow: hidden; }
-    .news-loading-overlay { 
-      position: absolute; inset: 0; z-index: 5; 
-      background: radial-gradient(circle at center, rgba(10, 15, 29, 0.9), #030508); 
-      display: flex; flex-direction: column; align-items: center; justify-content: center; 
-      backdrop-filter: blur(4px);
-    }
-    .loading-spinner { width: 50px; height: 50px; border: 3px solid rgba(34, 211, 238, 0.1); border-top-color: var(--accent-cyan); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px; }
-    .loading-text { font-size: 24px; font-weight: 900; color: #fff; text-shadow: 0 0 20px rgba(34, 211, 238, 0.5); animation: textGlow 1.5s infinite alternate; margin: 0; }
-    
-    /* 高亮提示文字：呼吸动效 */
-    .highlight-hint { 
-      margin-top: 15px; font-size: 14px; font-weight: 600; 
-      color: var(--accent-cyan); opacity: 0.8; 
-      background: rgba(34, 211, 238, 0.1); padding: 6px 16px; border-radius: 20px;
-      animation: hintBreath 2s infinite ease-in-out; 
-    }
-    @keyframes hintBreath { 0%, 100% { transform: scale(1); opacity: 0.6; box-shadow: 0 0 0px rgba(34, 211, 238, 0); } 50% { transform: scale(1.05); opacity: 1; box-shadow: 0 0 15px rgba(34, 211, 238, 0.3); } }
-
-    /* === 其他通用样式与适配 === */
     .tut-header-distinct { text-align: center; margin: 80px 0 50px; position: relative; }
     .tut-big-title { font-size: clamp(32px, 5vw, 48px); font-weight: 900; background: linear-gradient(to right, #eab308, #fef08a, #eab308); -webkit-background-clip: text; color: transparent; letter-spacing: -1px; text-shadow: 0 10px 40px rgba(234, 179, 8, 0.3); display: inline-block; position: relative; }
     .tut-badge-pop { position: absolute; top: -15px; right: -30px; background: #ff2442; color: #fff; font-size: 12px; font-weight: 800; padding: 4px 10px; border-radius: 10px 10px 10px 0; box-shadow: 0 4px 15px rgba(255, 36, 66, 0.5); transform: rotate(10deg); }
@@ -378,26 +426,14 @@
     .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); will-change: opacity, transform; }
     .reveal.active { opacity: 1; transform: translateY(0); }
     
+    /* === 🔥 全屏按钮专用动画 === */
     .btn-glow-anim { background: linear-gradient(90deg, #a855f7, #ec4899); color: #fff; font-weight: 800; border: none; box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); animation: pulseGlow 2s infinite ease-in-out; transition: all 0.3s; }
     .btn-glow-anim:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 0 30px rgba(168, 85, 247, 0.8); filter: brightness(1.2); }
     @keyframes pulseGlow { 0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); } 50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(236, 72, 153, 0.7); } }
 
+    /* === 🔥 正在连接文字动画 === */
     @keyframes textGlow { from { text-shadow: 0 0 10px rgba(34,211,238,0.5); opacity: 0.8; } to { text-shadow: 0 0 25px rgba(34,211,238,1); opacity: 1; } }
     @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-    @media(max-width:900px){ 
-      .grid2, .serviceGrid { grid-template-columns: 1fr; gap: 20px; }
-      .grid4 { grid-template-columns: 1fr 1fr; gap: 16px; }
-      .nav { display: none; }
-      .tvStage { aspect-ratio: 16/9; }
-    }
-    @media (max-width: 500px) {
-      .grid4 { grid-template-columns: 1fr; }
-      .wrap { padding: 16px 16px 40px; }
-      .hero { padding: 30px 16px; }
-      .miniCard { min-height: auto; }
-      .title h1 { font-size: 28px; }
-    }
   </style>
 </head>
 
@@ -428,16 +464,20 @@
 
     <div class="hero reveal">
       <div class="hero-grid"></div>
+      
       <div class="hero-glow-container">
         <div class="hero-light hl-purple"></div>
         <div class="hero-light hl-cyan"></div>
         <div class="hero-light hl-scanner"></div>
       </div>
+
       <div class="title">
         <h1>欢迎来到 <span class="grad">GWCAPITAL</span></h1>
         <p>个人合作入口与资源聚合站</p>
         <p>你与财富自由，只差一个牛市</p>
-        <a href="#partner" class="btn-hero-copy">🚀 加入我们</a>
+        <a href="#partner" class="btn-hero-copy">
+          🚀 加入我们
+        </a>
       </div>
     </div>
 
@@ -513,6 +553,7 @@
         <div class="feedback-card"><img src="images/f3.jpg" alt="反馈3"></div>
         <div class="feedback-card"><img src="images/f4.jpg" alt="反馈4"></div>
         <div class="feedback-card"><img src="images/f5.jpg" alt="反馈5"></div>
+        
         <div class="feedback-card"><img src="images/f1.jpg" alt="反馈1"></div>
         <div class="feedback-card"><img src="images/f2.jpg" alt="反馈2"></div>
         <div class="feedback-card"><img src="images/f3.jpg" alt="反馈3"></div>
@@ -546,8 +587,8 @@
         <div class="svcLi"><div class="check">★</div>实时进出场交易观点推送</div>
         <div class="svcLi"><div class="check">★</div>自用指标工具、深度研报共享</div>
         <div class="svcLi"><div class="check">★</div>杰明自研Tradingview指标共享</div>
-        <div class="svcLi"><div class="check">★</div>付费课程大额折扣</div>
-        <div class="svcLi"><div class="check">★</div>专属群内答疑 & 盘面视频图文分析</div>
+        <div class="svcLi"><div class="check">★</div>付费课程大额折扣（课程制作中，持续会更新）</div>
+        <div class="svcLi"><div class="check">★</div>专属群内答疑，每日不定期《亚欧美》盘群内视频图文分析</div>
       </div>
 
       <div class="glass-card svc-copy reveal" style="padding:24px; display:flex; flex-direction:column; justify-content:space-between;">
@@ -556,8 +597,14 @@
             <h3><div class="svc-icon">03</div>跟单交易</h3>
             <span class="svcTag">加入方式</span>
           </div>
-          <div class="svcLi" style="margin-bottom:6px;"><div class="check">■</div><span>跟单与内部群属于独立项目。</span></div>
-          <div class="svcLi"><div class="check">■</div><span>资金门槛 <b style="color:#fbbf24">(3,000USD)</b> 达标可免费解锁内部群。</span></div>
+          <div class="svcLi" style="margin-bottom:6px;">
+            <div class="check">■</div> 
+            <span>跟单交易和内部会员群属于独立项目，提供不同类型的服务。</span>
+          </div>
+          <div class="svcLi">
+            <div class="check">■</div> 
+            <span>跟单交易资金门槛 <b style="color:#fbbf24">(3000USD)</b> 达到内部会员群资金门槛要求时，可直接解锁 <b style="color:#fbbf24">内部会员群</b>（详情查看加入方式二）。</span>
+          </div>
         </div>
         <a href="copy-trading.html" class="btn btn-copy-solid">立即跟单</a>
       </div>
@@ -569,29 +616,47 @@
       <div class="divider"></div>
     </div>
 
-    <div class="glass-card reveal" style="overflow:hidden; border:1px solid rgba(255,255,255,0.15); box-shadow:0 0 30px rgba(0,0,0,0.5);">
-      <div class="news-header">
-        <div class="news-info">
-          <div class="news-title-row">
-            <h3>GW小站 <span class="grad">专用全球🌍新闻资讯</span></h3>
-            <span style="font-size:10px; padding:3px 8px; background:rgba(52,211,153,0.15); color:#34d399; border:1px solid rgba(52,211,153,0.3); border-radius:4px; font-weight:bold;">免费公开</span>
-          </div>
-          <p class="news-desc">
-            实时追踪全球地缘政治与金融动态
-            <span class="ladder-tip">⚠ 如遇打不开 请使用梯子🪜连接</span>
-          </p>
+    <div class="glass-card reveal" style="padding:0; overflow:hidden; border:1px solid rgba(255,255,255,0.15); box-shadow:0 0 30px rgba(0,0,0,0.5);">
+      <div style="padding:16px 24px; background:rgba(15, 20, 30, 0.95); border-bottom:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center; gap:20px; position:relative; z-index:10; flex-wrap: nowrap;" class="news-header-flex">
+        
+        <div style="flex-shrink: 0; display: flex; align-items: center; gap: 12px;">
+          <h3 style="margin:0; font-size:18px; font-weight:800; color:#fff; white-space: nowrap;">
+            GW小站 <span class="grad">全球新闻资讯🔥实时追踪-</span>
+          </h3>
+          <span style="font-size:10px; padding:2px 8px; background:rgba(52,211,153,0.1); color:#34d399; border:1px solid rgba(52,211,153,0.3); border-radius:4px; font-weight:bold; white-space: nowrap;">免费公开</span>
+        </div>
+
+        <div style="flex-grow: 1; padding: 0 15px; border-left: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center;" class="news-tip-pc">
+           <div style="padding:6px 12px; background:rgba(243, 186, 47, 0.1); border:1px solid rgba(243, 186, 47, 0.3); border-radius:6px; color:#F3BA2F; font-weight:600; font-size:12px; display:inline-flex; align-items:center; gap:6px;">
+             <span>⚠ 打不开请使用🪜梯子，下方有梯子工具方式！</span>
+           </div>
         </div>
         
-        <a href="https://view.gwcapital.xyz" target="_blank" class="btn btn-glow-anim" style="margin:0; width:auto; padding:12px 32px; border-radius:12px; font-size:15px;">
-          ⤢ 全屏跳转观看
+        <a href="https://view.gwcapital.xyz" target="_blank" class="btn btn-glow-anim" style="margin:0; width:auto; min-width:110px; padding:8px 20px; border-radius:8px; font-size:13px; flex-shrink: 0;">
+          ⤢ 外部观看
         </a>
       </div>
 
-      <div class="news-container">
-        <div class="news-loading-overlay">
-           <div class="loading-spinner"></div>
-           <p class="loading-text">正在连接全球节点...</p>
-           <p class="highlight-hint">✨ 如长时间未显示，请点击上方按钮跳转观看 ✨</p>
+      <style>
+        @media (max-width: 850px) {
+          .news-header-flex { flex-wrap: wrap !important; gap: 12px !important; padding: 16px !important; }
+          .news-tip-pc { border-left: none !important; padding: 0 !important; width: 100% !important; order: 3; }
+          .news-tip-pc div { width: 100%; justify-content: center; }
+          .news-header-flex a { width: 100% !important; order: 4; }
+        }
+      </style>
+
+      <div style="width:100%; height:600px; position:relative; background: #050810;">
+        <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; background:rgba(0,0,0,0.7); pointer-events:none; z-index:5;">
+           <div style="width:40px; height:40px; border:3px solid rgba(255,255,255,0.05); border-top-color:#22d3ee; border-radius:50%; animation:spin 1s linear infinite; margin-bottom:16px;"></div>
+           <p style="color:#fff; font-size:22px; font-weight:800; letter-spacing:1px; text-shadow:0 0 20px rgba(34,211,238,0.8); animation: textGlow 1.5s infinite alternate; margin:0;">
+             正在连接全球节点...
+           </p>
+           <div style="margin-top:12px; padding:4px 12px; background:rgba(34,211,238,0.15); border:1px solid var(--accent-cyan); border-radius:4px;">
+             <p style="color:var(--accent-cyan); font-size:13px; font-weight:700; margin:0;">
+               💡 如长时间未显示，请点击上方按钮跳转观看
+             </p>
+           </div>
         </div>
 
         <iframe 
@@ -615,67 +680,103 @@
     <div class="grid2">
       <div class="glass-card tut-card reveal">
         <div class="tut-head">
-          <div class="tut-icon-box" style="color:var(--accent-blue)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div>
+          <div class="tut-icon-box" style="color:var(--accent-blue)">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+          </div>
           <div class="tut-tag" style="background:rgba(99,102,241,0.1);color:var(--accent-blue)">网站教学</div>
         </div>
-        <h3 class="miniTitle">全站功能深度导览</h3>
-        <p class="miniDesc">深度视频介绍小站所有板块，一站式解决所有疑惑。</p>
+        <h3 class="miniTitle" style="font-size:18px;">全站功能深度导览</h3>
+        <p class="miniDesc" style="font-size:13px; margin-bottom:16px;">
+          针对很多不明白不了解小站功能的查看此视频👇，深度视频介绍小站所有板块。
+        </p>
+        
         <div class="tut-actions">
            <div class="tut-action-item">
-               <a href="https://youtu.be/-HoxR0E_25k" target="_blank" class="btn btn-red">▶ 外网观看</a>
-               <span class="tut-tip">需魔法上网</span>
+               <a href="https://youtu.be/-HoxR0E_25k" target="_blank" class="btn btn-red" style="width:100%">
+                   ▶ 外网观看
+               </a>
+               <span class="tut-tip">需魔法上网，稳定长期观看</span>
            </div>
            <div class="tut-action-item">
-               <a href="https://zcndb8m3iov2.feishu.cn/wiki/UR51wAaeMinj3PkISSFcPt8CnYf" target="_blank" class="btn btn-blue">📄 内网观看</a>
-               <span class="tut-tip">国内直连</span>
+               <a href="https://zcndb8m3iov2.feishu.cn/wiki/UR51wAaeMinj3PkISSFcPt8CnYf?from=from_copylink" target="_blank" class="btn btn-blue" style="width:100%">
+                   📄 内网观看
+               </a>
+               <span class="tut-tip">如果遇打不开，建议切换外网</span>
            </div>
         </div>
       </div>
 
       <div class="glass-card tut-card reveal">
         <div class="tut-head">
-          <div class="tut-icon-box" style="color:var(--accent-cyan)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg></div>
+          <div class="tut-icon-box" style="color:var(--accent-cyan)">
+             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
+          </div>
           <div class="tut-tag" style="background:rgba(34,211,238,0.1);color:var(--accent-cyan)">开户跟单教学</div>
         </div>
-        <h3 class="miniTitle">开户跟单保姆级教程</h3>
-        <p class="miniDesc">手把手教你完成注册、入金及绑定。一个视频学会所有配置。</p>
+        <h3 class="miniTitle" style="font-size:18px;">开户跟单保姆级教程</</h3>
+        <p class="miniDesc" style="font-size:13px; margin-bottom:16px;">
+          拒绝繁琐，手把手教你完成注册、入金及绑定跟单。从零开始，一个视频学会所有操作配置。
+        </p>
+        
         <div class="tut-actions">
            <div class="tut-action-item">
-               <a href="https://youtu.be/WL5OVGrv79w" target="_blank" class="btn btn-red">▶ 外网观看</a>
-               <span class="tut-tip">需魔法上网</span>
+               <a href="https://youtu.be/WL5OVGrv79w" target="_blank" class="btn btn-red" style="width:100%">
+                   ▶ 外网观看
+               </a>
+               <span class="tut-tip">需魔法上网，稳定长期观看</span>
            </div>
            <div class="tut-action-item">
-               <a href="https://zcndb8m3iov2.feishu.cn/wiki/GSa6wn2m2irQWskDZfncnKAJnJd" target="_blank" class="btn btn-cyan">📄 内网观看</a>
-               <span class="tut-tip">国内直连</span>
+               <a href="https://zcndb8m3iov2.feishu.cn/wiki/GSa6wn2m2irQWskDZfncnKAJnJd?from=from_copylink" target="_blank" class="btn btn-cyan" style="width:100%">
+                   📄 内网观看
+               </a>
+               <span class="tut-tip">如果遇打不开，建议切换外网</span>
            </div>
         </div>
       </div>
 
       <div class="glass-card tut-card tut-gold reveal">
         <div class="tut-head">
-          <div class="tut-icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="22" y1="12" x2="18" y2="12"></line><line x1="6" y1="12" x2="2" y2="12"></line><line x1="12" y1="6" x2="12" y2="2"></line><line x1="12" y1="22" x2="12" y2="18"></line></svg></div>
+          <div class="tut-icon-box">
+             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="22" y1="12" x2="18" y2="12"></line><line x1="6" y1="12" x2="2" y2="12"></line><line x1="12" y1="6" x2="12" y2="2"></line><line x1="12" y1="22" x2="12" y2="18"></line></svg>
+          </div>
           <div class="tut-tag">内部核心</div>
         </div>
-        <h3 class="miniTitle" style="color:var(--accent-gold);">内部群点位逻辑拆解</h3>
-        <div class="highlight-box">深拆解：点位怎么看？盈亏比如何设置？止损在哪里？</div>
+        <h3 class="miniTitle" style="font-size:18px; color:var(--accent-gold);">内部群点位逻辑拆解</</h3>
+        
+        <div class="highlight-box">
+          深度拆解内部会员群。杰明老师点位怎么看？盈亏比图如何设置进出场点位？止损怎么设置？
+        </div>
+
         <div class="tut-actions">
            <div class="tut-action-item">
-               <a href="https://youtu.be/vYTK7yTcyJA" target="_blank" class="btn btn-red">▶ 外网观看</a>
+               <a href="https://youtu.be/vYTK7yTcyJA" target="_blank" class="btn btn-red" style="width:100%">
+                   ▶ 外网观看
+               </a>
+               <span class="tut-tip">需魔法上网，稳定长期观看</span>
            </div>
            <div class="tut-action-item">
-               <a href="https://zcndb8m3iov2.feishu.cn/wiki/H6Nwwi8cMi1qjPkH2CDce2nhnRc" target="_blank" class="btn btn-gold">📄 内网观看</a>
+               <a href="https://zcndb8m3iov2.feishu.cn/wiki/H6Nwwi8cMi1qjPkH2CDce2nhnRc?from=from_copylink" target="_blank" class="btn btn-gold" style="width:100%">
+                   📄 内网观看
+               </a>
+               <span class="tut-tip">如果遇打不开，建议切换外网</span>
            </div>
         </div>
       </div>
 
       <div class="glass-card tut-card tut-core reveal">
         <div class="tut-head">
-          <div class="tut-icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg></div>
-          <div class="tut-tag">必修入门课</div>
+          <div class="tut-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+          </div>
+          <div class="tut-tag">免费必修《全网最详细小白基础入门课》</div>
         </div>
-        <h3 class="miniTitle" style="color:var(--accent-red);">外汇交易小白基础公开课</h3>
-        <div class="highlight-box" style="border-color:rgba(255,36,66,0.5); background:rgba(255,36,66,0.08);">零基础系统入门，了解市场运行逻辑与核心规则。</div>
-        <a href="https://space.bilibili.com/3690997307410528/lists/7141651" target="_blank" class="btn btn-red" style="margin-top:auto;">立即免费观看</a>
+        <h3 class="miniTitle" style="font-size:18px; color:var(--accent-red);">外汇交易入门免费公开课（可直接观看）</h3>
+        
+        <div class="highlight-box" style="border-color:rgba(255,36,66,0.5); background:rgba(255,36,66,0.08);">
+          零基础系统入门，逐步拆解外汇市场的运行逻辑、交易方式和核心规则。避免盲目入场，先懂规则再赚钱。
+        </div>
+
+        <a href="https://space.bilibili.com/3690997307410528/lists/7141651?type=season" target="_blank" class="btn btn-red" style="margin-top:auto;">立即免费观看</a>
       </div>
     </div>
     
@@ -689,31 +790,51 @@
       <div class="glass-card reveal" style="padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
         <div>
           <div class="miniTop">
-            <div class="platIcon" style="background: rgba(255, 215, 0, 0.1); color: var(--accent-gold); border: 1px solid rgba(255, 215, 0, 0.2);"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 12l-2.5-2.25L12 11zm0 2.5l-5-2.5-5 2.5 10 5 10-5-5-2.5-5 2.5z"/></svg></div>
+            <div class="platIcon" style="background: rgba(255, 215, 0, 0.1); color: var(--accent-gold); border: 1px solid rgba(255, 215, 0, 0.2);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 12l-2.5-2.25L12 11zm0 2.5l-5-2.5-5 2.5 10 5 10-5-5-2.5-5 2.5z"/></svg>
+            </div>
             <span style="font-size:12px; font-weight:700; color: var(--accent-gold); border: 1px solid rgba(255, 215, 0, 0.3); padding: 4px 10px; border-radius: 8px;">方式一</span>
           </div>
           <h3 style="margin: 12px 0 6px; font-size: 26px;">8888 <span style="font-size:15px; color:var(--txt-muted); font-weight:500">RMB/一次性</span></h3>
-          <p style="font-size: 14px; color: var(--txt-muted); line-height: 1.6; margin-bottom: 12px;">永久享受内部群权益。抖音VIP请联系助理申请加入。</p>
+          <p style="font-size: 14px; color: var(--txt-muted); line-height: 1.6; margin-bottom: 12px;">
+            支付一次性群费，即可永久享受内部群权益。
+          </p>
+          
           <div style="margin-top: 16px; padding: 14px; border-radius: 12px; background: rgba(255, 215, 0, 0.05); border: 1px solid rgba(255, 215, 0, 0.2);">
-            <div style="font-size: 13px; color: #fff; margin-bottom: 12px;"><span style="color: var(--accent-gold); font-weight: 800;">👑 抖音VIP特权：</span><br>验证身份后可申请加入。</div>
-            <a href="javascript:void(0)" onclick="handleDouyinVIP()" class="btn" style="background: var(--accent-gold); color: #000; font-weight: 800; border: none; font-size: 12px; margin-top: 0; padding: 10px;">🎵 点击跳转抖音核验身份</a>
+            <div style="font-size: 13px; line-height: 1.6; color: #fff; margin-bottom: 12px;">
+                <span style="color: var(--accent-gold); font-weight: 800;">👑 抖音VIP特权：</span><br>
+                如您已是抖音专属VIP成员，请联系助理可直接申请加入《内部会员群》。
+            </div>
+            <a href="javascript:void(0)" onclick="handleDouyinVIP()" class="btn" style="background: var(--accent-gold); color: #000; font-weight: 800; border: none; font-size: 12px; margin-top: 0; padding: 10px;">
+                🎵 点击跳转抖音核验身份
+            </a>
           </div>
         </div>
+        
         <a class="btn btn-gold" href="#contact" style="margin-top:20px;">联系助理付费</a>
       </div>
 
       <div class="glass-card reveal" style="padding: 24px;">
         <div class="miniTop">
-          <div class="platIcon" style="background: rgba(34, 211, 238, 0.1); color: var(--accent-cyan);"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div>
+          <div class="platIcon" style="background: rgba(34, 211, 238, 0.1); color: var(--accent-cyan);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+          </div>
           <span style="font-size:12px; font-weight:700; color: var(--accent-cyan); border: 1px solid rgba(34, 211, 238, 0.3); padding: 4px 10px; border-radius: 8px;">方式二（推荐）</span>
         </div>
         <h3 style="margin: 12px 0 6px; font-size: 26px;">免费 <span style="font-size:15px; color:var(--txt-muted); font-weight:500">/ 开户抵扣</span></h3>
-        <p style="font-size: 14px; color: var(--txt-muted); margin-bottom: 16px;">满足资金门槛即可免除群费。门槛：$3,000 USD。</p>
+        <p style="font-size: 14px; color: var(--txt-muted); line-height: 1.6; margin-bottom: 16px;">
+          通过下方合作链接开户（包含跟单），满足资金门槛即可免除群费。
+        </p>
         <div style="background: rgba(255,255,255,0.03); border-radius: 12px; padding: 14px; border: 1px solid rgba(255,255,255,0.05);">
-          <div style="font-size: 12px; color: var(--txt-muted); line-height: 1.6;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <span style="font-size:13px; color:var(--txt-muted);">资金门槛</span>
+            <b style="font-size:16px; color: #fff;">$ 3,000 USD</b>
+          </div>
+          <div style="font-size: 12px; color: var(--txt-muted); line-height: 1.6; border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 10px; margin-top: 6px;">
             <span style="color: #ef4444; font-weight: 700;">⚠ 特别注意：</span><br>
-            • 需保持月底净值满足 $3,000 USD。<br>
-            • 满足条件后请联系助理人工核验。
+            • 使用此方式入群后，需要保持每个月月底统计时，账户净值满足大于等于$ 3,000 USD的要求。<br>
+            • 月底统计时，如果账户总净值低于$ 2,000 USD，助理会提示是否还愿意保留会员群名额。低于$ 1,000 USD，则会被移除出群。<br>
+            • 满足条件后，请务必联系助理进行<span style="color:#fff;font-weight:700">人工登记核验</span>。
           </div>
         </div>
         <a class="btn btn-cyan" style="margin-top: 20px;" href="#partner">去选择平台开户</a>
@@ -727,22 +848,56 @@
     </div>
 
     <div class="grid2">
+      
       <div class="glass-card partner-card-new card-tmgm reveal">
-        <div class="p-col-logo"><img src="images/tmgm.png" alt="TMGM" class="p-big-logo"></div>
+        <div class="p-col-logo">
+           <img src="images/tmgm.png" alt="TMGM" class="p-big-logo">
+        </div>
+        
         <div class="p-col-info">
-          <div class="p-header"><h3 class="p-title">TMGM <span class="rec-badge">推荐</span></h3><span class="p-tag" style="color:var(--accent-cyan);border-color:var(--accent-cyan)">美元账户</span></div>
-          <p class="p-desc">美元标准账户。监管优，出入金稳定。💡 推荐使用USDT或极付宝入金。</p>
-          <a class="btn btn-cyan btn-highlight-pulse" href="javascript:void(0)" onclick="openPartnerModal('https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans')">立即开户注册</a>
+          <div class="p-header">
+             <h3 class="p-title">
+               TMGM 
+               <span class="rec-badge">推荐</span>
+             </h3>
+             <span class="p-tag" style="color:var(--accent-cyan);border-color:var(--accent-cyan)">美元账户</span>
+          </div>
+          
+          <p class="p-desc">
+             美元标准账户。平台合作多年，<b style="color:#fff;">监管优</b>，<b style="color:#fff;">出入金稳定</b>，支持<b style="color:#fff;">大额资金</b>。
+             <span style="display:block; margin-top:8px; padding-top:8px; border-top:1px dashed rgba(255,255,255,0.1); color:#34d399; font-size:12px; line-height:1.5;">
+                💡 推荐使用USDT入金。<br>
+                RMB入金建议使用后台提供的<b style="color:#fff">极付宝</b>入金（<span style="color:#ef4444">工商银行和农业银行除外</span>，其他银行均可）。
+             </span>
+          </p>
+
+          <a class="btn btn-cyan btn-highlight-pulse" style="margin-top:auto" href="javascript:void(0)" onclick="openPartnerModal('https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans')">
+            立即开户注册
+          </a>
         </div>
       </div>
       <div class="glass-card partner-card-new card-dprime reveal">
-        <div class="p-col-logo"><img src="images/exness.png" alt="EXNESS" class="p-big-logo"></div>
+        <div class="p-col-logo">
+           <img src="images/exness.png" alt="EXNESS" class="p-big-logo">
+        </div>
+        
         <div class="p-col-info">
-          <div class="p-header"><h3 class="p-title">EXNESS 开户</h3><span class="p-tag" style="color:var(--accent-purple);border-color:var(--accent-purple)">美分账户</span></div>
-          <p class="p-desc">适合小资金测试策略。⚠ 仅建议使用美分账户。</p>
-          <a class="btn btn-purple btn-highlight-pulse" href="javascript:void(0)" onclick="openPartnerModal('https://one.exnessonelink.com/a/bc1v3yl4bf')">立即开户注册</a>
+          <div class="p-header">
+             <h3 class="p-title">EXNESS 开户</h3>
+             <span class="p-tag" style="color:var(--accent-purple);border-color:var(--accent-purple)">美分账户</span>
+          </div>
+          <p class="p-desc">
+             适合小资金测试策略EA比较合适，仅支持美分账户交易，适合美分类型跟单策略。
+             <span style="display:block; margin-top:8px; padding-top:8px; border-top:1px dashed rgba(255,255,255,0.1); color:#ff2442; font-size:12px; line-height:1.5;">
+                <strong>特别提示：</strong>仅建议使用美分账户，如需使用美元账户请移步至TMGM！仅供参考，风险自负！
+             </span>
+          </p>
+          <a class="btn btn-purple btn-highlight-pulse" style="margin-top:auto" href="javascript:void(0)" onclick="openPartnerModal('https://one.exnessonelink.com/a/bc1v3yl4bf')">
+            立即开户注册
+          </a>
         </div>
       </div>
+
     </div>
 
     <div class="sectionHead reveal" id="contact">
@@ -753,104 +908,212 @@
 
     <div class="grid4">
       <div class="glass-card miniCard reveal" id="wechatCard">
-        <div class="miniTop"><div class="platIcon"><img src="images/wechat.png"></div><span style="color:var(--accent-green);font-weight:700">助理微信</span></div>
+        <div class="miniTop">
+          <div class="platIcon">
+            <img src="images/wechat.png" alt="WeChat">
+          </div>
+          <span style="font-size:12px;color:var(--accent-green);font-weight:700">助理微信</span>
+        </div>
         <p class="miniTitle">微信：lclj998</p>
-        <p class="miniDesc">解答除交易外所有问题，备注来意！</p>
+        <p class="miniDesc">专用助理咨询号，解答除交易外所有问题，备注来意！</p>
         <div class="btn btn-green" onclick="handleSocial('lclj998', 'weixin://')">复制并跳转微信</div>
       </div>
 
       <div class="glass-card miniCard reveal">
-        <div class="miniTop"><div class="platIcon"><img src="images/dingtalk.png"></div><span style="color:var(--accent-blue);font-weight:700">助理钉钉</span></div>
+        <div class="miniTop">
+          <div class="platIcon">
+            <img src="images/dingtalk.png" alt="DingTalk">
+          </div>
+          <span style="font-size:12px;color:var(--accent-blue);font-weight:700">助理钉钉</span>
+        </div>
         <p class="miniTitle">ginvip123</p>
-        <p class="miniDesc">钉钉助理号，一般不做咨询回复。</p>
+        <p class="miniDesc">钉钉助理号，一般不做咨询回复，建议联系微信。</p>
         <div class="btn btn-blue" onclick="handleSocial('ginvip123', 'dingtalk://')">复制并跳转钉钉</div>
       </div>
 
       <div class="glass-card miniCard reveal">
-        <div class="miniTop"><div class="platIcon"><img src="images/qq.png"></div><span style="color:#0099FF;font-weight:700">助理QQ</span></div>
+        <div class="miniTop">
+          <div class="platIcon">
+            <img src="images/qq.png" alt="QQ">
+          </div>
+          <span style="font-size:12px;color:#0099FF;font-weight:700">助理QQ</span>
+        </div>
         <p class="miniTitle">QQ：2133589751</p>
         <p class="miniDesc">防失联助理号，建议添加！</p>
         <div class="btn btn-blue" onclick="handleSocial('2133589751', 'mqq://')">复制并跳转QQ</div>
       </div>
 
       <div class="glass-card miniCard reveal">
-        <div class="miniTop"><div class="platIcon"><img src="images/telegram.png"></div><span style="color:var(--accent-cyan);font-weight:700">防失联</span></div>
+        <div class="miniTop">
+           <div class="platIcon">
+            <img src="images/telegram.png" alt="Telegram">
+          </div>
+          <span style="font-size:12px;color:var(--accent-cyan);font-weight:700;border:1px solid rgba(34,211,238,0.3);padding:4px 10px;border-radius:8px;">防失联</span>
+        </div>
         <p class="miniTitle">Telegram</p>
-        <p class="miniDesc">Telegram防失联频道。</p>
+        <p class="miniDesc">防失联，添加后不定期同意。</p>
         <a class="btn btn-cyan" href="https://t.me/+8613120683725" target="_blank">联系 / 跳转</a>
       </div>
     </div>
 
     <div class="sectionHead reveal" id="indicators">
       <div class="divider"></div>
-      <div class="pill"><div class="dot" style="background:#a855f7;"></div>GW自用指标分享</div>
+      <div class="pill"><div class="dot" style="background:#a855f7;box-shadow:0 0 8px #a855f7;"></div>GW自用指标分享 <span style="font-size:10px;opacity:0.6;margin-left:5px">（部分需要魔法上网）</span></div>
       <div class="divider"></div>
     </div>
 
     <div class="grid4">
       <div class="glass-card miniCard reveal">
-        <div class="miniTop"><div class="platIcon"><img src="images/z1.png"></div><span style="color:var(--accent-gold)">黄金模型</span></div>
-        <p class="miniTitle">黄金量化模型</p>
-        <p class="miniDesc">LPPL临界点预测器定制版。</p>
+        <div class="miniTop">
+          <div class="platIcon">
+            <img src="images/z1.png" alt="Gold">
+          </div>
+          <span style="font-size:12px;color:var(--accent-gold);font-weight:700">黄金模型</span>
+        </div>
+        <p class="miniTitle">黄金量化模型运算</p>
+        <p class="miniDesc">LPPL临界点预测器(杰明GWCAPITAL定制版)全景天梯自定义黄金版。</p>
         <a href="javascript:void(0)" class="btn btn-gold">即将上线</a>
       </div>
 
       <div class="glass-card miniCard reveal">
-        <div class="miniTop"><div class="platIcon"><img src="images/z2.png"></div><span style="color:#e5e7eb">白银模型</span></div>
-        <p class="miniTitle">白银量化模型</p>
-        <p class="miniDesc">LPPL临界点预测器定制版。</p>
-        <a href="javascript:void(0)" class="btn" style="background:rgba(255,255,255,0.1);color:#fff">即将上线</a>
+         <div class="miniTop">
+          <div class="platIcon">
+            <img src="images/z2.png" alt="Silver">
+          </div>
+          <span style="font-size:12px;color:#e5e7eb;font-weight:700">白银模型</span>
+        </div>
+        <p class="miniTitle">白银量化模型运算</p>
+        <p class="miniDesc">LPPL临界点预测器(杰明GWCAPITAL定制版)全景天梯自定义白银版。</p>
+        <a href="javascript:void(0)" class="btn" style="background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.2)">即将上线</a>
       </div>
 
       <div class="glass-card miniCard reveal">
-        <div class="miniTop"><div class="platIcon"><img src="images/z3.png"></div><span style="color:var(--accent-blue)">TV指标</span></div>
+         <div class="miniTop">
+          <div class="platIcon">
+            <img src="images/z3.png" alt="TV">
+          </div>
+          <span style="font-size:12px;color:var(--accent-blue);font-weight:700">TV指标</span>
+        </div>
         <p class="miniTitle">GW杰明自用TV指标</p>
-        <p class="miniDesc">自研TV指标模型，不定期更新分享。</p>
+        <p class="miniDesc">自研TV指标模型，点击tv添加直接使用，仅供参考使用，不定期更新分享。</p>
         <a href="javascript:void(0)" class="btn btn-blue">即将上线</a>
       </div>
 
       <div class="glass-card miniCard reveal">
-        <div class="miniTop"><div class="platIcon"><img src="images/z4.png"></div><span style="color:var(--accent-green)">MT4/5</span></div>
+         <div class="miniTop">
+          <div class="platIcon">
+            <img src="images/z4.png" alt="MT4/5">
+          </div>
+          <span style="font-size:12px;color:var(--accent-green);font-weight:700">MT4/5</span>
+        </div>
         <p class="miniTitle">MT4/5指标分享</p>
-        <p class="miniDesc">辅助指标、供给需求保护等。</p>
+        <p class="miniDesc">各种协助辅助指标，开仓平仓自动保护，供给需求等等，仅供参考。</p>
         <a href="https://pan.quark.cn/s/ceef853c2398" target="_blank" class="btn btn-green btn-highlight-pulse">点击获取</a>
+      </div>
+    </div>
+    <div class="sectionHead reveal">
+      <div class="divider"></div>
+      <div class="pill"><div class="dot"></div>全网关注</div>
+      <div class="divider"></div>
+    </div>
+
+    <div class="grid4">
+      <div class="glass-card miniCard reveal" style="min-height:auto">
+        <div class="miniTop" style="margin-bottom:4px">
+          <div class="platIcon-social"> <img src="images/douyin.png" alt="Douyin">
+          </div>
+          <a class="btn btn-blue" style="width:auto;padding:6px 14px;margin:0" href="https://v.douyin.com/0HriFjI7p-I/" target="_blank">Go →</a>
+        </div>
+        <p class="miniTitle">抖音</p>
+        <p class="miniDesc">时政宏观技术分享，不定期开播浅聊。</p>
+      </div>
+
+      <div class="glass-card miniCard reveal" style="min-height:auto">
+        <div class="miniTop" style="margin-bottom:4px">
+           <div class="platIcon-social"> <img src="images/bilibili.png" alt="Bilibili">
+          </div>
+          <a class="btn btn-blue" style="width:auto;padding:6px 14px;margin:0" href="https://b23.tv/jKqXRQj" target="_blank">Go →</a>
+        </div>
+        <p class="miniTitle">B站</p>
+        <p class="miniDesc">技术点位分析，公开直播跳转，直播回放。</p>
+      </div>
+
+      <div class="glass-card miniCard reveal" style="min-height:auto">
+        <div class="miniTop" style="margin-bottom:4px">
+           <div class="platIcon-social"> <img src="images/youtube.png" alt="YouTube">
+          </div>
+          <a class="btn btn-blue" style="width:auto;padding:6px 14px;margin:0" href="https://www.youtube.com/@GWCAPITAL_OFFICAL" target="_blank">Go →</a>
+        </div>
+        <p class="miniTitle">YouTube</p>
+        <p class="miniDesc">官网教学，工具实用，不能讲的都在这里，需要魔法上网。</p>
+      </div>
+
+      <div class="glass-card miniCard reveal" style="min-height:auto">
+        <div class="miniTop" style="margin-bottom:4px">
+           <div class="platIcon-social"> <img src="images/xiaohongshu.png" alt="XiaoHongShu">
+          </div>
+          <a class="btn btn-red" style="width:auto;padding:6px 14px;margin:0" href="https://xhslink.com/m/2uZSTgl6a8P" target="_blank">Go →</a>
+        </div>
+        <p class="miniTitle">小红书</p>
+        <p class="miniDesc">图文观点，生活记录分享。</p>
       </div>
     </div>
 
     <div class="sectionHead reveal" id="tools">
       <div class="divider"></div>
-      <div class="pill"><div class="dot" style="background:#ff2442;"></div>魔法🪜工具</div>
+      <div class="pill"><div class="dot" style="background:#ff2442;box-shadow:0 0 8px #ff2442;"></div>魔法🪜工具</div>
       <div class="divider"></div>
     </div>
 
     <div class="serviceGrid">
+      
       <div class="glass-card miniCard reveal">
-        <div class="miniTop"><div class="platIcon" style="color:var(--accent-purple)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div><span style="color:var(--accent-purple)">稳定首选</span></div>
+        <div class="miniTop">
+          <div class="platIcon" style="color:var(--accent-purple); border-color:rgba(168,85,247,0.3); background:rgba(168,85,247,0.05);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <span style="font-size:12px;color:var(--accent-purple);font-weight:700;border:1px solid rgba(168,85,247,0.3);padding:4px 8px;border-radius:6px;">稳定首选</span>
+        </div>
         <p class="miniTitle">Gatern 机场</p>
-        <p class="miniDesc">稳定节点多，杰明老师同款工具。</p>
-        <a class="btn btn-purple" href="https://s.gtoyes.com/aff.php?aff=11412" target="_blank">点击访问</a>
+        <p class="miniDesc">稍微偏贵，但稳定节点多，适合对网络要求高的用户，杰明老师同款TradingView使用工具。</p>
+        <a class="btn btn-purple" style="margin-top:auto;" href="https://s.gtoyes.com/aff.php?aff=11412" target="_blank">点击访问</a>
       </div>
 
       <div class="glass-card miniCard reveal">
-        <div class="miniTop"><div class="platIcon" style="color:var(--accent-cyan)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div><span style="color:var(--accent-cyan)">高速性价比</span></div>
+        <div class="miniTop">
+          <div class="platIcon" style="color:var(--accent-cyan); border-color:rgba(34,211,238,0.3); background:rgba(34,211,238,0.05);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          </div>
+          <span style="font-size:12px;color:var(--accent-cyan);font-weight:700;border:1px solid rgba(34,211,238,0.3);padding:4px 8px;border-radius:6px;">高速性价比</span>
+        </div>
         <p class="miniTitle">奈云 NyeCloud</p>
-        <p class="miniDesc">价格合适，高速节点，稳定。</p>
-        <a class="btn btn-cyan" href="https://www.v2ny.me?path=register&code=TtrAGFQs" target="_blank">点击访问</a>
+        <p class="miniDesc">价格合适，拥有高速节点，连接相对稳定。</p>
+        <a class="btn btn-cyan" style="margin-top:auto;" href="https://www.v2ny.me?path=register&code=TtrAGFQs" target="_blank">点击访问</a>
       </div>
 
       <div class="glass-card miniCard reveal">
-        <div class="miniTop"><div class="platIcon" style="color:var(--accent-gold)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path></svg></div><span style="color:var(--accent-gold)">不限时</span></div>
+        <div class="miniTop">
+          <div class="platIcon" style="color:var(--accent-gold); border-color:rgba(255,215,0,0.3); background:rgba(255,215,0,0.05);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+          </div>
+          <span style="font-size:12px;color:var(--accent-gold);font-weight:700;border:1px solid rgba(255,215,0,0.3);padding:4px 8px;border-radius:6px;">便宜/不限时</span>
+        </div>
         <p class="miniTitle">宝贝云 BabyCloud</p>
-        <p class="miniDesc">非常便宜，不限时间。</p>
-        <a class="btn btn-gold" href="https://web1.bby011.com/#/register?code=l1NNBapp" target="_blank">点击访问</a>
+        <p class="miniDesc">价格非常便宜，不限时间。网速略慢，偶尔容易掉点。</p>
+        <a class="btn btn-gold" style="margin-top:auto;" href="https://web1.bby011.com/#/register?code=l1NNBapp" target="_blank">点击访问</a>
       </div>
+
     </div>
     
     <div class="glass-card risk reveal" id="risk">
-      <div class="risk-title"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4M12 17h.01"/></svg>风险提示</div>
+      <div class="risk-title">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4M12 17h.01"/></svg>
+        风险提示
+      </div>
       <ul>
-        <li>本页面仅用于信息展示，不构成投资建议。</li>
-        <li>市场有风险，杠杆交易存在损失本金的可能性。</li>
+        <li>本页面仅用于信息展示与合作入口跳转，不构成任何投资建议或收益承诺。</li>
+        <li>市场有风险，投资需谨慎。杠杆交易存在损失本金的可能性。请根据自身风险承受能力做出交易决策。</li>
+        <li>如遇微信/钉钉/QQ无法直接唤起，请使用复制功能手动添加。</li>
       </ul>
     </div>
   </div>
@@ -859,10 +1122,18 @@
     <div class="modal-box">
       <div class="modal-close" onclick="closeHeroModal()">×</div>
       <h2 class="modal-title">温馨提示 🔔</h2>
-      <p class="modal-desc">请阅读合作信息，了解风险后再操作。</p>
+      <p class="modal-desc">
+        请仔细阅读当前界面合作信息，了解风险与规则后再进行操作。
+      </p>
+      
       <div class="modal-btns">
-        <div class="m-btn m-btn-contact" onclick="closeHeroModal(); document.getElementById('services').scrollIntoView();">前去阅读</div>
-        <a href="copy-trading.html" class="m-btn m-btn-confirm">前往跟单 →</a>
+        <div class="m-btn m-btn-contact" onclick="closeHeroModal(); document.getElementById('services').scrollIntoView();">
+          前去阅读
+        </div>
+
+        <a href="copy-trading.html" class="m-btn m-btn-confirm">
+          我已阅读，前往跟单 →
+        </a>
       </div>
     </div>
   </div>
@@ -870,14 +1141,32 @@
   <div class="modal-overlay" id="partnerModal">
     <div class="modal-box">
       <div class="modal-close" onclick="closePartnerModal()">×</div>
+      
       <h2 class="modal-title" style="color:#22d3ee">🔔 开户后续指引</h2>
+      
       <div class="modal-tip-box">
-        <p style="color:#fff; font-weight:700; font-size:16px;">📢 重要提示</p>
-        <p style="color:var(--txt-muted); font-size:14px;">注册开户后，请务必联系助理提供后续服务。</p>
+        <p style="margin-top:0; color:#fff; font-weight:700; font-size:16px; display:flex; align-items:center; gap:8px;">
+            <span style="font-size:18px">📢</span> 重要提示
+        </p>
+        <p style="line-height:1.7; color:var(--txt-muted); font-size:14px; margin-bottom:12px;">
+            注册开户仅仅是第一步！
+        </p>
+        <p style="line-height:1.7; color:var(--txt-muted); font-size:14px; margin:0;">
+            完成开户后，请<strong style="color:#eab308; text-decoration:underline; text-underline-offset:4px;">务必联系助理</strong>提供后续服务和更新动态。
+           
+        </p>
       </div>
+      
       <div class="modal-btns">
-        <div class="m-btn m-btn-confirm btn-pulse-action" onclick="confirmPartnerLink()">🚀 立即注册开户 (Go)</div>
-        <div class="m-btn m-btn-contact" onclick="goToWeChat()">联系助理 (协助开户) 👩‍💻</div>
+        
+        <div class="m-btn m-btn-confirm btn-pulse-action" onclick="confirmPartnerLink()">
+           🚀 立即注册开户 (Go)
+        </div>
+
+        <div class="m-btn m-btn-contact" onclick="goToWeChat()">
+          联系助理 (协助开户) 👩‍💻
+        </div>
+
       </div>
     </div>
   </div>
@@ -899,48 +1188,91 @@
     }
     prevBtn.onclick = () => go(index - 1, true);
     nextBtn.onclick = () => go(index + 1, true);
+
     function startAuto(){ stopAuto(); timer = setInterval(() => go(index+1), AUTO_MS); }
     function stopAuto(){ clearInterval(timer); }
     function restartAuto(){ stopAuto(); startAuto(); }
     
+    // 触摸滑动
+    let sx = 0;
     const tv = document.getElementById('tvStage');
+    tv.addEventListener('touchstart', e => { sx = e.touches[0].clientX; stopAuto(); }, {passive:true});
+    tv.addEventListener('touchend', e => {
+      let dx = e.changedTouches[0].clientX - sx;
+      if(Math.abs(dx)>40) dx<0 ? go(index+1,true) : go(index-1,true);
+      else startAuto();
+    });
     tv.onmouseenter = stopAuto;
     tv.onmouseleave = startAuto;
     
+    // === 核心逻辑：自动复制 + 唤起APP ===
     function handleSocial(text, scheme) {
       if(navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(text).then(() => {
           showToast('已复制：' + text + '，正在跳转...');
           setTimeout(() => { window.location.href = scheme; }, 800);
         }).catch(() => fallbackCopy(text, scheme));
-      } else { fallbackCopy(text, scheme); }
+      } else {
+        fallbackCopy(text, scheme);
+      }
     }
 
     function fallbackCopy(text, scheme) {
       let ta = document.createElement('textarea');
       ta.value = text;
-      ta.style.position = 'fixed'; ta.style.opacity = '0';
-      document.body.appendChild(ta); ta.select();
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
       try {
         document.execCommand('copy');
         showToast('已复制：' + text + '，正在跳转...');
         setTimeout(() => { window.location.href = scheme; }, 800);
-      } catch (e) { showToast('复制失败：' + text); }
+      } catch (e) {
+        showToast('复制失败，请手动复制：' + text);
+      }
       document.body.removeChild(ta);
     }
 
+    // 🔥 抖音 VIP 验证逻辑
     function handleDouyinVIP() {
       const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      if (isMobile) { window.location.href = "snssdk1128://"; } else { window.open("https://www.douyin.com/", "_blank"); }
+      if (isMobile) {
+        window.location.href = "snssdk1128://";
+      } else {
+        window.open("https://www.douyin.com/", "_blank");
+      }
     }
 
-    function openHeroModal() { document.getElementById('heroModal').classList.add('active'); }
-    function closeHeroModal() { document.getElementById('heroModal').classList.remove('active'); }
+    // 🔥 首页弹窗控制逻辑
+    function openHeroModal() {
+      document.getElementById('heroModal').classList.add('active');
+    }
+    function closeHeroModal() {
+      document.getElementById('heroModal').classList.remove('active');
+    }
+    document.getElementById('heroModal').addEventListener('click', (e) => {
+      if(e.target === document.getElementById('heroModal')) closeHeroModal();
+    });
 
+    // === 🔥 开户提醒弹窗与跳转逻辑 ===
     let currentPartnerLink = ''; 
-    function openPartnerModal(url) { currentPartnerLink = url; document.getElementById('partnerModal').classList.add('active'); }
-    function closePartnerModal() { document.getElementById('partnerModal').classList.remove('active'); }
-    function confirmPartnerLink() { if(currentPartnerLink) { window.open(currentPartnerLink, '_blank'); closePartnerModal(); } }
+
+    function openPartnerModal(url) {
+      currentPartnerLink = url;
+      document.getElementById('partnerModal').classList.add('active');
+    }
+
+    function closePartnerModal() {
+      document.getElementById('partnerModal').classList.remove('active');
+    }
+
+    function confirmPartnerLink() {
+      if(currentPartnerLink) {
+        window.open(currentPartnerLink, '_blank');
+        closePartnerModal();
+      }
+    }
 
     function goToWeChat() {
       closePartnerModal();
@@ -949,9 +1281,17 @@
       wechatCard.classList.remove('card-urgent-flash');
       void wechatCard.offsetWidth; 
       wechatCard.classList.add('card-urgent-flash');
-      setTimeout(() => { showToast('请先添加微信助理咨询开户事宜'); }, 500);
+      
+      setTimeout(() => {
+          showToast('请先添加微信助理咨询开户事宜');
+      }, 500);
     }
+    
+    document.getElementById('partnerModal').addEventListener('click', (e) => {
+      if(e.target === document.getElementById('partnerModal')) closePartnerModal();
+    });
 
+    // 轻提示
     function showToast(msg){
       let d = document.createElement('div');
       d.style.cssText = "position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,0.9);color:#000;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,0.5);z-index:9999;animation:up 0.3s ease-out;";
@@ -960,15 +1300,31 @@
       setTimeout(() => { d.style.opacity='0';d.style.transition='0.5s'; }, 1500);
       setTimeout(() => d.remove(), 2000);
     }
+    const style = document.createElement('style');
+    style.innerHTML = "@keyframes up{from{transform:translate(-50%,20px);opacity:0}to{transform:translate(-50%,0);opacity:1}}";
+    document.head.appendChild(style);
 
-    const observer = new IntersectionObserver((entries) => {
+    startAuto();
+
+    // 滚动渐显动画
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1 
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
+                observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => {
+        observer.observe(el);
+    });
 
     // IP 动态注入逻辑
     document.addEventListener("DOMContentLoaded", function() {
@@ -976,9 +1332,11 @@
         const _part2 = "255.53";
         const _port = "4173";
         const fullUrl = `http://${_part1}.${_part2}:${_port}/`;
+        
         const newsFrame = document.getElementById('newsFrame');
-        if(newsFrame) { newsFrame.src = fullUrl; }
-        startAuto();
+        if(newsFrame) {
+            newsFrame.src = fullUrl;
+        }
     });
   </script>
 </body>
