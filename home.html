@@ -1039,7 +1039,7 @@
     </div>
 
     <div class="glass-card reveal" style="padding:0; overflow:hidden; border:1px solid rgba(255,255,255,0.15); box-shadow:0 0 30px rgba(0,0,0,0.5);">
-      <div style="padding:16px 24px; background:rgba(0,0,0,0.3); border-bottom:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+      <div style="padding:16px 24px; background:rgba(0,0,0,0.6); border-bottom:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; position:relative; z-index:10;">
         <div style="display:flex; flex-direction:column;">
           <h3 style="margin:0; font-size:18px; font-weight:700; color:#fff; display:flex; align-items:center; gap:8px;">
             GW小站 专用全球🌍新闻资讯
@@ -1049,15 +1049,26 @@
         </div>
         
         <a href="http://149.30.255.53:4173/" target="_blank" class="btn btn-blue" style="margin:0; width:auto; padding:8px 24px; border-radius:8px; font-size:13px;">
-          ⤢ 全屏观看
+          ⤢ 点击跳转 🔥 立即跟单 🔥
         </a>
       </div>
 
-      <div style="width:100%; height:600px; position:relative; background:#000;">
+      <div style="width:100%; height:600px; position:relative; background: url('images/map_bg.jpg') center/cover no-repeat #1a1a2e;">
+        
+        <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; background:rgba(0,0,0,0.3); pointer-events:none;">
+           <p style="color:rgba(255,255,255,0.7); font-size:15px; font-weight:600; text-shadow:0 2px 4px rgba(0,0,0,0.8);">
+             正在连接全球节点...
+           </p>
+           <p style="color:rgba(255,255,255,0.4); font-size:12px; margin-top:4px;">
+             如长时间未显示，请点击右上角按钮跳转观看
+           </p>
+        </div>
+
         <iframe 
           src="http://149.30.255.53:4173/" 
-          style="width:100%; height:100%; border:none; display:block;"
-          allowfullscreen>
+          style="width:100%; height:100%; border:none; display:block; position:relative; z-index:2;"
+          allowfullscreen
+          sandbox="allow-forms allow-scripts allow-same-origin allow-popups">
         </iframe>
       </div>
     </div>
