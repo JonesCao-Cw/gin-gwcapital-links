@@ -47,7 +47,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* === 🔥 全局流体背景动画 === */
+    /* === 🔥 全局流体背景动画 (保持原样，做底层氛围) === */
     .bg-fixed {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       z-index: -1; pointer-events: none; overflow: hidden;
@@ -124,6 +124,7 @@
     }
     .nav a:hover { color: #fff; background: rgba(255,255,255,0.08); }
     
+    /* === 顶部按钮 CTA 动画 === */
     .cta { 
       padding: 8px 20px; border-radius: 10px; 
       background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan)); 
@@ -633,7 +634,7 @@
           </div>
         </div>
         
-        <a id="fullScreenBtn" href="global-news.html" class="btn btn-glow-anim" style="margin:0; width:auto; padding:10px 24px; border-radius:10px; font-size:14px;">
+        <a id="fullScreenBtn" href="#" target="_blank" class="btn btn-glow-anim" style="margin:0; width:auto; padding:10px 24px; border-radius:10px; font-size:14px;">
           ⤢ 全屏观看
         </a>
       </div>
@@ -654,7 +655,7 @@
 
         <iframe 
           id="newsFrame"
-          src="http://149.30.255.53:4173/" 
+          src="" 
           style="width:100%; height:100%; border:none; display:block; position:relative; z-index:2;"
           allowfullscreen
           sandbox="allow-forms allow-scripts allow-same-origin allow-popups">
@@ -1164,6 +1165,8 @@
   </div>
 
   <script>
+    // 强制页面加载时回到顶部 - 🔥 已删除此功能，恢复默认滚动行为
+    
     // 轮播图逻辑
     const track = document.getElementById('track');
     const slides = Array.from(track.children);
@@ -1226,7 +1229,7 @@
       document.body.removeChild(ta);
     }
 
-    // 抖音 VIP 验证逻辑
+    // 🔥 抖音 VIP 验证逻辑 (电脑开官网，手机开APP)
     function handleDouyinVIP() {
       const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
       if (isMobile) {
@@ -1236,7 +1239,7 @@
       }
     }
 
-    // 首页弹窗控制逻辑
+    // 🔥 首页弹窗控制逻辑
     function openHeroModal() {
       document.getElementById('heroModal').classList.add('active');
     }
@@ -1248,8 +1251,8 @@
       if(e.target === document.getElementById('heroModal')) closeHeroModal();
     });
 
-    // === 开户提醒弹窗与跳转逻辑 ===
-    let currentPartnerLink = '';
+    // === 🔥 开户提醒弹窗与跳转逻辑 ===
+    let currentPartnerLink = ''; // 存储当前要去的开户链接
 
     function openPartnerModal(url) {
       currentPartnerLink = url;
@@ -1260,6 +1263,7 @@
       document.getElementById('partnerModal').classList.remove('active');
     }
 
+    // 点击 "已添加，立即开户"
     function confirmPartnerLink() {
       if(currentPartnerLink) {
         window.open(currentPartnerLink, '_blank');
@@ -1267,22 +1271,28 @@
       }
     }
 
+    // 点击 "立刻添加助理"
     function goToWeChat() {
       closePartnerModal();
       const wechatCard = document.getElementById('wechatCard');
+      // 1. 滚动到微信卡片
       wechatCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // 2. 触发 CSS 动画 (先移除再添加以保证每次都触发)
       wechatCard.classList.remove('card-urgent-flash');
-      void wechatCard.offsetWidth; 
+      void wechatCard.offsetWidth; // 强制重绘
       wechatCard.classList.add('card-urgent-flash');
       
+      // 3. 提示文字
       setTimeout(() => {
           showToast('请先添加微信助理咨询开户事宜');
       }, 500);
     }
     
+    // 点击 Partner 弹窗遮罩关闭
     document.getElementById('partnerModal').addEventListener('click', (e) => {
       if(e.target === document.getElementById('partnerModal')) closePartnerModal();
     });
+
 
     // 轻提示
     function showToast(msg){
@@ -1293,38 +1303,54 @@
       setTimeout(() => { d.style.opacity='0';d.style.transition='0.5s'; }, 1500);
       setTimeout(() => d.remove(), 2000);
     }
+    // 添加CSS动画
     const style = document.createElement('style');
     style.innerHTML = "@keyframes up{from{transform:translate(-50%,20px);opacity:0}to{transform:translate(-50%,0);opacity:1}}";
     document.head.appendChild(style);
 
     startAuto();
 
-    // 滚动渐显动画逻辑
-    const observer = new IntersectionObserver((entries) => {
+    // === 🔥 🌊 NEW: 滚动渐显动画逻辑 (Intersection Observer) ===
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1 // 元素出现10%时触发
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
+                observer.unobserve(entry.target); // 动画只播放一次，避免反复闪烁
             }
         });
-    }, { threshold: 0.1 });
+    }, observerOptions);
 
+    // 监听所有带 .reveal 类的元素
     document.querySelectorAll('.reveal').forEach(el => {
         observer.observe(el);
     });
 
-    // === 🔥 🌐 链接重定向逻辑 ===
+    // === 🔥 🌐 IP 动态注入逻辑 (隐藏源代码中的IP) ===
+    // 这样在HTML源码里看不到IP，只有JS执行后才会加载
     document.addEventListener("DOMContentLoaded", function() {
-        // 1. 设置内嵌 iframe 的 src (用户在首页里只能看到内嵌效果，看不到真实 IP)
+        // 配置部分：如果以后IP变了，只改这里
+        const _part1 = "149.30";
+        const _part2 = "255.53";
+        const _port = "4173";
+        
+        const fullUrl = `http://${_part1}.${_part2}:${_port}/`;
+        
+        // 1. 设置 iframe 的 src
         const newsFrame = document.getElementById('newsFrame');
         if(newsFrame) {
-            newsFrame.src = "http://149.30.255.53:4173/";
+            newsFrame.src = fullUrl;
         }
         
-        // 2. 【核心修改点】设置全屏按钮的链接，指向你创建的 global-news.html
+        // 2. 设置全屏按钮的链接
         const fullScreenBtn = document.getElementById('fullScreenBtn');
         if(fullScreenBtn) {
-            // 这里填写中转文件的相对路径
-            fullScreenBtn.href = "global-news.html";
+            fullScreenBtn.href = fullUrl;
         }
     });
   </script>
