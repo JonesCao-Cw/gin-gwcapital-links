@@ -3,20 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>全球趋势感知 | GW Capital</title>
+  <title>全球趨勢感知 | GW Capital</title>
   <link rel="icon" href="images/logo.png" type="image/png">
   <style>
-    body, html { 
-      margin: 0; padding: 0; height: 100%; width: 100%; 
-      overflow: hidden; background: #030508; font-family: sans-serif; 
-    }
+    body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background: #000; font-family: sans-serif; }
     
-    /* 加载提示层 */
+    /* 加載提示層 */
     .loading-layer {
       position: absolute; inset: 0;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      background: #030508; z-index: 10; color: #fff;
-      transition: opacity 0.5s ease;
+      background: #0f172a; z-index: 10; color: #fff;
+      transition: opacity 0.5s ease; /* 消失動畫 */
     }
 
     .spinner {
@@ -37,38 +34,38 @@
       border-radius: 8px; color: #F3BA2F; font-size: 14px; font-weight: 700;
     }
 
-    iframe {
-      border: none; width: 100%; height: 100%; 
-      display: block; position: relative; z-index: 5;
-    }
+    iframe { border: none; width: 100%; height: 100%; display: block; position: relative; z-index: 5; }
   </style>
 </head>
 <body>
 
   <div class="loading-layer" id="loader">
     <div class="spinner"></div>
-    <h2 style="margin:0; text-shadow: 0 0 20px rgba(34,211,238,0.5);">正在建立加密连接...</h2>
+    <h2 style="margin:0; text-shadow: 0 0 20px rgba(34,211,238,0.5);">正在建立加密連接...</h2>
     <div class="warn-box">
-      ⚠ 如长时间无法加载，请检查您的网络环境（梯子🪜）
+      ⚠️ 如長時間無法加載，請檢查您的網絡環境（梯子🪜）
     </div>
   </div>
 
   <iframe 
-    id="newsIframe"
     src="http://149.30.255.53:4173/" 
-    allowfullscreen
+    allowfullscreen 
     onload="hideLoader()">
   </iframe>
 
   <script>
-    // 当 iframe 加载完成后，隐藏加载层
     function hideLoader() {
       const loader = document.getElementById('loader');
-      loader.style.opacity = '0';
-      setTimeout(() => {
-        loader.style.display = 'none';
-      }, 500);
+      if (loader) {
+        loader.style.opacity = '0'; // 變透明
+        setTimeout(() => {
+          loader.style.display = 'none'; // 徹底隱藏，露出後方的 iframe
+        }, 500);
+      }
     }
+    
+    // 備用方案：如果 10 秒後還沒觸發 onload，也嘗試隱藏，防止一直卡住
+    setTimeout(hideLoader, 10000);
   </script>
 </body>
 </html>
