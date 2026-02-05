@@ -47,12 +47,11 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* === 🔥 全局流体背景动画 === */
+    /* === 🔥 全局流体背景动画 (已恢复原有逻辑) === */
     .bg-fixed {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       z-index: -1; pointer-events: none; overflow: hidden;
-      background: #030508 url('images/map_bg.jpg') no-repeat center center;
-      background-size: cover;
+      background: #030508;
     }
     .blob {
       position: absolute; border-radius: 50%;
@@ -622,7 +621,7 @@
         
         <div style="flex-shrink: 0; display: flex; align-items: center; gap: 12px;">
           <h3 style="margin:0; font-size:18px; font-weight:800; color:#fff; white-space: nowrap;">
-            GW小站 <span class="grad">全球新闻资讯🔥实时追踪-</span>
+            GW小站 <span class="grad">全球新闻资讯🔥实时追踪</span>
           </h3>
           <span style="font-size:10px; padding:2px 8px; background:rgba(52,211,153,0.1); color:#34d399; border:1px solid rgba(52,211,153,0.3); border-radius:4px; font-weight:bold; white-space: nowrap;">免费公开</span>
         </div>
@@ -648,7 +647,9 @@
       </style>
 
       <div style="width:100%; height:600px; position:relative; background: #050810;">
-        <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; background:rgba(0,0,0,0.7); pointer-events:none; z-index:5;">
+        <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; background: url('images/map_bg.jpg') no-repeat center center; background-size: cover; pointer-events:none; z-index:5;">
+           <div style="position:absolute; inset:0; background:rgba(0,0,0,0.6); z-index:-1;"></div>
+           
            <div style="width:40px; height:40px; border:3px solid rgba(255,255,255,0.05); border-top-color:#22d3ee; border-radius:50%; animation:spin 1s linear infinite; margin-bottom:16px;"></div>
            <p style="color:#fff; font-size:22px; font-weight:800; letter-spacing:1px; text-shadow:0 0 20px rgba(34,211,238,0.8); animation: textGlow 1.5s infinite alternate; margin:0;">
              正在连接全球节点...
@@ -1112,9 +1113,9 @@
         风险提示
       </div>
       <ul>
-        <li>本页面仅用于信息展示与合作入口跳转，不构成任何投资建议 or 收益承诺。</li>
+        <li>本页面仅用于信息展示与合作入口跳转，不构成任何投资建议或收益承诺。</li>
         <li>市场有风险，投资需谨慎。杠杆交易存在损失本金的可能性。请根据自身风险承受能力做出交易决策。</li>
-        <li>如遇微信/钉钉/QQ 无法直接唤起，请使用复制功能手动添加。</li>
+        <li>如遇微信/钉钉/QQ无法直接唤起，请使用复制功能手动添加。</li>
       </ul>
     </div>
   </div>
