@@ -124,43 +124,33 @@
     }
     .nav a:hover { color: #fff; background: rgba(255,255,255,0.08); }
     
-    /* === 🔥 修改：顶部按钮 CTA 动画 === */
+    /* === 顶部按钮 CTA 动画 === */
     .cta { 
       padding: 8px 20px; border-radius: 10px; 
       background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan)); 
       color: #fff; font-weight: 700; font-size: 13px; 
       box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); 
       cursor: pointer;
-      /* 添加边框以增强发光效果 */
       border: 1px solid rgba(255,255,255,0.1);
     }
     
-    /* 定义 CTA 呼吸跳动动画 */
     .cta-pulse {
         animation: ctaPulseAnim 2s infinite ease-in-out;
     }
 
     @keyframes ctaPulseAnim {
-        0%, 100% { 
-            transform: scale(1); 
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); 
-        }
-        50% { 
-            transform: scale(1.05); 
-            box-shadow: 0 0 25px rgba(34, 211, 238, 0.6); 
-            border-color: rgba(255,255,255,0.5);
-            background: linear-gradient(90deg, var(--accent-blue), #22d3ee); 
-        }
+        0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); }
+        50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(34, 211, 238, 0.6); border-color: rgba(255,255,255,0.5); background: linear-gradient(90deg, var(--accent-blue), #22d3ee); }
     }
 
     .cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5); }
 
 
-    /* === 🔥 NEW: 科幻扩散光影 Hero === */
+    /* === Hero Section === */
     .hero { 
       margin-top: 24px; 
       border-radius: 32px; 
-      background: #050810; /* 纯深色底 */
+      background: #050810; 
       border: 1px solid rgba(255,255,255,0.1); 
       padding: 60px 20px; 
       text-align: center; 
@@ -170,74 +160,32 @@
       box-shadow: inset 0 0 80px rgba(0,0,0,0.8);
     }
     
-    /* 1. 科幻网格背景 */
     .hero-grid {
       position: absolute; inset: 0; z-index: -2;
       background-image: 
         linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
       background-size: 50px 50px;
-      /* 网格遮罩：中间清晰，四周渐隐 */
       mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
       -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
       pointer-events: none;
     }
 
-    .hero-glow-container {
-      position: absolute; inset: 0; z-index: -1; pointer-events: none;
-      overflow: hidden;
-    }
-    
-    /* 通用光球样式 */
-    .hero-light {
-      position: absolute; border-radius: 50%;
-      mix-blend-mode: screen; /* 滤色模式，让光影叠加更亮 */
-      filter: blur(50px);
-    }
+    .hero-glow-container { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+    .hero-light { position: absolute; border-radius: 50%; mix-blend-mode: screen; filter: blur(50px); }
 
-    /* 左侧：紫色能量波 (来回扩散) */
-    .hl-purple {
-      top: 50%; left: 0%; 
-      width: 50%; height: 120%;
-      background: radial-gradient(circle at center, #a855f7, transparent 70%);
-      transform: translateY(-50%) translateX(-20%);
-      opacity: 0.6;
-      animation: diffuseLeft 8s infinite ease-in-out;
-    }
+    .hl-purple { top: 50%; left: 0%; width: 50%; height: 120%; background: radial-gradient(circle at center, #a855f7, transparent 70%); transform: translateY(-50%) translateX(-20%); opacity: 0.6; animation: diffuseLeft 8s infinite ease-in-out; }
+    .hl-cyan { top: 50%; right: 0%; width: 50%; height: 120%; background: radial-gradient(circle at center, #22d3ee, transparent 70%); transform: translateY(-50%) translateX(20%); opacity: 0.6; animation: diffuseRight 8s infinite ease-in-out; }
+    .hl-scanner { top: 50%; left: 50%; width: 120%; height: 15%; background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.8), transparent); transform: translate(-50%, -50%) rotate(-5deg); filter: blur(40px); opacity: 0.5; animation: scanMove 10s infinite ease-in-out; }
 
-    /* 右侧：青色能量波 (来回扩散) */
-    .hl-cyan {
-      top: 50%; right: 0%; 
-      width: 50%; height: 120%;
-      background: radial-gradient(circle at center, #22d3ee, transparent 70%);
-      transform: translateY(-50%) translateX(20%);
-      opacity: 0.6;
-      animation: diffuseRight 8s infinite ease-in-out;
-    }
-
-    /* 中间：横向极光扫描线 (上下扫描) */
-    .hl-scanner {
-      top: 50%; left: 50%;
-      width: 120%; height: 15%;
-      background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.8), transparent);
-      transform: translate(-50%, -50%) rotate(-5deg);
-      filter: blur(40px);
-      opacity: 0.5;
-      animation: scanMove 10s infinite ease-in-out;
-    }
-
-    /* 动画定义：来回扩散效果 */
     @keyframes diffuseLeft {
       0%, 100% { transform: translateY(-50%) translateX(-20%) scale(1); opacity: 0.5; }
-      50% { transform: translateY(-50%) translateX(10%) scale(1.3); opacity: 0.2; } /* 向右扩散并变淡 */
+      50% { transform: translateY(-50%) translateX(10%) scale(1.3); opacity: 0.2; }
     }
-
     @keyframes diffuseRight {
       0%, 100% { transform: translateY(-50%) translateX(20%) scale(1); opacity: 0.5; }
-      50% { transform: translateY(-50%) translateX(-10%) scale(1.3); opacity: 0.2; } /* 向左扩散并变淡 */
+      50% { transform: translateY(-50%) translateX(-10%) scale(1.3); opacity: 0.2; }
     }
-
-    /* 动画定义：缓慢的上下扫描 */
     @keyframes scanMove {
       0%, 100% { transform: translate(-50%, -80%) rotate(-5deg) scaleX(1); opacity: 0.3; }
       50% { transform: translate(-50%, -20%) rotate(5deg) scaleX(1.2); opacity: 0.7; }
@@ -249,21 +197,14 @@
 
     .btn-hero-copy {
       display: inline-flex; align-items: center; gap: 8px; justify-content: center;
-      margin-top: 32px;
-      padding: 16px 48px; border-radius: 99px;
+      margin-top: 32px; padding: 16px 48px; border-radius: 99px;
       background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
       color: #fff; font-size: 18px; font-weight: 800; text-decoration: none;
       box-shadow: 0 0 30px rgba(99,102,241,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
       border: 1px solid rgba(255,255,255,0.1);
-      transition: all 0.3s ease;
-      cursor: pointer;
-      position: relative; z-index: 2; /* 确保按钮在光效之上 */
+      transition: all 0.3s ease; cursor: pointer; position: relative; z-index: 2;
     }
-    .btn-hero-copy:hover { 
-      transform: translateY(-4px) scale(1.05); 
-      box-shadow: 0 0 50px rgba(99,102,241,0.8); 
-      filter: brightness(1.1); 
-    }
+    .btn-hero-copy:hover { transform: translateY(-4px) scale(1.05); box-shadow: 0 0 50px rgba(99,102,241,0.8); filter: brightness(1.1); }
 
     /* Components */
     .sectionHead { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 40px 0 24px; }
@@ -271,7 +212,7 @@
     .pill { padding: 6px 16px; border-radius: 20px; border: 1px solid var(--glass-border); background: rgba(0,0,0,0.3); color: var(--txt-muted); font-size: 13px; font-weight: 600; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
     .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-cyan); box-shadow: 0 0 8px var(--accent-cyan); }
     
-    /* === 🔥 修改：Glass Card 通用跳动动画 (Q弹效果) === */
+    /* === Glass Card === */
     .glass-card { 
       background: var(--glass-bg); 
       border: 1px solid var(--glass-border); 
@@ -280,34 +221,20 @@
       backdrop-filter: blur(16px); 
       box-shadow: 0 4px 24px -1px rgba(0,0,0,0.2); 
       overflow: hidden; 
-      /* 使用贝塞尔曲线实现 Q弹跳动 */
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
     }
-    
-    .glass-card:hover { 
-      /* 向上轻微跳动 */
-      transform: translateY(-8px); 
-      box-shadow: 0 20px 40px -5px rgba(0,0,0,0.4); 
-      border-color: rgba(255,255,255,0.12); 
-    }
+    .glass-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -5px rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.12); }
 
-    /* === 跑马灯滚动样式 === */
-    .marquee-wrap {
-      position: relative; margin-top: 10px; padding: 10px 0; overflow: hidden;
-      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-    }
+    /* === 跑马灯 === */
+    .marquee-wrap { position: relative; margin-top: 10px; padding: 10px 0; overflow: hidden; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
     .marquee-track { display: flex; gap: 20px; width: max-content; animation: scroll-left 40s linear infinite; }
     .marquee-track:hover { animation-play-state: paused; }
-    .feedback-card {
-      width: 260px; height: 340px; border-radius: 16px; overflow: hidden; flex-shrink: 0;
-      border: 1px solid var(--glass-border); background: rgba(255,255,255,0.02); transition: transform 0.3s;
-    }
+    .feedback-card { width: 260px; height: 340px; border-radius: 16px; overflow: hidden; flex-shrink: 0; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.02); transition: transform 0.3s; }
     .feedback-card:hover { transform: scale(1.02); border-color: var(--accent-blue); }
     .feedback-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9); }
     @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* Grid 2 & Slides */
+    /* Grid & Layouts */
     .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
     .tvFrame { padding: 10px; height: 100%; display: flex; flex-direction: column; }
     .tvStage { position: relative; border-radius: 18px; aspect-ratio: 16/10; overflow: hidden; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1); }
@@ -337,21 +264,18 @@
     .svcLi { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--txt-muted); margin-bottom:12px; line-height: 1.5; }
     .check { width: 16px; height: 16px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; font-size: 10px; margin-top: 2px;}
 
-    /* 1. 公开群 */
     .svc-free { border-top-color: rgba(255,255,255,0.2); }
     .svc-free:hover { border-color: rgba(255,255,255,0.3); box-shadow: 0 10px 40px -10px rgba(255,255,255,0.05); }
     .svc-free .svc-icon { background: rgba(255,255,255,0.1); color: #fff; }
     .svc-free .svcTag { background: rgba(255,255,255,0.1); color: var(--txt-muted); }
     .svc-free .check { background: rgba(255,255,255,0.15); color: #fff; }
 
-    /* 2. 内部会员群 */
     .svc-vip { border-top-color: var(--accent-purple); background: linear-gradient(160deg, rgba(168,85,247,0.05), var(--glass-bg)); }
     .svc-vip:hover { border-color: var(--accent-purple); box-shadow: 0 10px 40px -10px rgba(168,85,247,0.2); }
     .svc-vip .svc-icon { background: var(--accent-purple); color: #fff; }
     .svc-vip .svcTag { background: rgba(168, 85, 247, 0.15); color: var(--accent-purple); border-color: rgba(168, 85, 247, 0.3); }
     .svc-vip .check { background: var(--accent-purple); color: #fff; }
 
-    /* 3. 跟单交易 */
     .svc-copy { border-top-color: var(--accent-cyan); background: linear-gradient(160deg, rgba(34,211,238,0.05), var(--glass-bg)); }
     .svc-copy:hover { border-color: var(--accent-cyan); box-shadow: 0 10px 40px -10px rgba(34,211,238,0.2); }
     .svc-copy .svc-icon { background: var(--accent-cyan); color: #000; }
@@ -363,380 +287,116 @@
     .btn::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); transform: translateX(-100%); transition: 0.5s; }
     .btn:hover::before { transform: translateX(100%); }
 
-    .btn-copy-solid {
-      background: var(--accent-cyan); color: #000; border: none;
-      box-shadow: 0 0 15px rgba(34,211,238,0.3);
-      margin-top: auto; 
-    }
-    .btn-copy-solid:hover {
-      background: #fff; box-shadow: 0 0 25px rgba(34,211,238,0.6); transform: translateY(-2px);
-    }
+    .btn-copy-solid { background: var(--accent-cyan); color: #000; border: none; box-shadow: 0 0 15px rgba(34,211,238,0.3); margin-top: auto; }
+    .btn-copy-solid:hover { background: #fff; box-shadow: 0 0 25px rgba(34,211,238,0.6); transform: translateY(-2px); }
 
     .btn-cyan { background: rgba(34, 211, 238, 0.1); color: var(--accent-cyan); border-color: rgba(34, 211, 238, 0.2); }
     .btn-cyan:hover { background: var(--accent-cyan); color: #000; box-shadow: 0 0 20px rgba(34, 211, 238, 0.4); }
-    
     .btn-purple { background: rgba(168, 85, 247, 0.1); color: var(--accent-purple); border-color: rgba(168, 85, 247, 0.2); }
     .btn-purple:hover { background: var(--accent-purple); color: #fff; box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); }
-    
     .btn-green { background: rgba(52, 211, 153, 0.1); color: var(--accent-green); border-color: rgba(52, 211, 153, 0.2); }
     .btn-green:hover { background: var(--accent-green); color: #000; box-shadow: 0 0 20px rgba(52, 211, 153, 0.4); }
-    
     .btn-blue { background: rgba(99, 102, 241, 0.1); color: var(--accent-blue); border-color: rgba(99, 102, 241, 0.2); }
     .btn-blue:hover { background: var(--accent-blue); color: #fff; box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); }
-    
     .btn-gold { background: rgba(255, 215, 0, 0.1); color: var(--accent-gold); border-color: rgba(255, 215, 0, 0.25); }
     .btn-gold:hover { background: var(--accent-gold); color: #000; box-shadow: 0 0 20px rgba(255, 215, 0, 0.4); }
-    
-    .btn-binance { background: rgba(240, 185, 11, 0.1); color: #F0B90B; border-color: rgba(240, 185, 11, 0.2); }
-    .btn-binance:hover { background: #F0B90B; color: #000; box-shadow: 0 0 20px rgba(240, 185, 11, 0.4); }
-    
-    .btn-okx { background: rgba(255, 255, 255, 0.1); color: #fff; border-color: rgba(255, 255, 255, 0.2); }
-    .btn-okx:hover { background: #fff; color: #000; box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); }
-
     .btn-red { background: rgba(255, 36, 66, 0.1); color: var(--accent-red); border-color: rgba(255, 36, 66, 0.2); }
     .btn-red:hover { background: var(--accent-red); color: #fff; box-shadow: 0 0 20px rgba(255, 36, 66, 0.4); }
 
-    /* === 🔥 NEW: 按钮高亮与卡片闪烁特效 === */
-    /* 1. 开户按钮的高亮流光闪烁 */
-    .btn-highlight-pulse {
-        background: linear-gradient(90deg, rgba(34,211,238,0.2), rgba(255,255,255,0.2), rgba(34,211,238,0.2));
-        background-size: 200% 100%;
-        color: var(--accent-cyan) !important;
-        border: 1px solid var(--accent-cyan) !important;
-        box-shadow: 0 0 15px rgba(34,211,238,0.3);
-        animation: gradientMove 3s linear infinite, glowPulse 2s ease-in-out infinite;
-    }
-    .btn-highlight-pulse:hover {
-        background: var(--accent-cyan);
-        color: #000 !important;
-        box-shadow: 0 0 30px rgba(34,211,238,0.8);
-    }
+    .btn-highlight-pulse { background: linear-gradient(90deg, rgba(34,211,238,0.2), rgba(255,255,255,0.2), rgba(34,211,238,0.2)); background-size: 200% 100%; color: var(--accent-cyan) !important; border: 1px solid var(--accent-cyan) !important; box-shadow: 0 0 15px rgba(34,211,238,0.3); animation: gradientMove 3s linear infinite, glowPulse 2s ease-in-out infinite; }
+    .btn-highlight-pulse:hover { background: var(--accent-cyan); color: #000 !important; box-shadow: 0 0 30px rgba(34,211,238,0.8); }
     @keyframes gradientMove { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
     @keyframes glowPulse { 0%, 100% { box-shadow: 0 0 15px rgba(34,211,238,0.3); } 50% { box-shadow: 0 0 25px rgba(34,211,238,0.6); } }
 
-    /* 2. 微信卡片 - 强制常态化高亮跳动 (已增强) */
-    #wechatCard {
-        border-color: #34d399 !important; /* 明显的绿色边框 */
-        box-shadow: 0 0 25px rgba(52, 211, 153, 0.4); /* 基础发光 */
-        background: rgba(52, 211, 153, 0.05); /* 轻微背景色 */
-        animation: wechatPulseAlways 2s infinite ease-in-out; /* 持续跳动动画 */
-        z-index: 5; /* 保证层级较高 */
-    }
+    /* Special Buttons */
+    #wechatCard { border-color: #34d399 !important; box-shadow: 0 0 25px rgba(52, 211, 153, 0.4); background: rgba(52, 211, 153, 0.05); animation: wechatPulseAlways 2s infinite ease-in-out; z-index: 5; }
+    @keyframes wechatPulseAlways { 0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(52, 211, 153, 0.3); border-color: rgba(52, 211, 153, 0.6); } 50% { transform: scale(1.04); box-shadow: 0 0 40px rgba(52, 211, 153, 0.6); border-color: #34d399; } }
     
-    @keyframes wechatPulseAlways {
-        0%, 100% { 
-            transform: scale(1); 
-            box-shadow: 0 0 20px rgba(52, 211, 153, 0.3); 
-            border-color: rgba(52, 211, 153, 0.6);
-        }
-        50% { 
-            transform: scale(1.04); /* 放大 */
-            box-shadow: 0 0 40px rgba(52, 211, 153, 0.6); /* 强烈发光 */
-            border-color: #34d399; /* 亮绿色 */
-        }
-    }
+    .card-urgent-flash { animation: urgentFlash 3s cubic-bezier(0.25, 1, 0.5, 1) !important; z-index: 50 !important; }
+    @keyframes urgentFlash { 0%, 100% { transform: scale(1); border-color: var(--accent-green); } 10%, 30%, 50% { transform: scale(1.08); border-color: #fff; box-shadow: 0 0 50px rgba(52, 211, 153, 0.8), inset 0 0 20px rgba(52, 211, 153, 0.4); background: rgba(52, 211, 153, 0.2); } 20%, 40%, 60% { transform: scale(1.04); } }
 
-    /* 3. 微信卡片 - 紧急闪烁 (点击跳转时触发) */
-    .card-urgent-flash {
-        animation: urgentFlash 3s cubic-bezier(0.25, 1, 0.5, 1) !important;
-        z-index: 50 !important;
-    }
-    @keyframes urgentFlash {
-        0%, 100% { transform: scale(1); border-color: var(--accent-green); }
-        10%, 30%, 50% { 
-            transform: scale(1.08); 
-            border-color: #fff; 
-            box-shadow: 0 0 50px rgba(52, 211, 153, 0.8), inset 0 0 20px rgba(52, 211, 153, 0.4); 
-            background: rgba(52, 211, 153, 0.2);
-        }
-        20%, 40%, 60% { transform: scale(1.04); }
-    }
-
-
-    /* Grid4 布局 */
+    /* Grid4 & Icons */
     .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 20px; }
     .miniCard { padding: 20px; display: flex; flex-direction: column; min-height: 200px; position: relative; }
     .miniTop { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+    .platIcon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
+    .platIcon img { width: 100%; height: 100%; object-fit: contain; display: block; border-radius: 12px; }
+    .platIcon-social { height: 48px; width: auto; min-width: 48px; max-width: 140px; display: flex; align-items: center; justify-content: flex-start; background: transparent; flex-shrink: 0; }
+    .platIcon-social img { height: 100%; width: auto; object-fit: contain; object-position: left center; display: block; }
+
+    /* Partner Cards */
+    .partner-card-new { display: flex; flex-direction: row; align-items: stretch; padding: 0; overflow: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .partner-card-new:hover { transform: translateY(-8px); }
     
-    /* === 🔥 Modified for Images (Default Square Icons) 🔥 === */
-    .platIcon { 
-      width: 44px; height: 44px; 
-      border-radius: 12px; 
-      display: flex; align-items: center; justify-content: center;
-      overflow: hidden; /* Ensure image fits in rounded corners */
-      flex-shrink: 0;
-    }
-    .platIcon img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain; /* or cover, depending on your preference */
-      display: block;
-      border-radius: 12px;
-    }
+    .card-tmgm { border-color: rgba(34, 211, 238, 0.2); background: linear-gradient(135deg, rgba(34, 211, 238, 0.03), rgba(255, 255, 255, 0.01)); }
+    .card-tmgm:hover { border-color: var(--accent-cyan); box-shadow: 0 10px 40px -10px rgba(34, 211, 238, 0.15); }
+    .card-tmgm .p-col-logo { background: rgba(34, 211, 238, 0.05); border-right: 1px solid rgba(34, 211, 238, 0.1); }
 
-    /* === 🔥 NEW: 全网关注 Logo 专用样式 (大尺寸自适应) 🔥 === */
-    .platIcon-social {
-      height: 48px;        /* 增高到 48px，视觉更饱满 */
-      width: auto;         /* 宽度自适应，不强制正方形 */
-      min-width: 48px;     /* 保证如果是正方形icon也不会太小 */
-      max-width: 140px;    /* 限制最大宽度，防止挤压右侧按钮 */
-      display: flex; 
-      align-items: center; 
-      justify-content: flex-start; /* 靠左对齐 */
-      background: transparent;     /* 透明背景 */
-      flex-shrink: 0;
-    }
-    .platIcon-social img {
-      height: 100%;        /* 撑满容器高度 */
-      width: auto;         /* 宽度按比例缩放 */
-      object-fit: contain; /* 完整显示 */
-      object-position: left center;
-      display: block;
-    }
+    .card-dprime { border-color: rgba(168, 85, 247, 0.2); background: linear-gradient(135deg, rgba(168, 85, 247, 0.03), rgba(255, 255, 255, 0.01)); }
+    .card-dprime:hover { border-color: var(--accent-purple); box-shadow: 0 10px 40px -10px rgba(168, 85, 247, 0.15); }
+    .card-dprime .p-col-logo { background: rgba(168, 85, 247, 0.05); border-right: 1px solid rgba(168, 85, 247, 0.1); }
 
-    /* === 🔥 NEW: 重新设计的开户卡片 (左右 1:2 结构) & 独立配色 🔥 === */
-    .partner-card-new {
-      display: flex;
-      flex-direction: row; /* 水平排列 */
-      align-items: stretch; /* 等高 */
-      padding: 0; /* 移除内边距，由内部子元素控制 */
-      overflow: hidden;
-      /* 增加弹跳效果 */
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    
-    .partner-card-new:hover {
-        /* 向上轻微跳动 */
-        transform: translateY(-8px);
-    }
-    
-    /* 1. TMGM 专属色 (青色系) */
-    .card-tmgm {
-      border-color: rgba(34, 211, 238, 0.2);
-      background: linear-gradient(135deg, rgba(34, 211, 238, 0.03), rgba(255, 255, 255, 0.01));
-    }
-    .card-tmgm:hover {
-      border-color: var(--accent-cyan);
-      box-shadow: 0 10px 40px -10px rgba(34, 211, 238, 0.15);
-    }
-    .card-tmgm .p-col-logo {
-      background: rgba(34, 211, 238, 0.05); /* 淡淡的青色背景 */
-      border-right: 1px solid rgba(34, 211, 238, 0.1);
-    }
+    .p-col-logo { width: 35%; display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .p-big-logo { width: 100%; max-width: 180px; height: auto; object-fit: contain; filter: drop-shadow(0 0 15px rgba(255,255,255,0.05)); transition: 0.3s; }
+    .partner-card-new:hover .p-big-logo { transform: scale(1.08); }
+    .p-col-info { width: 65%; padding: 24px 30px; display: flex; flex-direction: column; justify-content: center; }
+    .p-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .p-title { font-size: 20px; font-weight: 800; margin: 0; letter-spacing: -0.5px; display: flex; align-items: center; gap: 8px; }
+    .rec-badge { font-size: 12px; font-weight: 800; background: linear-gradient(90deg, #FFD700, #FFA500); color: #000; padding: 2px 8px; border-radius: 6px; vertical-align: middle; display: inline-block; animation: recPulse 2s infinite ease-in-out; box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); }
+    @keyframes recPulse { 0% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); } 50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); } 100% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); } }
+    .p-tag { font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 6px; border: 1px solid currentColor; text-transform: uppercase; }
+    .p-desc { font-size: 13px; color: var(--txt-muted); line-height: 1.6; margin-bottom: 20px; }
 
-    /* 2. Dprime 专属色 (紫色系) */
-    .card-dprime {
-      border-color: rgba(168, 85, 247, 0.2);
-      background: linear-gradient(135deg, rgba(168, 85, 247, 0.03), rgba(255, 255, 255, 0.01));
-    }
-    .card-dprime:hover {
-      border-color: var(--accent-purple);
-      box-shadow: 0 10px 40px -10px rgba(168, 85, 247, 0.15);
-    }
-    .card-dprime .p-col-logo {
-      background: rgba(168, 85, 247, 0.05); /* 淡淡的紫色背景 */
-      border-right: 1px solid rgba(168, 85, 247, 0.1);
-    }
-
-    /* 左侧 Logo 区域 (35%) */
-    .p-col-logo {
-      width: 35%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    /* 🔥 巨型 Logo */
-    .p-big-logo {
-      width: 100%;
-      max-width: 180px; /* 大幅增加 Logo 限制，让它看起来更大 */
-      height: auto;
-      object-fit: contain;
-      filter: drop-shadow(0 0 15px rgba(255,255,255,0.05)); 
-      transition: 0.3s;
-    }
-    .partner-card-new:hover .p-big-logo {
-      transform: scale(1.08); /* 悬停时稍微放大 */
-    }
-
-    /* 右侧 内容区域 (65%) */
-    .p-col-info {
-      width: 65%;
-      padding: 24px 30px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .p-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-    .p-title {
-      font-size: 20px;
-      font-weight: 800;
-      margin: 0;
-      letter-spacing: -0.5px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    /* 🔥 推荐标签 (金色流光呼吸) */
-    .rec-badge {
-        font-size: 12px;
-        font-weight: 800;
-        background: linear-gradient(90deg, #FFD700, #FFA500); /* 纯金渐变 */
-        color: #000; /* 黑色字体 */
-        padding: 2px 8px;
-        border-radius: 6px;
-        vertical-align: middle;
-        display: inline-block;
-        animation: recPulse 2s infinite ease-in-out;
-        box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
-    }
-    
-    @keyframes recPulse {
-        0% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); }
-        50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); } /* 变大变亮 */
-        100% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); }
-    }
-
-    .p-tag {
-      font-size: 11px;
-      font-weight: 800;
-      padding: 4px 10px;
-      border-radius: 6px;
-      border: 1px solid currentColor;
-      text-transform: uppercase;
-    }
-
-    .p-desc {
-      font-size: 13px;
-      color: var(--txt-muted);
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    /* 移动端适配 */
     @media (max-width: 600px) {
-      .partner-card-new {
-        flex-direction: column; /* 手机端上下排列 */
-      }
-      .p-col-logo {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid var(--glass-border);
-        padding: 30px 20px;
-      }
-      .p-col-info {
-        width: 100%;
-        padding: 20px;
-      }
-      .p-big-logo {
-        max-width: 160px; 
-      }
+      .partner-card-new { flex-direction: column; }
+      .p-col-logo { width: 100%; border-right: none; border-bottom: 1px solid var(--glass-border); padding: 30px 20px; }
+      .p-col-info { width: 100%; padding: 20px; }
+      .p-big-logo { max-width: 160px; }
     }
-
 
     .miniTitle { font-size: 16px; font-weight: 700; margin: 0 0 6px; }
     .miniDesc { font-size: 12px; color: var(--txt-muted); line-height: 1.5; margin: 0; flex: 1; }
 
-    /* === 🔥 NEW: 教程板块样式 === */
-    .tut-card { 
-      padding: 24px; position: relative; overflow: hidden;
-      display: flex; flex-direction: column; 
-    }
+    /* Tutorials */
+    .tut-card { padding: 24px; position: relative; overflow: hidden; display: flex; flex-direction: column; }
     .tut-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
-    .tut-icon-box { 
-      width: 48px; height: 48px; border-radius: 14px; 
-      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-      display: grid; place-items: center; color: #fff;
-    }
-    .tut-tag {
-      font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 20px;
-      text-transform: uppercase; letter-spacing: 0.5px;
-    }
+    .tut-icon-box { width: 48px; height: 48px; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); display: grid; place-items: center; color: #fff; }
+    .tut-tag { font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
     
-    /* 核心样式 - 红色 */
-    .tut-core { 
-      border-color: rgba(255, 36, 66, 0.4); 
-      box-shadow: 0 0 20px rgba(255, 36, 66, 0.1);
-      background: linear-gradient(160deg, rgba(255, 36, 66, 0.05), var(--glass-bg));
-    }
+    .tut-core { border-color: rgba(255, 36, 66, 0.4); box-shadow: 0 0 20px rgba(255, 36, 66, 0.1); background: linear-gradient(160deg, rgba(255, 36, 66, 0.05), var(--glass-bg)); }
     .tut-core:hover { border-color: #ff2442; box-shadow: 0 10px 40px -5px rgba(255, 36, 66, 0.2); }
     .tut-core .tut-tag { background: #ff2442; color: #fff; box-shadow: 0 0 10px rgba(255, 36, 66, 0.4); }
     .tut-core .tut-icon-box { color: #ff2442; background: rgba(255, 36, 66, 0.1); border-color: rgba(255, 36, 66, 0.2); }
 
-    /* 核心样式 - 金色 */
-    .tut-gold { 
-      border-color: rgba(255, 215, 0, 0.4); 
-      box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
-      background: linear-gradient(160deg, rgba(255, 215, 0, 0.05), var(--glass-bg));
-    }
+    .tut-gold { border-color: rgba(255, 215, 0, 0.4); box-shadow: 0 0 20px rgba(255, 215, 0, 0.1); background: linear-gradient(160deg, rgba(255, 215, 0, 0.05), var(--glass-bg)); }
     .tut-gold:hover { border-color: #ffd700; box-shadow: 0 10px 40px -5px rgba(255, 215, 0, 0.2); }
     .tut-gold .tut-tag { background: #ffd700; color: #000; box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); }
     .tut-gold .tut-icon-box { color: #ffd700; background: rgba(255, 215, 0, 0.1); border-color: rgba(255, 215, 0, 0.2); }
 
-    /* === 🔥 NEW: 教程按钮组样式 === */
-    .tut-actions {
-        display: flex;
-        gap: 12px;
-        margin-top: auto;
-    }
-    .tut-action-item {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .tut-tip {
-        font-size: 11px;
-        color: var(--txt-muted);
-        text-align: center;
-        margin-top: 6px;
-        opacity: 0.8;
-        line-height: 1.4;
-    }
-    /* 移动端按钮组垂直排列 */
-    @media (max-width: 500px) {
-        .tut-actions { flex-direction: column; gap: 16px; }
-        .tut-tip { font-size: 10px; margin-top: 4px; }
-    }
-
+    .tut-actions { display: flex; gap: 12px; margin-top: auto; }
+    .tut-action-item { flex: 1; display: flex; flex-direction: column; align-items: center; }
+    .tut-tip { font-size: 11px; color: var(--txt-muted); text-align: center; margin-top: 6px; opacity: 0.8; line-height: 1.4; }
+    @media (max-width: 500px) { .tut-actions { flex-direction: column; gap: 16px; } .tut-tip { font-size: 10px; margin-top: 4px; } }
 
     .risk { margin-top: 40px; padding: 24px; border-left: 4px solid #ef4444; background: linear-gradient(90deg, rgba(239, 68, 68, 0.05), transparent); }
     .risk-title { display: flex; align-items: center; gap: 8px; color: #ef4444; font-weight: 800; font-size: 14px; margin-bottom: 10px; }
     .risk ul { margin: 0; padding-left: 18px; color: var(--txt-muted); font-size: 12px; line-height: 1.8; }
     
-    /* === 🔥 首页Hero弹窗 & 开户提醒弹窗通用样式 === */
+    /* Modals */
     .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 999; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
     .modal-overlay.active { display: flex; opacity: 1; }
-    .modal-box { 
-      background: #1a1a2e; border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 32px; 
-      max-width: 480px; width: 90%; text-align: center; box-shadow: 0 30px 80px rgba(0,0,0,0.8); 
-      transform: scale(0.95); transition: transform 0.3s; 
-    }
+    .modal-box { background: #1a1a2e; border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 32px; max-width: 480px; width: 90%; text-align: center; box-shadow: 0 30px 80px rgba(0,0,0,0.8); transform: scale(0.95); transition: transform 0.3s; }
     .modal-overlay.active .modal-box { transform: scale(1); }
-    
     .modal-title { font-size: 22px; font-weight: 900; margin-bottom: 16px; color: #fff; }
     .modal-desc { color: var(--txt-muted); font-size: 15px; line-height: 1.6; margin-bottom: 28px; }
     .modal-close { position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; background: rgba(255,255,255,0.05); border-radius: 50%; display: grid; place-items: center; cursor: pointer; color: #aaa; transition:.2s; }
     .modal-close:hover { background: rgba(255,255,255,0.15); color: #fff; }
-
     .modal-btns { display: flex; flex-direction: column; gap: 12px; }
-    .m-btn { 
-      padding: 16px; border-radius: 12px; font-weight: 700; cursor: pointer; text-decoration: none; 
-      display: flex; align-items: center; justify-content: center; transition:.2s; 
-    }
+    .m-btn { padding: 16px; border-radius: 12px; font-weight: 700; cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; transition:.2s; }
     .m-btn-confirm { background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); color: #fff; box-shadow: 0 4px 20px rgba(99,102,241,0.3); }
     .m-btn-confirm:hover { filter: brightness(1.1); transform: translateY(-2px); }
     .m-btn-contact { background: rgba(255,255,255,0.05); color: var(--accent-cyan); border: 1px solid rgba(255,255,255,0.1); }
     .m-btn-contact:hover { background: rgba(255,255,255,0.1); color: #fff; }
-
-    /* Partner Modal Specific */
     .partner-warning { color:#f0b90b; font-weight:800; margin-bottom:8px; display:block;}
 
     @media(max-width:900px){ 
@@ -753,140 +413,29 @@
       .title h1 { font-size: 28px; }
     }
 
-    /* === 🔥 NEW: 鹤立鸡群的教程板块标题设计 === */
-    .tut-header-distinct {
-      text-align: center;
-      margin: 80px 0 50px; /* 加大间距，独立成区 */
-      position: relative;
-    }
-
-    .tut-big-title {
-      font-size: clamp(32px, 5vw, 48px); /* 响应式超大字体 */
-      font-weight: 900;
-      /* 黄金流光渐变 */
-      background: linear-gradient(to right, #eab308, #fef08a, #eab308); 
-      -webkit-background-clip: text;
-      color: transparent;
-      letter-spacing: -1px;
-      text-shadow: 0 10px 40px rgba(234, 179, 8, 0.3); /* 金色氛围光 */
-      display: inline-block;
-      position: relative;
-    }
-
-    /* 标题右上角的“必看”小标签 */
-    .tut-badge-pop {
-      position: absolute;
-      top: -15px;
-      right: -30px;
-      background: #ff2442;
-      color: #fff;
-      font-size: 12px;
-      font-weight: 800;
-      padding: 4px 10px;
-      border-radius: 10px 10px 10px 0;
-      box-shadow: 0 4px 15px rgba(255, 36, 66, 0.5);
-      transform: rotate(10deg);
-    }
-
-    .tut-subtitle {
-      margin-top: 10px;
-      color: var(--txt-muted);
-      font-size: 15px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      opacity: 0.8;
-    }
-
-    /* === 🔥 文字高亮框样式 === */
-    .highlight-box {
-      display: block;
-      background: rgba(255, 215, 0, 0.08); /* 极淡的金色背景 */
-      border: 1px solid rgba(255, 215, 0, 0.5); /* 金色边框 */
-      color: #ffffff; /* 纯白高亮文字 */
-      padding: 10px 14px;
-      border-radius: 12px;
-      font-size: 13px;
-      line-height: 1.6;
-      margin-bottom: 16px;
-      box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.05); /* 内发光 */
-      font-weight: 500;
-    }
-
-    /* === 🔥 NEW: 开户弹窗专用特效 === */
-    .btn-pulse-action {
-        background: linear-gradient(90deg, #22d3ee, #3b82f6) !important; /* 亮青色到蓝色渐变 */
-        color: #fff !important;
-        border: none !important;
-        font-size: 16px !important;
-        font-weight: 800 !important;
-        box-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
-        animation: pulseBig 1.5s infinite ease-in-out; /* 持续跳动动画 */
-    }
-
-    .btn-pulse-action:hover {
-        filter: brightness(1.1);
-        transform: scale(1.05); /* 悬停时进一步放大 */
-    }
-
-    /* 呼吸放大动画 */
-    @keyframes pulseBig {
-        0% { transform: scale(1); box-shadow: 0 0 15px rgba(34, 211, 238, 0.4); }
-        50% { transform: scale(1.03); box-shadow: 0 0 35px rgba(34, 211, 238, 0.8); }
-        100% { transform: scale(1); box-shadow: 0 0 15px rgba(34, 211, 238, 0.4); }
-    }
-
-    /* 提示文本框样式微调 */
-    .modal-tip-box {
-        text-align: left;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 20px;
-        border-radius: 12px;
-        margin-bottom: 24px;
-    }
-
-    /* === 🌊 NEW: 滚动渐显动画 (Scroll Reveal) === */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-      will-change: opacity, transform;
-    }
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .tut-header-distinct { text-align: center; margin: 80px 0 50px; position: relative; }
+    .tut-big-title { font-size: clamp(32px, 5vw, 48px); font-weight: 900; background: linear-gradient(to right, #eab308, #fef08a, #eab308); -webkit-background-clip: text; color: transparent; letter-spacing: -1px; text-shadow: 0 10px 40px rgba(234, 179, 8, 0.3); display: inline-block; position: relative; }
+    .tut-badge-pop { position: absolute; top: -15px; right: -30px; background: #ff2442; color: #fff; font-size: 12px; font-weight: 800; padding: 4px 10px; border-radius: 10px 10px 10px 0; box-shadow: 0 4px 15px rgba(255, 36, 66, 0.5); transform: rotate(10deg); }
+    .tut-subtitle { margin-top: 10px; color: var(--txt-muted); font-size: 15px; letter-spacing: 1px; text-transform: uppercase; opacity: 0.8; }
+    .highlight-box { display: block; background: rgba(255, 215, 0, 0.08); border: 1px solid rgba(255, 215, 0, 0.5); color: #ffffff; padding: 10px 14px; border-radius: 12px; font-size: 13px; line-height: 1.6; margin-bottom: 16px; box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.05); font-weight: 500; }
     
-    /* === 🔥 NEW: 地图模块全屏按钮专用动画 === */
-    .btn-glow-anim {
-        background: linear-gradient(90deg, #a855f7, #ec4899); /* 紫色到粉色渐变 */
-        color: #fff;
-        font-weight: 800;
-        border: none;
-        box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
-        animation: pulseGlow 2s infinite ease-in-out;
-        transition: all 0.3s;
-    }
-    .btn-glow-anim:hover {
-        transform: translateY(-2px) scale(1.05);
-        box-shadow: 0 0 30px rgba(168, 85, 247, 0.8);
-        filter: brightness(1.2);
-    }
+    .btn-pulse-action { background: linear-gradient(90deg, #22d3ee, #3b82f6) !important; color: #fff !important; border: none !important; font-size: 16px !important; font-weight: 800 !important; box-shadow: 0 0 20px rgba(34, 211, 238, 0.5); animation: pulseBig 1.5s infinite ease-in-out; }
+    .btn-pulse-action:hover { filter: brightness(1.1); transform: scale(1.05); }
+    @keyframes pulseBig { 0% { transform: scale(1); box-shadow: 0 0 15px rgba(34, 211, 238, 0.4); } 50% { transform: scale(1.03); box-shadow: 0 0 35px rgba(34, 211, 238, 0.8); } 100% { transform: scale(1); box-shadow: 0 0 15px rgba(34, 211, 238, 0.4); } }
+    .modal-tip-box { text-align: left; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 12px; margin-bottom: 24px; }
 
-    @keyframes pulseGlow {
-        0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); }
-        50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(236, 72, 153, 0.7); } /* 变大且光晕变色 */
-    }
+    /* Scroll Reveal */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); will-change: opacity, transform; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    
+    /* === 🔥 全屏按钮专用动画 === */
+    .btn-glow-anim { background: linear-gradient(90deg, #a855f7, #ec4899); color: #fff; font-weight: 800; border: none; box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); animation: pulseGlow 2s infinite ease-in-out; transition: all 0.3s; }
+    .btn-glow-anim:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 0 30px rgba(168, 85, 247, 0.8); filter: brightness(1.2); }
+    @keyframes pulseGlow { 0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); } 50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(236, 72, 153, 0.7); } }
 
-    /* === 🔥 NEW: 正在连接文字动画 === */
-    @keyframes textGlow {
-      from { text-shadow: 0 0 10px rgba(34,211,238,0.5); opacity: 0.8; }
-      to { text-shadow: 0 0 25px rgba(34,211,238,1); opacity: 1; }
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+    /* === 🔥 正在连接文字动画 === */
+    @keyframes textGlow { from { text-shadow: 0 0 10px rgba(34,211,238,0.5); opacity: 0.8; } to { text-shadow: 0 0 25px rgba(34,211,238,1); opacity: 1; } }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
   </style>
 </head>
 
@@ -1085,8 +634,8 @@
           </div>
         </div>
         
-        <a href="http://149.30.255.53:4173/" target="_blank" class="btn btn-glow-anim" style="margin:0; width:auto; padding:10px 24px; border-radius:10px; font-size:14px;">
-          ⤢ 点击查看
+        <a id="fullScreenBtn" href="#" target="_blank" class="btn btn-glow-anim" style="margin:0; width:auto; padding:10px 24px; border-radius:10px; font-size:14px;">
+          ⤢ 全屏观看
         </a>
       </div>
 
@@ -1105,7 +654,8 @@
         </div>
 
         <iframe 
-          src="http://149.30.255.53:4173/" 
+          id="newsFrame"
+          src="" 
           style="width:100%; height:100%; border:none; display:block; position:relative; z-index:2;"
           allowfullscreen
           sandbox="allow-forms allow-scripts allow-same-origin allow-popups">
@@ -1780,6 +1330,29 @@
     document.querySelectorAll('.reveal').forEach(el => {
         observer.observe(el);
     });
+
+    // === 🔥 🌐 IP 动态注入逻辑 (隐藏源代码中的IP) ===
+    // 这样在HTML源码里看不到IP，只有JS执行后才会加载
+    document.addEventListener("DOMContentLoaded", function() {
+        // 配置部分：如果以后IP变了，只改这里
+        const _part1 = "149.30";
+        const _part2 = "255.53";
+        const _port = "4173";
+        
+        const fullUrl = `http://${_part1}.${_part2}:${_port}/`;
+        
+        // 1. 设置 iframe 的 src
+        const newsFrame = document.getElementById('newsFrame');
+        if(newsFrame) {
+            newsFrame.src = fullUrl;
+        }
+        
+        // 2. 设置全屏按钮的链接
+        const fullScreenBtn = document.getElementById('fullScreenBtn');
+        if(fullScreenBtn) {
+            fullScreenBtn.href = fullUrl;
+        }
+    });
   </script>
 </body>
-</html>ƒ
+</html>
