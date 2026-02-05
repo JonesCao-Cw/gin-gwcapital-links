@@ -856,6 +856,27 @@
       opacity: 1;
       transform: translateY(0);
     }
+    
+    /* === 🔥 NEW: 地图模块全屏按钮专用动画 === */
+    .btn-glow-anim {
+        background: linear-gradient(90deg, #a855f7, #ec4899); /* 紫色到粉色渐变 */
+        color: #fff;
+        font-weight: 800;
+        border: none;
+        box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+        animation: pulseGlow 2s infinite ease-in-out;
+        transition: all 0.3s;
+    }
+    .btn-glow-anim:hover {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 0 30px rgba(168, 85, 247, 0.8);
+        filter: brightness(1.2);
+    }
+
+    @keyframes pulseGlow {
+        0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); }
+        50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(236, 72, 153, 0.7); } /* 变大且光晕变色 */
+    }
   </style>
 </head>
 
@@ -1039,17 +1060,20 @@
     </div>
 
     <div class="glass-card reveal" style="padding:0; overflow:hidden; border:1px solid rgba(255,255,255,0.15); box-shadow:0 0 30px rgba(0,0,0,0.5);">
-      <div style="padding:16px 24px; background:rgba(0,0,0,0.6); border-bottom:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; position:relative; z-index:10;">
+      <div style="padding:20px 24px; background:rgba(0,0,0,0.6); border-bottom:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; position:relative; z-index:10;">
         <div style="display:flex; flex-direction:column;">
-          <h3 style="margin:0; font-size:18px; font-weight:700; color:#fff; display:flex; align-items:center; gap:8px;">
-            GW小站 专用全球🌍新闻资讯
-            <span style="font-size:10px; padding:2px 8px; background:rgba(52,211,153,0.15); color:#34d399; border:1px solid rgba(52,211,153,0.3); border-radius:4px;">免费公开</span>
+          <h3 style="margin:0; font-size:20px; font-weight:800; color:#fff; display:flex; align-items:center; gap:8px;">
+            GW小站 <span class="grad">专用全球🌍新闻资讯</span>
+            <span style="font-size:10px; padding:3px 8px; background:rgba(52,211,153,0.15); color:#34d399; border:1px solid rgba(52,211,153,0.3); border-radius:4px; font-weight:bold;">免费公开</span>
           </h3>
-          <span style="font-size:12px; color:var(--txt-muted); margin-top:4px;">实时追踪全球地缘政治与金融动态</span>
+          <p style="font-size:13px; color:var(--txt-muted); margin:8px 0 0; line-height:1.5;">
+            实时追踪全球地缘政治与金融动态<br>
+            <span style="color:#fbbf24; font-weight:700;">⚠ 如遇打不开 使用梯子🪜连接 下方工具中有梯子使用教程</span>
+          </p>
         </div>
         
-        <a href="http://149.30.255.53:4173/" target="_blank" class="btn btn-blue" style="margin:0; width:auto; padding:8px 24px; border-radius:8px; font-size:13px;">
-          ⤢ 点击跳转 🔥 立即跟单 🔥
+        <a href="http://149.30.255.53:4173/" target="_blank" class="btn btn-glow-anim" style="margin:0; width:auto; padding:10px 24px; border-radius:10px; font-size:14px;">
+          ⤢ 全屏观看
         </a>
       </div>
 
