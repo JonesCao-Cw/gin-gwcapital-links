@@ -47,7 +47,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* === 🔥 全局流体背景动画 (已恢复原有逻辑) === */
+    /* === 🔥 全局流体背景动画 === */
     .bg-fixed {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       z-index: -1; pointer-events: none; overflow: hidden;
@@ -142,7 +142,6 @@
     }
 
     .cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5); }
-
 
     /* === Hero Section === */
     .hero { 
@@ -623,67 +622,62 @@
       </div>
     </div>
 
-    <div class="sectionHead reveal" id="global-news">
+    <div class="sectionHead reveal" id="partner">
       <div class="divider"></div>
-      <div class="pill"><div class="dot" style="background:#ff2442;box-shadow:0 0 8px #ff2442;"></div>全球资讯</div>
+      <div class="pill"><div class="dot"></div>开户入口</div>
       <div class="divider"></div>
     </div>
 
-    <div class="glass-card reveal" style="padding:0; overflow:hidden; border:1px solid rgba(255,255,255,0.15); box-shadow:0 0 30px rgba(0,0,0,0.5);">
-      <div style="padding:16px 24px; background:rgba(15, 20, 30, 0.95); border-bottom:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center; gap:20px; position:relative; z-index:10; flex-wrap: nowrap;" class="news-header-flex">
-        
-        <div style="flex-shrink: 0; display: flex; align-items: center; gap: 12px;">
-          <h3 style="margin:0; font-size:18px; font-weight:800; color:#fff; white-space: nowrap;">
-            GW小站 <span class="grad">全球新闻资讯🔥实时追踪</span>
-          </h3>
-          <span style="font-size:10px; padding:2px 8px; background:rgba(52,211,153,0.1); color:#34d399; border:1px solid rgba(52,211,153,0.3); border-radius:4px; font-weight:bold; white-space: nowrap;">免费公开</span>
+    <div class="grid2">
+      <div class="glass-card partner-card-new card-tmgm reveal">
+        <div class="p-col-logo">
+           <img src="images/tmgm.png" alt="TMGM" class="p-big-logo">
         </div>
+        
+        <div class="p-col-info">
+          <div class="p-header">
+             <h3 class="p-title">
+               TMGM 
+               <span class="rec-badge">推荐</span>
+             </h3>
+             <span class="p-tag" style="color:var(--accent-cyan);border-color:var(--accent-cyan)">美元账户</span>
+          </div>
+          
+          <p class="p-desc">
+             美元标准账户。平台合作多年，<b style="color:#fff;">监管优</b>，<b style="color:#fff;">出入金稳定</b>，支持<b style="color:#fff;">大额资金</b>。
+             <span style="display:block; margin-top:8px; padding-top:8px; border-top:1px dashed rgba(255,255,255,0.1); color:#34d399; font-size:12px; line-height:1.5;">
+                💡 推荐使用USDT入金。<br>
+                RMB入金建议使用后台提供的<b style="color:#fff">极付宝</b>入金（<span style="color:#ef4444">工商银行和农业银行除外</span>，其他银行均可）。
+             </span>
+          </p>
 
-        <div style="flex-grow: 1; padding: 0 15px; border-left: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center;" class="news-tip-pc">
-           <div style="padding:6px 12px; background:rgba(243, 186, 47, 0.1); border:1px solid rgba(243, 186, 47, 0.3); border-radius:6px; color:#F3BA2F; font-weight:600; font-size:12px; display:inline-flex; align-items:center; gap:6px;">
-             <span>⚠ 打不开请使用🪜梯子，下方有梯子工具方式！</span>
-           </div>
+          <a class="btn btn-cyan btn-highlight-pulse" style="margin-top:auto" href="javascript:void(0)" onclick="openPartnerModal('https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans')">
+            立即开户注册
+          </a>
         </div>
-        
-        <a href="https://view.gwcapital.xyz" target="_blank" class="btn btn-glow-anim" style="margin:0; width:auto; min-width:110px; padding:8px 20px; border-radius:8px; font-size:13px; flex-shrink: 0;">
-          ⤢ 点击查阅
-        </a>
       </div>
-
-      <style>
-        @media (max-width: 850px) {
-          .news-header-flex { flex-wrap: wrap !important; gap: 12px !important; padding: 16px !important; }
-          .news-tip-pc { border-left: none !important; padding: 0 !important; width: 100% !important; order: 3; }
-          .news-tip-pc div { width: 100%; justify-content: center; }
-          .news-header-flex a { width: 100% !important; order: 4; }
-        }
-      </style>
-
-      <div style="width:100%; height:600px; position:relative; background: #050810;">
-        <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; background: url('images/map_bg.jpg') no-repeat center center; background-size: cover; pointer-events:none; z-index:5;">
-           <div style="position:absolute; inset:0; background:rgba(0,0,0,0.6); z-index:-1;"></div>
-           
-           <div style="width:40px; height:40px; border:3px solid rgba(255,255,255,0.05); border-top-color:#22d3ee; border-radius:50%; animation:spin 1s linear infinite; margin-bottom:16px;"></div>
-           <p style="color:#fff; font-size:22px; font-weight:800; letter-spacing:1px; text-shadow:0 0 20px rgba(34,211,238,0.8); animation: textGlow 1.5s infinite alternate; margin:0;">
-             正在连接全球节点...
-           </p>
-           <div style="margin-top:12px; padding:4px 12px; background:rgba(34,211,238,0.15); border:1px solid var(--accent-cyan); border-radius:4px;">
-             <p style="color:var(--accent-cyan); font-size:13px; font-weight:700; margin:0;">
-               💡 如长时间未显示，请点击上方按钮跳转观看
-             </p>
-           </div>
+      <div class="glass-card partner-card-new card-dprime reveal">
+        <div class="p-col-logo">
+           <img src="images/exness.png" alt="EXNESS" class="p-big-logo">
         </div>
-
-        <iframe 
-          id="newsFrame"
-          src="" 
-          style="width:100%; height:100%; border:none; display:block; position:relative; z-index:2;"
-          allowfullscreen
-          sandbox="allow-forms allow-scripts allow-same-origin allow-popups">
-        </iframe>
+        
+        <div class="p-col-info">
+          <div class="p-header">
+             <h3 class="p-title">EXNESS 开户</h3>
+             <span class="p-tag" style="color:var(--accent-purple);border-color:var(--accent-purple)">美分账户</span>
+          </div>
+          <p class="p-desc">
+             适合小资金测试策略EA比较合适，仅支持美分账户交易，适合美分类型跟单策略。
+             <span style="display:block; margin-top:8px; padding-top:8px; border-top:1px dashed rgba(255,255,255,0.1); color:#ff2442; font-size:12px; line-height:1.5;">
+                <strong>特别提示：</strong>仅建议使用美分账户，如需使用美元账户请移步至TMGM！仅供参考，风险自负！
+             </span>
+          </p>
+          <a class="btn btn-purple btn-highlight-pulse" style="margin-top:auto" href="javascript:void(0)" onclick="openPartnerModal('https://one.exnessonelink.com/a/bc1v3yl4bf')">
+            立即开户注册
+          </a>
+        </div>
       </div>
     </div>
-
     <div id="tutorials" class="tut-header-distinct reveal">
       <div class="tut-big-title">
         硬核教程 · 快速上手
@@ -854,65 +848,6 @@
         </div>
         <a class="btn btn-cyan" style="margin-top: 20px;" href="#partner">去选择平台开户</a>
       </div>
-    </div>
-
-    <div class="sectionHead reveal" id="partner">
-      <div class="divider"></div>
-      <div class="pill"><div class="dot"></div>开户入口</div>
-      <div class="divider"></div>
-    </div>
-
-    <div class="grid2">
-      
-      <div class="glass-card partner-card-new card-tmgm reveal">
-        <div class="p-col-logo">
-           <img src="images/tmgm.png" alt="TMGM" class="p-big-logo">
-        </div>
-        
-        <div class="p-col-info">
-          <div class="p-header">
-             <h3 class="p-title">
-               TMGM 
-               <span class="rec-badge">推荐</span>
-             </h3>
-             <span class="p-tag" style="color:var(--accent-cyan);border-color:var(--accent-cyan)">美元账户</span>
-          </div>
-          
-          <p class="p-desc">
-             美元标准账户。平台合作多年，<b style="color:#fff;">监管优</b>，<b style="color:#fff;">出入金稳定</b>，支持<b style="color:#fff;">大额资金</b>。
-             <span style="display:block; margin-top:8px; padding-top:8px; border-top:1px dashed rgba(255,255,255,0.1); color:#34d399; font-size:12px; line-height:1.5;">
-                💡 推荐使用USDT入金。<br>
-                RMB入金建议使用后台提供的<b style="color:#fff">极付宝</b>入金（<span style="color:#ef4444">工商银行和农业银行除外</span>，其他银行均可）。
-             </span>
-          </p>
-
-          <a class="btn btn-cyan btn-highlight-pulse" style="margin-top:auto" href="javascript:void(0)" onclick="openPartnerModal('https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans')">
-            立即开户注册
-          </a>
-        </div>
-      </div>
-      <div class="glass-card partner-card-new card-dprime reveal">
-        <div class="p-col-logo">
-           <img src="images/exness.png" alt="EXNESS" class="p-big-logo">
-        </div>
-        
-        <div class="p-col-info">
-          <div class="p-header">
-             <h3 class="p-title">EXNESS 开户</h3>
-             <span class="p-tag" style="color:var(--accent-purple);border-color:var(--accent-purple)">美分账户</span>
-          </div>
-          <p class="p-desc">
-             适合小资金测试策略EA比较合适，仅支持美分账户交易，适合美分类型跟单策略。
-             <span style="display:block; margin-top:8px; padding-top:8px; border-top:1px dashed rgba(255,255,255,0.1); color:#ff2442; font-size:12px; line-height:1.5;">
-                <strong>特别提示：</strong>仅建议使用美分账户，如需使用美元账户请移步至TMGM！仅供参考，风险自负！
-             </span>
-          </p>
-          <a class="btn btn-purple btn-highlight-pulse" style="margin-top:auto" href="javascript:void(0)" onclick="openPartnerModal('https://one.exnessonelink.com/a/bc1v3yl4bf')">
-            立即开户注册
-          </a>
-        </div>
-      </div>
-
     </div>
 
     <div class="sectionHead reveal" id="contact">
@@ -1342,18 +1277,6 @@
         observer.observe(el);
     });
 
-    // IP 动态注入逻辑
-    document.addEventListener("DOMContentLoaded", function() {
-        const _part1 = "149.30";
-        const _part2 = "255.53";
-        const _port = "4173";
-        const fullUrl = `http://${_part1}.${_part2}:${_port}/`;
-        
-        const newsFrame = document.getElementById('newsFrame');
-        if(newsFrame) {
-            newsFrame.src = fullUrl;
-        }
-    });
   </script>
 </body>
 </html>
