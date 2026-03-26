@@ -225,13 +225,27 @@
       border-left: 1px dashed rgba(255,255,255,0.2);
       padding-left: 60px;
     }
-    .jidi-hero-tip {
-      color: var(--accent-cyan);
-      font-weight: 800;
-      margin: 0 0 16px 0 !important;
-      text-shadow: 0 0 10px rgba(34, 211, 238, 0.4);
-      font-size: 16px !important;
+    
+    /* 🔥 左侧两行描述文字高亮 */
+    .title .hero-split-left p {
+      color: #ffffff; /* 改为纯白 */
+      font-size: 17px; /* 字体变大 */
+      font-weight: 600; /* 加粗 */
+      letter-spacing: 1px;
+      text-shadow: 0 4px 15px rgba(0,0,0,0.9), 0 0 20px rgba(255,255,255,0.3); /* 黑底白发光双阴影 */
+      margin-top: 12px;
     }
+
+    /* 🔥 右侧扫码文字高亮 */
+    .jidi-hero-tip {
+      color: #ffffff; /* 改为纯白 */
+      font-weight: 900; /* 加粗到最大 */
+      margin: 0 0 18px 0 !important;
+      text-shadow: 0 0 15px var(--accent-cyan), 0 0 30px rgba(34, 211, 238, 0.8); /* 强烈青色光晕 */
+      font-size: 18px !important; /* 字体变大 */
+      letter-spacing: 1px;
+    }
+    
     .jidi-hero-qr {
       width: 140px;
       height: 140px;
