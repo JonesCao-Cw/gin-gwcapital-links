@@ -203,6 +203,84 @@
     }
     .btn-hero-copy:hover { transform: translateY(-4px) scale(1.05); box-shadow: 0 0 50px rgba(99,102,241,0.8); filter: brightness(1.1); }
 
+    /* === 🔥 新增：首屏基地扫码左右分割排版 === */
+    .hero-split {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
+      margin-top: 40px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-split-left, .hero-split-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-split-right {
+      border-left: 1px dashed rgba(255,255,255,0.2);
+      padding-left: 60px;
+    }
+    .jidi-hero-tip {
+      color: var(--accent-cyan);
+      font-weight: 800;
+      margin: 0 0 16px 0 !important;
+      text-shadow: 0 0 10px rgba(34, 211, 238, 0.4);
+      font-size: 16px !important;
+    }
+    .jidi-hero-qr {
+      width: 140px;
+      height: 140px;
+      border-radius: 12px;
+      border: 2px solid var(--accent-cyan);
+      box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
+      margin-bottom: 20px;
+      object-fit: cover;
+    }
+    .btn-hero-jidi {
+      padding: 14px 28px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, #22d3ee, #3b82f6);
+      color: #fff !important;
+      font-size: 16px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+      animation: jidiHeroPulse 1.5s infinite ease-in-out;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 2;
+    }
+    .btn-hero-jidi:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 0 30px rgba(34, 211, 238, 0.8);
+      filter: brightness(1.1);
+    }
+    @keyframes jidiHeroPulse {
+      0% { transform: scale(1); box-shadow: 0 0 15px rgba(34, 211, 238, 0.4); }
+      50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(34, 211, 238, 0.8); }
+      100% { transform: scale(1); box-shadow: 0 0 15px rgba(34, 211, 238, 0.4); }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-split {
+        flex-direction: column;
+        gap: 40px;
+        margin-top: 30px;
+      }
+      .hero-split-right {
+        border-left: none;
+        border-top: 1px dashed rgba(255,255,255,0.2);
+        padding-left: 0;
+        padding-top: 40px;
+        width: 100%;
+      }
+    }
+
     /* Components */
     .sectionHead { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 40px 0 24px; }
     .divider { height: 1px; flex: 1; max-width: 200px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); }
@@ -309,12 +387,11 @@
     #wechatCard { border-color: #34d399 !important; box-shadow: 0 0 25px rgba(52, 211, 153, 0.4); background: rgba(52, 211, 153, 0.05); animation: wechatPulseAlways 2s infinite ease-in-out; z-index: 5; }
     @keyframes wechatPulseAlways { 0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(52, 211, 153, 0.3); border-color: rgba(52, 211, 153, 0.6); } 50% { transform: scale(1.04); box-shadow: 0 0 40px rgba(52, 211, 153, 0.6); border-color: #34d399; } }
     
-    /* === 🔥 ADDED: QQ Card Styles (More obvious than WeChat) === */
     #qqCard {
         border-color: #0099FF !important;
         box-shadow: 0 0 30px rgba(0, 153, 255, 0.4);
         background: rgba(0, 153, 255, 0.08);
-        animation: qqPulseUrgent 1.5s infinite ease-in-out; /* Faster and stronger */
+        animation: qqPulseUrgent 1.5s infinite ease-in-out;
         z-index: 6;
     }
     @keyframes qqPulseUrgent {
@@ -485,12 +562,25 @@
 
       <div class="title">
         <h1>欢迎来到 <span class="grad">GWCAPITAL</span></h1>
-        <p>个人合作入口与资源聚合站</p>
-        <p>你与财富自由，只差一个牛市</p>
-        <a href="#partner" class="btn-hero-copy">
-          🚀 加入我们
-        </a>
-      </div>
+        
+        <div class="hero-split">
+          
+          <div class="hero-split-left">
+            <p>个人合作入口与资源聚合站</p>
+            <p>你与财富自由，只差一个牛市</p>
+            <a href="#partner" class="btn-hero-copy">
+              🚀 加入我们
+            </a>
+          </div>
+
+          <div class="hero-split-right">
+            <p class="jidi-hero-tip">请优先扫码加入《GW交易基地》</p>
+            <img src="images/jidi.png" alt="交易基地" class="jidi-hero-qr">
+            <a href="https://zcndb8m3iov2.feishu.cn/wiki/IU0hwoOg5ih4Sfk777ccenkMnyf?from=from_copylink" target="_blank" class="btn-hero-jidi">点击跳转加入交易基地</a>
+          </div>
+          
+        </div>
+        </div>
     </div>
 
     <div class="sectionHead reveal" id="about">
