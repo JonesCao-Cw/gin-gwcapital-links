@@ -397,15 +397,51 @@
     @keyframes gradientMove { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
     @keyframes glowPulse { 0%, 100% { box-shadow: 0 0 15px rgba(34,211,238,0.3); } 50% { box-shadow: 0 0 25px rgba(34,211,238,0.6); } }
 
+    /* === 🔥 TMGM 专属超级高亮动画 (Logo与按钮) === */
+    .btn-tmgm-super {
+        background: linear-gradient(90deg, #00d2ff, #3a7bd5, #00d2ff) !important;
+        background-size: 200% auto !important;
+        color: #ffffff !important;
+        font-size: 16px !important;
+        font-weight: 900 !important;
+        border: none !important;
+        border-radius: 12px;
+        box-shadow: 0 0 25px rgba(0, 210, 255, 0.6) !important;
+        animation: tmgmSuperPulse 1.2s infinite ease-in-out, gradientMove 2s linear infinite !important;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+        letter-spacing: 1px;
+        padding: 15px 0 !important;
+        margin-top: auto;
+    }
+    .btn-tmgm-super:hover {
+        transform: scale(1.05) !important;
+        box-shadow: 0 0 50px rgba(0, 210, 255, 1) !important;
+        filter: brightness(1.2);
+    }
+    @keyframes tmgmSuperPulse {
+        0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(0, 210, 255, 0.5); }
+        50% { transform: scale(1.06); box-shadow: 0 0 45px rgba(0, 210, 255, 0.9); filter: brightness(1.15); }
+    }
+    
+    .tmgm-logo-anim {
+        animation: tmgmLogoHeartbeat 1.5s infinite ease-in-out;
+    }
+    @keyframes tmgmLogoHeartbeat {
+        0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.4)); }
+        20%, 40% { transform: scale(1.15); filter: drop-shadow(0 0 35px rgba(34, 211, 238, 1)); }
+        30% { transform: scale(1.05); filter: drop-shadow(0 0 20px rgba(34, 211, 238, 0.7)); }
+    }
+
     /* Special Buttons */
     #wechatCard { border-color: #34d399 !important; box-shadow: 0 0 25px rgba(52, 211, 153, 0.4); background: rgba(52, 211, 153, 0.05); animation: wechatPulseAlways 2s infinite ease-in-out; z-index: 5; }
     @keyframes wechatPulseAlways { 0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(52, 211, 153, 0.3); border-color: rgba(52, 211, 153, 0.6); } 50% { transform: scale(1.04); box-shadow: 0 0 40px rgba(52, 211, 153, 0.6); border-color: #34d399; } }
     
+    /* === 🔥 ADDED: QQ Card Styles (More obvious than WeChat) === */
     #qqCard {
         border-color: #0099FF !important;
         box-shadow: 0 0 30px rgba(0, 153, 255, 0.4);
         background: rgba(0, 153, 255, 0.08);
-        animation: qqPulseUrgent 1.5s infinite ease-in-out;
+        animation: qqPulseUrgent 1.5s infinite ease-in-out; /* Faster and stronger */
         z-index: 6;
     }
     @keyframes qqPulseUrgent {
@@ -735,7 +771,7 @@
     <div class="grid2">
       <div class="glass-card partner-card-new card-tmgm reveal">
         <div class="p-col-logo">
-           <img src="images/tmgm.png" alt="TMGM" class="p-big-logo">
+           <img src="images/tmgm.png" alt="TMGM" class="p-big-logo tmgm-logo-anim">
         </div>
         
         <div class="p-col-info">
@@ -755,7 +791,7 @@
              </span>
           </p>
 
-          <a class="btn btn-cyan btn-highlight-pulse" style="margin-top:auto" href="javascript:void(0)" onclick="openPartnerModal('https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans')">
+          <a class="btn btn-tmgm-super" href="javascript:void(0)" onclick="openPartnerModal('https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans')">
             立即开户注册
           </a>
         </div>
@@ -776,7 +812,7 @@
                 <strong>特别提示：</strong>仅建议使用美分账户，如需使用美元账户请移步至TMGM！仅供参考，风险自负！
              </span>
           </p>
-          <a class="btn btn-purple btn-highlight-pulse" style="margin-top:auto" href="javascript:void(0)" onclick="openPartnerModal('https://one.exnessonelink.com/a/bc1v3yl4bf')">
+          <a class="btn btn-purple" style="margin-top:auto" href="javascript:void(0)" onclick="openPartnerModal('https://one.exnessonelink.com/a/bc1v3yl4bf')">
             立即开户注册
           </a>
         </div>
