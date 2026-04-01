@@ -284,7 +284,7 @@
     .feedback-card img { width: 100%; height: 100%; object-fit: cover; }
     @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* === 🔥 开户入口：1:1平分布局，内部1:2比例 === */
+    /* === 开户入口：1:1平分布局，内部1:2比例 === */
     .partner-grid {
         display: grid;
         grid-template-columns: 1fr 1fr; /* 左右各占一半 */
@@ -372,6 +372,19 @@
       .price-btn-box { width: 100%; }
       .price-btn-box .btn { width: 100%; }
     }
+
+    /* === 🔥 新增：服务对比 (极其紧凑版) === */
+    .compare-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 16px; margin-top: 16px; }
+    .comp-card { padding: 20px 24px; display: flex; flex-direction: column; }
+    .comp-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px dashed var(--glass-border); padding-bottom: 12px;}
+    .comp-head h4 { font-size: 16px; margin: 0; display: flex; align-items: center; gap: 8px;}
+    .comp-tag { font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 700; border: 1px solid currentColor;}
+    .comp-list { list-style: none; padding: 0; margin: 0; }
+    .comp-list li { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; display: flex; align-items: flex-start; gap: 8px; line-height: 1.5; }
+    .comp-list li:last-child { margin-bottom: 0; }
+    .comp-icon-free { color: var(--text-muted); font-weight: 900; }
+    .comp-icon-vip { color: var(--accent-purple); font-size: 14px; line-height: 1;}
+    @media (max-width: 768px) { .compare-grid { grid-template-columns: 1fr; } }
 
     /* === 助理与杂项 (发光呼吸互动) === */
     .mini-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
@@ -618,7 +631,7 @@
           <h3>免费 <span>门槛抵扣</span></h3>
         </div>
         <div class="price-details">
-          <p>通过本站合作链接开户并入金</p>
+          <p>通过本站合作链接开户并入金或任意合作跟单均申请《内部群》</p>
           <ul>
             <li>资金门槛：<strong style="color:var(--accent-cyan); font-size:15px;">$ 3,000 USD</strong></li>
             <li>需保持月末净值达标（低于1千美金将被移出）</li>
@@ -630,6 +643,34 @@
         </div>
       </div>
 
+    </div>
+
+    <div class="compare-grid reveal">
+      <div class="glass-card comp-card" style="border-top: 2px solid rgba(255,255,255,0.2);">
+        <div class="comp-head">
+          <h4><span style="background:rgba(255,255,255,0.1); padding:2px 6px; border-radius:4px; font-size:12px;">01</span> 公开免费群</h4>
+          <span class="comp-tag" style="color:var(--text-muted); border-color:rgba(255,255,255,0.2)">免费追踪</span>
+        </div>
+        <ul class="comp-list">
+          <li><span class="comp-icon-free">✓</span> 获取市场一手资讯</li>
+          <li><span class="comp-icon-free">✓</span> 不定期交易观点推送</li>
+          <li><span class="comp-icon-free">✓</span> 公开直播开播提醒</li>
+        </ul>
+      </div>
+      
+      <div class="glass-card comp-card" style="border-top: 2px solid var(--accent-purple); background: linear-gradient(160deg, rgba(168,85,247,0.05), rgba(15,20,30,0.6));">
+        <div class="comp-head">
+          <h4 style="color:var(--accent-purple)"><span style="background:var(--accent-purple); color:#fff; padding:2px 6px; border-radius:4px; font-size:12px;">02</span> 内部会员群</h4>
+          <span class="comp-tag" style="color:var(--accent-purple); border-color:var(--accent-purple)">核心实战</span>
+        </div>
+        <ul class="comp-list">
+          <li><span class="comp-icon-vip">★</span> <span style="color:#fff">实时进出场交易观点推送</span></li>
+          <li><span class="comp-icon-vip">★</span> 自用指标工具、深度研报共享</li>
+          <li><span class="comp-icon-vip">★</span> 杰明自研Tradingview指标共享</li>
+          <li><span class="comp-icon-vip">★</span> 付费课程大额折扣（课程制作中，持续会更新）</li>
+          <li><span class="comp-icon-vip">★</span> 专属群内答疑，每日不定期《亚欧美》盘群内视频图文分析</li>
+        </ul>
+      </div>
     </div>
 
     <div class="sectionHead reveal" id="contact">
