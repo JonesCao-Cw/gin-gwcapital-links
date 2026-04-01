@@ -5,586 +5,212 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   
   <link rel="icon" href="images/logo.png" type="image/png">
-
   <title>GWCAPITAL | 杰明</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      /* 核心色盘 */
-      --bg-dark: #030508;
-      --bg-light: #0a0f1d;
+    /* === 极简高级黑金配色 (Bento UI Style) === */
+    :root {
+      --bg-main: #09090b; /* 更纯粹的深色背景 */
+      --bg-card: #18181b; /* 卡片背景 */
+      --bg-card-hover: #27272a;
       
-      /* 强调色 */
-      --accent-cyan: #22d3ee;
-      --accent-blue: #6366f1;
-      --accent-purple: #a855f7;
-      --accent-green: #34d399;
-      --accent-gold: #ffd700;
-      --accent-red: #ff2442; 
-      --accent-binance: #F3BA2F;
+      --border-light: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.2);
       
-      /* 玻璃质感 */
-      --glass-bg: rgba(255, 255, 255, 0.03);
-      --glass-border: rgba(255, 255, 255, 0.08);
-      --glass-highlight: rgba(255, 255, 255, 0.15);
+      --text-main: #f4f4f5;
+      --text-muted: #a1a1aa;
       
-      /* 文字 */
-      --txt-main: rgba(255, 255, 255, 0.95);
-      --txt-muted: rgba(255, 255, 255, 0.65);
+      --accent-cyan: #06b6d4;
+      --accent-blue: #3b82f6;
+      --accent-purple: #8b5cf6;
+      --accent-gold: #fbbf24;
+      --accent-red: #ef4444;
+      --accent-green: #10b981;
     }
 
-    * { box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
+    * { box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
     html, body { height: 100%; scroll-behavior: smooth; }
     
     body {
-      margin: 0; font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
-      color: var(--txt-main); 
-      background-color: var(--bg-dark);
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--text-main); 
+      background-color: var(--bg-main);
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
     }
 
-    /* === 🔥 全局流体背景动画 === */
-    .bg-fixed {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      z-index: -1; pointer-events: none; overflow: hidden;
-      background: #030508;
-    }
-    .blob {
-      position: absolute; border-radius: 50%;
-      filter: blur(80px); opacity: 0.4;
-      animation: float 20s infinite ease-in-out alternate;
-    }
-    .blob-1 {
-      top: -10%; left: -10%; width: 50vw; height: 50vw;
-      background: radial-gradient(circle, var(--accent-purple), transparent 70%);
-      animation-duration: 25s;
-    }
-    .blob-2 {
-      bottom: -10%; right: -10%; width: 60vw; height: 60vw;
-      background: radial-gradient(circle, var(--accent-cyan), transparent 70%);
-      animation-duration: 30s; animation-direction: reverse;
-    }
-    .blob-3 {
-      top: 40%; left: 30%; width: 40vw; height: 40vw;
-      background: radial-gradient(circle, var(--accent-blue), transparent 70%);
-      animation-duration: 22s;
-    }
+    /* 滚动条极简处理 */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg-main); }
+    ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 4px; }
 
-    @keyframes float {
-      0% { transform: translate(0, 0) scale(1); }
-      33% { transform: translate(30px, -30px) scale(1.1); }
-      66% { transform: translate(-20px, 20px) scale(0.9); }
-      100% { transform: translate(0, 0) scale(1); }
-    }
-
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg-dark); }
-    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 10px; }
-
-    a { text-decoration: none; color: inherit; transition: 0.3s; }
-    .safe-top { padding-top: env(safe-area-inset-top); }
-
+    a { text-decoration: none; color: inherit; transition: 0.2s; }
+    ul { list-style: none; }
+    
     .wrap {
-      max-width: 1280px; 
+      max-width: 1200px; 
       margin: 0 auto; 
-      padding: 20px 20px 60px; 
-      position: relative; 
-      z-index: 1; 
+      padding: 20px 20px 80px; 
     }
 
-    /* === Topbar === */
+    /* === 极简导航栏 === */
     .topbar {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 8px 16px; border-radius: 16px;
-      background: rgba(15, 20, 30, 0.85); 
-      border: 1px solid rgba(255,255,255,0.08);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      position: sticky; top: 16px; z-index: 100; 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      padding: 12px 20px; border-radius: 100px;
+      background: rgba(24, 24, 27, 0.7); 
+      border: 1px solid var(--border-light);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      position: sticky; top: 20px; z-index: 100; 
     }
-    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; letter-spacing: -0.5px; }
-    
-    .logo-img {
-      width: 32px; height: 32px; 
-      border-radius: 8px; 
-      object-fit: cover;
-      box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
-    }
-
-    .nav { display: flex; gap: 8px; }
-    .nav a { 
-      font-size: 14px; color: var(--txt-muted); font-weight: 600; 
-      padding: 8px 16px; border-radius: 8px; 
-      transition: .3s;
-    }
-    .nav a:hover { color: #fff; background: rgba(255,255,255,0.08); }
-    
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 16px; }
+    .logo-img { width: 28px; height: 28px; border-radius: 6px; object-fit: cover; }
+    .nav { display: flex; gap: 4px; }
+    .nav a { font-size: 13px; color: var(--text-muted); font-weight: 500; padding: 6px 12px; border-radius: 100px; }
+    .nav a:hover { color: var(--text-main); background: rgba(255,255,255,0.05); }
     .cta { 
-      padding: 8px 20px; border-radius: 10px; 
-      background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan)); 
-      color: #fff; font-weight: 700; font-size: 13px; 
-      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); 
-      cursor: pointer;
-      border: 1px solid rgba(255,255,255,0.1);
+      padding: 8px 20px; border-radius: 100px; 
+      background: var(--text-main); color: var(--bg-main); 
+      font-weight: 700; font-size: 13px; cursor: pointer; transition: 0.2s;
     }
+    .cta:hover { transform: scale(1.02); opacity: 0.9; }
+
+    /* === 公共组件 === */
+    .section-title { font-size: 24px; font-weight: 800; margin: 60px 0 24px; letter-spacing: -0.5px; display: flex; align-items: center; gap: 10px; }
+    .section-title::before { content: ""; width: 4px; height: 18px; background: var(--accent-blue); border-radius: 4px; }
     
-    .cta-pulse {
-        animation: ctaPulseAnim 2s infinite ease-in-out;
-    }
-
-    @keyframes ctaPulseAnim {
-        0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); }
-        50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(34, 211, 238, 0.6); border-color: rgba(255,255,255,0.5); background: linear-gradient(90deg, var(--accent-blue), #22d3ee); }
-    }
-
-    .cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5); }
-
-    /* === Hero Section === */
-    .hero { 
-      margin-top: 24px; 
-      border-radius: 32px; 
-      background: #050810; 
-      border: 1px solid rgba(255,255,255,0.1); 
-      padding: 60px 20px; 
-      text-align: center; 
-      position: relative; 
-      overflow: hidden; 
-      z-index: 1; 
-      box-shadow: inset 0 0 80px rgba(0,0,0,0.8);
-    }
-    
-    .hero-grid {
-      position: absolute; inset: 0; z-index: -2;
-      background-image: 
-        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-      background-size: 50px 50px;
-      mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
-      -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
-      pointer-events: none;
-    }
-
-    .hero-glow-container { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
-    .hero-light { position: absolute; border-radius: 50%; mix-blend-mode: screen; filter: blur(50px); }
-
-    .hl-purple { top: 50%; left: 0%; width: 50%; height: 120%; background: radial-gradient(circle at center, #a855f7, transparent 70%); transform: translateY(-50%) translateX(-20%); opacity: 0.6; animation: diffuseLeft 8s infinite ease-in-out; }
-    .hl-cyan { top: 50%; right: 0%; width: 50%; height: 120%; background: radial-gradient(circle at center, #22d3ee, transparent 70%); transform: translateY(-50%) translateX(20%); opacity: 0.6; animation: diffuseRight 8s infinite ease-in-out; }
-    .hl-scanner { top: 50%; left: 50%; width: 120%; height: 15%; background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.8), transparent); transform: translate(-50%, -50%) rotate(-5deg); filter: blur(40px); opacity: 0.5; animation: scanMove 10s infinite ease-in-out; }
-
-    @keyframes diffuseLeft {
-      0%, 100% { transform: translateY(-50%) translateX(-20%) scale(1); opacity: 0.5; }
-      50% { transform: translateY(-50%) translateX(10%) scale(1.3); opacity: 0.2; }
-    }
-    @keyframes diffuseRight {
-      0%, 100% { transform: translateY(-50%) translateX(20%) scale(1); opacity: 0.5; }
-      50% { transform: translateY(-50%) translateX(-10%) scale(1.3); opacity: 0.2; }
-    }
-    @keyframes scanMove {
-      0%, 100% { transform: translate(-50%, -80%) rotate(-5deg) scaleX(1); opacity: 0.3; }
-      50% { transform: translate(-50%, -20%) rotate(5deg) scaleX(1.2); opacity: 0.7; }
-    }
-
-    .title h1 { margin: 0; font-size: clamp(32px, 5vw, 52px); font-weight: 900; line-height: 1.1; text-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; }
-    .grad { background: linear-gradient(135deg, #fff 20%, var(--accent-cyan) 100%); -webkit-background-clip: text; color: transparent; }
-    .title p { color: var(--txt-muted); font-size: 15px; margin-top: 12px; max-width: 600px; margin-left: auto; margin-right: auto; text-shadow: 0 2px 10px rgba(0,0,0,0.5); position: relative; }
-
-    .btn-hero-copy {
-      display: inline-flex; align-items: center; gap: 8px; justify-content: center;
-      margin-top: 32px; padding: 16px 48px; border-radius: 99px;
-      background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
-      color: #fff; font-size: 18px; font-weight: 800; text-decoration: none;
-      box-shadow: 0 0 30px rgba(99,102,241,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
-      border: 1px solid rgba(255,255,255,0.1);
-      transition: all 0.3s ease; cursor: pointer; position: relative; z-index: 2;
-    }
-    .btn-hero-copy:hover { transform: translateY(-4px) scale(1.05); box-shadow: 0 0 50px rgba(99,102,241,0.8); filter: brightness(1.1); }
-
-    /* === 🔥 新增：首屏基地扫码左右分割排版 === */
-    .hero-split {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 60px;
-      margin-top: 40px;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .hero-split-left, .hero-split-right {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    .hero-split-right {
-      border-left: 1px dashed rgba(255,255,255,0.2);
-      padding-left: 60px;
-    }
-    
-    /* 🔥 左侧两行描述文字高亮 */
-    .title .hero-split-left p {
-      color: #ffffff; /* 改为纯白 */
-      font-size: 17px; /* 字体变大 */
-      font-weight: 600; /* 加粗 */
-      letter-spacing: 1px;
-      text-shadow: 0 4px 15px rgba(0,0,0,0.9), 0 0 20px rgba(255,255,255,0.3); /* 黑底白发光双阴影 */
-      margin-top: 12px;
-    }
-
-    /* 🔥 右侧扫码文字高亮 */
-    .jidi-hero-tip {
-      color: #ffffff; /* 改为纯白 */
-      font-weight: 900; /* 加粗到最大 */
-      margin: 0 0 18px 0 !important;
-      text-shadow: 0 0 15px var(--accent-cyan), 0 0 30px rgba(34, 211, 238, 0.8); /* 强烈青色光晕 */
-      font-size: 18px !important; /* 字体变大 */
-      letter-spacing: 1px;
-    }
-    
-    .jidi-hero-qr {
-      width: 140px;
-      height: 140px;
-      border-radius: 12px;
-      border: 2px solid var(--accent-cyan);
-      box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
-      margin-bottom: 20px;
-      object-fit: cover;
-    }
-    .btn-hero-jidi {
-      padding: 14px 28px;
-      border-radius: 99px;
-      background: linear-gradient(90deg, #22d3ee, #3b82f6);
-      color: #fff !important;
-      font-size: 16px;
-      font-weight: 800;
-      text-decoration: none;
-      box-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
-      animation: jidiHeroPulse 1.5s infinite ease-in-out;
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      padding: 24px;
       transition: all 0.3s ease;
       position: relative;
-      z-index: 2;
+      overflow: hidden;
     }
-    .btn-hero-jidi:hover {
-      transform: translateY(-4px) scale(1.05);
-      box-shadow: 0 0 30px rgba(34, 211, 238, 0.8);
-      filter: brightness(1.1);
+    .card:hover { border-color: var(--border-hover); background: var(--bg-card-hover); }
+    
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      padding: 10px 16px; border-radius: 10px; font-size: 13px; font-weight: 600;
+      cursor: pointer; border: 1px solid transparent; transition: 0.2s;
     }
-    @keyframes jidiHeroPulse {
-      0% { transform: scale(1); box-shadow: 0 0 15px rgba(34, 211, 238, 0.4); }
-      50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(34, 211, 238, 0.8); }
-      100% { transform: scale(1); box-shadow: 0 0 15px rgba(34, 211, 238, 0.4); }
+    .btn-primary { background: var(--text-main); color: var(--bg-main); }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-secondary { background: rgba(255,255,255,0.05); color: var(--text-main); border: 1px solid var(--border-light); }
+    .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: var(--border-hover); }
+    .btn-outline-blue { background: rgba(59, 130, 246, 0.1); color: var(--accent-blue); border-color: rgba(59, 130, 246, 0.2); }
+    .btn-outline-blue:hover { background: var(--accent-blue); color: #fff; }
+
+    /* === 核心重构：图一首屏便当盒网格 === */
+    .hero-bento {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 16px;
+      margin-top: 30px;
     }
+    .bento-intro { grid-column: 1 / 2; grid-row: 1 / 3; display: flex; flex-direction: column; justify-content: center; padding: 40px; background: linear-gradient(135deg, var(--bg-card), #111827); }
+    .bento-intro h1 { font-size: clamp(32px, 5vw, 48px); font-weight: 900; margin-bottom: 8px; line-height: 1.1; letter-spacing: -1px;}
+    .bento-intro h1 span { color: var(--accent-cyan); }
+    .bento-intro p.subtitle { color: var(--text-muted); font-size: 16px; margin-bottom: 24px; max-width: 400px;}
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+    .tag { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 6px; background: rgba(255,255,255,0.05); color: var(--text-muted); border: 1px solid var(--border-light); }
+    .hero-actions { display: flex; gap: 12px; }
+
+    .bento-qr { grid-column: 2 / 3; grid-row: 1 / 2; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+    .bento-qr img { width: 100px; height: 100px; border-radius: 12px; margin-bottom: 12px; }
+    .bento-qr p { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+    .bento-qr a { font-size: 12px; color: var(--accent-blue); text-decoration: underline; text-underline-offset: 2px;}
+
+    .bento-carousel { grid-column: 2 / 3; grid-row: 2 / 3; padding: 0; }
+    
+    /* 轮播图简化样式 */
+    .tvStage { position: relative; width: 100%; height: 100%; min-height: 180px; overflow: hidden; border-radius: 20px; }
+    .track { display: flex; height: 100%; transition: transform 0.4s ease; }
+    .slide { min-width: 100%; height: 100%; }
+    .slide img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+    .navBtn { position: absolute; top: 50%; transform: translateY(-50%); width: 30px; height: 30px; border-radius: 50%; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2); color: #fff; border:none; cursor: pointer; z-index: 10; opacity: 0; transition: 0.2s; }
+    .tvStage:hover .navBtn { opacity: 1; }
+    .navPrev { left: 8px; } .navNext { right: 8px; }
+
+    @media (max-width: 768px) {
+      .hero-bento { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .bento-intro { grid-column: 1 / -1; padding: 30px 20px; }
+      .bento-qr, .bento-carousel { grid-column: 1 / -1; }
+      .nav { display: none; }
+    }
+
+    /* === 服务对比与开户 === */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    
+    .svc-card h3 { font-size: 18px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .svc-card ul li { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; display: flex; gap: 8px; }
+    .svc-card ul li::before { content: "•"; color: var(--accent-blue); }
+
+    .partner-card { display: flex; align-items: center; gap: 20px; }
+    .partner-logo { width: 80px; height: 80px; border-radius: 12px; background: #fff; display: grid; place-items: center; padding: 10px; flex-shrink: 0;}
+    .partner-logo img { width: 100%; height: 100%; object-fit: contain; }
+    .partner-info flex: 1;
+    .partner-info h3 { margin-bottom: 4px; display: flex; align-items: center; gap: 8px;}
+    .partner-info p { font-size: 12px; color: var(--text-muted); margin-bottom: 12px; line-height: 1.4; }
+
+    /* === 核心重构：图二教程区 (紧凑列表排版) === */
+    .tut-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .tut-item { display: flex; flex-direction: column; gap: 12px; }
+    .tut-head { display: flex; align-items: center; gap: 12px; }
+    .tut-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,0.05); display: grid; place-items: center; }
+    .tut-head h4 { font-size: 16px; }
+    .tut-item p { font-size: 13px; color: var(--text-muted); flex: 1; }
+    .tut-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     
     @media (max-width: 768px) {
-      .hero-split {
-        flex-direction: column;
-        gap: 40px;
-        margin-top: 30px;
-      }
-      .hero-split-right {
-        border-left: none;
-        border-top: 1px dashed rgba(255,255,255,0.2);
-        padding-left: 0;
-        padding-top: 40px;
-        width: 100%;
-      }
+      .tut-list, .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .partner-card { flex-direction: column; text-align: center; }
     }
 
-    /* Components */
-    .sectionHead { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 40px 0 24px; }
-    .divider { height: 1px; flex: 1; max-width: 200px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); }
-    .pill { padding: 6px 16px; border-radius: 20px; border: 1px solid var(--glass-border); background: rgba(0,0,0,0.3); color: var(--txt-muted); font-size: 13px; font-weight: 600; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
-    .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-cyan); box-shadow: 0 0 8px var(--accent-cyan); }
-    
-    /* === Glass Card === */
-    .glass-card { 
-      background: var(--glass-bg); 
-      border: 1px solid var(--glass-border); 
-      border-top: 1px solid var(--glass-highlight); 
-      border-radius: 24px; 
-      backdrop-filter: blur(16px); 
-      box-shadow: 0 4px 24px -1px rgba(0,0,0,0.2); 
-      overflow: hidden; 
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-    }
-    .glass-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -5px rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.12); }
+    /* === 核心重构：图三加入方式 (SaaS定价卡片风格) === */
+    .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: stretch; }
+    .price-card { padding: 32px; border-top: 4px solid transparent; }
+    .price-card.vip { border-top-color: var(--accent-gold); }
+    .price-card.free { border-top-color: var(--accent-cyan); }
+    .price-badge { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 100px; display: inline-block; margin-bottom: 16px;}
+    .vip .price-badge { background: rgba(251, 191, 36, 0.1); color: var(--accent-gold); }
+    .free .price-badge { background: rgba(6, 182, 212, 0.1); color: var(--accent-cyan); }
+    .price-val { font-size: 36px; font-weight: 900; margin-bottom: 8px; }
+    .price-val span { font-size: 14px; color: var(--text-muted); font-weight: 500; }
+    .price-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border-light); }
+    .price-card ul li { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; display: flex; gap: 8px; }
+    .price-card ul li::before { content: "✓"; color: var(--text-main); }
 
-    /* === 跑马灯 === */
-    .marquee-wrap { position: relative; margin-top: 10px; padding: 10px 0; overflow: hidden; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
-    .marquee-track { display: flex; gap: 20px; width: max-content; animation: scroll-left 40s linear infinite; }
-    .marquee-track:hover { animation-play-state: paused; }
-    .feedback-card { width: 260px; height: 340px; border-radius: 16px; overflow: hidden; flex-shrink: 0; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.02); transition: transform 0.3s; }
-    .feedback-card:hover { transform: scale(1.02); border-color: var(--accent-blue); }
-    .feedback-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9); }
-    @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    /* === 社交与工具小卡片 === */
+    .mini-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+    .mini-card { display: flex; align-items: center; gap: 16px; padding: 16px; cursor: pointer; }
+    .mini-card:hover { border-color: var(--accent-blue); }
+    .mini-icon { width: 40px; height: 40px; border-radius: 8px; flex-shrink: 0; background: #fff; padding: 6px; }
+    .mini-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .mini-info h4 { font-size: 14px; margin-bottom: 2px; }
+    .mini-info p { font-size: 12px; color: var(--text-muted); }
 
-    /* Grid & Layouts */
-    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-    .tvFrame { padding: 10px; height: 100%; display: flex; flex-direction: column; }
-    .tvStage { position: relative; border-radius: 18px; aspect-ratio: 16/10; overflow: hidden; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1); }
-    .track { display: flex; height: 100%; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
-    .slide { min-width: 100%; height: 100%; }
-    .slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9); transition: 0.5s; }
-    .slide:hover img { transform: scale(1.03); filter: brightness(1); }
-    .navBtn { position: absolute; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: 50%; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); color: #fff; display: grid; place-items: center; opacity: 0; transition: 0.2s; cursor: pointer; z-index: 10; }
-    .tvStage:hover .navBtn { opacity: 1; }
-    .navPrev { left: 10px; } .navNext { right: 10px; }
-    .captionBox { margin-top: 14px; padding: 12px; font-size: 13px; color: var(--txt-muted); background: rgba(0,0,0,0.2); border-radius: 12px; line-height: 1.6; }
-
-    .infoPad { padding: 30px; display: flex; flex-direction: column; height: 100%; }
-    .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; color: var(--accent-blue); background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.3); margin-bottom: 16px; }
-    .hello { font-size: 26px; font-weight: 800; margin-bottom: 12px; }
-    .desc { font-size: 14px; color: var(--txt-muted); line-height: 1.7; margin-bottom: 24px; }
-    .feat-item { display: flex; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.02); margin-top:10px;}
-    .feat-icon { width: 20px; height: 20px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); flex-shrink: 0; margin-top: 2px; }
-
-    /* Services */
-    .serviceGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 20px; }
-    .svcHead { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-    .svcHead h3 { margin: 0; font-size: 18px; display: flex; align-items: center; gap: 8px; }
-    .svc-icon { width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; font-size: 12px; font-weight: 900; }
-    
-    .svcTag { font-size: 12px; padding: 4px 10px; border-radius: 8px; font-weight: 700; border: 1px solid transparent; }
-    .svcLi { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--txt-muted); margin-bottom:12px; line-height: 1.5; }
-    .check { width: 16px; height: 16px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; font-size: 10px; margin-top: 2px;}
-
-    .svc-free { border-top-color: rgba(255,255,255,0.2); }
-    .svc-free:hover { border-color: rgba(255,255,255,0.3); box-shadow: 0 10px 40px -10px rgba(255,255,255,0.05); }
-    .svc-free .svc-icon { background: rgba(255,255,255,0.1); color: #fff; }
-    .svc-free .svcTag { background: rgba(255,255,255,0.1); color: var(--txt-muted); }
-    .svc-free .check { background: rgba(255,255,255,0.15); color: #fff; }
-
-    .svc-vip { border-top-color: var(--accent-purple); background: linear-gradient(160deg, rgba(168,85,247,0.05), var(--glass-bg)); }
-    .svc-vip:hover { border-color: var(--accent-purple); box-shadow: 0 10px 40px -10px rgba(168,85,247,0.2); }
-    .svc-vip .svc-icon { background: var(--accent-purple); color: #fff; }
-    .svc-vip .svcTag { background: rgba(168, 85, 247, 0.15); color: var(--accent-purple); border-color: rgba(168, 85, 247, 0.3); }
-    .svc-vip .check { background: var(--accent-purple); color: #fff; }
-
-    .svc-copy { border-top-color: var(--accent-cyan); background: linear-gradient(160deg, rgba(34,211,238,0.05), var(--glass-bg)); }
-    .svc-copy:hover { border-color: var(--accent-cyan); box-shadow: 0 10px 40px -10px rgba(34,211,238,0.2); }
-    .svc-copy .svc-icon { background: var(--accent-cyan); color: #000; }
-    .svc-copy .svcTag { background: rgba(34, 211, 238, 0.15); color: var(--accent-cyan); border-color: rgba(34, 211, 238, 0.3); }
-    .svc-copy .check { background: transparent; color: var(--accent-cyan); font-size: 14px; line-height: 1; }
-
-    /* Buttons */
-    .btn { margin-top: 16px; width: 100%; padding: 12px; border-radius: 12px; font-size: 13px; font-weight: 700; text-align: center; cursor: pointer; border: 1px solid transparent; transition: 0.2s; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; gap: 6px; user-select: none;}
-    .btn::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); transform: translateX(-100%); transition: 0.5s; }
-    .btn:hover::before { transform: translateX(100%); }
-
-    .btn-copy-solid { background: var(--accent-cyan); color: #000; border: none; box-shadow: 0 0 15px rgba(34,211,238,0.3); margin-top: auto; }
-    .btn-copy-solid:hover { background: #fff; box-shadow: 0 0 25px rgba(34,211,238,0.6); transform: translateY(-2px); }
-
-    .btn-cyan { background: rgba(34, 211, 238, 0.1); color: var(--accent-cyan); border-color: rgba(34, 211, 238, 0.2); }
-    .btn-cyan:hover { background: var(--accent-cyan); color: #000; box-shadow: 0 0 20px rgba(34, 211, 238, 0.4); }
-    .btn-purple { background: rgba(168, 85, 247, 0.1); color: var(--accent-purple); border-color: rgba(168, 85, 247, 0.2); }
-    .btn-purple:hover { background: var(--accent-purple); color: #fff; box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); }
-    .btn-green { background: rgba(52, 211, 153, 0.1); color: var(--accent-green); border-color: rgba(52, 211, 153, 0.2); }
-    .btn-green:hover { background: var(--accent-green); color: #000; box-shadow: 0 0 20px rgba(52, 211, 153, 0.4); }
-    .btn-blue { background: rgba(99, 102, 241, 0.1); color: var(--accent-blue); border-color: rgba(99, 102, 241, 0.2); }
-    .btn-blue:hover { background: var(--accent-blue); color: #fff; box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); }
-    .btn-gold { background: rgba(255, 215, 0, 0.1); color: var(--accent-gold); border-color: rgba(255, 215, 0, 0.25); }
-    .btn-gold:hover { background: var(--accent-gold); color: #000; box-shadow: 0 0 20px rgba(255, 215, 0, 0.4); }
-    .btn-red { background: rgba(255, 36, 66, 0.1); color: var(--accent-red); border-color: rgba(255, 36, 66, 0.2); }
-    .btn-red:hover { background: var(--accent-red); color: #fff; box-shadow: 0 0 20px rgba(255, 36, 66, 0.4); }
-
-    .btn-highlight-pulse { background: linear-gradient(90deg, rgba(34,211,238,0.2), rgba(255,255,255,0.2), rgba(34,211,238,0.2)); background-size: 200% 100%; color: var(--accent-cyan) !important; border: 1px solid var(--accent-cyan) !important; box-shadow: 0 0 15px rgba(34,211,238,0.3); animation: gradientMove 3s linear infinite, glowPulse 2s ease-in-out infinite; }
-    .btn-highlight-pulse:hover { background: var(--accent-cyan); color: #000 !important; box-shadow: 0 0 30px rgba(34,211,238,0.8); }
-    @keyframes gradientMove { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
-    @keyframes glowPulse { 0%, 100% { box-shadow: 0 0 15px rgba(34,211,238,0.3); } 50% { box-shadow: 0 0 25px rgba(34,211,238,0.6); } }
-
-    /* === 🔥 TMGM 专属超级高亮动画 (Logo与按钮) === */
-    .btn-tmgm-super {
-        background: linear-gradient(90deg, #00d2ff, #3a7bd5, #00d2ff) !important;
-        background-size: 200% auto !important;
-        color: #ffffff !important;
-        font-size: 16px !important;
-        font-weight: 900 !important;
-        border: none !important;
-        border-radius: 12px;
-        box-shadow: 0 0 25px rgba(0, 210, 255, 0.6) !important;
-        animation: tmgmSuperPulse 1.2s infinite ease-in-out, gradientMove 2s linear infinite !important;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.4);
-        letter-spacing: 1px;
-        padding: 15px 0 !important;
-        margin-top: auto;
-    }
-    .btn-tmgm-super:hover {
-        transform: scale(1.05) !important;
-        box-shadow: 0 0 50px rgba(0, 210, 255, 1) !important;
-        filter: brightness(1.2);
-    }
-    @keyframes tmgmSuperPulse {
-        0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(0, 210, 255, 0.5); }
-        50% { transform: scale(1.06); box-shadow: 0 0 45px rgba(0, 210, 255, 0.9); filter: brightness(1.15); }
-    }
-    
-    .tmgm-logo-anim {
-        animation: tmgmLogoHeartbeat 1.5s infinite ease-in-out;
-    }
-    @keyframes tmgmLogoHeartbeat {
-        0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.4)); }
-        20%, 40% { transform: scale(1.15); filter: drop-shadow(0 0 35px rgba(34, 211, 238, 1)); }
-        30% { transform: scale(1.05); filter: drop-shadow(0 0 20px rgba(34, 211, 238, 0.7)); }
-    }
-
-    /* Special Buttons */
-    #wechatCard { border-color: #34d399 !important; box-shadow: 0 0 25px rgba(52, 211, 153, 0.4); background: rgba(52, 211, 153, 0.05); animation: wechatPulseAlways 2s infinite ease-in-out; z-index: 5; }
-    @keyframes wechatPulseAlways { 0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(52, 211, 153, 0.3); border-color: rgba(52, 211, 153, 0.6); } 50% { transform: scale(1.04); box-shadow: 0 0 40px rgba(52, 211, 153, 0.6); border-color: #34d399; } }
-    
-    /* === 🔥 ADDED: QQ Card Styles (More obvious than WeChat) === */
-    #qqCard {
-        border-color: #0099FF !important;
-        box-shadow: 0 0 30px rgba(0, 153, 255, 0.4);
-        background: rgba(0, 153, 255, 0.08);
-        animation: qqPulseUrgent 1.5s infinite ease-in-out; /* Faster and stronger */
-        z-index: 6;
-    }
-    @keyframes qqPulseUrgent {
-        0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(0, 153, 255, 0.4); border-color: rgba(0, 153, 255, 0.5); }
-        50% { transform: scale(1.06); box-shadow: 0 0 50px rgba(0, 153, 255, 0.8); border-color: #0099FF; filter: brightness(1.2); }
-    }
-
-    .card-urgent-flash { animation: urgentFlash 3s cubic-bezier(0.25, 1, 0.5, 1) !important; z-index: 50 !important; }
-    @keyframes urgentFlash { 0%, 100% { transform: scale(1); border-color: var(--accent-green); } 10%, 30%, 50% { transform: scale(1.08); border-color: #fff; box-shadow: 0 0 50px rgba(52, 211, 153, 0.8), inset 0 0 20px rgba(52, 211, 153, 0.4); background: rgba(52, 211, 153, 0.2); } 20%, 40%, 60% { transform: scale(1.04); } }
-
-    /* Grid4 & Icons */
-    .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 20px; }
-    .miniCard { padding: 20px; display: flex; flex-direction: column; min-height: 200px; position: relative; }
-    .miniTop { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
-    .platIcon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
-    .platIcon img { width: 100%; height: 100%; object-fit: contain; display: block; border-radius: 12px; }
-    .platIcon-social { height: 48px; width: auto; min-width: 48px; max-width: 140px; display: flex; align-items: center; justify-content: flex-start; background: transparent; flex-shrink: 0; }
-    .platIcon-social img { height: 100%; width: auto; object-fit: contain; object-position: left center; display: block; }
-
-    /* Partner Cards */
-    .partner-card-new { display: flex; flex-direction: row; align-items: stretch; padding: 0; overflow: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-    .partner-card-new:hover { transform: translateY(-8px); }
-    
-    .card-tmgm { border-color: rgba(34, 211, 238, 0.2); background: linear-gradient(135deg, rgba(34, 211, 238, 0.03), rgba(255, 255, 255, 0.01)); }
-    .card-tmgm:hover { border-color: var(--accent-cyan); box-shadow: 0 10px 40px -10px rgba(34, 211, 238, 0.15); }
-    .card-tmgm .p-col-logo { background: rgba(34, 211, 238, 0.05); border-right: 1px solid rgba(34, 211, 238, 0.1); }
-
-    .card-dprime { border-color: rgba(168, 85, 247, 0.2); background: linear-gradient(135deg, rgba(168, 85, 247, 0.03), rgba(255, 255, 255, 0.01)); }
-    .card-dprime:hover { border-color: var(--accent-purple); box-shadow: 0 10px 40px -10px rgba(168, 85, 247, 0.15); }
-    .card-dprime .p-col-logo { background: rgba(168, 85, 247, 0.05); border-right: 1px solid rgba(168, 85, 247, 0.1); }
-
-    .p-col-logo { width: 35%; display: flex; align-items: center; justify-content: center; padding: 20px; }
-    .p-big-logo { width: 100%; max-width: 180px; height: auto; object-fit: contain; filter: drop-shadow(0 0 15px rgba(255,255,255,0.05)); transition: 0.3s; }
-    .partner-card-new:hover .p-big-logo { transform: scale(1.08); }
-    .p-col-info { width: 65%; padding: 24px 30px; display: flex; flex-direction: column; justify-content: center; }
-    .p-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-    .p-title { font-size: 20px; font-weight: 800; margin: 0; letter-spacing: -0.5px; display: flex; align-items: center; gap: 8px; }
-    .rec-badge { font-size: 12px; font-weight: 800; background: linear-gradient(90deg, #FFD700, #FFA500); color: #000; padding: 2px 8px; border-radius: 6px; vertical-align: middle; display: inline-block; animation: recPulse 2s infinite ease-in-out; box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); }
-    @keyframes recPulse { 0% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); } 50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); } 100% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); } }
-    .p-tag { font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 6px; border: 1px solid currentColor; text-transform: uppercase; }
-    .p-desc { font-size: 13px; color: var(--txt-muted); line-height: 1.6; margin-bottom: 20px; }
-
-    @media (max-width: 600px) {
-      .partner-card-new { flex-direction: column; }
-      .p-col-logo { width: 100%; border-right: none; border-bottom: 1px solid var(--glass-border); padding: 30px 20px; }
-      .p-col-info { width: 100%; padding: 20px; }
-      .p-big-logo { max-width: 160px; }
-    }
-
-    .miniTitle { font-size: 16px; font-weight: 700; margin: 0 0 6px; }
-    .miniDesc { font-size: 12px; color: var(--txt-muted); line-height: 1.5; margin: 0; flex: 1; }
-
-    /* Tutorials */
-    .tut-card { padding: 24px; position: relative; overflow: hidden; display: flex; flex-direction: column; }
-    .tut-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
-    .tut-icon-box { width: 48px; height: 48px; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); display: grid; place-items: center; color: #fff; }
-    .tut-tag { font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
-    
-    .tut-core { border-color: rgba(255, 36, 66, 0.4); box-shadow: 0 0 20px rgba(255, 36, 66, 0.1); background: linear-gradient(160deg, rgba(255, 36, 66, 0.05), var(--glass-bg)); }
-    .tut-core:hover { border-color: #ff2442; box-shadow: 0 10px 40px -5px rgba(255, 36, 66, 0.2); }
-    .tut-core .tut-tag { background: #ff2442; color: #fff; box-shadow: 0 0 10px rgba(255, 36, 66, 0.4); }
-    .tut-core .tut-icon-box { color: #ff2442; background: rgba(255, 36, 66, 0.1); border-color: rgba(255, 36, 66, 0.2); }
-
-    .tut-gold { border-color: rgba(255, 215, 0, 0.4); box-shadow: 0 0 20px rgba(255, 215, 0, 0.1); background: linear-gradient(160deg, rgba(255, 215, 0, 0.05), var(--glass-bg)); }
-    .tut-gold:hover { border-color: #ffd700; box-shadow: 0 10px 40px -5px rgba(255, 215, 0, 0.2); }
-    .tut-gold .tut-tag { background: #ffd700; color: #000; box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); }
-    .tut-gold .tut-icon-box { color: #ffd700; background: rgba(255, 215, 0, 0.1); border-color: rgba(255, 215, 0, 0.2); }
-
-    .tut-actions { display: flex; gap: 12px; margin-top: auto; }
-    .tut-action-item { flex: 1; display: flex; flex-direction: column; align-items: center; }
-    .tut-tip { font-size: 11px; color: var(--txt-muted); text-align: center; margin-top: 6px; opacity: 0.8; line-height: 1.4; }
-    @media (max-width: 500px) { .tut-actions { flex-direction: column; gap: 16px; } .tut-tip { font-size: 10px; margin-top: 4px; } }
-
-    .risk { margin-top: 40px; padding: 24px; border-left: 4px solid #ef4444; background: linear-gradient(90deg, rgba(239, 68, 68, 0.05), transparent); }
-    .risk-title { display: flex; align-items: center; gap: 8px; color: #ef4444; font-weight: 800; font-size: 14px; margin-bottom: 10px; }
-    .risk ul { margin: 0; padding-left: 18px; color: var(--txt-muted); font-size: 12px; line-height: 1.8; }
-    
-    /* Modals */
-    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 999; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
+    /* === 弹窗复用原版逻辑，仅稍微调色 === */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 999; display: none; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; }
     .modal-overlay.active { display: flex; opacity: 1; }
-    .modal-box { background: #1a1a2e; border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 32px; max-width: 480px; width: 90%; text-align: center; box-shadow: 0 30px 80px rgba(0,0,0,0.8); transform: scale(0.95); transition: transform 0.3s; }
-    .modal-overlay.active .modal-box { transform: scale(1); }
-    .modal-title { font-size: 22px; font-weight: 900; margin-bottom: 16px; color: #fff; }
-    .modal-desc { color: var(--txt-muted); font-size: 15px; line-height: 1.6; margin-bottom: 28px; }
-    .modal-close { position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; background: rgba(255,255,255,0.05); border-radius: 50%; display: grid; place-items: center; cursor: pointer; color: #aaa; transition:.2s; }
-    .modal-close:hover { background: rgba(255,255,255,0.15); color: #fff; }
-    .modal-btns { display: flex; flex-direction: column; gap: 12px; }
-    .m-btn { padding: 16px; border-radius: 12px; font-weight: 700; cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; transition:.2s; }
-    .m-btn-confirm { background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); color: #fff; box-shadow: 0 4px 20px rgba(99,102,241,0.3); }
-    .m-btn-confirm:hover { filter: brightness(1.1); transform: translateY(-2px); }
-    .m-btn-contact { background: rgba(255,255,255,0.05); color: var(--accent-cyan); border: 1px solid rgba(255,255,255,0.1); }
-    .m-btn-contact:hover { background: rgba(255,255,255,0.1); color: #fff; }
-    .partner-warning { color:#f0b90b; font-weight:800; margin-bottom:8px; display:block;}
-
-    @media(max-width:900px){ 
-      .grid2, .serviceGrid { grid-template-columns: 1fr; gap: 20px; }
-      .grid4 { grid-template-columns: 1fr 1fr; gap: 16px; }
-      .nav { display: none; }
-      .tvStage { aspect-ratio: 16/9; }
-    }
-    @media (max-width: 500px) {
-      .grid4 { grid-template-columns: 1fr; }
-      .wrap { padding: 16px 16px 40px; }
-      .hero { padding: 30px 16px; }
-      .miniCard { min-height: auto; }
-      .title h1 { font-size: 28px; }
-    }
-
-    .tut-header-distinct { text-align: center; margin: 80px 0 50px; position: relative; }
-    .tut-big-title { font-size: clamp(32px, 5vw, 48px); font-weight: 900; background: linear-gradient(to right, #eab308, #fef08a, #eab308); -webkit-background-clip: text; color: transparent; letter-spacing: -1px; text-shadow: 0 10px 40px rgba(234, 179, 8, 0.3); display: inline-block; position: relative; }
-    .tut-badge-pop { position: absolute; top: -15px; right: -30px; background: #ff2442; color: #fff; font-size: 12px; font-weight: 800; padding: 4px 10px; border-radius: 10px 10px 10px 0; box-shadow: 0 4px 15px rgba(255, 36, 66, 0.5); transform: rotate(10deg); }
-    .tut-subtitle { margin-top: 10px; color: var(--txt-muted); font-size: 15px; letter-spacing: 1px; text-transform: uppercase; opacity: 0.8; }
-    .highlight-box { display: block; background: rgba(255, 215, 0, 0.08); border: 1px solid rgba(255, 215, 0, 0.5); color: #ffffff; padding: 10px 14px; border-radius: 12px; font-size: 13px; line-height: 1.6; margin-bottom: 16px; box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.05); font-weight: 500; }
+    .modal-box { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 20px; padding: 32px; max-width: 400px; width: 90%; text-align: center; }
+    .modal-title { font-size: 20px; font-weight: 800; margin-bottom: 12px; }
+    .modal-desc { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; }
+    .modal-btns { display: flex; flex-direction: column; gap: 10px; }
     
-    .btn-pulse-action { background: linear-gradient(90deg, #22d3ee, #3b82f6) !important; color: #fff !important; border: none !important; font-size: 16px !important; font-weight: 800 !important; box-shadow: 0 0 20px rgba(34, 211, 238, 0.5); animation: pulseBig 1.5s infinite ease-in-out; }
-    .btn-pulse-action:hover { filter: brightness(1.1); transform: scale(1.05); }
-    @keyframes pulseBig { 0% { transform: scale(1); box-shadow: 0 0 15px rgba(34, 211, 238, 0.4); } 50% { transform: scale(1.03); box-shadow: 0 0 35px rgba(34, 211, 238, 0.8); } 100% { transform: scale(1); box-shadow: 0 0 15px rgba(34, 211, 238, 0.4); } }
-    .modal-tip-box { text-align: left; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 12px; margin-bottom: 24px; }
-
-    /* Scroll Reveal */
-    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); will-change: opacity, transform; }
+    /* Reveal 动画 */
+    .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
     .reveal.active { opacity: 1; transform: translateY(0); }
-    
-    /* === 🔥 全屏按钮专用动画 === */
-    .btn-glow-anim { background: linear-gradient(90deg, #a855f7, #ec4899); color: #fff; font-weight: 800; border: none; box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); animation: pulseGlow 2s infinite ease-in-out; transition: all 0.3s; }
-    .btn-glow-anim:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 0 30px rgba(168, 85, 247, 0.8); filter: brightness(1.2); }
-    @keyframes pulseGlow { 0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); } 50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(236, 72, 153, 0.7); } }
-
-    /* === 🔥 正在连接文字动画 === */
-    @keyframes textGlow { from { text-shadow: 0 0 10px rgba(34,211,238,0.5); opacity: 0.8; } to { text-shadow: 0 0 25px rgba(34,211,238,1); opacity: 1; } }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
   </style>
 </head>
 
 <body>
-  <div class="bg-fixed">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-  </div>
-
-  <div class="safe-top"></div>
-
   <div class="wrap">
     <div class="topbar">
       <div class="brand">
@@ -592,55 +218,43 @@
         GW Capital
       </div>
       <div class="nav">
-        <a href="#tutorials">教程</a>
-        <a href="#indicators">指标</a>
-        <a href="#services">服务</a>
-        <a href="#partner">开户</a>
-        <a href="#tools">工具</a>
+        <a href="#services">服务体系</a>
+        <a href="#tutorials">快速上手</a>
+        <a href="#partner">开户入口</a>
+        <a href="#join">加入我们</a>
       </div>
-      <div class="cta cta-pulse" onclick="openHeroModal()">点击跳转🔥立即跟单🔥</div>
+      <div class="cta" onclick="openHeroModal()">立即跟单</div>
     </div>
 
-    <div class="hero reveal">
-      <div class="hero-grid"></div>
-      
-      <div class="hero-glow-container">
-        <div class="hero-light hl-purple"></div>
-        <div class="hero-light hl-cyan"></div>
-        <div class="hero-light hl-scanner"></div>
-      </div>
-
-      <div class="title">
-        <h1>欢迎来到 <span class="grad">GWCAPITAL</span></h1>
+    <div class="hero-bento reveal">
+      <div class="card bento-intro">
+        <h1>GWCAPITAL</h1>
+        <p class="subtitle">你与财富自由，只差一个牛市</p>
         
-        <div class="hero-split">
-          
-          <div class="hero-split-left">
-            <p>个人合作入口与资源聚合站</p>
-            <p>你与财富自由，只差一个牛市</p>
-            <a href="#partner" class="btn-hero-copy">
-              🚀 加入我们
-            </a>
-          </div>
-
-          <div class="hero-split-right">
-            <p class="jidi-hero-tip">优先微信扫码加入《GW交易基地》</p>
-            <img src="images/jidi.png" alt="交易基地" class="jidi-hero-qr">
-            <a href="https://zcndb8m3iov2.feishu.cn/wiki/IU0hwoOg5ih4Sfk777ccenkMnyf?from=from_copylink" target="_blank" class="btn-hero-jidi">点击跳转查看加入教程</a>
-          </div>
-          
+        <div class="tags">
+          <span class="tag">👤 杰明 Gin</span>
+          <span class="tag">⏱ 11年交易经验</span>
+          <span class="tag">👨‍🎓 累计学员 1000+</span>
+          <span class="tag">📈 基本面 + 价格行为 + EA量化</span>
         </div>
+        
+        <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">
+          前金十数据交易导师，现全职交易，专注黄金和比特币。涵盖外汇/商品/贵金属/中美股票/加密货币。
+        </p>
+
+        <div class="hero-actions">
+          <a href="#join" class="btn btn-primary">加入我们</a>
+          <a href="#services" class="btn btn-secondary">了解服务</a>
         </div>
-    </div>
+      </div>
 
-    <div class="sectionHead reveal" id="about">
-      <div class="divider"></div>
-      <div class="pill"><div class="dot"></div>关于我</div>
-      <div class="divider"></div>
-    </div>
+      <div class="card bento-qr">
+        <img src="images/jidi.png" alt="交易基地">
+        <p>优先微信扫码加入<br>《GW交易基地》</p>
+        <a href="https://zcndb8m3iov2.feishu.cn/wiki/IU0hwoOg5ih4Sfk777ccenkMnyf?from=from_copylink" target="_blank">查看加入教程</a>
+      </div>
 
-    <div class="grid2">
-      <div class="glass-card tvFrame reveal">
+      <div class="card bento-carousel">
         <div class="tvStage" id="tvStage">
           <div class="track" id="track">
             <div class="slide"><img src="images/g1.jpg" alt="1"></div>
@@ -655,609 +269,193 @@
           <button class="navBtn navPrev" id="prevBtn">‹</button>
           <button class="navBtn navNext" id="nextBtn">›</button>
         </div>
-        <div class="captionBox">
-          多年线下学员实战带教经验，沉淀了一套完整的基本面+技术面交易体系。
-        </div>
-      </div>
-
-      <div class="glass-card reveal">
-        <div class="infoPad">
-          <div>
-            <span class="badge">Gin · 杰明 | 个人介绍</span>
-            <div class="hello">Hello, 我是杰明Gin。</div>
-            <p class="desc">
-              11年交易经验。前金十数据交易导师，金十交易学院创始人之一，累计学员1000+。全球宏观分析+裸K价格行为（Price Action）+EA量化进出场点。现全职交易，专注黄金和比特币。
-            </p>
-          </div>
-          <div class="features">
-            <div class="feat-item">
-              <div class="feat-icon"></div>
-              <div><b>职业体系</b><span style="font-size:13px;color:var(--txt-muted)">  培养职业交易员思维：基本面+技术面+EA量化 三结合</span></div>
-            </div>
-            <div class="feat-item">
-              <div class="feat-icon" style="background:var(--accent-purple)"></div>
-              <div><b>全域覆盖</b><span style="font-size:13px;color:var(--txt-muted)">  以黄金和比特币为主，涵盖外汇/商品/贵金属/中美股票/加密货币</span></div>
-            </div>
-            <div class="feat-item">
-              <div class="feat-icon" style="background:var(--accent-green)"></div>
-              <div><b>加入我们</b><span style="font-size:13px;color:var(--txt-muted)">  按下方指引加入我们，共同战胜市场</span></div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
 
-    <div class="sectionHead reveal" id="feedback">
-      <div class="divider"></div>
-      <div class="pill"><div class="dot"></div>社群反馈</div>
-      <div class="divider"></div>
-    </div>
-    
-    <div style="text-align:center;margin-bottom:10px;" class="reveal">
-        <h2 style="margin:0 0 5px;font-size:24px;">社群内真实战绩，无需多言</h2>
-        <p style="margin:0;color:var(--txt-muted);font-size:14px;">少走交易弯路，把更多时间留给赚钱</p>
-    </div>
-
-    <div class="marquee-wrap reveal">
-      <div class="marquee-track">
-        <div class="feedback-card"><img src="images/f1.jpg" alt="反馈1"></div>
-        <div class="feedback-card"><img src="images/f2.jpg" alt="反馈2"></div>
-        <div class="feedback-card"><img src="images/f3.jpg" alt="反馈3"></div>
-        <div class="feedback-card"><img src="images/f4.jpg" alt="反馈4"></div>
-        <div class="feedback-card"><img src="images/f5.jpg" alt="反馈5"></div>
-        
-        <div class="feedback-card"><img src="images/f1.jpg" alt="反馈1"></div>
-        <div class="feedback-card"><img src="images/f2.jpg" alt="反馈2"></div>
-        <div class="feedback-card"><img src="images/f3.jpg" alt="反馈3"></div>
-        <div class="feedback-card"><img src="images/f4.jpg" alt="反馈4"></div>
-        <div class="feedback-card"><img src="images/f5.jpg" alt="反馈5"></div>
+    <h2 class="section-title" id="services">服务与开户</h2>
+    <div class="grid-3 reveal">
+      <div class="card svc-card">
+        <h3>公开免费群</h3>
+        <ul>
+          <li>获取市场一手资讯</li>
+          <li>不定期交易观点推送</li>
+          <li>公开直播开播提醒</li>
+        </ul>
       </div>
-    </div>
-
-    <div class="sectionHead reveal" id="services">
-      <div class="divider"></div>
-      <div class="pill"><div class="dot"></div>服务对比</div>
-      <div class="divider"></div>
-    </div>
-
-    <div class="serviceGrid">
-      <div class="glass-card svc-free reveal" style="padding:24px;">
-        <div class="svcHead">
-          <h3><div class="svc-icon">01</div>公开免费群</h3>
-          <span class="svcTag">免费追踪</span>
-        </div>
-        <div class="svcLi"><div class="check">✓</div>获取市场一手资讯</div>
-        <div class="svcLi"><div class="check">✓</div>不定期交易观点推送</div>
-        <div class="svcLi"><div class="check">✓</div>公开直播开播提醒</div>
+      <div class="card svc-card" style="border-color: rgba(251, 191, 36, 0.3);">
+        <h3 style="color: var(--accent-gold);">内部会员群 (核心)</h3>
+        <ul>
+          <li>实时进出场交易观点推送</li>
+          <li>自用指标工具、深度研报</li>
+          <li>专属群内答疑与盘面分析</li>
+        </ul>
       </div>
-
-      <div class="glass-card svc-vip reveal" style="padding:24px;">
-        <div class="svcHead">
-          <h3><div class="svc-icon">02</div>内部会员群</h3>
-          <span class="svcTag">核心实战</span>
-        </div>
-        <div class="svcLi"><div class="check">★</div>实时进出场交易观点推送</div>
-        <div class="svcLi"><div class="check">★</div>自用指标工具、深度研报共享</div>
-        <div class="svcLi"><div class="check">★</div>杰明自研Tradingview指标共享</div>
-        <div class="svcLi"><div class="check">★</div>付费课程大额折扣（课程制作中，持续会更新）</div>
-        <div class="svcLi"><div class="check">★</div>专属群内答疑，每日不定期《亚欧美》盘群内视频图文分析</div>
-      </div>
-
-      <div class="glass-card svc-copy reveal" style="padding:24px; display:flex; flex-direction:column; justify-content:space-between;">
-        <div>
-          <div class="svcHead">
-            <h3><div class="svc-icon">03</div>跟单交易</h3>
-            <span class="svcTag">加入方式</span>
-          </div>
-          <div class="svcLi" style="margin-bottom:6px;">
-            <div class="check">■</div> 
-            <span>跟单交易和内部会员群属于独立项目，提供不同类型的服务。</span>
-          </div>
-          <div class="svcLi">
-            <div class="check">■</div> 
-            <span>跟单交易资金门槛 <b style="color:#fbbf24">(3000USD)</b> 达到内部会员群资金门槛要求时，可直接解锁 <b style="color:#fbbf24">内部会员群</b>（详情查看加入方式二）。</span>
-          </div>
-        </div>
-        <a href="copy-trading.html" class="btn btn-copy-solid">立即跟单</a>
-      </div>
-    </div>
-
-    <div class="sectionHead reveal" id="partner">
-      <div class="divider"></div>
-      <div class="pill"><div class="dot"></div>开户入口</div>
-      <div class="divider"></div>
-    </div>
-
-    <div class="grid2">
-      <div class="glass-card partner-card-new card-tmgm reveal">
-        <div class="p-col-logo">
-           <img src="images/tmgm.png" alt="TMGM" class="p-big-logo tmgm-logo-anim">
-        </div>
-        
-        <div class="p-col-info">
-          <div class="p-header">
-             <h3 class="p-title">
-               TMGM 
-               <span class="rec-badge">推荐</span>
-             </h3>
-             <span class="p-tag" style="color:var(--accent-cyan);border-color:var(--accent-cyan)">美元账户</span>
-          </div>
-          
-          <p class="p-desc">
-             美元标准账户。平台合作多年，<b style="color:#fff;">监管优</b>，<b style="color:#fff;">出入金稳定</b>，支持<b style="color:#fff;">大额资金</b>。
-             <span style="display:block; margin-top:8px; padding-top:8px; border-top:1px dashed rgba(255,255,255,0.1); color:#34d399; font-size:12px; line-height:1.5;">
-                💡 推荐使用USDT入金。<br>
-                RMB入金建议使用后台提供的<b style="color:#fff">极付宝</b>入金（<span style="color:#ef4444">工商银行和农业银行除外</span>，其他银行均可）。
-             </span>
-          </p>
-
-          <a class="btn btn-tmgm-super" href="javascript:void(0)" onclick="openPartnerModal('https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans')">
-            立即开户注册
-          </a>
-        </div>
-      </div>
-      <div class="glass-card partner-card-new card-dprime reveal">
-        <div class="p-col-logo">
-           <img src="images/exness.png" alt="EXNESS" class="p-big-logo">
-        </div>
-        
-        <div class="p-col-info">
-          <div class="p-header">
-             <h3 class="p-title">EXNESS 开户</h3>
-             <span class="p-tag" style="color:var(--accent-purple);border-color:var(--accent-purple)">美分账户</span>
-          </div>
-          <p class="p-desc">
-             适合小资金测试策略EA比较合适，仅支持美分账户交易，适合美分类型跟单策略。
-             <span style="display:block; margin-top:8px; padding-top:8px; border-top:1px dashed rgba(255,255,255,0.1); color:#ff2442; font-size:12px; line-height:1.5;">
-                <strong>特别提示：</strong>仅建议使用美分账户，如需使用美元账户请移步至TMGM！仅供参考，风险自负！
-             </span>
-          </p>
-          <a class="btn btn-purple" style="margin-top:auto" href="javascript:void(0)" onclick="openPartnerModal('https://one.exnessonelink.com/a/bc1v3yl4bf')">
-            立即开户注册
-          </a>
-        </div>
-      </div>
-    </div>
-    <div id="tutorials" class="tut-header-distinct reveal">
-      <div class="tut-big-title">
-        硬核教程 · 快速上手
-        <div class="tut-badge-pop">必看</div>
-      </div>
-      <div class="tut-subtitle">TUTORIALS & GUIDES</div>
-    </div>
-
-    <div class="grid2">
-      <div class="glass-card tut-card reveal">
-        <div class="tut-head">
-          <div class="tut-icon-box" style="color:var(--accent-blue)">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
-          </div>
-          <div class="tut-tag" style="background:rgba(99,102,241,0.1);color:var(--accent-blue)">网站教学</div>
-        </div>
-        <h3 class="miniTitle" style="font-size:18px;">全站功能深度导览</h3>
-        <p class="miniDesc" style="font-size:13px; margin-bottom:16px;">
-          针对很多不明白不了解小站功能的查看此视频👇，深度视频介绍小站所有板块。
+      <div class="card svc-card">
+        <h3>跟单交易</h3>
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">
+          跟单门槛 3000 USD。达到门槛可直接免费解锁内部会员群。
         </p>
-        
-        <div class="tut-actions">
-           <div class="tut-action-item">
-               <a href="https://youtu.be/-HoxR0E_25k" target="_blank" class="btn btn-red" style="width:100%">
-                   ▶ 外网观看
-               </a>
-               <span class="tut-tip">需魔法上网，稳定长期观看</span>
-           </div>
-           <div class="tut-action-item">
-               <a href="https://zcndb8m3iov2.feishu.cn/wiki/UR51wAaeMinj3PkISSFcPt8CnYf?from=from_copylink" target="_blank" class="btn btn-blue" style="width:100%">
-                   📄 内网观看
-               </a>
-               <span class="tut-tip">如果遇打不开，建议切换外网</span>
-           </div>
+        <a href="copy-trading.html" class="btn btn-secondary" style="width: 100%;">前往跟单页面</a>
+      </div>
+    </div>
+
+    <div class="grid-2 reveal" style="margin-top: 16px;" id="partner">
+      <div class="card partner-card">
+        <div class="partner-logo"><img src="images/tmgm.png" alt="TMGM"></div>
+        <div class="partner-info">
+          <h3>TMGM <span style="font-size: 10px; background: var(--accent-gold); color: #000; padding: 2px 6px; border-radius: 4px;">推荐</span></h3>
+          <p>美元账户。监管优，出入金稳定，支持大额。<br>建议USDT或极付宝入金。</p>
+          <button class="btn btn-outline-blue" onclick="openPartnerModal('https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans')">立即开户</button>
         </div>
       </div>
+      <div class="card partner-card">
+        <div class="partner-logo"><img src="images/exness.png" alt="EXNESS"></div>
+        <div class="partner-info">
+          <h3>EXNESS</h3>
+          <p>美分账户。适合小资金测试策略EA，适合美分类型跟单。</p>
+          <button class="btn btn-secondary" onclick="openPartnerModal('https://one.exnessonelink.com/a/bc1v3yl4bf')">立即开户</button>
+        </div>
+      </div>
+    </div>
 
-      <div class="glass-card tut-card reveal">
+    <h2 class="section-title" id="tutorials">快速上手指南</h2>
+    <div class="tut-list reveal">
+      <div class="card tut-item">
         <div class="tut-head">
-          <div class="tut-icon-box" style="color:var(--accent-cyan)">
-             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
-          </div>
-          <div class="tut-tag" style="background:rgba(34,211,238,0.1);color:var(--accent-cyan)">开户跟单教学</div>
+          <div class="tut-icon">🖥️</div>
+          <h4>全站功能导览</h4>
         </div>
-        <h3 class="miniTitle" style="font-size:18px;">开户跟单保姆级教程</</h3>
-        <p class="miniDesc" style="font-size:13px; margin-bottom:16px;">
-          拒绝繁琐，手把手教你完成注册、入金及绑定跟单。从零开始，一个视频学会所有操作配置。
-        </p>
-        
+        <p>不了解小站功能？深度视频为你逐一介绍所有板块与使用方法。</p>
         <div class="tut-actions">
-           <div class="tut-action-item">
-               <a href="https://youtu.be/WL5OVGrv79w" target="_blank" class="btn btn-red" style="width:100%">
-                   ▶ 外网观看
-               </a>
-               <span class="tut-tip">需魔法上网，稳定长期观看</span>
-           </div>
-           <div class="tut-action-item">
-               <a href="https://zcndb8m3iov2.feishu.cn/wiki/GSa6wn2m2irQWskDZfncnKAJnJd?from=from_copylink" target="_blank" class="btn btn-cyan" style="width:100%">
-                   📄 内网观看
-               </a>
-               <span class="tut-tip">如果遇打不开，建议切换外网</span>
-           </div>
+          <a href="https://youtu.be/-HoxR0E_25k" target="_blank" class="btn btn-secondary">▶ 外网观看</a>
+          <a href="https://zcndb8m3iov2.feishu.cn/wiki/UR51wAaeMinj3PkISSFcPt8CnYf?from=from_copylink" target="_blank" class="btn btn-secondary">📄 内网图文</a>
         </div>
       </div>
 
-      <div class="glass-card tut-card tut-gold reveal">
+      <div class="card tut-item">
         <div class="tut-head">
-          <div class="tut-icon-box">
-             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="22" y1="12" x2="18" y2="12"></line><line x1="6" y1="12" x2="2" y2="12"></line><line x1="12" y1="6" x2="12" y2="2"></line><line x1="12" y1="22" x2="12" y2="18"></line></svg>
-          </div>
-          <div class="tut-tag">内部核心</div>
+          <div class="tut-icon">📝</div>
+          <h4>开户跟单保姆级教程</h4>
         </div>
-        <h3 class="miniTitle" style="font-size:18px; color:var(--accent-gold);">内部群点位逻辑拆解</</h3>
-        
-        <div class="highlight-box">
-          深度拆解内部会员群。杰明老师点位怎么看？盈亏比图如何设置进出场点位？止损怎么设置？
-        </div>
-
+        <p>拒绝繁琐，手把手教你完成注册、入金及绑定跟单，一站式搞定。</p>
         <div class="tut-actions">
-           <div class="tut-action-item">
-               <a href="https://youtu.be/vYTK7yTcyJA" target="_blank" class="btn btn-red" style="width:100%">
-                   ▶ 外网观看
-               </a>
-               <span class="tut-tip">需魔法上网，稳定长期观看</span>
-           </div>
-           <div class="tut-action-item">
-               <a href="https://zcndb8m3iov2.feishu.cn/wiki/H6Nwwi8cMi1qjPkH2CDce2nhnRc?from=from_copylink" target="_blank" class="btn btn-gold" style="width:100%">
-                   📄 内网观看
-               </a>
-               <span class="tut-tip">如果遇打不开，建议切换外网</span>
-           </div>
+          <a href="https://youtu.be/WL5OVGrv79w" target="_blank" class="btn btn-secondary">▶ 外网观看</a>
+          <a href="https://zcndb8m3iov2.feishu.cn/wiki/GSa6wn2m2irQWskDZfncnKAJnJd?from=from_copylink" target="_blank" class="btn btn-secondary">📄 内网图文</a>
         </div>
       </div>
 
-      <div class="glass-card tut-card tut-core reveal">
+      <div class="card tut-item" style="border-color: rgba(251, 191, 36, 0.2);">
         <div class="tut-head">
-          <div class="tut-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-          </div>
-          <div class="tut-tag">免费必修《全网最详细小白基础入门课》</div>
+          <div class="tut-icon" style="color: var(--accent-gold);">🎯</div>
+          <h4 style="color: var(--accent-gold);">内部群点位逻辑拆解</h4>
         </div>
-        <h3 class="miniTitle" style="font-size:18px; color:var(--accent-red);">外汇交易入门免费公开课（可直接观看）</h3>
-        
-        <div class="highlight-box" style="border-color:rgba(255,36,66,0.5); background:rgba(255,36,66,0.08);">
-          零基础系统入门，逐步拆解外汇市场的运行逻辑、交易方式和核心规则。避免盲目入场，先懂规则再赚钱。
+        <p>杰明老师点位怎么看？盈亏比图如何设置？止损怎么设？核心必看。</p>
+        <div class="tut-actions">
+          <a href="https://youtu.be/vYTK7yTcyJA" target="_blank" class="btn btn-secondary">▶ 外网观看</a>
+          <a href="https://zcndb8m3iov2.feishu.cn/wiki/H6Nwwi8cMi1qjPkH2CDce2nhnRc?from=from_copylink" target="_blank" class="btn btn-secondary">📄 内网图文</a>
         </div>
-
-        <a href="https://space.bilibili.com/3690997307410528/lists/7141651?type=season" target="_blank" class="btn btn-red" style="margin-top:auto;">立即免费观看</a>
-      </div>
-    </div>
-    
-    <div class="sectionHead reveal" id="join">
-      <div class="divider"></div>
-      <div class="pill"><div class="dot"></div>加入方式</div>
-      <div class="divider"></div>
-    </div>
-
-    <div class="grid2">
-      <div class="glass-card reveal" style="padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
-        <div>
-          <div class="miniTop">
-            <div class="platIcon" style="background: rgba(255, 215, 0, 0.1); color: var(--accent-gold); border: 1px solid rgba(255, 215, 0, 0.2);">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 12l-2.5-2.25L12 11zm0 2.5l-5-2.5-5 2.5 10 5 10-5-5-2.5-5 2.5z"/></svg>
-            </div>
-            <span style="font-size:12px; font-weight:700; color: var(--accent-gold); border: 1px solid rgba(255, 215, 0, 0.3); padding: 4px 10px; border-radius: 8px;">方式一</span>
-          </div>
-          <h3 style="margin: 12px 0 6px; font-size: 26px;">8888 <span style="font-size:15px; color:var(--txt-muted); font-weight:500">RMB/一次性</span></h3>
-          <p style="font-size: 14px; color: var(--txt-muted); line-height: 1.6; margin-bottom: 12px;">
-            支付一次性群费，即可永久享受内部群权益。
-          </p>
-          
-          <div style="margin-top: 16px; padding: 14px; border-radius: 12px; background: rgba(255, 215, 0, 0.05); border: 1px solid rgba(255, 215, 0, 0.2);">
-            <div style="font-size: 13px; line-height: 1.6; color: #fff; margin-bottom: 12px;">
-                <span style="color: var(--accent-gold); font-weight: 800;">👑 抖音VIP特权：</span><br>
-                如您已是抖音专属VIP成员，请联系助理可直接申请加入《内部会员群》。
-            </div>
-            <a href="javascript:void(0)" onclick="handleDouyinVIP()" class="btn" style="background: var(--accent-gold); color: #000; font-weight: 800; border: none; font-size: 12px; margin-top: 0; padding: 10px;">
-                🎵 点击跳转抖音核验身份
-            </a>
-          </div>
-        </div>
-        
-        <a class="btn btn-gold" href="#contact" style="margin-top:20px;">联系助理付费</a>
       </div>
 
-      <div class="glass-card reveal" style="padding: 24px;">
-        <div class="miniTop">
-          <div class="platIcon" style="background: rgba(34, 211, 238, 0.1); color: var(--accent-cyan);">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
-          </div>
-          <span style="font-size:12px; font-weight:700; color: var(--accent-cyan); border: 1px solid rgba(34, 211, 238, 0.3); padding: 4px 10px; border-radius: 8px;">方式二（推荐）</span>
+      <div class="card tut-item" style="border-color: rgba(239, 68, 68, 0.2);">
+        <div class="tut-head">
+          <div class="tut-icon" style="color: var(--accent-red);">📖</div>
+          <h4 style="color: var(--accent-red);">外汇交易基础入门课</h4>
         </div>
-        <h3 style="margin: 12px 0 6px; font-size: 26px;">免费 <span style="font-size:15px; color:var(--txt-muted); font-weight:500">/ 开户抵扣</span></h3>
-        <p style="font-size: 14px; color: var(--txt-muted); line-height: 1.6; margin-bottom: 16px;">
-          通过下方合作链接开户（包含跟单），满足资金门槛即可免除群费。
-        </p>
-        <div style="background: rgba(255,255,255,0.03); border-radius: 12px; padding: 14px; border: 1px solid rgba(255,255,255,0.05);">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-            <span style="font-size:13px; color:var(--txt-muted);">资金门槛</span>
-            <b style="font-size:16px; color: #fff;">$ 3,000 USD</b>
-          </div>
-          <div style="font-size: 12px; color: var(--txt-muted); line-height: 1.6; border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 10px; margin-top: 6px;">
-            <span style="color: #ef4444; font-weight: 700;">⚠ 特别注意：</span><br>
-            • 使用此方式入群后，需要保持每个月月底统计时，账户净值满足大于等于$ 3,000 USD的要求。<br>
-            • 月底统计时，如果账户总净值低于$ 2,000 USD，助理会提示是否还愿意保留会员群名额。低于$ 1,000 USD，则会被移除出群。<br>
-            • 满足条件后，请务必联系助理进行<span style="color:#fff;font-weight:700">人工登记核验</span>。
-          </div>
-        </div>
-        <a class="btn btn-cyan" style="margin-top: 20px;" href="#partner">去选择平台开户</a>
+        <p>零基础系统入门，拆解外汇市场逻辑与规则，避免盲目入场。</p>
+        <a href="https://space.bilibili.com/3690997307410528/lists/7141651?type=season" target="_blank" class="btn btn-secondary" style="width:100%;">在 Bilibili 免费观看</a>
       </div>
     </div>
 
-    <div class="sectionHead reveal" id="contact">
-      <div class="divider"></div>
-      <div class="pill"><div class="dot"></div>合作咨询</div>
-      <div class="divider"></div>
-    </div>
-
-    <div class="grid4">
-      
-      <div class="glass-card miniCard reveal" id="qqCard">
-        <div class="miniTop">
-          <div class="platIcon">
-            <img src="images/qq.png" alt="QQ">
-          </div>
-          <span style="font-size:12px;color:#0099FF;font-weight:700">助理QQ</span>
+    <h2 class="section-title" id="join">加入内部群方式</h2>
+    <div class="pricing-grid reveal">
+      <div class="card price-card vip">
+        <span class="price-badge">方式一：永久买断</span>
+        <div class="price-val">8888 <span>RMB / 一次性</span></div>
+        <p class="price-desc">支付一次性群费，即可永久享受内部群权益，无后续资金考核要求。</p>
+        <ul>
+          <li>无开户平台限制</li>
+          <li>永久内部群权益</li>
+        </ul>
+        <div style="margin-top: 20px; padding: 12px; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 12px; margin-bottom:20px;">
+          <span style="color: var(--accent-gold);">👑 抖音VIP特权：</span>已是专属VIP可直接联系助理申请。
+          <br><a href="javascript:void(0)" onclick="handleDouyinVIP()" style="color:var(--text-main); text-decoration:underline; display:inline-block; margin-top:4px;">跳转抖音核验</a>
         </div>
-        <p class="miniTitle">QQ：2133589751</p>
-        <p class="miniDesc">专用助理咨询qq号，<span style="color:#22d3ee;font-weight:800;text-shadow:0 0 10px rgba(34,211,238,0.4)">优先添加QQ其次微信！</span></p>
-        <div class="btn btn-blue" onclick="handleSocial('2133589751', /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? 'mqqwpa://im/chat?chat_type=wpa&uin=2133589751&version=1&src_type=web' : 'tencent://message/?uin=2133589751&Site=GWCapital&Menu=yes')">复制并跳转QQ</div>
+        <a href="#contact" class="btn btn-secondary" style="width: 100%;">联系助理付费</a>
       </div>
 
-      <div class="glass-card miniCard reveal" id="wechatCard">
-        <div class="miniTop">
-          <div class="platIcon">
-            <img src="images/wechat.png" alt="WeChat">
-          </div>
-          <span style="font-size:12px;color:var(--accent-green);font-weight:700">助理微信</span>
-        </div>
-        <p class="miniTitle">微信：lclj998</p>
-        <p class="miniDesc">专用助理咨询号，解答除交易外所有问题，备注来意！<br><span style="color:#ef4444;font-weight:800">建议首先添加QQ</span></p>
-        <div class="btn btn-green" onclick="handleSocial('lclj998', 'weixin://')">复制并跳转微信</div>
-      </div>
-
-      <div class="glass-card miniCard reveal">
-        <div class="miniTop">
-          <div class="platIcon">
-            <img src="images/dingtalk.png" alt="DingTalk">
-          </div>
-          <span style="font-size:12px;color:var(--accent-blue);font-weight:700">助理钉钉</span>
-        </div>
-        <p class="miniTitle">ginvip123</p>
-        <p class="miniDesc">钉钉助理号，一般不做咨询回复，建议联系微信。</p>
-        <div class="btn btn-blue" onclick="handleSocial('ginvip123', 'dingtalk://')">复制并跳转钉钉</div>
-      </div>
-
-      <div class="glass-card miniCard reveal">
-        <div class="miniTop">
-           <div class="platIcon">
-            <img src="images/telegram.png" alt="Telegram">
-          </div>
-          <span style="font-size:12px;color:var(--accent-cyan);font-weight:700;border:1px solid rgba(34,211,238,0.3);padding:4px 10px;border-radius:8px;">防失联</span>
-        </div>
-        <p class="miniTitle">Telegram</p>
-        <p class="miniDesc">防失联，添加后不定期同意。</p>
-        <a class="btn btn-cyan" href="https://t.me/+8613120683725" target="_blank">联系 / 跳转</a>
+      <div class="card price-card free">
+        <span class="price-badge">方式二：开户抵扣 (推荐)</span>
+        <div class="price-val">免费 <span>/ 需满足资金门槛</span></div>
+        <p class="price-desc">通过本站合作链接开户并入金，达到门槛即可免除群费。</p>
+        <ul>
+          <li>资金门槛：<strong>$ 3,000 USD</strong></li>
+          <li>需保持月末净值达标 (低于1千会被移出)</li>
+          <li>需联系助理进行人工登记核验</li>
+        </ul>
+        <a href="#partner" class="btn btn-primary" style="width: 100%; margin-top: auto;">去选择平台开户</a>
       </div>
     </div>
 
-    <div class="sectionHead reveal" id="indicators">
-      <div class="divider"></div>
-      <div class="pill"><div class="dot" style="background:#a855f7;box-shadow:0 0 8px #a855f7;"></div>GW自用指标分享 <span style="font-size:10px;opacity:0.6;margin-left:5px">（部分需要魔法上网）</span></div>
-      <div class="divider"></div>
+    <h2 class="section-title" id="contact">联系助理</h2>
+    <div class="mini-grid reveal">
+      <div class="card mini-card" onclick="handleSocial('2133589751', /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? 'mqqwpa://im/chat?chat_type=wpa&uin=2133589751&version=1&src_type=web' : 'tencent://message/?uin=2133589751&Site=GWCapital&Menu=yes')">
+        <div class="mini-icon"><img src="images/qq.png" alt="QQ"></div>
+        <div class="mini-info"><h4>QQ 助理</h4><p>2133589751 (推荐)</p></div>
+      </div>
+      <div class="card mini-card" id="wechatCard" onclick="handleSocial('lclj998', 'weixin://')">
+        <div class="mini-icon"><img src="images/wechat.png" alt="Wechat"></div>
+        <div class="mini-info"><h4>微信 助理</h4><p>lclj998</p></div>
+      </div>
+      <div class="card mini-card" onclick="handleSocial('ginvip123', 'dingtalk://')">
+        <div class="mini-icon"><img src="images/dingtalk.png" alt="DingTalk"></div>
+        <div class="mini-info"><h4>钉钉 助理</h4><p>ginvip123</p></div>
+      </div>
+      <a href="https://t.me/+8613120683725" target="_blank" class="card mini-card">
+        <div class="mini-icon"><img src="images/telegram.png" alt="Telegram"></div>
+        <div class="mini-info"><h4>Telegram</h4><p>防失联群组</p></div>
+      </a>
     </div>
 
-    <div class="grid4">
-      <div class="glass-card miniCard reveal">
-        <div class="miniTop">
-          <div class="platIcon">
-            <img src="images/z1.png" alt="Gold">
-          </div>
-          <span style="font-size:12px;color:var(--accent-gold);font-weight:700">黄金模型</span>
-        </div>
-        <p class="miniTitle">黄金量化模型运算</p>
-        <p class="miniDesc">LPPL临界点预测器(杰明GWCAPITAL定制版)全景天梯自定义黄金版。</p>
-        <a href="javascript:void(0)" class="btn btn-gold">即将上线</a>
-      </div>
-
-      <div class="glass-card miniCard reveal">
-         <div class="miniTop">
-          <div class="platIcon">
-            <img src="images/z2.png" alt="Silver">
-          </div>
-          <span style="font-size:12px;color:#e5e7eb;font-weight:700">白银模型</span>
-        </div>
-        <p class="miniTitle">白银量化模型运算</p>
-        <p class="miniDesc">LPPL临界点预测器(杰明GWCAPITAL定制版)全景天梯自定义白银版。</p>
-        <a href="javascript:void(0)" class="btn" style="background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.2)">即将上线</a>
-      </div>
-
-      <div class="glass-card miniCard reveal">
-         <div class="miniTop">
-          <div class="platIcon">
-            <img src="images/z3.png" alt="TV">
-          </div>
-          <span style="font-size:12px;color:var(--accent-blue);font-weight:700">TV指标</span>
-        </div>
-        <p class="miniTitle">GW杰明自用TV指标</p>
-        <p class="miniDesc">自研TV指标模型，点击tv添加直接使用，仅供参考使用，不定期更新分享。</p>
-        <a href="javascript:void(0)" class="btn btn-blue">即将上线</a>
-      </div>
-
-      <div class="glass-card miniCard reveal">
-         <div class="miniTop">
-          <div class="platIcon">
-            <img src="images/z4.png" alt="MT4/5">
-          </div>
-          <span style="font-size:12px;color:var(--accent-green);font-weight:700">MT4/5</span>
-        </div>
-        <p class="miniTitle">MT4/5指标分享</p>
-        <p class="miniDesc">各种协助辅助指标，开仓平仓自动保护，供给需求等等，仅供参考。</p>
-        <a href="https://pan.quark.cn/s/ceef853c2398" target="_blank" class="btn btn-green btn-highlight-pulse">点击获取</a>
-      </div>
-    </div>
-    <div class="sectionHead reveal">
-      <div class="divider"></div>
-      <div class="pill"><div class="dot"></div>全网关注</div>
-      <div class="divider"></div>
+    <h2 class="section-title">工具与关注</h2>
+    <div class="mini-grid reveal">
+      <a href="https://v.douyin.com/0HriFjI7p-I/" target="_blank" class="card mini-card">
+        <div class="mini-icon"><img src="images/douyin.png" alt="抖音"></div>
+        <div class="mini-info"><h4>抖音</h4><p>宏观技术与直播</p></div>
+      </a>
+      <a href="https://b23.tv/jKqXRQj" target="_blank" class="card mini-card">
+        <div class="mini-icon"><img src="images/bilibili.png" alt="B站"></div>
+        <div class="mini-info"><h4>Bilibili</h4><p>点位分析与回放</p></div>
+      </a>
+      <a href="https://www.youtube.com/@GWCAPITAL_OFFICAL" target="_blank" class="card mini-card">
+        <div class="mini-icon"><img src="images/youtube.png" alt="YT"></div>
+        <div class="mini-info"><h4>YouTube</h4><p>官网教学视频</p></div>
+      </a>
+      <a href="https://pan.quark.cn/s/ceef853c2398" target="_blank" class="card mini-card">
+        <div class="mini-icon"><img src="images/z4.png" alt="MT4"></div>
+        <div class="mini-info"><h4>MT4/5 插件</h4><p>辅助指标下载</p></div>
+      </a>
     </div>
 
-    <div class="grid4">
-      <div class="glass-card miniCard reveal" style="min-height:auto">
-        <div class="miniTop" style="margin-bottom:4px">
-          <div class="platIcon-social"> <img src="images/douyin.png" alt="Douyin">
-          </div>
-          <a class="btn btn-blue" style="width:auto;padding:6px 14px;margin:0" href="https://v.douyin.com/0HriFjI7p-I/" target="_blank">Go →</a>
-        </div>
-        <p class="miniTitle">抖音</p>
-        <p class="miniDesc">时政宏观技术分享，不定期开播浅聊。</p>
-      </div>
-
-      <div class="glass-card miniCard reveal" style="min-height:auto">
-        <div class="miniTop" style="margin-bottom:4px">
-           <div class="platIcon-social"> <img src="images/bilibili.png" alt="Bilibili">
-          </div>
-          <a class="btn btn-blue" style="width:auto;padding:6px 14px;margin:0" href="https://b23.tv/jKqXRQj" target="_blank">Go →</a>
-        </div>
-        <p class="miniTitle">B站</p>
-        <p class="miniDesc">技术点位分析，公开直播跳转，直播回放。</p>
-      </div>
-
-      <div class="glass-card miniCard reveal" style="min-height:auto">
-        <div class="miniTop" style="margin-bottom:4px">
-           <div class="platIcon-social"> <img src="images/youtube.png" alt="YouTube">
-          </div>
-          <a class="btn btn-blue" style="width:auto;padding:6px 14px;margin:0" href="https://www.youtube.com/@GWCAPITAL_OFFICAL" target="_blank">Go →</a>
-        </div>
-        <p class="miniTitle">YouTube</p>
-        <p class="miniDesc">官网教学，工具实用，不能讲的都在这里，需要魔法上网。</p>
-      </div>
-
-      <div class="glass-card miniCard reveal" style="min-height:auto">
-        <div class="miniTop" style="margin-bottom:4px">
-           <div class="platIcon-social"> <img src="images/xiaohongshu.png" alt="XiaoHongShu">
-          </div>
-          <a class="btn btn-red" style="width:auto;padding:6px 14px;margin:0" href="https://xhslink.com/m/2uZSTgl6a8P" target="_blank">Go →</a>
-        </div>
-        <p class="miniTitle">小红书</p>
-        <p class="miniDesc">图文观点，生活记录分享。</p>
-      </div>
-    </div>
-
-    <div class="sectionHead reveal" id="tools">
-      <div class="divider"></div>
-      <div class="pill"><div class="dot" style="background:#ff2442;box-shadow:0 0 8px #ff2442;"></div>魔法🪜工具</div>
-      <div class="divider"></div>
-    </div>
-
-    <div class="serviceGrid">
-      
-      <div class="glass-card miniCard reveal">
-        <div class="miniTop">
-          <div class="platIcon" style="color:var(--accent-purple); border-color:rgba(168,85,247,0.3); background:rgba(168,85,247,0.05);">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-          </div>
-          <span style="font-size:12px;color:var(--accent-purple);font-weight:700;border:1px solid rgba(168,85,247,0.3);padding:4px 8px;border-radius:6px;">稳定首选</span>
-        </div>
-        <p class="miniTitle">Gatern 机场</p>
-        <p class="miniDesc">稍微偏贵，但稳定节点多，适合对网络要求高的用户，杰明老师同款TradingView使用工具。</p>
-        <a class="btn btn-purple" style="margin-top:auto;" href="https://s.gtoyes.com/aff.php?aff=11412" target="_blank">点击访问</a>
-      </div>
-
-      <div class="glass-card miniCard reveal">
-        <div class="miniTop">
-          <div class="platIcon" style="color:var(--accent-cyan); border-color:rgba(34,211,238,0.3); background:rgba(34,211,238,0.05);">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-          </div>
-          <span style="font-size:12px;color:var(--accent-cyan);font-weight:700;border:1px solid rgba(34,211,238,0.3);padding:4px 8px;border-radius:6px;">高速性价比</span>
-        </div>
-        <p class="miniTitle">奈云 NyeCloud</p>
-        <p class="miniDesc">价格合适，拥有高速节点，连接相对稳定。</p>
-        <a class="btn btn-cyan" style="margin-top:auto;" href="https://www.v2ny.me?path=register&code=TtrAGFQs" target="_blank">点击访问</a>
-      </div>
-
-      <div class="glass-card miniCard reveal">
-        <div class="miniTop">
-          <div class="platIcon" style="color:var(--accent-gold); border-color:rgba(255,215,0,0.3); background:rgba(255,215,0,0.05);">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
-          </div>
-          <span style="font-size:12px;color:var(--accent-gold);font-weight:700;border:1px solid rgba(255,215,0,0.3);padding:4px 8px;border-radius:6px;">便宜/不限时</span>
-        </div>
-        <p class="miniTitle">宝贝云 BabyCloud</p>
-        <p class="miniDesc">价格非常便宜，不限时间。网速略慢，偶尔容易掉点。</p>
-        <a class="btn btn-gold" style="margin-top:auto;" href="https://web1.bby011.com/#/register?code=l1NNBapp" target="_blank">点击访问</a>
-      </div>
-
-    </div>
-    
-    <div class="glass-card risk reveal" id="risk">
-      <div class="risk-title">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4M12 17h.01"/></svg>
-        风险提示
-      </div>
-      <ul>
-        <li>本页面仅用于信息展示与合作入口跳转，不构成任何投资建议或收益承诺。</li>
-        <li>市场有风险，投资需谨慎。杠杆交易存在损失本金的可能性。请根据自身风险承受能力做出交易决策。</li>
-        <li>如遇微信/钉钉/QQ无法直接唤起，请使用复制功能手动添加。</li>
-      </ul>
-    </div>
   </div>
 
   <div class="modal-overlay" id="heroModal">
     <div class="modal-box">
-      <div class="modal-close" onclick="closeHeroModal()">×</div>
       <h2 class="modal-title">温馨提示 🔔</h2>
-      <p class="modal-desc">
-        请仔细阅读当前界面合作信息，了解风险与规则后再进行操作。
-      </p>
-      
+      <p class="modal-desc">请仔细阅读当前界面合作信息，了解风险与规则后再进行操作。</p>
       <div class="modal-btns">
-        <div class="m-btn m-btn-contact" onclick="closeHeroModal(); document.getElementById('services').scrollIntoView();">
-          前去阅读
-        </div>
-
-        <a href="copy-trading.html" class="m-btn m-btn-confirm">
-          我已阅读，前往跟单 →
-        </a>
+        <a href="copy-trading.html" class="btn btn-primary" style="width:100%; padding:14px;">我已阅读，前往跟单</a>
+        <button class="btn btn-secondary" style="width:100%; padding:14px;" onclick="closeHeroModal()">取消</button>
       </div>
     </div>
   </div>
 
   <div class="modal-overlay" id="partnerModal">
     <div class="modal-box">
-      <div class="modal-close" onclick="closePartnerModal()">×</div>
-      
-      <h2 class="modal-title" style="color:#22d3ee">🔔 开户后续指引</h2>
-      
-      <div class="modal-tip-box">
-        <p style="margin-top:0; color:#fff; font-weight:700; font-size:16px; display:flex; align-items:center; gap:8px;">
-            <span style="font-size:18px">📢</span> 重要提示
-        </p>
-        <p style="line-height:1.7; color:var(--txt-muted); font-size:14px; margin-bottom:12px;">
-            注册开户仅仅是第一步！
-        </p>
-        <p style="line-height:1.7; color:var(--txt-muted); font-size:14px; margin:0;">
-            完成开户后，请<strong style="color:#eab308; text-decoration:underline; text-underline-offset:4px;">务必联系助理</strong>提供后续服务和更新动态。
-           
-        </p>
-      </div>
-      
+      <h2 class="modal-title" style="color:var(--accent-cyan)">🔔 开户后续指引</h2>
+      <p class="modal-desc" style="text-align:left;">注册开户仅仅是第一步！<br><br>完成开户后，请<strong>务必联系助理</strong>提供后续服务和更新动态。</p>
       <div class="modal-btns">
-        
-        <div class="m-btn m-btn-confirm btn-pulse-action" onclick="confirmPartnerLink()">
-           🚀 立即注册开户 (Go)
-        </div>
-
-        <div class="m-btn m-btn-contact" onclick="goToWeChat()">
-          联系助理 (协助开户) 👩‍💻
-        </div>
-
+        <button class="btn btn-primary" style="width:100%; padding:14px;" onclick="confirmPartnerLink()">🚀 立即注册开户</button>
+        <button class="btn btn-secondary" style="width:100%; padding:14px;" onclick="goToWeChat()">联系助理协助</button>
       </div>
     </div>
   </div>
@@ -1273,6 +471,7 @@
     const AUTO_MS = 4000;
 
     function go(i, manual=false){
+      if(slides.length === 0) return;
       index = (i + slides.length) % slides.length;
       track.style.transform = `translateX(-${index * 100}%)`;
       if(manual) restartAuto();
@@ -1296,7 +495,7 @@
     tv.onmouseenter = stopAuto;
     tv.onmouseleave = startAuto;
     
-    // === 核心逻辑：自动复制 + 唤起APP ===
+    // 核心逻辑：自动复制 + 唤起APP
     function handleSocial(text, scheme) {
       if(navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(text).then(() => {
@@ -1325,7 +524,7 @@
       document.body.removeChild(ta);
     }
 
-    // 🔥 抖音 VIP 验证逻辑
+    // 抖音 VIP 验证逻辑
     function handleDouyinVIP() {
       const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
       if (isMobile) {
@@ -1335,29 +534,19 @@
       }
     }
 
-    // 🔥 首页弹窗控制逻辑
-    function openHeroModal() {
-      document.getElementById('heroModal').classList.add('active');
-    }
-    function closeHeroModal() {
-      document.getElementById('heroModal').classList.remove('active');
-    }
+    // 弹窗控制逻辑
+    function openHeroModal() { document.getElementById('heroModal').classList.add('active'); }
+    function closeHeroModal() { document.getElementById('heroModal').classList.remove('active'); }
     document.getElementById('heroModal').addEventListener('click', (e) => {
       if(e.target === document.getElementById('heroModal')) closeHeroModal();
     });
 
-    // === 🔥 开户提醒弹窗与跳转逻辑 ===
     let currentPartnerLink = ''; 
-
     function openPartnerModal(url) {
       currentPartnerLink = url;
       document.getElementById('partnerModal').classList.add('active');
     }
-
-    function closePartnerModal() {
-      document.getElementById('partnerModal').classList.remove('active');
-    }
-
+    function closePartnerModal() { document.getElementById('partnerModal').classList.remove('active'); }
     function confirmPartnerLink() {
       if(currentPartnerLink) {
         window.open(currentPartnerLink, '_blank');
@@ -1369,13 +558,9 @@
       closePartnerModal();
       const wechatCard = document.getElementById('wechatCard');
       wechatCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      wechatCard.classList.remove('card-urgent-flash');
-      void wechatCard.offsetWidth; 
-      wechatCard.classList.add('card-urgent-flash');
-      
-      setTimeout(() => {
-          showToast('请先添加微信助理咨询开户事宜');
-      }, 500);
+      wechatCard.style.borderColor = "#10b981";
+      setTimeout(() => { wechatCard.style.borderColor = "var(--border-light)"; }, 2000);
+      setTimeout(() => { showToast('请先添加微信助理咨询开户事宜'); }, 500);
     }
     
     document.getElementById('partnerModal').addEventListener('click', (e) => {
@@ -1385,25 +570,17 @@
     // 轻提示
     function showToast(msg){
       let d = document.createElement('div');
-      d.style.cssText = "position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,0.9);color:#000;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,0.5);z-index:9999;animation:up 0.3s ease-out;";
+      d.style.cssText = "position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#fff;color:#000;padding:10px 20px;border-radius:100px;font-size:13px;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,0.5);z-index:9999;transition:0.3s; opacity:0; transform:translate(-50%, 20px);";
       d.innerText = msg;
       document.body.appendChild(d);
-      setTimeout(() => { d.style.opacity='0';d.style.transition='0.5s'; }, 1500);
-      setTimeout(() => d.remove(), 2000);
+      setTimeout(() => { d.style.opacity='1'; d.style.transform='translate(-50%, 0)'; }, 10);
+      setTimeout(() => { d.style.opacity='0'; }, 1500);
+      setTimeout(() => d.remove(), 1800);
     }
-    const style = document.createElement('style');
-    style.innerHTML = "@keyframes up{from{transform:translate(-50%,20px);opacity:0}to{transform:translate(-50%,0);opacity:1}}";
-    document.head.appendChild(style);
 
     startAuto();
 
     // 滚动渐显动画
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1 
-    };
-
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -1411,11 +588,8 @@
                 observer.unobserve(entry.target);
             }
         });
-    }, observerOptions);
-
-    document.querySelectorAll('.reveal').forEach(el => {
-        observer.observe(el);
-    });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
   </script>
 </body>
