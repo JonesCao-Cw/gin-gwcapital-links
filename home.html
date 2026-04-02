@@ -14,7 +14,8 @@
     /* === 核心色盘与赛博玻璃质感 === */
     :root {
       --bg-dark: #030508;
-      --bg-card: rgba(15, 20, 30, 0.6);
+      /* 🔥 优化1：大幅提亮卡片底色，增加质感 */
+      --bg-card: rgba(25, 34, 50, 0.7); 
       
       --accent-cyan: #22d3ee;
       --accent-blue: #3b82f6;
@@ -23,8 +24,9 @@
       --accent-red: #ff2442;
       --accent-green: #34d399;
       
-      --glass-border: rgba(255, 255, 255, 0.08);
-      --glass-hover: rgba(255, 255, 255, 0.2);
+      /* 🔥 优化1：增加边框的通透度和明亮度 */
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --glass-hover: rgba(255, 255, 255, 0.25);
       
       --text-main: #ffffff;
       --text-muted: #94a3b8;
@@ -86,17 +88,17 @@
     .topbar {
       display: flex; align-items: center; justify-content: space-between;
       padding: 10px 16px; border-radius: 16px;
-      background: rgba(10, 15, 25, 0.85); 
+      background: rgba(15, 22, 35, 0.85); 
       border: 1px solid var(--glass-border);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
       position: sticky; top: 16px; z-index: 100; 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1);
     }
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 16px; letter-spacing: -0.5px;}
     .logo-img { width: 30px; height: 30px; border-radius: 8px; box-shadow: 0 0 15px rgba(34, 211, 238, 0.4); }
     .nav { display: flex; gap: 6px; }
     .nav a { font-size: 13px; color: var(--text-muted); font-weight: 600; padding: 6px 14px; border-radius: 8px; transition: 0.3s;}
-    .nav a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+    .nav a:hover { color: #fff; background: rgba(255,255,255,0.1); }
     .cta { 
       padding: 8px 20px; border-radius: 8px; 
       background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan)); 
@@ -118,20 +120,23 @@
     .sectionHead .line { flex: 1; height: 1px; max-width: 200px; }
     .sectionHead .line.left { background: linear-gradient(-90deg, var(--glass-border), transparent); }
     .sectionHead .line.right { background: linear-gradient(90deg, var(--glass-border), transparent); }
+    @media (max-width: 768px) { .sectionHead .line { display: none; } }
 
+    /* 🔥 优化1：所有玻璃卡片质感大升级 */
     .glass-card {
       background: var(--bg-card);
       border: 1px solid var(--glass-border);
       border-radius: 16px;
-      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); /* 增加模糊度 */
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08), 0 8px 30px rgba(0, 0, 0, 0.3); /* 增加微弱内发光，体现玻璃厚度 */
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       position: relative; overflow: hidden;
     }
     .glass-card:hover { 
       border-color: var(--glass-hover); 
       transform: translateY(-5px); 
-      background: rgba(25, 30, 45, 0.8); 
-      box-shadow: 0 15px 35px rgba(0,0,0,0.4), inset 0 0 20px rgba(255,255,255,0.02); 
+      background: rgba(35, 45, 65, 0.8); /* 悬停时稍微更亮一点 */
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 1px 2px rgba(255,255,255,0.15); 
     }
 
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 18px; border-radius: 10px; font-size: 13px; font-weight: 700; cursor: pointer; border: 1px solid transparent; transition: 0.3s; text-align: center; }
@@ -156,7 +161,8 @@
         gap: 32px;
         padding: 36px;
         margin-top: 24px;
-        background: radial-gradient(circle at top left, rgba(34, 211, 238, 0.08), transparent 50%), var(--bg-card);
+        /* 🔥 增加首屏渐变底色的亮度 */
+        background: radial-gradient(circle at top left, rgba(34, 211, 238, 0.12), transparent 60%), var(--bg-card);
     }
 
     .hero-left { display: flex; flex-direction: column; justify-content: space-between; }
@@ -176,7 +182,7 @@
     
     .ip-box { 
         flex: 1.3;
-        background: rgba(0,0,0,0.2); 
+        background: rgba(0,0,0,0.25); 
         border-left: 3px solid var(--accent-cyan); 
         padding: 20px; 
         border-radius: 0 12px 12px 0; 
@@ -195,18 +201,18 @@
     .qr-box-unified { 
         width: 140px; height: 140px;
         flex-shrink: 0; 
-        background: rgba(34,211,238,0.03); 
-        border: 1px dashed rgba(34,211,238,0.3); 
+        background: rgba(34,211,238,0.05); 
+        border: 1px dashed rgba(34,211,238,0.4); 
         border-radius: 12px; 
         display: flex; align-items: center; justify-content: center; padding: 8px; 
     }
     .qr-box-unified img { 
         width: 100%; height: 100%; 
         border-radius: 8px; border: 2px solid var(--accent-cyan); 
-        box-shadow: 0 0 25px rgba(34, 211, 238, 0.3); 
+        box-shadow: 0 0 25px rgba(34, 211, 238, 0.4); 
         transition: 0.3s; object-fit: cover;
     }
-    .qr-box-unified:hover img { transform: scale(1.08); box-shadow: 0 0 35px rgba(34, 211, 238, 0.6); }
+    .qr-box-unified:hover img { transform: scale(1.08); box-shadow: 0 0 35px rgba(34, 211, 238, 0.7); }
 
     .btn-join-jidi {
         width: 100%;
@@ -245,9 +251,24 @@
     .marquee-wrap { position: relative; margin-top: 24px; padding: 10px 0; overflow: hidden; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); width: 100%; }
     .marquee-track { display: flex; gap: 16px; width: max-content; animation: scroll-left 40s linear infinite; }
     .marquee-track:hover { animation-play-state: paused; }
-    .feedback-card { width: 220px; height: 280px; border-radius: 12px; overflow: hidden; flex-shrink: 0; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.02); transition: 0.3s; }
-    .feedback-card:hover { transform: scale(1.03); border-color: var(--accent-cyan); box-shadow: 0 10px 20px rgba(0,0,0,0.5);}
+    
+    /* 🔥 优化2：图片卡片添加悬浮提示与点击效果 */
+    .feedback-card { 
+        width: 220px; height: 280px; border-radius: 12px; overflow: hidden; flex-shrink: 0; 
+        border: 1px solid var(--glass-border); background: rgba(255,255,255,0.02); transition: 0.3s; 
+        position: relative; cursor: pointer;
+    }
+    .feedback-card::after {
+        content: "🔍 点击放大";
+        position: absolute; inset: 0; background: rgba(0, 0, 0, 0.65);
+        color: #fff; font-size: 15px; font-weight: 800; display: flex;
+        align-items: center; justify-content: center; opacity: 0;
+        transition: opacity 0.3s ease; backdrop-filter: blur(2px);
+    }
+    .feedback-card:hover::after { opacity: 1; }
+    .feedback-card:hover { transform: scale(1.03); border-color: var(--accent-cyan); box-shadow: 0 10px 25px rgba(34,211,238,0.3);}
     .feedback-card img { width: 100%; height: 100%; object-fit: cover; }
+    
     @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
     /* === 开户入口：1:1平分布局，内部1:2比例 === */
@@ -257,7 +278,7 @@
     
     .p-col-logo { width: 35%; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(255,255,255,0.02); border-right: 1px solid var(--glass-border); }
     .p-col-logo img { width: 100%; object-fit: contain; max-width: 140px; transition: 0.3s; }
-    .partner-card-new:hover .p-col-logo img { transform: scale(1.1); filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));}
+    .partner-card-new:hover .p-col-logo img { transform: scale(1.1); filter: drop-shadow(0 0 15px rgba(255,255,255,0.3));}
     
     .p-col-info { width: 65%; padding: 20px 24px; display: flex; flex-direction: column; justify-content: center; }
     .p-col-info h3 { font-size: 16px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
@@ -363,6 +384,25 @@
     .modal-desc { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; line-height: 1.6; }
     .modal-btns { display: flex; flex-direction: column; gap: 12px; }
 
+    /* 🔥 优化2：图片查看器 Lightbox 样式 */
+    .lightbox-modal {
+        position: fixed; inset: 0; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px);
+        z-index: 9999; display: flex; align-items: center; justify-content: center;
+        opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .lightbox-modal.active { opacity: 1; pointer-events: auto; }
+    .lightbox-modal img {
+        max-width: 90vw; max-height: 90vh; border-radius: 16px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.8); border: 2px solid var(--glass-border);
+        transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .lightbox-modal.active img { transform: scale(1); }
+    .lightbox-close {
+        position: absolute; top: 20px; right: 30px; color: rgba(255,255,255,0.6);
+        font-size: 40px; cursor: pointer; transition: 0.3s; font-weight: 300;
+    }
+    .lightbox-close:hover { color: #fff; transform: rotate(90deg); }
+
     /* Scroll Reveal */
     .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
@@ -373,15 +413,6 @@
 
     @media (max-width: 950px) {
       .grid-2 { grid-template-columns: 1fr !important; gap: 24px; }
-    }
-
-    @media (max-width: 768px) {
-      /* 基础重置防溢出 */
-      .wrap { padding: 12px 12px 60px; overflow-x: hidden; }
-      .sectionHead { margin: 40px 0 20px; }
-      .sectionHead .line { display: none; }
-
-      /* 图一：首屏完美折叠，防止右侧割裂 */
       .hero-unified { grid-template-columns: 1fr; gap: 20px; padding: 20px; }
       .hero-left h1 { font-size: 26px; white-space: normal; }
       .ip-qr-row { flex-direction: column; gap: 16px; }
@@ -391,12 +422,15 @@
       .btn-join-jidi { white-space: normal; padding: 12px; font-size: 13px; line-height: 1.5; }
       .tvStage { min-height: 180px; aspect-ratio: 16/9; }
       .nav { display: none; }
+    }
 
-      /* 统一强制单列排列防挤压 */
+    @media (max-width: 768px) {
+      .wrap { padding: 12px 12px 60px; overflow-x: hidden; }
+      .sectionHead { margin: 40px 0 20px; }
+      .sectionHead .line { display: none; }
       .mini-grid { grid-template-columns: 1fr !important; gap: 12px; }
       .half-mini-grid { grid-template-columns: 1fr !important; gap: 12px; }
 
-      /* 开户卡片自适应 */
       .partner-grid { grid-template-columns: 1fr; }
       .partner-card-new { flex-direction: column; align-items: center; text-align: center; }
       .p-col-logo { width: 100%; border-right: none; border-bottom: 1px solid var(--glass-border); padding: 16px; height: auto; }
@@ -404,15 +438,14 @@
       .p-col-info { width: 100%; align-items: center; padding: 16px; }
       .p-col-info h3 { justify-content: center; }
 
-      /* 定价卡片与对比 */
       .price-row { flex-direction: column; align-items: flex-start; padding: 16px; gap: 16px; }
       .price-details { border-left: none; border-top: 1px dashed var(--glass-border); padding-left: 0; padding-top: 16px; width: 100%; }
       .price-btn-box { width: 100%; text-align: center; }
       .price-btn-box .btn { width: 100%; display: block; }
+      
       .compare-grid { grid-template-columns: 1fr; }
       .comp-card { padding: 16px; }
 
-      /* 教程与工具 */
       .tut-row { flex-direction: column; align-items: flex-start; gap: 12px; padding: 16px; }
       .tut-actions { width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
       .tool-row { flex-direction: column; align-items: flex-start; gap: 12px; padding: 16px; }
@@ -460,7 +493,7 @@
             <div class="qr-box-unified">
               <img src="images/jidi.png" alt="GW交易基地">
             </div>
-            <a href="https://zcndb8m3iov2.feishu.cn/wiki/IU0hwoOg5ih4Sfk777ccenkMnyf?from=from_copylink" target="_blank" class="btn-join-jidi">🚀扫码立即加入交易基地，点击查看教程！</a>
+            <a href="https://zcndb8m3iov2.feishu.cn/wiki/IU0hwoOg5ih4Sfk777ccenkMnyf?from=from_copylink" target="_blank" class="btn-join-jidi">🚀扫码立即加入，点击👀教程！</a>
           </div>
         </div>
       </div>
@@ -805,6 +838,11 @@
 
   </div>
 
+  <div class="lightbox-modal" id="imageLightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightboxImg" src="" alt="Enlarged View">
+  </div>
+
   <div class="modal-overlay" id="heroModal">
     <div class="modal-box">
       <h2 class="modal-title">温馨提示 🔔</h2>
@@ -869,6 +907,20 @@
     });
     tv.onmouseenter = stopAuto; tv.onmouseleave = startAuto;
     
+    // === 🔥 Lightbox 图片查看器逻辑 ===
+    function openLightbox(src) {
+        const lb = document.getElementById('imageLightbox');
+        document.getElementById('lightboxImg').src = src;
+        lb.classList.add('active');
+    }
+    function closeLightbox() {
+        document.getElementById('imageLightbox').classList.remove('active');
+    }
+    // 绑定点击事件给所有跑马灯图片
+    document.querySelectorAll('.feedback-card img').forEach(img => {
+        img.parentElement.onclick = () => openLightbox(img.src);
+    });
+
     // 核心逻辑：自动复制 + 唤起APP
     function handleSocial(text, scheme) {
       if(navigator.clipboard && window.isSecureContext) {
