@@ -113,6 +113,8 @@
     .sectionHead .line { flex: 1; height: 1px; max-width: 200px; }
     .sectionHead .line.left { background: linear-gradient(-90deg, var(--glass-border), transparent); }
     .sectionHead .line.right { background: linear-gradient(90deg, var(--glass-border), transparent); }
+    
+    /* 手机端屏蔽线条 */
     @media (max-width: 768px) { .sectionHead .line { display: none; } }
 
     .glass-card {
@@ -260,11 +262,13 @@
     .navPrev { left: 16px; } .navNext { right: 16px; }
     .navBtn:hover { background: var(--accent-cyan); color: #000; border-color: var(--accent-cyan); }
 
+    /* 🔥 手机端：首屏适配 */
     @media (max-width: 950px) {
-      .hero-unified { grid-template-columns: 1fr; gap: 24px; padding: 24px; }
-      .hero-left h1 { white-space: normal; }
-      .ip-qr-row { flex-direction: column; }
-      .ip-box, .qr-and-btn-box { width: 100%; }
+      .hero-unified { grid-template-columns: 1fr; gap: 24px; padding: 20px; }
+      .hero-left h1 { white-space: normal; font-size: 28px; }
+      .ip-qr-row { flex-direction: column; gap: 16px; }
+      .ip-box { width: 100%; border-radius: 12px; border-left: 3px solid var(--accent-cyan); padding: 16px; }
+      .qr-and-btn-box { width: 100%; }
       .tvStage { min-height: 200px; aspect-ratio: 16/9; }
       .nav { display: none; }
     }
@@ -279,51 +283,29 @@
     @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
     /* === 开户入口：1:1平分布局，内部1:2比例 === */
-    .partner-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-    }
+    .partner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
     
-    .partner-card-new { 
-        display: flex; 
-        flex-direction: row; 
-        align-items: stretch; 
-        padding: 0; 
-    }
+    .partner-card-new { display: flex; flex-direction: row; align-items: stretch; padding: 0; }
     
-    .p-col-logo { 
-        width: 35%;
-        display: flex; 
-        align-items: center; 
-        justify-content: center; 
-        padding: 20px; 
-        background: rgba(255,255,255,0.02); 
-        border-right: 1px solid var(--glass-border); 
-    }
+    .p-col-logo { width: 35%; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(255,255,255,0.02); border-right: 1px solid var(--glass-border); }
     .p-col-logo img { width: 100%; object-fit: contain; max-width: 140px; transition: 0.3s; }
     .partner-card-new:hover .p-col-logo img { transform: scale(1.1); filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));}
     
-    .p-col-info { 
-        width: 65%;
-        padding: 20px 24px; 
-        display: flex; 
-        flex-direction: column; 
-        justify-content: center; 
-    }
-    
+    .p-col-info { width: 65%; padding: 20px 24px; display: flex; flex-direction: column; justify-content: center; }
     .p-col-info h3 { font-size: 16px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
     .p-col-info p { font-size: 12px; color: var(--text-muted); margin-bottom: 12px; line-height: 1.5; flex: 1;}
     
+    /* 🔥 手机端：开户卡片适配 */
     @media (max-width: 768px) {
         .partner-grid { grid-template-columns: 1fr; }
         .partner-card-new { flex-direction: column; }
-        .p-col-logo { width: 100%; border-right: none; border-bottom: 1px solid var(--glass-border); height: 100px; }
-        .p-col-logo img { max-height: 100%; }
-        .p-col-info { width: 100%; }
+        .p-col-logo { width: 100%; border-right: none; border-bottom: 1px solid var(--glass-border); height: auto; padding: 16px; }
+        .p-col-logo img { max-height: 50px; }
+        .p-col-info { width: 100%; padding: 16px; }
+        .p-col-info h3 { font-size: 15px; }
     }
 
-    /* === 硬核教程 (横向紧凑列表排版) === */
+    /* === 硬核教程 === */
     .tut-list-compact { display: flex; flex-direction: column; gap: 12px; }
     .tut-row { display: flex; align-items: center; padding: 16px 20px; gap: 20px; }
     .tut-icon { width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; flex-shrink: 0; background: rgba(255,255,255,0.05); }
@@ -333,12 +315,13 @@
     .tut-info p { font-size: 12px; color: var(--text-muted); line-height: 1.5; margin: 0; }
     .tut-actions { display: flex; gap: 10px; flex-shrink: 0; }
     
+    /* 🔥 手机端：教程卡片适配 */
     @media (max-width: 768px) {
       .tut-row { flex-direction: column; align-items: flex-start; text-align: left; gap: 12px; padding: 16px; }
       .tut-actions { width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
     }
 
-    /* === 加入方式 (横向SaaS卡片排版) === */
+    /* === 加入方式 === */
     .pricing-list { display: flex; flex-direction: column; gap: 16px; }
     .price-row { display: flex; align-items: center; padding: 20px 24px; gap: 24px; border-left: 4px solid transparent; }
     .price-row.vip { border-left-color: var(--accent-gold); background: linear-gradient(90deg, rgba(251, 191, 36, 0.05), transparent); }
@@ -359,8 +342,10 @@
 
     .price-btn-box { min-width: 150px; text-align: right; }
 
+    /* 🔥 手机端：加入方式卡片适配 */
     @media (max-width: 768px) {
-      .price-row { flex-direction: column; align-items: flex-start; gap: 16px; padding: 20px; }
+      .price-row { flex-direction: column; align-items: flex-start; gap: 16px; padding: 16px; }
+      .price-amount h3 { font-size: 28px; }
       .price-details { border-left: none; padding-left: 0; border-top: 1px dashed var(--glass-border); padding-top: 16px; width: 100%; }
       .price-btn-box { width: 100%; }
       .price-btn-box .btn { width: 100%; }
@@ -377,9 +362,22 @@
     .comp-list li:last-child { margin-bottom: 0; }
     .comp-icon-free { color: var(--text-muted); font-weight: 900; }
     .comp-icon-vip { color: var(--accent-purple); font-size: 14px; line-height: 1;}
-    @media (max-width: 768px) { .compare-grid { grid-template-columns: 1fr; } }
+    
+    /* 🔥 手机端：服务对比适配 */
+    @media (max-width: 768px) { 
+        .compare-grid { grid-template-columns: 1fr; gap: 16px; } 
+        .comp-card { padding: 16px; }
+    }
 
-    /* === 🔥 重点更新：助理与杂项卡片 + 悬浮小按钮 === */
+    /* === 全局公用双列网格 (用于指标和关注) === */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    
+    /* 🔥 手机端：【修复核心错乱】底部两个大板块折叠为上下单列 */
+    @media (max-width: 768px) {
+        .grid-2 { grid-template-columns: 1fr !important; }
+    }
+
+    /* === 助理与杂项卡片 + 悬浮小按钮 === */
     .mini-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
     .mini-card { display: flex; align-items: center; gap: 12px; padding: 14px 16px; cursor: pointer; }
     .mini-icon { width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0; background: rgba(255,255,255,0.05); display: grid; place-items: center; padding: 6px; border: 1px solid rgba(255,255,255,0.1);}
@@ -409,7 +407,9 @@
     #wechatCard { border-color: rgba(52, 211, 153, 0.4); animation: wechatPulse 2s infinite ease-in-out; animation-delay: 1s;}
     @keyframes wechatPulse { 0%, 100% { box-shadow: 0 0 15px rgba(52, 211, 153, 0.2); } 50% { box-shadow: 0 0 30px rgba(52, 211, 153, 0.6); border-color: var(--accent-green); } }
 
+    /* 🔥 手机端：【修复核心错乱】防止极小屏幕下文字和小按钮挤压 */
     @media (max-width: 900px) { .mini-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .mini-grid { grid-template-columns: 1fr; } }
 
     /* === 魔法工具 === */
     .tool-list { display: flex; flex-direction: column; gap: 12px; }
@@ -420,7 +420,13 @@
     .tool-info-text h4 { font-size: 15px; margin-bottom: 2px; display: flex; align-items: center; gap: 8px; }
     .tool-info-text .tag { font-size: 10px; padding: 2px 6px; border-radius: 4px; border: 1px solid currentColor; }
     .tool-info-text p { font-size: 12px; color: var(--text-muted); margin: 0; max-width: 600px;}
-    @media (max-width: 768px) { .tool-row { flex-direction: column; align-items: flex-start; gap: 12px; } .tool-left { align-items: flex-start; } .tool-row .btn { width: 100%; } }
+    
+    /* 🔥 手机端：工具卡片适配 */
+    @media (max-width: 768px) { 
+        .tool-row { flex-direction: column; align-items: stretch; gap: 12px; } 
+        .tool-left { align-items: flex-start; } 
+        .tool-row .btn { width: 100%; } 
+    }
 
     /* 风险提示 */
     .risk-box { margin-top: 40px; padding: 20px; border-left: 4px solid var(--accent-red); background: linear-gradient(90deg, rgba(255, 36, 66, 0.08), transparent); border-radius: 12px; border: 1px solid rgba(255,36,66,0.2); border-left-width: 4px;}
