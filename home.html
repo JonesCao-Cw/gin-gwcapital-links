@@ -32,18 +32,17 @@
 
     * { box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
     
-    /* 🔥 痛点修复：彻底解决锚点跳转遮挡与没有过渡动画的问题 */
+    /* 🔥 痛点修复：保留平滑滚动和防遮挡，但去除了阻碍光影的背景色 */
     html { 
-        scroll-behavior: smooth; /* 恢复原生平滑滚动 */
-        scroll-padding-top: 120px; /* 预留顶部导航的安全距离 */
-        background-color: var(--bg-dark);
+        scroll-behavior: smooth; 
+        scroll-padding-top: 120px; 
     }
     body { 
         margin: 0;
-        overflow-x: hidden; /* 仅防止横向滚动溢出 */
+        overflow-x: hidden; 
         font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
         color: var(--text-main); 
-        background-color: var(--bg-dark);
+        background-color: transparent; /* 变回透明，让光影和背景完美透出！ */
         -webkit-font-smoothing: antialiased;
         line-height: 1.6;
     }
@@ -56,7 +55,7 @@
     a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
     ul { list-style: none; }
 
-    /* === 互动背景：流体 + 鼠标聚光灯 === */
+    /* === 原汁原味的互动背景：流体 + 鼠标聚光灯 === */
     .bg-container { position: fixed; inset: 0; z-index: -2; background: var(--bg-dark); overflow: hidden; }
     .blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.35; animation: float 20s infinite ease-in-out alternate; pointer-events: none; }
     .blob-1 { top: -10%; left: -10%; width: 45vw; height: 45vw; background: radial-gradient(circle, var(--accent-purple), transparent 70%); }
@@ -145,7 +144,7 @@
     .btn-outline-red { background: rgba(255, 36, 66, 0.05); color: var(--accent-red); border-color: rgba(255, 36, 66, 0.3); }
     .btn-outline-red:hover { background: var(--accent-red); color: #fff; box-shadow: 0 0 15px rgba(255, 36, 66, 0.4); }
 
-    /* === 首屏排版 === */
+    /* === 首屏排版重构：左简介，右二维码+按钮 === */
     .hero-unified {
         display: grid;
         grid-template-columns: 1.4fr 1fr; 
@@ -170,7 +169,6 @@
     
     .ip-qr-row { display: flex; flex-direction: row; align-items: center; gap: 24px; flex: 1; }
     
-    /* 🔥 痛点修复：显著提亮和放大标题与标签 */
     .ip-box { 
         flex: 1.3;
         background: rgba(0,0,0,0.25); 
@@ -180,10 +178,12 @@
         height: 100%;
         display: flex; flex-direction: column; justify-content: center;
     }
+    
+    /* 🔥 保留：醒目放大且亮白的字体 */
     .ip-box h3 { 
-        font-size: 20px; /* 字号放大 */
-        font-weight: 900; /* 极致加粗 */
-        color: #ffffff; /* 确保极高的亮度 */
+        font-size: 20px; 
+        font-weight: 900; 
+        color: #ffffff; 
         margin-bottom: 12px; 
         display: flex; 
         align-items: center; 
@@ -277,14 +277,14 @@
     
     @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* === 开户入口：1:1平分布局，内部1:2比例 === */
+    /* === 开户入口 === */
     .partner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
     
     .partner-card-new { display: flex; flex-direction: row; align-items: stretch; padding: 0; }
     
     .p-col-logo { width: 35%; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(255,255,255,0.02); border-right: 1px solid var(--glass-border); }
     .p-col-logo img { width: 100%; object-fit: contain; max-width: 140px; transition: 0.3s; }
-    .partner-card-new:hover .p-col-logo img { transform: scale(1.1); filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));}
+    .partner-card-new:hover .p-col-logo img { transform: scale(1.1); filter: drop-shadow(0 0 15px rgba(255,255,255,0.3));}
     
     .p-col-info { width: 65%; padding: 20px 24px; display: flex; flex-direction: column; justify-content: center; }
     .p-col-info h3 { font-size: 16px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
@@ -342,7 +342,7 @@
     .mini-icon { width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0; background: rgba(255,255,255,0.05); display: grid; place-items: center; padding: 6px; border: 1px solid rgba(255,255,255,0.1);}
     .mini-icon img { width: 100%; height: 100%; object-fit: contain; }
     
-    .mini-info { flex: 1; min-width: 0; }
+    .mini-info { flex: 1; min-width: 0; } 
     .mini-info h4 { font-size: 14px; margin-bottom: 2px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
     .mini-info p { font-size: 11px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin: 0;}
     
@@ -413,7 +413,7 @@
     .reveal.active { opacity: 1; transform: translateY(0); }
 
     /* =========================================
-       🔥 移动端自适应核心修复区 
+       🔥 移动端自适应核心修复区 (Media Queries) 
        ========================================= */
 
     @media (max-width: 950px) {
@@ -878,7 +878,7 @@
   </div>
 
   <script>
-    // 互动流体背景跟随
+    // === 互动核心：鼠标聚光灯效果 ===
     const spotlight = document.getElementById('mouse-spotlight');
     window.addEventListener('mousemove', e => {
       const x = e.clientX;
@@ -886,7 +886,7 @@
       spotlight.style.background = `radial-gradient(circle 500px at ${x}px ${y}px, rgba(34, 211, 238, 0.08), transparent 80%)`;
     });
 
-    // 轮播图
+    // 轮播图逻辑
     const track = document.getElementById('track');
     const slides = Array.from(track.children);
     const prevBtn = document.getElementById('prevBtn');
@@ -1008,7 +1008,7 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // 🔥 修复导航栏点击平滑跳转及偏移遮挡问题
+    // 🔥 修复：强制导航栏点击平滑跳转及精准防遮挡
     document.querySelectorAll('.nav a').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
@@ -1016,9 +1016,9 @@
                 e.preventDefault();
                 const targetEl = document.querySelector(targetId);
                 if (targetEl) {
-                    const headerOffset = 120; // 导航栏高度及额外间距，防止遮挡
+                    const headerOffset = 120; // 强制预留出顶部导航的安全距离
                     const elementPosition = targetEl.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    const offsetPosition = elementPosition + window.scrollY - headerOffset;
                     window.scrollTo({
                         top: offsetPosition,
                         behavior: "smooth"
