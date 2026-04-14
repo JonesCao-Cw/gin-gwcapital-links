@@ -16,63 +16,48 @@
       --bg-glass-hover: rgba(30, 35, 50, 0.6);
       --border-light: rgba(255,255,255,0.08); 
       
-      --accent-blue: #6366f1; 
+      --accent-blue: #3b82f6; 
       --accent-cyan: #22d3ee; 
       --accent-green: #10b981; 
       --accent-purple: #a855f7; 
       --accent-red: #f43f5e; 
-      --accent-gold: #ffd700; 
+      --accent-gold: #fbbf24; 
       --accent-orange: #f97316;
       
       --txt-main: #ffffff; 
       --txt-muted: #94a3b8; 
     }
     
+    html { scroll-behavior: smooth; }
     body{ 
-      margin:0; font-family:"Inter",sans-serif; color:var(--txt-main); 
-      background-color: var(--bg-dark);
+      margin:0; font-family:"Inter", "PingFang SC", sans-serif; color:var(--txt-main); 
+      background-color: transparent; /* 保证光影透出 */
       -webkit-font-smoothing: antialiased; 
     }
     
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent;}
     
     .wrap{ 
       max-width:1240px; margin:0 auto; padding:20px 24px 100px; 
       position: relative; z-index: 1;
     }
 
-    /* === 动态背景样式 === */
-    .bg-fixed {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      z-index: -1; pointer-events: none; overflow: hidden;
-      background: #030508;
-    }
-    .blob {
-      position: absolute; border-radius: 50%;
-      filter: blur(80px); opacity: 0.4;
-      animation: float 20s infinite ease-in-out alternate;
-    }
-    .blob-1 {
-      top: -10%; left: -10%; width: 50vw; height: 50vw;
-      background: radial-gradient(circle, var(--accent-purple), transparent 70%);
-      animation-duration: 25s;
-    }
-    .blob-2 {
-      bottom: -10%; right: -10%; width: 60vw; height: 60vw;
-      background: radial-gradient(circle, var(--accent-cyan), transparent 70%);
-      animation-duration: 30s; animation-direction: reverse;
-    }
-    .blob-3 {
-      top: 40%; left: 30%; width: 40vw; height: 40vw;
-      background: radial-gradient(circle, var(--accent-blue), transparent 70%);
-      animation-duration: 22s;
+    /* === 互动背景：流体 + 鼠标聚光灯 (与Home对齐) === */
+    .bg-container { position: fixed; inset: 0; z-index: -2; background: var(--bg-dark); overflow: hidden; }
+    .blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.35; animation: float 20s infinite ease-in-out alternate; pointer-events: none; }
+    .blob-1 { top: -10%; left: -10%; width: 45vw; height: 45vw; background: radial-gradient(circle, var(--accent-purple), transparent 70%); }
+    .blob-2 { bottom: -10%; right: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, var(--accent-cyan), transparent 70%); animation-duration: 25s; animation-direction: reverse; }
+    
+    #mouse-spotlight {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1;
+      background: radial-gradient(circle 600px at 50% 50%, rgba(34, 211, 238, 0.08), transparent 80%);
+      transition: background 0.1s ease;
     }
 
     @keyframes float {
       0% { transform: translate(0, 0) scale(1); }
-      33% { transform: translate(30px, -30px) scale(1.1); }
-      66% { transform: translate(-20px, 20px) scale(0.9); }
-      100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(30px, -30px) scale(1.1); }
+      100% { transform: translate(-20px, 20px) scale(0.9); }
     }
     
     /* === 导航栏 === */
@@ -82,9 +67,9 @@
       background: rgba(15, 20, 30, 0.85); 
       border: 1px solid rgba(255,255,255,0.08); 
       border-radius: 16px; 
-      backdrop-filter: blur(20px); 
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
       position: sticky; top: 16px; z-index: 100; 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1);
     }
     .brand{ display:flex; gap:10px; align-items:center; font-weight:800; font-size:18px; letter-spacing: -0.5px; }
     
@@ -92,7 +77,7 @@
       width: 32px; height: 32px; 
       border-radius: 8px; 
       object-fit: cover;
-      box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+      box-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
     }
 
     .back-btn{ 
@@ -112,89 +97,88 @@
       border: 1px solid var(--border-light);
       border-radius: 24px;
       backdrop-filter: blur(16px);
-      box-shadow: 0 4px 24px -1px rgba(0,0,0,0.2);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08), 0 8px 30px rgba(0, 0, 0, 0.3);
       transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s, border-color 0.3s;
     }
     .glass-panel:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px -5px rgba(0,0,0,0.4);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 1px 2px rgba(255,255,255,0.15); 
       border-color: rgba(255,255,255,0.25);
     }
 
-    /* === 模块1: 首屏重构 (左内容+风险, 右轮播) === */
-    .hero-split{ 
-      display:grid; grid-template-columns: 1fr 1fr; gap:24px; margin-top:40px; 
-      align-items: stretch; 
+    /* === 首屏重构 (与Home对齐的整版UI) === */
+    .hero-unified {
+        display: grid;
+        grid-template-columns: 1.3fr 1fr; 
+        gap: 32px;
+        padding: 36px;
+        margin-top: 40px;
+        background: radial-gradient(circle at top left, rgba(34, 211, 238, 0.12), transparent 60%), var(--bg-glass);
     }
     
-    .hero-left { display: flex; flex-direction: column; gap: 24px; }
+    .hero-left { display: flex; flex-direction: column; justify-content: space-between; }
     
-    .info-pad { flex: 1; padding: 40px; display: flex; flex-direction: column; justify-content: center; }
-    .tags{ display:flex; gap:8px; margin-bottom:24px; }
+    .tags{ display:flex; gap:8px; margin-bottom:20px; }
     .tag{ 
-      padding:6px 12px; background: rgba(99, 102, 241, 0.15); 
-      color: var(--accent-blue); border-radius: 6px; 
+      padding:6px 12px; background: rgba(34, 211, 238, 0.1); 
+      color: var(--accent-cyan); border-radius: 6px; 
       font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
-      border: 1px solid rgba(99, 102, 241, 0.2);
+      border: 1px solid rgba(34, 211, 238, 0.3);
     }
+    
     .hero-title { 
-      font-size: 38px; margin: 0 0 24px; 
-      background: linear-gradient(135deg, #fff 30%, #cffafe 100%); 
+      font-size: clamp(30px, 4vw, 42px); 
+      font-weight: 900; 
+      margin-bottom: 24px; 
+      line-height: 1.1; 
+      letter-spacing: -1px; 
+      background: linear-gradient(135deg, #fff 30%, var(--accent-cyan) 100%); 
       -webkit-background-clip: text; color: transparent;
-      line-height: 1.3; letter-spacing: -0.5px; font-weight: 900;
-      white-space: nowrap;
     }
-    p { color: var(--txt-muted); line-height: 1.8; font-size: 15px; margin: 0; }
-    p b { color: var(--txt-main); font-weight: 600; }
+    
+    .hero-left p { color: var(--txt-muted); line-height: 1.8; font-size: 15px; margin: 0; }
+    .hero-left p b { color: var(--txt-main); font-weight: 600; }
 
-    /* 重构的风险提示模块内嵌到左侧 */
+    /* 动态放大版风险提示 */
     .risk-banner {
       background: linear-gradient(180deg, rgba(244, 63, 94, 0.15) 0%, rgba(20, 25, 35, 0.4) 100%);
       border: 1px solid rgba(244, 63, 94, 0.4); 
-      border-radius: 20px;
-      padding: 24px;
+      border-radius: 16px;
+      padding: 24px; margin-top: 32px;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       text-align: center; position: relative; overflow: hidden;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 0 40px rgba(244, 63, 94, 0.1);
-    }
-    .risk-banner::before {
-      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-      width: 60%; height: 1px; 
-      background: linear-gradient(90deg, transparent, rgba(244, 63, 94, 1), transparent);
-      box-shadow: 0 0 15px rgba(244, 63, 94, 0.8);
     }
     .risk-icon-box {
-      font-size: 24px; margin-bottom: 8px;
-      filter: drop-shadow(0 0 10px rgba(244, 63, 94, 0.6));
-      animation: alert-pulse 2s infinite ease-in-out;
+      font-size: 48px; margin-bottom: 12px; line-height: 1;
+      filter: drop-shadow(0 0 15px rgba(244, 63, 94, 0.8));
+      animation: alert-pulse-big 1.5s infinite ease-in-out;
     }
-    .risk-title { margin: 0 0 8px; font-size: 16px; font-weight: 800; color: #fff; letter-spacing: 0.5px; }
-    .risk-desc { margin: 0 0 16px; font-size: 12px; color: #feaebc; line-height: 1.6; }
+    .risk-title { margin: 0 0 10px; font-size: 16px; font-weight: 800; color: #fff; letter-spacing: 0.5px; }
+    .risk-desc { margin: 0 0 16px; font-size: 13px; color: #feaebc; line-height: 1.6; }
 
     .risk-badge-box {
-      display: inline-block;
-      background: rgba(244, 63, 94, 0.15);
-      border: 1px solid rgba(244, 63, 94, 0.5);
-      padding: 6px 16px; border-radius: 50px;
-      box-shadow: 0 0 20px rgba(244, 63, 94, 0.1) inset;
+      display: inline-block; background: rgba(244, 63, 94, 0.15); border: 1px solid rgba(244, 63, 94, 0.5);
+      padding: 8px 20px; border-radius: 50px;
     }
-    .final-warn { margin: 0; font-size: 12px; font-weight: 700; color: #fff; letter-spacing: 1px; text-shadow: 0 0 10px rgba(244, 63, 94, 0.5); }
+    .final-warn { margin: 0; font-size: 12px; font-weight: 700; color: #fff; letter-spacing: 1px;}
 
-    @keyframes alert-pulse {
+    @keyframes alert-pulse-big {
       0% { transform: scale(1); opacity: 0.9; }
-      50% { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 0 15px rgba(255, 200, 0, 0.8)); }
+      50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 25px rgba(255, 200, 0, 1)); }
       100% { transform: scale(1); opacity: 0.9; }
     }
 
-    .tv-frame { padding: 12px; display: flex; flex-direction: column; justify-content: center; height: 100%; min-height: 300px; }
-    .tv-stage { 
-      position: relative; border-radius: 16px; width: 100%; height: 100%; min-height: 300px;
-      overflow: hidden; background: #000; 
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.1), 0 10px 40px rgba(0,0,0,0.5);
-    }
-    .track{ display:flex; height:100%; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
-    .track img{ width:100%; height:100%; object-fit:cover; flex-shrink:0; opacity: 0.9; }
+    .hero-right { display: flex; flex-direction: column; }
+    .tvStage { position: relative; border-radius: 12px; overflow: hidden; height: 100%; min-height: 300px; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1); }
+    .track { display: flex; height: 100%; transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); }
+    .slide { min-width: 100%; height: 100%; }
+    .slide img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; transition: 0.4s; }
+    .slide:hover img { opacity: 1; transform: scale(1.02); }
+    .navBtn { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.2); color: #fff; cursor: pointer; z-index: 10; opacity: 0; transition: 0.2s; font-size: 20px;}
+    .tvStage:hover .navBtn { opacity: 1; }
+    .navPrev { left: 16px; } .navNext { right: 16px; }
+    .navBtn:hover { background: var(--accent-cyan); color: #000; border-color: var(--accent-cyan); }
+
 
     /* === 系统分割线 === */
     .system-divider {
@@ -205,14 +189,14 @@
     .sys-badge {
       background: rgba(255,255,255,0.05); border: 1px solid var(--border-light);
       padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 800;
-      color: var(--txt-muted); letter-spacing: 2px;
+      letter-spacing: 2px;
     }
 
-    /* === 标题样式 === */
+    /* === 标题样式 (四大系统颜色区分) === */
     .big-section-head { 
       margin: 0 0 32px; font-size: 22px; font-weight: 800; color: #fff; 
       display: flex; align-items: center; gap: 12px; 
-      padding-left: 10px; border-left: 4px solid var(--accent-cyan);
+      padding-left: 10px; border-left: 4px solid;
     }
     .center-head {
       text-align: center; justify-content: center; 
@@ -221,12 +205,22 @@
       background-clip: text; -webkit-background-clip: text; color: transparent;
       letter-spacing: -1px;
     }
+    
+    /* System 1: Cyan */
     .head-sys1-center { background-image: linear-gradient(90deg, #fff, var(--accent-cyan)); }
+    .head-sys1 { border-left-color: var(--accent-cyan); }
+    
+    /* System 2: Purple */
     .head-sys2-center { background-image: linear-gradient(90deg, #fff, var(--accent-purple)); }
-    .head-sys3-center { background-image: linear-gradient(90deg, #fff, var(--accent-gold)); }
-
     .head-sys2 { border-left-color: var(--accent-purple); }
-    .head-sys3 { border-left-color: var(--accent-gold); }
+    
+    /* System 3: Blue */
+    .head-sys3-center { background-image: linear-gradient(90deg, #fff, var(--accent-blue)); }
+    .head-sys3 { border-left-color: var(--accent-blue); }
+    
+    /* System 4: Gold */
+    .head-sys4-center { background-image: linear-gradient(90deg, #fff, var(--accent-gold)); }
+    .head-sys4 { border-left-color: var(--accent-gold); }
 
     /* === 图片滚动 Marquee === */
     .marquee-wrap {
@@ -243,7 +237,7 @@
       border: 1px solid var(--border-light); background: rgba(255,255,255,0.02);
       transition: transform 0.3s;
     }
-    .ea-shot:hover { transform: scale(1.02); border-color: var(--accent-purple); }
+    .ea-shot:hover { transform: scale(1.02); border-color: rgba(255,255,255,0.4); }
     .ea-shot img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9); }
     
     @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -263,9 +257,12 @@
       border: 1px solid rgba(255,255,255,0.1);
       display: grid; place-items: center; font-weight: 800; font-size: 14px;
     }
+    
+    /* 编号颜色区分 */
     .idx-cyan { color: var(--accent-cyan); border-color: rgba(34, 211, 238, 0.3); background: rgba(34, 211, 238, 0.1); }
     .idx-purp { color: var(--accent-purple); border-color: rgba(168, 85, 247, 0.3); background: rgba(168, 85, 247, 0.1); }
-    .idx-gold { color: var(--accent-gold); border-color: rgba(255, 215, 0, 0.3); background: rgba(255, 215, 0, 0.1); }
+    .idx-blue { color: var(--accent-blue); border-color: rgba(59, 130, 246, 0.3); background: rgba(59, 130, 246, 0.1); }
+    .idx-gold { color: var(--accent-gold); border-color: rgba(251, 191, 36, 0.3); background: rgba(251, 191, 36, 0.1); }
 
     .step-txt h4 { margin: 0 0 4px; font-size: 15px; color: #fff; font-weight: 700; }
     .step-txt p { margin: 0; font-size: 13px; color: var(--txt-muted); line-height: 1.5; }
@@ -284,7 +281,8 @@
     }
     .panel-sys1 { border: 1px solid rgba(34, 211, 238, 0.3); }
     .panel-sys2 { border: 1px solid rgba(168, 85, 247, 0.3); } 
-    .panel-sys3 { border: 1px solid rgba(255, 215, 0, 0.3); }
+    .panel-sys3 { border: 1px solid rgba(59, 130, 246, 0.3); } 
+    .panel-sys4 { border: 1px solid rgba(251, 191, 36, 0.3); }
     
     .profit-title { font-size: 12px; font-weight: 700; letter-spacing: 2px; opacity: 0.9; margin-bottom: 4px; }
     .profit-val { font-size: 56px; font-weight: 900; color: #fff; margin: 12px 0; letter-spacing: -2px; text-shadow: 0 0 30px rgba(255,255,255,0.1); }
@@ -297,23 +295,29 @@
       transition: .3s;
     }
     
-    /* 蓝色/青色系按钮 (Sys1 / Sys3) */
-    .btn-tmgm-l { background: rgba(34, 211, 238, 0.08); color: var(--accent-cyan); border: 1px solid rgba(34, 211, 238, 0.2); }
-    .btn-tmgm-l:hover { background: var(--accent-cyan); color: #000; box-shadow: 0 0 20px rgba(34, 211, 238, 0.3); }
-    .btn-tmgm-r { background: var(--accent-blue); color: #fff; border: 1px solid var(--accent-blue); }
-    .btn-tmgm-r:hover { background: #4f46e5; box-shadow: 0 0 25px rgba(99, 102, 241, 0.5); transform: translateY(-2px); }
+    /* Sys1 按钮: Cyan */
+    .btn-sys1-l { background: rgba(34, 211, 238, 0.08); color: var(--accent-cyan); border: 1px solid rgba(34, 211, 238, 0.2); }
+    .btn-sys1-l:hover { background: var(--accent-cyan); color: #000; box-shadow: 0 0 20px rgba(34, 211, 238, 0.3); }
+    .btn-sys1-r { background: linear-gradient(90deg, #06b6d4, #22d3ee); color: #fff; border: 1px solid rgba(34,211,238,0.3); }
+    .btn-sys1-r:hover { filter: brightness(1.1); box-shadow: 0 0 25px rgba(34, 211, 238, 0.5); transform: translateY(-2px); }
 
-    /* 紫色系按钮 (Sys2) */
-    .btn-dprime-l { background: rgba(168, 85, 247, 0.08); color: var(--accent-purple); border: 1px solid rgba(168, 85, 247, 0.2); }
-    .btn-dprime-l:hover { background: var(--accent-purple); color: #fff; box-shadow: 0 0 20px rgba(168, 85, 247, 0.3); }
-    .btn-dprime-r { background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue)); color: #fff; border: 1px solid rgba(168, 85, 247, 0.3); }
-    .btn-dprime-r:hover { filter: brightness(1.1); box-shadow: 0 0 25px rgba(168, 85, 247, 0.5); transform: translateY(-2px); }
+    /* Sys2 按钮: Purple */
+    .btn-sys2-l { background: rgba(168, 85, 247, 0.08); color: var(--accent-purple); border: 1px solid rgba(168, 85, 247, 0.2); }
+    .btn-sys2-l:hover { background: var(--accent-purple); color: #fff; box-shadow: 0 0 20px rgba(168, 85, 247, 0.3); }
+    .btn-sys2-r { background: linear-gradient(90deg, #9333ea, #a855f7); color: #fff; border: 1px solid rgba(168, 85, 247, 0.3); }
+    .btn-sys2-r:hover { filter: brightness(1.1); box-shadow: 0 0 25px rgba(168, 85, 247, 0.5); transform: translateY(-2px); }
 
-    /* 金色系按钮 (Sys4) */
-    .btn-gold-l { background: rgba(255, 215, 0, 0.08); color: var(--accent-gold); border: 1px solid rgba(255, 215, 0, 0.2); }
-    .btn-gold-l:hover { background: var(--accent-gold); color: #000; box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
-    .btn-gold-r { background: linear-gradient(90deg, var(--accent-gold), var(--accent-orange)); color: #fff; border: 1px solid rgba(255, 215, 0, 0.3); }
-    .btn-gold-r:hover { filter: brightness(1.1); box-shadow: 0 0 25px rgba(255, 215, 0, 0.5); transform: translateY(-2px); }
+    /* Sys3 按钮: Blue */
+    .btn-sys3-l { background: rgba(59, 130, 246, 0.08); color: var(--accent-blue); border: 1px solid rgba(59, 130, 246, 0.2); }
+    .btn-sys3-l:hover { background: var(--accent-blue); color: #fff; box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+    .btn-sys3-r { background: linear-gradient(90deg, #2563eb, #3b82f6); color: #fff; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .btn-sys3-r:hover { filter: brightness(1.1); box-shadow: 0 0 25px rgba(59, 130, 246, 0.5); transform: translateY(-2px); }
+
+    /* Sys4 按钮: Gold */
+    .btn-sys4-l { background: rgba(251, 191, 36, 0.08); color: var(--accent-gold); border: 1px solid rgba(251, 191, 36, 0.2); }
+    .btn-sys4-l:hover { background: var(--accent-gold); color: #000; box-shadow: 0 0 20px rgba(251, 191, 36, 0.3); }
+    .btn-sys4-r { background: linear-gradient(90deg, #d97706, #fbbf24); color: #fff; border: 1px solid rgba(251, 191, 36, 0.3); }
+    .btn-sys4-r:hover { filter: brightness(1.1); box-shadow: 0 0 25px rgba(251, 191, 36, 0.5); transform: translateY(-2px); }
 
 
     /* === 🔴 统一的红色警示框 === */
@@ -329,42 +333,26 @@
 
     /* === 🔥 严厉处罚条款样式 === */
     .punish-row {
-      margin-top: 8px;
-      display: flex;
-      align-items: flex-start;
-      gap: 6px;
-      list-style: none; 
-      margin-left: -16px; 
-      padding-left: 16px;
+      margin-top: 8px; display: flex; align-items: flex-start; gap: 6px;
+      list-style: none; margin-left: -16px; padding-left: 16px;
     }
     .punish-badge {
-      background: #f59e0b; 
-      color: #000;
-      padding: 1px 6px;
-      border-radius: 4px;
-      font-weight: 900;
-      font-size: 11px;
-      flex-shrink: 0;
-      margin-top: 2px;
+      background: #f59e0b; color: #000; padding: 1px 6px;
+      border-radius: 4px; font-weight: 900; font-size: 11px;
+      flex-shrink: 0; margin-top: 2px;
     }
-    .punish-text {
-      color: #ff4d4f; 
-      font-weight: 700;
-      font-size: 13px; 
-      line-height: 1.4;
-    }
+    .punish-text { color: #ff4d4f; font-weight: 700; font-size: 13px; line-height: 1.4; }
 
     .footer { margin-top: 80px; padding-top: 30px; border-top: 1px solid var(--border-light); text-align: center; color: rgba(255,255,255,0.2); font-size: 12px; line-height: 1.6; }
 
     /* 移动端适配 */
     @media(max-width:900px){
-      .hero-split, .terms-layout { grid-template-columns: 1fr; gap: 24px; }
-      .tv-frame { padding: 8px; min-height: 220px; }
-      .tv-stage { min-height: 220px; }
+      .hero-unified, .terms-layout { grid-template-columns: 1fr; gap: 24px; padding: 24px; }
+      .tvStage { min-height: 220px; }
       .btn-group { flex-direction: row; } 
       .wrap { padding: 16px 16px 80px; }
       .action-panel { height: auto; }
-      .hero-title { font-size: 32px; white-space: normal;}
+      .hero-title { font-size: 28px; white-space: normal;}
     }
 
     /* 弹窗 */
@@ -384,25 +372,17 @@
     .close-icon:hover { background: rgba(255,255,255,0.15); color: #fff; }
 
     /* === 🌊 滚动渐显动画 === */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-      will-change: opacity, transform;
-    }
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); will-change: opacity, transform; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
-  <div class="bg-fixed">
+  <div class="bg-container">
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
   </div>
+  <div id="mouse-spotlight"></div>
 
   <div class="wrap">
     <div class="topbar">
@@ -413,9 +393,9 @@
       <a href="home.html" class="back-btn">← 返回首页</a>
     </div>
 
-    <div class="hero-split reveal">
+    <div class="glass-panel hero-unified reveal">
       <div class="hero-left">
-        <div class="glass-panel info-pad">
+        <div>
           <div class="tags"><span class="tag">GW Capital</span><span class="tag">Future Investment</span></div>
           <h2 class="hero-title">智能托管跟单系统</h2>
           <p>
@@ -430,20 +410,24 @@
         <div class="risk-banner">
           <div class="risk-icon-box">⚠️</div>
           <h3 class="risk-title">跟单交易属于高风险行为，存在亏损本金可能性</h3>
-          <p class="risk-desc">
-            跟单不是余额宝理财，不承诺收益，一切盈亏自负，风险承受能力低者不建议参与。
-          </p>
+          <p class="risk-desc">跟单不是余额宝理财，不承诺收益，一切盈亏自负，风险承受能力低者不建议参与。</p>
           <div class="risk-badge-box">
             <p class="final-warn">参与跟单默认理解认可接受所有风险</p>
           </div>
         </div>
       </div>
 
-      <div class="glass-panel tv-frame">
-        <div class="tv-stage">
-          <div class="track">
-            <img src="images/g1.jpg"><img src="images/g2.jpg"><img src="images/g3.jpg">
+      <div class="hero-right">
+        <div class="tvStage" id="tvStage">
+          <div class="track" id="track">
+            <div class="slide"><img src="images/g1.jpg" alt="1"></div>
+            <div class="slide"><img src="images/g2.jpg" alt="2"></div>
+            <div class="slide"><img src="images/g3.jpg" alt="3"></div>
+            <div class="slide"><img src="images/g4.jpg" alt="4"></div>
+            <div class="slide"><img src="images/g5.jpg" alt="5"></div>
           </div>
+          <button class="navBtn navPrev" id="prevBtn">‹</button>
+          <button class="navBtn navNext" id="nextBtn">›</button>
         </div>
       </div>
     </div>
@@ -465,10 +449,12 @@
         <div class="ea-shot"><img src="images/j2.jpg" alt="Crypto 2"></div>
         <div class="ea-shot"><img src="images/j3.jpg" alt="Crypto 3"></div>
         <div class="ea-shot"><img src="images/j4.jpg" alt="Crypto 4"></div>
+        <div class="ea-shot"><img src="images/j5.jpg" alt="Crypto 5"></div>
         <div class="ea-shot"><img src="images/j1.jpg" alt="Crypto 1"></div>
         <div class="ea-shot"><img src="images/j2.jpg" alt="Crypto 2"></div>
         <div class="ea-shot"><img src="images/j3.jpg" alt="Crypto 3"></div>
         <div class="ea-shot"><img src="images/j4.jpg" alt="Crypto 4"></div>
+        <div class="ea-shot"><img src="images/j5.jpg" alt="Crypto 5"></div>
       </div>
     </div>
 
@@ -522,8 +508,8 @@
           <div class="profit-sub">利润分成 (高水位机制)</div>
           
           <div class="btn-group">
-            <a href="https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans" target="_blank" class="btn-act btn-tmgm-l">立即开户</a>
-            <div class="btn-act btn-tmgm-r" onclick="openCryptoModal()">立即跟单</div>
+            <a href="https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans" target="_blank" class="btn-act btn-sys1-l">立即开户</a>
+            <div class="btn-act btn-sys1-r" onclick="openCryptoModal()">立即跟单</div>
           </div>
         </div>
 
@@ -618,8 +604,8 @@
           <div class="profit-sub">利润分成 (高水位机制)</div>
           
           <div class="btn-group">
-            <a href="https://one.exnessonelink.com/a/bc1v3yl4bf" target="_blank" class="btn-act btn-dprime-l">立即开户</a>
-            <div class="btn-act btn-dprime-r" onclick="openExnessModal()">立即跟单</div>
+            <a href="https://one.exnessonelink.com/a/bc1v3yl4bf" target="_blank" class="btn-act btn-sys2-l">立即开户</a>
+            <div class="btn-act btn-sys2-r" onclick="openExnessModal()">立即跟单</div>
           </div>
         </div>
 
@@ -643,15 +629,15 @@
 
     <div class="system-divider reveal">
       <div class="line"></div>
-      <div class="sys-badge" style="color:var(--accent-cyan)">SYSTEM 03</div>
+      <div class="sys-badge" style="color:var(--accent-blue)">SYSTEM 03</div>
       <div class="line"></div>
     </div>
 
-    <div class="big-section-head center-head head-sys1-center reveal">
+    <div class="big-section-head center-head head-sys3-center reveal">
       杰明自有交易Copy
     </div>
 
-    <div class="big-section-head reveal">
+    <div class="big-section-head head-sys3 reveal">
       <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
       运作机制 & 门槛
     </div>
@@ -659,38 +645,38 @@
     <div class="terms-layout reveal">
       <div class="process-list">
         <div class="glass-panel step-item">
-          <div class="step-idx idx-cyan">01</div>
+          <div class="step-idx idx-blue">01</div>
           <div class="step-txt"><h4>开户入金</h4><p>在 TMGM 开设账户并入金 ($5000起)，提供 MT5 账号给技术方。</p></div>
         </div>
         <div class="step-arrow">↓</div>
 
         <div class="glass-panel step-item">
-          <div class="step-idx idx-cyan">02</div>
+          <div class="step-idx idx-blue">02</div>
           <div class="step-txt"><h4>绑定托管</h4><p>技术方接入跟单系统，您的账户将毫秒级自动同步信号源操作。</p></div>
         </div>
         <div class="step-arrow">↓</div>
 
         <div class="glass-panel step-item">
-          <div class="step-idx idx-cyan">03</div>
+          <div class="step-idx idx-blue">03</div>
           <div class="step-txt"><h4>费用结构</h4><p>每月仅收 $1 管理费 + $1 订阅费（象征性）。</p></div>
         </div>
         <div class="step-arrow">↓</div>
 
         <div class="glass-panel step-item">
-          <div class="step-idx idx-cyan">04</div>
+          <div class="step-idx idx-blue">04</div>
           <div class="step-txt"><h4>利润结算</h4><p>每月结算一次，自动扣取 30% 利润作为绩效费（高水位机制）。</p></div>
         </div>
       </div>
 
-      <div class="glass-panel action-panel panel-sys1">
+      <div class="glass-panel action-panel panel-sys3">
         <div>
           <div class="profit-title" style="color:var(--accent-blue)">PROFIT SHARE</div>
           <div class="profit-val">30%</div>
           <div class="profit-sub">利润分成 (高水位机制)</div>
           
           <div class="btn-group">
-            <a href="https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans" target="_blank" class="btn-act btn-tmgm-l">立即开户</a>
-            <div class="btn-act btn-tmgm-r" onclick="openTMGMModal()">立即跟单</div>
+            <a href="https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans" target="_blank" class="btn-act btn-sys3-l">立即开户</a>
+            <div class="btn-act btn-sys3-r" onclick="openTMGMModal()">立即跟单</div>
           </div>
         </div>
 
@@ -717,11 +703,11 @@
       <div class="line"></div>
     </div>
 
-    <div class="big-section-head center-head head-sys3-center reveal">
+    <div class="big-section-head center-head head-sys4-center reveal">
       杰明自有长线美股
     </div>
 
-    <div class="big-section-head head-sys3 reveal">
+    <div class="big-section-head head-sys4 reveal">
       <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
       运作机制 & 门槛
     </div>
@@ -764,15 +750,15 @@
         </div>
       </div>
 
-      <div class="glass-panel action-panel panel-sys3">
+      <div class="glass-panel action-panel panel-sys4">
         <div>
           <div class="profit-title" style="color:var(--accent-gold)">PROFIT SHARE</div>
           <div class="profit-val">30%</div>
           <div class="profit-sub">利润分成 (高水位机制)</div>
           
           <div class="btn-group">
-            <a href="https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans" target="_blank" class="btn-act btn-gold-l">立即开户</a>
-            <div class="btn-act btn-gold-r" onclick="openStockModal()">立即跟单</div>
+            <a href="https://portal.tmgrowinv.com/register?node=MjczMTAy&language=zh-Hans" target="_blank" class="btn-act btn-sys4-l">立即开户</a>
+            <div class="btn-act btn-sys4-r" onclick="openStockModal()">立即跟单</div>
           </div>
         </div>
 
@@ -801,13 +787,13 @@
   <div class="modal-wrap" id="cryptoModal">
     <div class="modal-panel">
       <div class="close-icon" onclick="closeModal('cryptoModal')">×</div>
-      <h2 class="modal-title">加密系统 跟单确认 🧐</h2>
+      <h2 class="modal-title" style="color:var(--accent-cyan)">加密系统 跟单确认 🧐</h2>
       <p class="modal-desc">
         请确认您是否已经完成了 <b>TMGM 开户</b> <br>并满足 <b>$5,000</b> 入金门槛？
       </p>
       
       <div class="m-btns">
-        <a href="123" target="_blank" class="m-btn mb-1">我已知晓，确定立即跟单！🚀</a>
+        <a href="123" target="_blank" class="m-btn mb-1" style="background:linear-gradient(90deg, #06b6d4, #22d3ee);">我已知晓，确定立即跟单！🚀</a>
         <div class="m-btn mb-2" onclick="goContact()">已有账户，联系助理核实</div>
         <div class="m-btn mb-3" onclick="goPartner()">没有账户？前往开户 →</div>
       </div>
@@ -817,13 +803,13 @@
   <div class="modal-wrap" id="tmgmModal">
     <div class="modal-panel">
       <div class="close-icon" onclick="closeModal('tmgmModal')">×</div>
-      <h2 class="modal-title">TMGM 跟单确认 🧐</h2>
+      <h2 class="modal-title" style="color:var(--accent-blue)">TMGM 跟单确认 🧐</h2>
       <p class="modal-desc">
         请确认您是否已经完成了 <b>TMGM 开户</b> <br>并满足 <b>$5,000</b> 入金门槛？
       </p>
       
       <div class="m-btns">
-        <a href="https://signal.tmgm.com/portal/registration/subscription/94342/GWCAITAL1" target="_blank" class="m-btn mb-1">我已知晓，确定立即跟单！🚀</a>
+        <a href="https://signal.tmgm.com/portal/registration/subscription/94342/GWCAITAL1" target="_blank" class="m-btn mb-1" style="background:linear-gradient(90deg, #2563eb, #3b82f6);">我已知晓，确定立即跟单！🚀</a>
         <div class="m-btn mb-2" onclick="goContact()">已有账户，联系助理核实</div>
         <div class="m-btn mb-3" onclick="goPartner()">没有账户？前往开户 →</div>
       </div>
@@ -855,7 +841,7 @@
       </p>
       
       <div class="m-btns">
-        <div class="m-btn mb-1" style="background:linear-gradient(90deg, var(--accent-purple), var(--accent-blue))" onclick="handleExnessRedirect()">我已知晓，确定立即跟单！🚀</div>
+        <div class="m-btn mb-1" style="background:linear-gradient(90deg, var(--accent-purple), #818cf8)" onclick="handleExnessRedirect()">我已知晓，确定立即跟单！🚀</div>
         <div class="m-btn mb-2" onclick="goContact()">已有账户，联系助理核实</div>
         <div class="m-btn mb-3" onclick="goPartner()">没有账户？前往开户 →</div>
       </div>
@@ -863,16 +849,43 @@
   </div>
 
   <script>
-    // 轮播
-    const track = document.querySelector('.track');
-    const slides = document.querySelectorAll('.track img');
-    let idx = 0;
-    
-    function autoPlay() {
-      idx = (idx + 1) % slides.length;
-      track.style.transform = `translateX(-${idx * 100}%)`;
+    // === 互动核心：鼠标聚光灯效果 ===
+    const spotlight = document.getElementById('mouse-spotlight');
+    window.addEventListener('mousemove', e => {
+      const x = e.clientX;
+      const y = e.clientY;
+      spotlight.style.background = `radial-gradient(circle 500px at ${x}px ${y}px, rgba(34, 211, 238, 0.08), transparent 80%)`;
+    });
+
+    // === 首屏电视机轮播图逻辑 ===
+    const track = document.getElementById('track');
+    const slides = Array.from(track.children);
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let index = 0; let timer = null; const AUTO_MS = 4000;
+
+    function go(i, manual=false){
+      if(slides.length === 0) return;
+      index = (i + slides.length) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+      if(manual) restartAuto();
     }
-    setInterval(autoPlay, 3000);
+    prevBtn.onclick = () => go(index - 1, true);
+    nextBtn.onclick = () => go(index + 1, true);
+
+    function startAuto(){ stopAuto(); timer = setInterval(() => go(index+1), AUTO_MS); }
+    function stopAuto(){ clearInterval(timer); }
+    function restartAuto(){ stopAuto(); startAuto(); }
+    
+    let sx = 0; const tv = document.getElementById('tvStage');
+    tv.addEventListener('touchstart', e => { sx = e.touches[0].clientX; stopAuto(); }, {passive:true});
+    tv.addEventListener('touchend', e => {
+      let dx = e.changedTouches[0].clientX - sx;
+      if(Math.abs(dx)>40) dx<0 ? go(index+1,true) : go(index-1,true);
+      else startAuto();
+    });
+    tv.onmouseenter = stopAuto; tv.onmouseleave = startAuto;
+    startAuto();
 
     // 弹窗逻辑
     function openCryptoModal() { document.getElementById('cryptoModal').classList.add('show'); }
@@ -899,7 +912,7 @@
         window.location.href = 'home.html#contact';
     }
 
-    // === 🔥 🌊 NEW: 滚动渐显动画逻辑 (Intersection Observer) ===
+    // === 🔥 🌊 滚动渐显动画逻辑 (Intersection Observer) ===
     const observerOptions = {
         root: null,
         rootMargin: '0px',
