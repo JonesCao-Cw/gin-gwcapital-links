@@ -42,7 +42,7 @@
       position: relative; z-index: 1;
     }
 
-    /* === 互动背景：流体 + 鼠标聚光灯 (与Home对齐) === */
+    /* === 互动背景：流体 + 鼠标聚光灯 === */
     .bg-container { position: fixed; inset: 0; z-index: -2; background: var(--bg-dark); overflow: hidden; }
     .blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.35; animation: float 20s infinite ease-in-out alternate; pointer-events: none; }
     .blob-1 { top: -10%; left: -10%; width: 45vw; height: 45vw; background: radial-gradient(circle, var(--accent-purple), transparent 70%); }
@@ -106,17 +106,18 @@
       border-color: rgba(255,255,255,0.25);
     }
 
-    /* === 首屏重构 (与Home对齐的整版UI) === */
+    /* === 首屏重构 (左介绍，右长方形风险提示) === */
     .hero-unified {
         display: grid;
-        grid-template-columns: 1.3fr 1fr; 
-        gap: 32px;
-        padding: 36px;
+        grid-template-columns: 1.2fr 1fr; 
+        gap: 40px;
+        padding: 40px;
         margin-top: 40px;
+        align-items: center; /* 垂直居中对齐 */
         background: radial-gradient(circle at top left, rgba(34, 211, 238, 0.12), transparent 60%), var(--bg-glass);
     }
     
-    .hero-left { display: flex; flex-direction: column; justify-content: space-between; }
+    .hero-left { display: flex; flex-direction: column; justify-content: center; }
     
     .tags{ display:flex; gap:8px; margin-bottom:20px; }
     .tag{ 
@@ -127,7 +128,7 @@
     }
     
     .hero-title { 
-      font-size: clamp(30px, 4vw, 42px); 
+      font-size: clamp(32px, 4vw, 46px); 
       font-weight: 900; 
       margin-bottom: 24px; 
       line-height: 1.1; 
@@ -139,45 +140,45 @@
     .hero-left p { color: var(--txt-muted); line-height: 1.8; font-size: 15px; margin: 0; }
     .hero-left p b { color: var(--txt-main); font-weight: 600; }
 
-    /* 动态放大版风险提示 */
+    /* 动态长方形版风险提示 */
+    .hero-right-risk {
+      display: flex; align-items: center; justify-content: center; height: 100%;
+    }
     .risk-banner {
-      background: linear-gradient(180deg, rgba(244, 63, 94, 0.15) 0%, rgba(20, 25, 35, 0.4) 100%);
-      border: 1px solid rgba(244, 63, 94, 0.4); 
+      background: linear-gradient(180deg, rgba(244, 63, 94, 0.1) 0%, rgba(20, 25, 35, 0.6) 100%);
+      border: 1px solid rgba(244, 63, 94, 0.3); 
       border-radius: 16px;
-      padding: 24px; margin-top: 32px;
+      padding: 40px 30px;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; position: relative; overflow: hidden;
+      text-align: center; position: relative; overflow: hidden; width: 100%;
+      box-shadow: inset 0 0 20px rgba(244, 63, 94, 0.05), 0 10px 40px rgba(0,0,0,0.5);
+    }
+    .risk-banner::before {
+      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 60%; height: 2px; 
+      background: linear-gradient(90deg, transparent, rgba(244, 63, 94, 1), transparent);
+      box-shadow: 0 0 20px rgba(244, 63, 94, 0.8);
     }
     .risk-icon-box {
-      font-size: 48px; margin-bottom: 12px; line-height: 1;
-      filter: drop-shadow(0 0 15px rgba(244, 63, 94, 0.8));
+      font-size: 52px; margin-bottom: 16px; line-height: 1;
+      filter: drop-shadow(0 0 20px rgba(244, 63, 94, 0.8));
       animation: alert-pulse-big 1.5s infinite ease-in-out;
     }
-    .risk-title { margin: 0 0 10px; font-size: 16px; font-weight: 800; color: #fff; letter-spacing: 0.5px; }
-    .risk-desc { margin: 0 0 16px; font-size: 13px; color: #feaebc; line-height: 1.6; }
+    .risk-title { margin: 0 0 12px; font-size: 18px; font-weight: 800; color: #fff; letter-spacing: 0.5px; }
+    .risk-desc { margin: 0 0 20px; font-size: 13px; color: #feaebc; line-height: 1.6; }
 
     .risk-badge-box {
       display: inline-block; background: rgba(244, 63, 94, 0.15); border: 1px solid rgba(244, 63, 94, 0.5);
-      padding: 8px 20px; border-radius: 50px;
+      padding: 10px 24px; border-radius: 50px; transition: 0.3s;
     }
-    .final-warn { margin: 0; font-size: 12px; font-weight: 700; color: #fff; letter-spacing: 1px;}
+    .risk-badge-box:hover { background: rgba(244, 63, 94, 0.25); box-shadow: 0 0 20px rgba(244, 63, 94, 0.3); }
+    .final-warn { margin: 0; font-size: 13px; font-weight: 700; color: #fff; letter-spacing: 1px;}
 
     @keyframes alert-pulse-big {
       0% { transform: scale(1); opacity: 0.9; }
       50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 25px rgba(255, 200, 0, 1)); }
       100% { transform: scale(1); opacity: 0.9; }
     }
-
-    .hero-right { display: flex; flex-direction: column; }
-    .tvStage { position: relative; border-radius: 12px; overflow: hidden; height: 100%; min-height: 300px; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1); }
-    .track { display: flex; height: 100%; transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); }
-    .slide { min-width: 100%; height: 100%; }
-    .slide img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; transition: 0.4s; }
-    .slide:hover img { opacity: 1; transform: scale(1.02); }
-    .navBtn { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.2); color: #fff; cursor: pointer; z-index: 10; opacity: 0; transition: 0.2s; font-size: 20px;}
-    .tvStage:hover .navBtn { opacity: 1; }
-    .navPrev { left: 16px; } .navNext { right: 16px; }
-    .navBtn:hover { background: var(--accent-cyan); color: #000; border-color: var(--accent-cyan); }
 
 
     /* === 系统分割线 === */
@@ -347,8 +348,8 @@
 
     /* 移动端适配 */
     @media(max-width:900px){
-      .hero-unified, .terms-layout { grid-template-columns: 1fr; gap: 24px; padding: 24px; }
-      .tvStage { min-height: 220px; }
+      .hero-unified { grid-template-columns: 1fr; gap: 32px; padding: 24px; }
+      .terms-layout { grid-template-columns: 1fr; gap: 24px; }
       .btn-group { flex-direction: row; } 
       .wrap { padding: 16px 16px 80px; }
       .action-panel { height: auto; }
@@ -395,18 +396,18 @@
 
     <div class="glass-panel hero-unified reveal">
       <div class="hero-left">
-        <div>
-          <div class="tags"><span class="tag">GW Capital</span><span class="tag">Future Investment</span></div>
-          <h2 class="hero-title">智能托管跟单系统</h2>
-          <p>
-            技术方提供交易信号，由程序自动同步开平仓。
-            <br><br>
-            • <b>资金安全：</b>资金在您自己的交易账户，技术方不触碰本金。<br>
-            • <b>全自动执行：</b>毫秒级云端同步，无需您时刻盯盘。<br>
-            • <b>风控优先：</b>严格的策略风控体系，告别盲目交易。
-          </p>
-        </div>
-        
+        <div class="tags"><span class="tag">GW Capital</span><span class="tag">Future Investment</span></div>
+        <h2 class="hero-title">智能托管跟单系统</h2>
+        <p>
+          技术方提供交易信号，由程序自动同步开平仓。
+          <br><br>
+          • <b>资金安全：</b>资金在您自己的交易账户，技术方不触碰本金。<br>
+          • <b>全自动执行：</b>毫秒级云端同步，无需您时刻盯盘。<br>
+          • <b>风控优先：</b>严格的策略风控体系，告别盲目交易。
+        </p>
+      </div>
+
+      <div class="hero-right-risk">
         <div class="risk-banner">
           <div class="risk-icon-box">⚠️</div>
           <h3 class="risk-title">跟单交易属于高风险行为，存在亏损本金可能性</h3>
@@ -414,20 +415,6 @@
           <div class="risk-badge-box">
             <p class="final-warn">参与跟单默认理解认可接受所有风险</p>
           </div>
-        </div>
-      </div>
-
-      <div class="hero-right">
-        <div class="tvStage" id="tvStage">
-          <div class="track" id="track">
-            <div class="slide"><img src="images/g1.jpg" alt="1"></div>
-            <div class="slide"><img src="images/g2.jpg" alt="2"></div>
-            <div class="slide"><img src="images/g3.jpg" alt="3"></div>
-            <div class="slide"><img src="images/g4.jpg" alt="4"></div>
-            <div class="slide"><img src="images/g5.jpg" alt="5"></div>
-          </div>
-          <button class="navBtn navPrev" id="prevBtn">‹</button>
-          <button class="navBtn navNext" id="nextBtn">›</button>
         </div>
       </div>
     </div>
@@ -856,36 +843,6 @@
       const y = e.clientY;
       spotlight.style.background = `radial-gradient(circle 500px at ${x}px ${y}px, rgba(34, 211, 238, 0.08), transparent 80%)`;
     });
-
-    // === 首屏电视机轮播图逻辑 ===
-    const track = document.getElementById('track');
-    const slides = Array.from(track.children);
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    let index = 0; let timer = null; const AUTO_MS = 4000;
-
-    function go(i, manual=false){
-      if(slides.length === 0) return;
-      index = (i + slides.length) % slides.length;
-      track.style.transform = `translateX(-${index * 100}%)`;
-      if(manual) restartAuto();
-    }
-    prevBtn.onclick = () => go(index - 1, true);
-    nextBtn.onclick = () => go(index + 1, true);
-
-    function startAuto(){ stopAuto(); timer = setInterval(() => go(index+1), AUTO_MS); }
-    function stopAuto(){ clearInterval(timer); }
-    function restartAuto(){ stopAuto(); startAuto(); }
-    
-    let sx = 0; const tv = document.getElementById('tvStage');
-    tv.addEventListener('touchstart', e => { sx = e.touches[0].clientX; stopAuto(); }, {passive:true});
-    tv.addEventListener('touchend', e => {
-      let dx = e.changedTouches[0].clientX - sx;
-      if(Math.abs(dx)>40) dx<0 ? go(index+1,true) : go(index-1,true);
-      else startAuto();
-    });
-    tv.onmouseenter = stopAuto; tv.onmouseleave = startAuto;
-    startAuto();
 
     // 弹窗逻辑
     function openCryptoModal() { document.getElementById('cryptoModal').classList.add('show'); }
