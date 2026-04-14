@@ -30,7 +30,7 @@
     
     html { 
       scroll-behavior: smooth; 
-      background-color: var(--bg-dark); /* 🔥 彻底修复移动端上下滑动回弹时的白边问题 */
+      background-color: var(--bg-dark); /* 彻底修复移动端上下滑动回弹时的白边问题 */
     }
     body{ 
       margin:0; font-family:"Inter", "PingFang SC", sans-serif; color:var(--txt-main); 
@@ -109,78 +109,62 @@
       border-color: rgba(255,255,255,0.25);
     }
 
-    /* === 首屏重构 (左介绍，右长方形风险提示) === */
-    .hero-unified {
-        display: grid;
-        grid-template-columns: 1.2fr 1fr; 
-        gap: 40px;
-        padding: 40px;
-        margin-top: 40px;
-        align-items: center; /* 垂直居中对齐 */
-        background: radial-gradient(circle at top left, rgba(34, 211, 238, 0.12), transparent 60%), var(--bg-glass);
+    /* === 🔥 高级感首屏重排 (Premium Hero) === */
+    .premium-hero {
+      display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; padding: 56px;
+      margin-top: 40px; background: linear-gradient(145deg, rgba(20, 25, 35, 0.7), rgba(10, 12, 18, 0.8));
+      border: 1px solid var(--border-light); border-radius: 32px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.1);
     }
     
-    .hero-left { display: flex; flex-direction: column; justify-content: center; }
+    /* 左侧：专业文案与核心卖点 */
+    .ph-eyebrow { display: flex; align-items: center; gap: 10px; color: var(--accent-cyan); font-size: 13px; font-weight: 800; letter-spacing: 1px; margin-bottom: 24px; text-transform: uppercase; }
+    .pulse-dot { width: 8px; height: 8px; background: var(--accent-cyan); border-radius: 50%; box-shadow: 0 0 10px var(--accent-cyan); animation: pulse-cyan 2s infinite; }
+    @keyframes pulse-cyan { 0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(34, 211, 238, 0); } 100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); } }
     
-    .tags{ display:flex; gap:8px; margin-bottom:20px; }
-    .tag{ 
-      padding:6px 12px; background: rgba(34, 211, 238, 0.1); 
-      color: var(--accent-cyan); border-radius: 6px; 
-      font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
-      border: 1px solid rgba(34, 211, 238, 0.3);
-    }
-    
-    .hero-title { 
-      font-size: clamp(32px, 4vw, 46px); 
-      font-weight: 900; 
-      margin-bottom: 24px; 
-      line-height: 1.1; 
-      letter-spacing: -1px; 
-      background: linear-gradient(135deg, #fff 30%, var(--accent-cyan) 100%); 
-      -webkit-background-clip: text; color: transparent;
-    }
-    
-    .hero-left p { color: var(--txt-muted); line-height: 1.8; font-size: 15px; margin: 0; }
-    .hero-left p b { color: var(--txt-main); font-weight: 600; }
+    .ph-title { font-size: clamp(38px, 4.5vw, 56px); font-weight: 900; margin: 0 0 24px; line-height: 1.1; letter-spacing: -1.5px; background: linear-gradient(135deg, #fff 30%, var(--accent-cyan) 100%); -webkit-background-clip: text; color: transparent; }
+    .ph-desc { font-size: 16px; color: #cbd5e1; line-height: 1.8; margin: 0 0 40px; font-weight: 400; }
 
-    /* 动态长方形版风险提示 */
-    .hero-right-risk {
-      display: flex; align-items: center; justify-content: center; height: 100%;
-    }
-    .risk-banner {
-      background: linear-gradient(180deg, rgba(244, 63, 94, 0.1) 0%, rgba(20, 25, 35, 0.6) 100%);
-      border: 1px solid rgba(244, 63, 94, 0.3); 
-      border-radius: 16px;
-      padding: 40px 30px;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; position: relative; overflow: hidden; width: 100%;
-      box-shadow: inset 0 0 20px rgba(244, 63, 94, 0.05), 0 10px 40px rgba(0,0,0,0.5);
-    }
-    .risk-banner::before {
-      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-      width: 60%; height: 2px; 
-      background: linear-gradient(90deg, transparent, rgba(244, 63, 94, 1), transparent);
-      box-shadow: 0 0 20px rgba(244, 63, 94, 0.8);
-    }
-    .risk-icon-box {
-      font-size: 52px; margin-bottom: 16px; line-height: 1;
-      filter: drop-shadow(0 0 20px rgba(244, 63, 94, 0.8));
-      animation: alert-pulse-big 1.5s infinite ease-in-out;
-    }
-    .risk-title { margin: 0 0 12px; font-size: 18px; font-weight: 800; color: #fff; letter-spacing: 0.5px; }
-    .risk-desc { margin: 0 0 20px; font-size: 13px; color: #feaebc; line-height: 1.6; }
+    .ph-features { display: flex; flex-direction: column; gap: 28px; }
+    .ph-feat-card { display: flex; gap: 20px; align-items: flex-start; }
+    .ph-feat-icon { font-size: 24px; background: rgba(255,255,255,0.03); width: 54px; height: 54px; display: grid; place-items: center; border-radius: 14px; border: 1px solid rgba(255,255,255,0.08); flex-shrink: 0; box-shadow: inset 0 2px 10px rgba(255,255,255,0.05); }
+    .ph-feat-text h4 { margin: 0 0 8px; font-size: 17px; color: #fff; font-weight: 800; letter-spacing: 0.5px;}
+    .ph-feat-text p { margin: 0; font-size: 14px; color: var(--txt-muted); line-height: 1.6; }
 
-    .risk-badge-box {
-      display: inline-block; background: rgba(244, 63, 94, 0.15); border: 1px solid rgba(244, 63, 94, 0.5);
-      padding: 10px 24px; border-radius: 50px; transition: 0.3s;
+    /* 右侧：机构级合规风控提示卡片 */
+    .ph-right { display: flex; align-items: stretch; justify-content: center; }
+    .ph-risk-card {
+      background: linear-gradient(180deg, rgba(30, 20, 25, 0.6) 0%, rgba(15, 10, 15, 0.9) 100%);
+      border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 24px; width: 100%;
+      display: flex; flex-direction: column; overflow: hidden; position: relative;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 2px 20px rgba(244, 63, 94, 0.08);
     }
-    .risk-badge-box:hover { background: rgba(244, 63, 94, 0.25); box-shadow: 0 0 20px rgba(244, 63, 94, 0.3); }
-    .final-warn { margin: 0; font-size: 13px; font-weight: 700; color: #fff; letter-spacing: 1px;}
+    .ph-risk-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, transparent, var(--accent-red), transparent); box-shadow: 0 0 20px var(--accent-red); }
+    
+    .risk-header { background: rgba(244, 63, 94, 0.12); padding: 20px 28px; display: flex; align-items: center; gap: 12px; color: var(--accent-red); font-weight: 900; font-size: 15px; letter-spacing: 1.5px; border-bottom: 1px solid rgba(244, 63, 94, 0.2); }
+    .risk-svg { width: 22px; height: 22px; filter: drop-shadow(0 0 5px rgba(244, 63, 94, 0.8)); }
+    
+    .risk-body { padding: 40px 28px; flex: 1; display: flex; flex-direction: column; justify-content: center;}
+    .risk-body h3 { font-size: 22px; color: #fff; margin: 0 0 16px; line-height: 1.4; font-weight: 800;}
+    .risk-body p { font-size: 14px; color: #cbd5e1; margin: 0; line-height: 1.8; }
+    .risk-body b { color: #fff; font-weight: 700;}
+    .risk-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(244, 63, 94, 0.3), transparent); margin: 28px 0; }
+    .sub-warn { font-size: 13px !important; color: #94a3b8 !important; }
+    
+    .risk-footer { padding: 24px 28px; background: rgba(0,0,0,0.3); border-top: 1px solid rgba(255,255,255,0.03); }
+    .risk-btn-glow {
+      background: rgba(244, 63, 94, 0.1); border: 1px dashed rgba(244, 63, 94, 0.5);
+      color: #fff; font-size: 14px; font-weight: 800; padding: 16px; text-align: center; border-radius: 12px;
+      text-shadow: 0 0 10px rgba(244, 63, 94, 0.5); transition: 0.3s;
+    }
+    .risk-btn-glow:hover { background: rgba(244, 63, 94, 0.25); border-style: solid; box-shadow: 0 0 25px rgba(244, 63, 94, 0.4); }
 
-    @keyframes alert-pulse-big {
-      0% { transform: scale(1); opacity: 0.9; }
-      50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 25px rgba(255, 200, 0, 1)); }
-      100% { transform: scale(1); opacity: 0.9; }
+    @media(max-width: 950px) {
+      .premium-hero { grid-template-columns: 1fr; padding: 24px; gap: 40px; border-radius: 20px;}
+      .ph-title { font-size: 32px; }
+      .ph-desc { font-size: 14px; margin-bottom: 32px;}
+      .risk-body { padding: 24px; }
+      .risk-body h3 { font-size: 18px; }
     }
 
 
@@ -226,7 +210,7 @@
     .head-sys4-center { background-image: linear-gradient(90deg, #fff, var(--accent-gold)); }
     .head-sys4 { border-left-color: var(--accent-gold); }
 
-    /* === 图片滚动 Marquee === */
+    /* === 🔥 图片滚动 Marquee 及其交互特效 === */
     .marquee-wrap {
       position: relative; margin-bottom: 40px; padding: 10px 0; overflow: hidden;
       mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
@@ -237,12 +221,22 @@
     
     .ea-shot {
       width: 320px; height: 180px; border-radius: 12px;
-      overflow: hidden; flex-shrink: 0;
+      overflow: hidden; flex-shrink: 0; position: relative; cursor: pointer;
       border: 1px solid var(--border-light); background: rgba(255,255,255,0.02);
       transition: transform 0.3s;
     }
-    .ea-shot:hover { transform: scale(1.02); border-color: rgba(255,255,255,0.4); }
     .ea-shot img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9); }
+    
+    /* 悬浮放大提示层 */
+    .ea-shot::after {
+        content: "🔍 点击可放大查看";
+        position: absolute; inset: 0; background: rgba(0, 0, 0, 0.7);
+        color: #fff; font-size: 15px; font-weight: 800; display: flex;
+        align-items: center; justify-content: center; opacity: 0;
+        transition: opacity 0.3s ease; backdrop-filter: blur(2px); z-index: 2;
+    }
+    .ea-shot:hover { transform: scale(1.03); border-color: rgba(255,255,255,0.4); box-shadow: 0 10px 25px rgba(0,0,0,0.5);}
+    .ea-shot:hover::after { opacity: 1; }
     
     @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
@@ -349,17 +343,14 @@
 
     .footer { margin-top: 80px; padding-top: 30px; border-top: 1px solid var(--border-light); text-align: center; color: rgba(255,255,255,0.2); font-size: 12px; line-height: 1.6; }
 
-    /* 移动端适配 */
     @media(max-width:900px){
-      .hero-unified { grid-template-columns: 1fr; gap: 32px; padding: 24px; }
       .terms-layout { grid-template-columns: 1fr; gap: 24px; }
       .btn-group { flex-direction: row; } 
       .wrap { padding: 16px 16px 80px; }
       .action-panel { height: auto; }
-      .hero-title { font-size: 28px; white-space: normal;}
     }
 
-    /* 弹窗 */
+    /* === 弹窗 (系统挂载) === */
     .modal-wrap { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 999; display: none; align-items: center; justify-content: center; opacity: 0; transition: .3s; }
     .modal-wrap.show { display: flex; opacity: 1; }
     .modal-panel { background: #15171e; border: 1px solid var(--border-light); border-radius: 24px; padding: 36px; width: 90%; max-width: 460px; text-align: center; box-shadow: 0 30px 80px rgba(0,0,0,0.8); transform: scale(0.95); transition: transform 0.3s; }
@@ -374,6 +365,25 @@
     .mb-3:hover { color: #fff; text-decoration: underline; }
     .close-icon { position: absolute; top: 20px; right: 20px; width: 32px; height: 32px; background: rgba(255,255,255,0.05); border-radius: 50%; display: grid; place-items: center; cursor: pointer; color: #aaa; transition:.2s; }
     .close-icon:hover { background: rgba(255,255,255,0.15); color: #fff; }
+
+    /* === 🔥 图片查看 Lightbox 弹窗 === */
+    .lightbox-modal {
+        position: fixed; inset: 0; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px);
+        z-index: 9999; display: flex; align-items: center; justify-content: center;
+        opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .lightbox-modal.active { opacity: 1; pointer-events: auto; }
+    .lightbox-modal img {
+        max-width: 90vw; max-height: 90vh; border-radius: 16px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.8); border: 2px solid var(--border-light);
+        transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .lightbox-modal.active img { transform: scale(1); }
+    .lightbox-close {
+        position: absolute; top: 20px; right: 30px; color: rgba(255,255,255,0.6);
+        font-size: 40px; cursor: pointer; transition: 0.3s; font-weight: 300;
+    }
+    .lightbox-close:hover { color: #fff; transform: rotate(90deg); }
 
     /* === 🌊 滚动渐显动画 === */
     .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); will-change: opacity, transform; }
@@ -397,26 +407,51 @@
       <a href="home.html" class="back-btn">← 返回首页</a>
     </div>
 
-    <div class="glass-panel hero-unified reveal">
-      <div class="hero-left">
-        <div class="tags"><span class="tag">GW Capital</span><span class="tag">Future Investment</span></div>
-        <h2 class="hero-title">智能托管跟单系统</h2>
-        <p>
-          技术方提供交易信号，由程序自动同步开平仓。
-          <br><br>
-          • <b>资金安全：</b>资金在您自己的交易账户，技术方不触碰本金。<br>
-          • <b>全自动执行：</b>毫秒级云端同步，无需您时刻盯盘。<br>
-          • <b>风控优先：</b>严格的策略风控体系，告别盲目交易。
-        </p>
+    <div class="premium-hero reveal">
+      <div class="ph-left">
+        <div class="ph-eyebrow"><span class="pulse-dot"></span> GW CAPITAL · 核心技术引擎</div>
+        <h1 class="ph-title">智能托管跟单系统</h1>
+        <p class="ph-desc">依托云端服务器与机构级风控算法，将专业交易员的毫秒级操作精准镜像至您的私人账户。真正实现解放双手与资产增值的双重目标。</p>
+
+        <div class="ph-features">
+          <div class="ph-feat-card">
+            <div class="ph-feat-icon">🛡️</div>
+            <div class="ph-feat-text">
+              <h4>绝对本金安全</h4>
+              <p>资金存放于您个人的专属账户中，技术团队仅提供交易信号映射，无任何权限触碰或划转您的本金，100%掌控权归您。</p>
+            </div>
+          </div>
+          <div class="ph-feat-card">
+            <div class="ph-feat-icon">⚡️</div>
+            <div class="ph-feat-text">
+              <h4>毫秒云端同步</h4>
+              <p>采用低延迟跨国专线服务器，主账户与跟单账户之间实现毫秒级开平仓同步，拒绝明显滑点，无需人工24小时枯燥盯盘。</p>
+            </div>
+          </div>
+          <div class="ph-feat-card">
+            <div class="ph-feat-icon">🎯</div>
+            <div class="ph-feat-text">
+              <h4>机构级系统风控</h4>
+              <p>抛弃传统散户的“扛单”与感性恶习。每一套量化系统均内置硬性止损与最大回撤阈值，以保住本金为第一要务，追求长线复利。</p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="hero-right-risk">
-        <div class="risk-banner">
-          <div class="risk-icon-box">⚠️</div>
-          <h3 class="risk-title">跟单交易属于高风险行为，存在亏损本金可能性</h3>
-          <p class="risk-desc">跟单不是余额宝理财，不承诺收益，一切盈亏自负，风险承受能力低者不建议参与。</p>
-          <div class="risk-badge-box">
-            <p class="final-warn">参与跟单默认理解认可接受所有风险</p>
+      <div class="ph-right">
+        <div class="ph-risk-card">
+          <div class="risk-header">
+            <svg class="risk-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4M12 17h.01"></path></svg>
+            <span>合规与高风险警示</span>
+          </div>
+          <div class="risk-body">
+            <h3>任何交易都存在亏损本金的可能性</h3>
+            <p>金融外汇与加密市场伴随着极高的杠杆与不可预知的波动性。<br><br><b>系统跟单绝非银行存款或保本理财</b>。我们不承诺、也绝对无法保证未来的固定收益。</p>
+            <div class="risk-divider"></div>
+            <p class="sub-warn">参与系统挂载，即表示您已充分评估自身财务状况，并自愿承担由市场不可抗力带来的全部盈亏结果。<b>风险承受能力较低者，请勿参与本业务！</b></p>
+          </div>
+          <div class="risk-footer">
+            <div class="risk-btn-glow">系统默认参与即认可所有风险</div>
           </div>
         </div>
       </div>
@@ -774,6 +809,11 @@
     </div>
   </div>
 
+  <div class="lightbox-modal" id="imageLightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightboxImg" src="" alt="Enlarged View">
+  </div>
+
   <div class="modal-wrap" id="cryptoModal">
     <div class="modal-panel">
       <div class="close-icon" onclick="closeModal('cryptoModal')">×</div>
@@ -847,12 +887,11 @@
       spotlight.style.background = `radial-gradient(circle 500px at ${x}px ${y}px, rgba(34, 211, 238, 0.08), transparent 80%)`;
     });
 
-    // 弹窗逻辑
+    // 弹窗逻辑 (业务流)
     function openCryptoModal() { document.getElementById('cryptoModal').classList.add('show'); }
     function openTMGMModal() { document.getElementById('tmgmModal').classList.add('show'); }
     function openExnessModal() { document.getElementById('exnessModal').classList.add('show'); }
     function openStockModal() { document.getElementById('stockModal').classList.add('show'); }
-    
     function closeModal(id) { document.getElementById(id).classList.remove('show'); }
 
     // 点击遮罩关闭
@@ -866,13 +905,29 @@
     function goPartner() { window.location.href = 'home.html#partner'; }
     function goContact() { window.location.href = 'home.html#contact'; }
 
-    // EXNESS 特殊跳转逻辑
     function handleExnessRedirect() {
         alert("Exness跟单需要单独链接，请联系小助理获取。");
         window.location.href = 'home.html#contact';
     }
 
-    // === 🔥 🌊 滚动渐显动画逻辑 (Intersection Observer) ===
+    // === 🔥 图片放大预览逻辑 (Lightbox) ===
+    function openLightbox(src) {
+        document.getElementById('lightboxImg').src = src;
+        document.getElementById('imageLightbox').classList.add('active');
+    }
+    function closeLightbox() {
+        document.getElementById('imageLightbox').classList.remove('active');
+    }
+    
+    // 给所有的 ea-shot (滚动图片卡片) 绑定点击事件
+    document.querySelectorAll('.ea-shot').forEach(shot => {
+        shot.addEventListener('click', function() {
+            const img = this.querySelector('img');
+            if(img) openLightbox(img.src);
+        });
+    });
+
+    // === 🌊 滚动渐显动画逻辑 (Intersection Observer) ===
     const observerOptions = {
         root: null,
         rootMargin: '0px',
