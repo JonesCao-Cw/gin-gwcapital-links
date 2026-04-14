@@ -109,7 +109,7 @@
       border-color: rgba(255,255,255,0.2);
     }
 
-    /* === 🔥 首屏横向排版重构 (同步Home主页样式) === */
+    /* === 🔥 首屏横向排版重构 === */
     .hero-unified {
         display: grid;
         grid-template-columns: 1.4fr 1fr; 
@@ -147,39 +147,67 @@
     .feat-text h4 { font-size: 14px; color: #ffffff; margin: 0 0 4px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
     .feat-text p { font-size: 12px; color: #94a3b8; line-height: 1.5; margin: 0; }
 
-    /* 右侧：高度等比的风险提示框 */
+    /* === 🔥 右侧：超大图标 + 动态变色警示框 === */
     .hero-right { display: flex; flex-direction: column; }
     
     .risk-box-unified {
-        flex: 1; /* 撑满高度 */
-        background: linear-gradient(180deg, rgba(244, 63, 94, 0.08) 0%, rgba(20, 25, 35, 0.6) 100%);
+        flex: 1; 
+        background: linear-gradient(180deg, rgba(244, 63, 94, 0.05) 0%, rgba(20, 25, 35, 0.6) 100%);
         border: 1px solid rgba(244, 63, 94, 0.3); 
-        border-radius: 12px; 
-        padding: 28px 24px; 
-        display: flex; flex-direction: column; justify-content: center; 
-        text-align: left; position: relative;
+        border-radius: 16px; 
+        padding: 40px 24px; 
+        display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 24px;
+        position: relative;
+        box-shadow: inset 0 0 20px rgba(244, 63, 94, 0.05);
     }
     
-    .risk-box-unified h3 { 
-        font-size: 18px; font-weight: 800; color: #fff; margin: 0 0 12px; 
-        display: flex; align-items: center; gap: 10px;
+    /* 超大动态图标 */
+    .giant-warning-icon {
+        font-size: 85px;
+        line-height: 1;
+        filter: drop-shadow(0 0 20px rgba(244, 63, 94, 0.8));
+        animation: giant-pulse 1.5s infinite alternate ease-in-out;
     }
-    .risk-box-unified p.main-risk { font-size: 13px; color: #feaebc; line-height: 1.6; margin: 0; }
-    
-    .risk-divider { height: 1px; background: linear-gradient(90deg, rgba(244, 63, 94, 0.3), transparent); margin: 16px 0; }
-    
-    .risk-box-unified p.sub-risk { font-size: 12px; color: #94a3b8; line-height: 1.6; margin: 0 0 20px; }
-    
-    .btn-risk {
-        margin-top: auto;
-        background: rgba(244, 63, 94, 0.1);
-        border: 1px dashed rgba(244, 63, 94, 0.4);
-        color: #fff; font-size: 12px; font-weight: 700;
-        text-align: center; padding: 12px; border-radius: 8px;
-        transition: 0.3s;
+    @keyframes giant-pulse {
+        0% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(244, 63, 94, 0.6)); }
+        100% { transform: scale(1.15); filter: drop-shadow(0 0 40px rgba(251, 191, 36, 1)); }
     }
-    .btn-risk:hover { background: rgba(244, 63, 94, 0.2); border-style: solid; }
 
+    /* 动态变色警示框 */
+    .dynamic-notice-box {
+        width: 100%;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: left;
+        animation: color-shift 2.5s infinite alternate ease-in-out;
+    }
+    .dynamic-notice-box p { margin: 0 0 12px; font-size: 13px; color: #cbd5e1; line-height: 1.6; }
+    .dynamic-notice-box p:last-child { margin: 0; }
+    .dynamic-notice-box b { color: var(--accent-gold); font-size: 15px;}
+    
+    @keyframes color-shift {
+        0% { 
+            background: rgba(244, 63, 94, 0.05); 
+            border: 2px solid rgba(244, 63, 94, 0.3); 
+            box-shadow: 0 0 15px rgba(244, 63, 94, 0.1);
+        }
+        100% { 
+            background: rgba(244, 63, 94, 0.25); 
+            border: 2px solid rgba(244, 63, 94, 0.8); 
+            box-shadow: 0 0 35px rgba(244, 63, 94, 0.6);
+        }
+    }
+
+    .alert-text-focus {
+        text-align: center;
+        display: block;
+        margin-top: 16px !important;
+        font-size: 14px !important;
+        color: #fff !important;
+        font-weight: 900;
+        background: linear-gradient(90deg, transparent, rgba(244, 63, 94, 0.8), transparent);
+        padding: 8px;
+    }
 
     /* === 系统分割线 === */
     .system-divider {
@@ -436,7 +464,7 @@
             <div class="feat-icon">🛡️</div>
             <div class="feat-text">
               <h4>绝对本金安全</h4>
-              <p>资金存放于您的专属账户，技术团队不触碰或划转本金。</p>
+              <p>资金存放于您的专属账户，技术团队不接触任何客户账户。</p>
             </div>
           </div>
           <div class="feat-row">
@@ -458,14 +486,15 @@
 
       <div class="hero-right">
         <div class="risk-box-unified">
-          <h3>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-red)" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4M12 17h.01"></path></svg>
-            高风险与合规警示
-          </h3>
-          <p class="main-risk">任何交易都存在亏损本金的可能性。金融外汇与加密市场伴随着极高的杠杆与不可预知的波动性。</p>
-          <div class="risk-divider"></div>
-          <p class="sub-risk">系统跟单绝非银行存款或保本理财。参与即表示您已充分评估自身财务状况，自愿承担盈亏。<b>风险承受力低者切勿参与本业务。</b></p>
-          <div class="btn-risk">系统默认参与即认可所有风险</div>
+          
+          <div class="giant-warning-icon">⚠️</div>
+          
+          <div class="dynamic-notice-box">
+            <p><b>高风险与合规警示：</b>任何交易都存在亏损本金的可能性。金融外汇与加密市场伴随着极高的杠杆与不可预知的波动性。</p>
+            <p>系统跟单绝非银行存款或保本理财。参与即表示您已充分评估自身财务状况，自愿承担盈亏结果。</p>
+            <p class="alert-text-focus">风险承受力低者切勿参与本业务！</p>
+          </div>
+          
         </div>
       </div>
     </div>
