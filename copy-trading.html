@@ -28,7 +28,10 @@
       --txt-muted: #94a3b8; 
     }
     
-    html { scroll-behavior: smooth; }
+    html { 
+      scroll-behavior: smooth; 
+      background-color: var(--bg-dark); /* 🔥 彻底修复移动端上下滑动回弹时的白边问题 */
+    }
     body{ 
       margin:0; font-family:"Inter", "PingFang SC", sans-serif; color:var(--txt-main); 
       background-color: transparent; /* 保证光影透出 */
