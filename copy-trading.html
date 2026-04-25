@@ -234,6 +234,19 @@
       margin-bottom: 20px;
     }
 
+    /* 文本包裹层，确保 Q 和 A 标签绝对对齐 */
+    .faq-q, .faq-a {
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .faq-q span, .faq-a span {
+      flex-shrink: 0; width: 24px; height: 24px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 6px; font-size: 13px; font-weight: 900;
+    }
+    .faq-q .text, .faq-a .text {
+      flex: 1; margin-top: 2px; /* 视觉微调，让文字与标签顶端对齐 */
+    }
+
     /* 固定特别版卡片样式 */
     .faq-fixed-card {
       flex: 0 0 380px; /* 固定宽度 */
@@ -248,10 +261,10 @@
       content: ''; position: absolute; inset: 0; border-radius: 16px;
       box-shadow: 0 0 15px rgba(251, 191, 36, 0.2); pointer-events: none;
     }
-    .faq-fixed-card .faq-q { font-size: 16px; color: #fff; }
+    .faq-fixed-card .faq-q { font-size: 16px; color: #fff; font-weight: 800; line-height: 1.5; }
     .faq-fixed-card .faq-q span { background: var(--accent-gold); color: #000; box-shadow: 0 0 15px rgba(251,191,36,0.5); }
+    .faq-fixed-card .faq-a { color: #e2e8f0; font-size: 13.5px; line-height: 1.6; }
     .faq-fixed-card .faq-a span { background: rgba(255,255,255,0.1); color: var(--accent-gold); border: 1px solid rgba(251,191,36,0.3); box-shadow: none;}
-    .faq-fixed-card .faq-a { color: #e2e8f0; font-size: 13.5px; }
 
     /* 滚动区域包裹层 */
     .faq-scrolling-area {
@@ -262,12 +275,12 @@
 
     .faq-marquee-track { 
       display: flex; gap: 24px; width: max-content; 
-      animation: scroll-left-faq 35s linear infinite; 
+      animation: scroll-left-faq 60s linear infinite; 
     }
     .faq-marquee-track:hover { animation-play-state: paused; }
     
     .faq-card {
-      width: 340px;
+      width: 360px;
       background: rgba(20, 25, 35, 0.65);
       border: 1px solid var(--border-light);
       border-radius: 16px; padding: 24px;
@@ -281,24 +294,10 @@
       box-shadow: 0 15px 35px rgba(0,0,0,0.4);
     }
     
-    .faq-q {
-      font-size: 15px; font-weight: 800; color: #fff; line-height: 1.5;
-      display: flex; align-items: flex-start; gap: 10px;
-    }
-    .faq-q span {
-      flex-shrink: 0; color: #000; background: var(--accent-cyan);
-      width: 22px; height: 22px; display: flex; align-items: center; justify-content: center;
-      border-radius: 6px; font-size: 13px; font-weight: 900; box-shadow: 0 0 10px rgba(34,211,238,0.4);
-    }
-    .faq-a {
-      font-size: 13px; color: var(--txt-muted); line-height: 1.6;
-      display: flex; align-items: flex-start; gap: 10px;
-    }
-    .faq-a span {
-      flex-shrink: 0; color: #000; background: #fff;
-      width: 22px; height: 22px; display: flex; align-items: center; justify-content: center;
-      border-radius: 6px; font-size: 13px; font-weight: 900;
-    }
+    .faq-card .faq-q { font-size: 15px; font-weight: 800; color: #fff; line-height: 1.5; }
+    .faq-card .faq-q span { background: var(--accent-cyan); color: #000; box-shadow: 0 0 10px rgba(34,211,238,0.4); }
+    .faq-card .faq-a { font-size: 13px; color: var(--txt-muted); line-height: 1.6; }
+    .faq-card .faq-a span { background: #fff; color: #000; }
     
     @keyframes scroll-left-faq { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
@@ -569,44 +568,158 @@
 
     <div class="faq-layout-container reveal">
       <div class="faq-fixed-card">
-         <div class="faq-q"><span>Q</span>内部权益群分享的策略单和跟单有什么区别？</div>
-         <div class="faq-a"><span>A</span>内部群的策略单属于即时分享，偏向于日内短线逻辑，需要您手动执行；而智能跟单属于独立运作的资管业务，全自动运行，两者互不绑定。</div>
+         <div class="faq-q">
+            <span>Q</span>
+            <div class="text">内部群策略单和跟单有什么区别？</div>
+         </div>
+         <div class="faq-a">
+            <span>A</span>
+            <div class="text">内部群的策略单属于即时分享，偏向于日内短线逻辑，需要您手动执行；而智能跟单属于独立运作的资管系统，全天候全自动运行，两者互不绑定，互不干预。</div>
+         </div>
       </div>
 
       <div class="faq-scrolling-area">
         <div class="faq-marquee-track">
           <div class="faq-card">
-             <div class="faq-q"><span>Q</span>什么是加密货币跟单？</div>
-             <div class="faq-a"><span>A</span>加密货币跟单是指通过云端技术，将专业交易员的实盘操作信号，毫秒级无延迟地同步到您的个人MT5账户中。您无需盯盘即可实现自动化交易。</div>
+             <div class="faq-q">
+                <span>Q</span>
+                <div class="text">系统的风控是如何设置的？</div>
+             </div>
+             <div class="faq-a">
+                <span>A</span>
+                <div class="text">您可以在个人的 TMGM 跟单后台进行自主设置，包括最大回撤限制、资金跟单比例等风控参数，完全由您掌控。</div>
+             </div>
           </div>
           <div class="faq-card">
-             <div class="faq-q"><span>Q</span>跟单期间我可以自己手动平仓或者做单吗？</div>
-             <div class="faq-a"><span>A</span>[请在此处补充您的回答]</div>
+             <div class="faq-q">
+                <span>Q</span>
+                <div class="text">什么是跟单？</div>
+             </div>
+             <div class="faq-a">
+                <span>A</span>
+                <div class="text">智能跟单是指您将个人账户绑定至 TMGM 官方跟单系统，我们将我们的交易账户作为信号源。通过官方系统的无缝对接，您的账户将自动、实时地复制我们的交易订单。</div>
+             </div>
           </div>
           <div class="faq-card">
-             <div class="faq-q"><span>Q</span>系统的最大回撤和风控是如何设置的？</div>
-             <div class="faq-a"><span>A</span>[请在此处补充您的回答]</div>
+             <div class="faq-q">
+                <span>Q</span>
+                <div class="text">跟单期间我可以开仓平仓吗？</div>
+             </div>
+             <div class="faq-a">
+                <span>A</span>
+                <div class="text">技术上可以，但强烈建议不要干预。手动操作会破坏系统的完整交易逻辑与风控。如需自主交易，建议在同名下开设新的子账户独立操作。</div>
+             </div>
           </div>
           <div class="faq-card">
-             <div class="faq-q"><span>Q</span>如果遇到极端单边行情，系统会如何处理？</div>
-             <div class="faq-a"><span>A</span>[请在此处补充您的回答]</div>
+             <div class="faq-q">
+                <span>Q</span>
+                <div class="text">什么是利润分成？</div>
+             </div>
+             <div class="faq-a">
+                <span>A</span>
+                <div class="text">利润分成即绩效费。每个自然月产生的净利润，会在次月第一个工作日由 TMGM 官方系统自动划拨 30% 作为技术方的分润，全程系统自动结算，无需客户手动操作。</div>
+             </div>
+          </div>
+          <div class="faq-card">
+             <div class="faq-q">
+                <span>Q</span>
+                <div class="text">个人交易的盈利也会被统计到跟单分润吗？</div>
+             </div>
+             <div class="faq-a">
+                <span>A</span>
+                <div class="text">不会。如果您在跟单账户中手动进行交易，这部分自主操作产生的利润不会被计入跟单系统的绩效统计中，因此不会被扣取额外分润。</div>
+             </div>
+          </div>
+          <div class="faq-card">
+             <div class="faq-q">
+                <span>Q</span>
+                <div class="text">我可以随时终止跟单吗？</div>
+             </div>
+             <div class="faq-a">
+                <span>A</span>
+                <div class="text">可以。资金始终掌握在您自己手中，您可以随时随地通过 TMGM 官方后台自由选择暂停或永久终止跟单。</div>
+             </div>
+          </div>
+          <div class="faq-card">
+             <div class="faq-q">
+                <span>Q</span>
+                <div class="text">为什么跟单后显示被扣款 1 美金？</div>
+             </div>
+             <div class="faq-a">
+                <span>A</span>
+                <div class="text">这是 TMGM 官方跟单系统（Signal）收取的基础订阅费，为系统的硬性规定。我们已将其设置为平台允许的最低限度，即每月仅需 1 美金。</div>
+             </div>
           </div>
           
           <div class="faq-card">
-             <div class="faq-q"><span>Q</span>什么是加密货币跟单？</div>
-             <div class="faq-a"><span>A</span>加密货币跟单是指通过云端技术，将专业交易员的实盘操作信号，毫秒级无延迟地同步到您的个人MT5账户中。您无需盯盘即可实现自动化交易。</div>
+             <div class="faq-q">
+                <span>Q</span>
+                <div class="text">系统的风控是如何设置的？</div>
+             </div>
+             <div class="faq-a">
+                <span>A</span>
+                <div class="text">您可以在个人的 TMGM 跟单后台进行自主设置，包括最大回撤限制、资金跟单比例等风控参数，完全由您掌控。</div>
+             </div>
           </div>
           <div class="faq-card">
-             <div class="faq-q"><span>Q</span>跟单期间我可以自己手动平仓或者做单吗？</div>
-             <div class="faq-a"><span>A</span>[请在此处补充您的回答]</div>
+             <div class="faq-q">
+                <span>Q</span>
+                <div class="text">什么是跟单？</div>
+             </div>
+             <div class="faq-a">
+                <span>A</span>
+                <div class="text">智能跟单是指您将个人账户绑定至 TMGM 官方跟单系统，我们将我们的交易账户作为信号源。通过官方系统的无缝对接，您的账户将自动、实时地复制我们的交易订单。</div>
+             </div>
           </div>
           <div class="faq-card">
-             <div class="faq-q"><span>Q</span>系统的最大回撤和风控是如何设置的？</div>
-             <div class="faq-a"><span>A</span>[请在此处补充您的回答]</div>
+             <div class="faq-q">
+                <span>Q</span>
+                <div class="text">跟单期间我可以开仓平仓吗？</div>
+             </div>
+             <div class="faq-a">
+                <span>A</span>
+                <div class="text">技术上可以，但强烈建议不要干预。手动操作会破坏系统的完整交易逻辑与风控。如需自主交易，建议在同名下开设新的子账户独立操作。</div>
+             </div>
           </div>
           <div class="faq-card">
-             <div class="faq-q"><span>Q</span>如果遇到极端单边行情，系统会如何处理？</div>
-             <div class="faq-a"><span>A</span>[请在此处补充您的回答]</div>
+             <div class="faq-q">
+                <span>Q</span>
+                <div class="text">什么是利润分成？</div>
+             </div>
+             <div class="faq-a">
+                <span>A</span>
+                <div class="text">利润分成即绩效费。每个自然月产生的净利润，会在次月第一个工作日由 TMGM 官方系统自动划拨 30% 作为技术方的分润，全程系统自动结算，无需客户手动操作。</div>
+             </div>
+          </div>
+          <div class="faq-card">
+             <div class="faq-q">
+                <span>Q</span>
+                <div class="text">个人交易的盈利也会被统计到跟单分润吗？</div>
+             </div>
+             <div class="faq-a">
+                <span>A</span>
+                <div class="text">不会。如果您在跟单账户中手动进行交易，这部分自主操作产生的利润不会被计入跟单系统的绩效统计中，因此不会被扣取额外分润。</div>
+             </div>
+          </div>
+          <div class="faq-card">
+             <div class="faq-q">
+                <span>Q</span>
+                <div class="text">我可以随时终止跟单吗？</div>
+             </div>
+             <div class="faq-a">
+                <span>A</span>
+                <div class="text">可以。资金始终掌握在您自己手中，您可以随时随地通过 TMGM 官方后台自由选择暂停或永久终止跟单。</div>
+             </div>
+          </div>
+          <div class="faq-card">
+             <div class="faq-q">
+                <span>Q</span>
+                <div class="text">为什么跟单后显示被扣款 1 美金？</div>
+             </div>
+             <div class="faq-a">
+                <span>A</span>
+                <div class="text">这是 TMGM 官方跟单系统（Signal）收取的基础订阅费，为系统的硬性规定。我们已将其设置为平台允许的最低限度，即每月仅需 1 美金。</div>
+             </div>
           </div>
         </div>
       </div>
