@@ -209,6 +209,67 @@
         padding: 8px;
     }
 
+    /* === 🔥 问答区域标题 === */
+    .faq-header {
+      text-align: center; margin: 60px 0 20px;
+    }
+    .faq-header h2 {
+      font-size: 20px; font-weight: 800; color: #fff; margin: 0 0 8px;
+    }
+    .faq-header p {
+      font-size: 13px; color: var(--txt-muted); margin: 0;
+    }
+
+    /* === 🔥 问答滚动卡片样式 (FAQ Marquee) === */
+    .faq-marquee-wrap {
+      position: relative; padding: 10px 0 20px; overflow: hidden;
+      mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    }
+    .faq-marquee-track { 
+      display: flex; gap: 24px; width: max-content; 
+      animation: scroll-left-faq 45s linear infinite; 
+    }
+    .faq-marquee-track:hover { animation-play-state: paused; }
+    
+    .faq-card {
+      width: 360px;
+      background: rgba(20, 25, 35, 0.65);
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      padding: 24px;
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      flex-shrink: 0;
+      display: flex; flex-direction: column; gap: 16px;
+      transition: transform 0.3s, border-color 0.3s;
+      cursor: pointer; /* 增加手型光标提示可点击 */
+    }
+    .faq-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(34, 211, 238, 0.4);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    }
+    .faq-q {
+      font-size: 15px; font-weight: 800; color: #fff; line-height: 1.5;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .faq-q span {
+      flex-shrink: 0; color: #000; background: var(--accent-cyan);
+      width: 22px; height: 22px; display: flex; align-items: center; justify-content: center;
+      border-radius: 6px; font-size: 13px; font-weight: 900; box-shadow: 0 0 10px rgba(34,211,238,0.4);
+    }
+    .faq-a {
+      font-size: 13px; color: var(--txt-muted); line-height: 1.6;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .faq-a span {
+      flex-shrink: 0; color: #000; background: var(--accent-gold);
+      width: 22px; height: 22px; display: flex; align-items: center; justify-content: center;
+      border-radius: 6px; font-size: 13px; font-weight: 900; box-shadow: 0 0 10px rgba(251,191,36,0.4);
+    }
+    
+    @keyframes scroll-left-faq { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
     /* === 系统分割线 === */
     .system-divider {
       display: flex; align-items: center; justify-content: center; gap: 20px;
@@ -346,55 +407,6 @@
     }
     .punish-text { color: #ff4d4f; font-weight: 700; font-size: 13px; line-height: 1.4; }
 
-    /* === 🔥 问答滚动卡片样式 (FAQ Marquee) === */
-    .faq-marquee-wrap {
-      position: relative; margin-top: 20px; padding: 20px 0; overflow: hidden;
-      mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-      -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-    }
-    .faq-marquee-track { 
-      display: flex; gap: 24px; width: max-content; 
-      animation: scroll-left-faq 45s linear infinite; 
-    }
-    .faq-marquee-track:hover { animation-play-state: paused; }
-    
-    .faq-card {
-      width: 360px;
-      background: rgba(20, 25, 35, 0.65);
-      border: 1px solid var(--border-light);
-      border-radius: 16px;
-      padding: 24px;
-      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-      flex-shrink: 0;
-      display: flex; flex-direction: column; gap: 16px;
-      transition: transform 0.3s, border-color 0.3s;
-    }
-    .faq-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(34, 211, 238, 0.4);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-    }
-    .faq-q {
-      font-size: 15px; font-weight: 800; color: #fff; line-height: 1.5;
-      display: flex; align-items: flex-start; gap: 10px;
-    }
-    .faq-q span {
-      flex-shrink: 0; color: #000; background: var(--accent-cyan);
-      width: 22px; height: 22px; display: flex; align-items: center; justify-content: center;
-      border-radius: 6px; font-size: 13px; font-weight: 900; box-shadow: 0 0 10px rgba(34,211,238,0.4);
-    }
-    .faq-a {
-      font-size: 13px; color: var(--txt-muted); line-height: 1.6;
-      display: flex; align-items: flex-start; gap: 10px;
-    }
-    .faq-a span {
-      flex-shrink: 0; color: #000; background: var(--accent-gold);
-      width: 22px; height: 22px; display: flex; align-items: center; justify-content: center;
-      border-radius: 6px; font-size: 13px; font-weight: 900; box-shadow: 0 0 10px rgba(251,191,36,0.4);
-    }
-    
-    @keyframes scroll-left-faq { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
     .footer { margin-top: 60px; padding-top: 30px; border-top: 1px solid var(--border-light); text-align: center; color: rgba(255,255,255,0.2); font-size: 12px; line-height: 1.6; }
 
     @media(max-width:900px){
@@ -438,9 +450,27 @@
     .lightbox-modal.active img { transform: scale(1); }
     .lightbox-close {
         position: absolute; top: 20px; right: 30px; color: rgba(255,255,255,0.6);
-        font-size: 40px; cursor: pointer; transition: 0.3s; font-weight: 300;
+        font-size: 40px; cursor: pointer; transition: 0.3s; font-weight: 300; z-index: 10000;
     }
     .lightbox-close:hover { color: #fff; transform: rotate(90deg); }
+
+    /* === 🔥 问答专用 Lightbox 弹窗 === */
+    .faq-modal-content {
+        background: rgba(20, 25, 35, 0.95);
+        border: 1px solid rgba(34, 211, 238, 0.4);
+        border-radius: 16px;
+        padding: 40px;
+        max-width: 600px;
+        width: 90%;
+        transform: scale(0.9);
+        transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.8), inset 0 1px 2px rgba(255,255,255,0.1);
+        color: #fff;
+        position: relative;
+    }
+    #faqLightbox.active .faq-modal-content { transform: scale(1); }
+    .faq-modal-content .faq-q { font-size: 18px; margin-bottom: 24px; color: #fff; }
+    .faq-modal-content .faq-a { font-size: 15px; line-height: 1.8; color: #cbd5e1; }
 
     /* === 🌊 滚动渐显动画 === */
     .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); will-change: opacity, transform; }
@@ -512,7 +542,56 @@
       </div>
     </div>
 
+    <div class="faq-header reveal">
+      <h2>💡 跟单常见问题</h2>
+      <p>点击下方卡片可放大阅读详细解答</p>
+    </div>
 
+    <div class="faq-marquee-wrap reveal">
+      <div class="faq-marquee-track">
+        <div class="faq-card">
+           <div class="faq-q"><span>Q</span>什么是加密货币跟单？</div>
+           <div class="faq-a"><span>A</span>加密货币跟单是指通过云端技术，将专业交易员的实盘操作信号，毫秒级无延迟地同步到您的个人MT5账户中。您无需盯盘即可实现自动化交易。</div>
+        </div>
+        <div class="faq-card">
+           <div class="faq-q"><span>Q</span>内部权益群分享的策略单和跟单有什么区别？</div>
+           <div class="faq-a"><span>A</span>内部群的策略单属于即时分享，偏向于日内短线逻辑，需要您手动执行；而智能跟单属于独立运作的资管业务，全自动运行，两者互不绑定。</div>
+        </div>
+        <div class="faq-card">
+           <div class="faq-q"><span>Q</span>跟单期间我可以自己手动平仓或者做单吗？</div>
+           <div class="faq-a"><span>A</span>[请在此处补充您的回答]</div>
+        </div>
+        <div class="faq-card">
+           <div class="faq-q"><span>Q</span>系统的最大回撤和风控是如何设置的？</div>
+           <div class="faq-a"><span>A</span>[请在此处补充您的回答]</div>
+        </div>
+        <div class="faq-card">
+           <div class="faq-q"><span>Q</span>如果遇到极端单边行情，系统会如何处理？</div>
+           <div class="faq-a"><span>A</span>[请在此处补充您的回答]</div>
+        </div>
+        
+        <div class="faq-card">
+           <div class="faq-q"><span>Q</span>什么是加密货币跟单？</div>
+           <div class="faq-a"><span>A</span>加密货币跟单是指通过云端技术，将专业交易员的实盘操作信号，毫秒级无延迟地同步到您的个人MT5账户中。您无需盯盘即可实现自动化交易。</div>
+        </div>
+        <div class="faq-card">
+           <div class="faq-q"><span>Q</span>内部权益群分享的策略单和跟单有什么区别？</div>
+           <div class="faq-a"><span>A</span>内部群的策略单属于即时分享，偏向于日内短线逻辑，需要您手动执行；而智能跟单属于独立运作的资管业务，全自动运行，两者互不绑定。</div>
+        </div>
+        <div class="faq-card">
+           <div class="faq-q"><span>Q</span>跟单期间我可以自己手动平仓或者做单吗？</div>
+           <div class="faq-a"><span>A</span>[请在此处补充您的回答]</div>
+        </div>
+        <div class="faq-card">
+           <div class="faq-q"><span>Q</span>系统的最大回撤和风控是如何设置的？</div>
+           <div class="faq-a"><span>A</span>[请在此处补充您的回答]</div>
+        </div>
+        <div class="faq-card">
+           <div class="faq-q"><span>Q</span>如果遇到极端单边行情，系统会如何处理？</div>
+           <div class="faq-a"><span>A</span>[请在此处补充您的回答]</div>
+        </div>
+      </div>
+    </div>
     <div class="system-divider reveal">
       <div class="line"></div>
       <div class="sys-badge" style="color:var(--accent-cyan)">SYSTEM 01</div>
@@ -610,65 +689,20 @@
       </div>
     </div>
 
-    <div class="system-divider reveal">
-      <div class="line"></div>
-      <div class="sys-badge" style="color:var(--txt-muted)">常见问题 Q&A</div>
-      <div class="line"></div>
-    </div>
-
-    <div class="faq-marquee-wrap reveal">
-      <div class="faq-marquee-track">
-        <div class="faq-card">
-           <div class="faq-q"><span>Q</span>什么是加密货币跟单？</div>
-           <div class="faq-a"><span>A</span>加密货币跟单是指通过云端技术，将专业交易员的实盘操作信号，毫秒级无延迟地同步到您的个人MT5账户中。您无需盯盘即可实现自动化交易。</div>
-        </div>
-        <div class="faq-card">
-           <div class="faq-q"><span>Q</span>内部权益群分享的策略单和跟单有什么区别？</div>
-           <div class="faq-a"><span>A</span>内部群的策略单属于即时分享，偏向于日内短线逻辑，需要您手动执行；而智能跟单属于独立运作的资管业务，全自动运行，两者互不绑定。</div>
-        </div>
-        <div class="faq-card">
-           <div class="faq-q"><span>Q</span>跟单期间我可以自己手动平仓或者做单吗？</div>
-           <div class="faq-a"><span>A</span>[请在此处补充您的回答]</div>
-        </div>
-        <div class="faq-card">
-           <div class="faq-q"><span>Q</span>系统的最大回撤和风控是如何设置的？</div>
-           <div class="faq-a"><span>A</span>[请在此处补充您的回答]</div>
-        </div>
-        <div class="faq-card">
-           <div class="faq-q"><span>Q</span>如果遇到极端单边行情，系统会如何处理？</div>
-           <div class="faq-a"><span>A</span>[请在此处补充您的回答]</div>
-        </div>
-        
-        <div class="faq-card">
-           <div class="faq-q"><span>Q</span>什么是加密货币跟单？</div>
-           <div class="faq-a"><span>A</span>加密货币跟单是指通过云端技术，将专业交易员的实盘操作信号，毫秒级无延迟地同步到您的个人MT5账户中。您无需盯盘即可实现自动化交易。</div>
-        </div>
-        <div class="faq-card">
-           <div class="faq-q"><span>Q</span>内部权益群分享的策略单和跟单有什么区别？</div>
-           <div class="faq-a"><span>A</span>内部群的策略单属于即时分享，偏向于日内短线逻辑，需要您手动执行；而智能跟单属于独立运作的资管业务，全自动运行，两者互不绑定。</div>
-        </div>
-        <div class="faq-card">
-           <div class="faq-q"><span>Q</span>跟单期间我可以自己手动平仓或者做单吗？</div>
-           <div class="faq-a"><span>A</span>[请在此处补充您的回答]</div>
-        </div>
-        <div class="faq-card">
-           <div class="faq-q"><span>Q</span>系统的最大回撤和风控是如何设置的？</div>
-           <div class="faq-a"><span>A</span>[请在此处补充您的回答]</div>
-        </div>
-        <div class="faq-card">
-           <div class="faq-q"><span>Q</span>如果遇到极端单边行情，系统会如何处理？</div>
-           <div class="faq-a"><span>A</span>[请在此处补充您的回答]</div>
-        </div>
-      </div>
-    </div>
     <div class="footer">
       免责声明：杠杆交易可能带来高回报，但风险同样很大，请不要使用承受不起的资金参与。过往收益数据仅供参考，不代表未来结果。技术方不对任何最终亏损承担责任。
     </div>
   </div>
 
-  <div class="lightbox-modal" id="imageLightbox" onclick="closeLightbox()">
-    <span class="lightbox-close">&times;</span>
-    <img id="lightboxImg" src="" alt="Enlarged View">
+  <div class="lightbox-modal" id="imageLightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+    <img id="lightboxImg" src="" alt="Enlarged View" onclick="event.stopPropagation()">
+  </div>
+
+  <div class="lightbox-modal" id="faqLightbox" onclick="closeFaqLightbox(event)">
+    <span class="lightbox-close" onclick="closeFaqLightbox(event)">&times;</span>
+    <div class="faq-modal-content" id="faqLightboxContent" onclick="event.stopPropagation()">
+        </div>
   </div>
 
   <div class="modal-wrap" id="cryptoModal">
@@ -700,7 +734,7 @@
     function openCryptoModal() { document.getElementById('cryptoModal').classList.add('show'); }
     function closeModal(id) { document.getElementById(id).classList.remove('show'); }
 
-    // 点击遮罩关闭
+    // 点击遮罩关闭 (业务弹窗)
     window.onclick = function(e) {
       if (e.target.classList.contains('modal-wrap')) {
         e.target.classList.remove('show');
@@ -716,7 +750,7 @@
         document.getElementById('lightboxImg').src = src;
         document.getElementById('imageLightbox').classList.add('active');
     }
-    function closeLightbox() {
+    function closeLightbox(e) {
         document.getElementById('imageLightbox').classList.remove('active');
     }
     
@@ -725,6 +759,22 @@
         shot.addEventListener('click', function() {
             const img = this.querySelector('img');
             if(img) openLightbox(img.src);
+        });
+    });
+
+    // === 🔥 问答卡片放大预览逻辑 (FAQ Lightbox) ===
+    function openFaqLightbox(cardHtml) {
+        document.getElementById('faqLightboxContent').innerHTML = cardHtml;
+        document.getElementById('faqLightbox').classList.add('active');
+    }
+    function closeFaqLightbox(e) {
+        document.getElementById('faqLightbox').classList.remove('active');
+    }
+
+    // 给所有的 faq-card 绑定点击事件
+    document.querySelectorAll('.faq-card').forEach(card => {
+        card.addEventListener('click', function() {
+            openFaqLightbox(this.innerHTML);
         });
     });
 
