@@ -328,11 +328,35 @@
     .comp-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px dashed var(--glass-border); padding-bottom: 12px;}
     .comp-head h4 { font-size: 16px; margin: 0; display: flex; align-items: center; gap: 8px;}
     .comp-tag { font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 700; border: 1px solid currentColor;}
+    
+    .comp-body-flex { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .comp-body-flex .comp-list { flex: 1; }
+    
     .comp-list { list-style: none; padding: 0; margin: 0; }
     .comp-list li { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; display: flex; align-items: flex-start; gap: 8px; line-height: 1.5; }
     .comp-list li:last-child { margin-bottom: 0; }
     .comp-icon-free { color: var(--text-muted); font-weight: 900; }
     .comp-icon-vip { color: var(--accent-purple); font-size: 14px; line-height: 1;}
+
+    /* 新增内部会员群专用二维码样式 */
+    .comp-qr-unified {
+        width: 110px; height: 110px;
+        flex-shrink: 0;
+        background: rgba(168, 85, 247, 0.05);
+        border: 1px dashed rgba(168, 85, 247, 0.4);
+        border-radius: 10px;
+        display: flex; align-items: center; justify-content: center; padding: 6px;
+        position: relative;
+    }
+    .comp-qr-unified img {
+        width: 100%; height: 100%;
+        border-radius: 6px; border: 2px solid var(--accent-purple);
+        box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+        transition: 0.3s; object-fit: cover;
+    }
+    .comp-qr-unified:hover img {
+        transform: scale(1.08); box-shadow: 0 0 25px rgba(168, 85, 247, 0.6);
+    }
 
     /* === 助理与杂项卡片 + 悬浮小按钮 (支持纯CSS布局) === */
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -451,6 +475,8 @@
       
       .compare-grid { grid-template-columns: 1fr; }
       .comp-card { padding: 16px; }
+      .comp-body-flex { flex-direction: column; align-items: flex-start; }
+      .comp-qr-unified { align-self: center; margin-top: 16px; }
 
       .tut-row { flex-direction: column; align-items: flex-start; gap: 12px; padding: 16px; }
       .tut-actions { width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
@@ -693,13 +719,18 @@
           <h4 style="color:var(--accent-purple)"><span style="background:var(--accent-purple); color:#fff; padding:2px 6px; border-radius:4px; font-size:12px;">02</span> 内部会员群</h4>
           <span class="comp-tag" style="color:var(--accent-purple); border-color:var(--accent-purple)">核心实战</span>
         </div>
-        <ul class="comp-list">
-          <li><span class="comp-icon-vip">★</span> <span style="color:#fff">实时进出场交易观点推送</span></li>
-          <li><span class="comp-icon-vip">★</span> 自用指标工具、深度研报共享</li>
-          <li><span class="comp-icon-vip">★</span> 杰明自研Tradingview指标共享</li>
-          <li><span class="comp-icon-vip">★</span> 付费课程大额折扣（课程制作中，持续会更新）</li>
-          <li><span class="comp-icon-vip">★</span> 专属群内答疑，每日不定期《亚欧美》盘群内视频图文分析</li>
-        </ul>
+        <div class="comp-body-flex">
+          <ul class="comp-list">
+            <li><span class="comp-icon-vip">★</span> <span style="color:#fff">实时进出场交易观点推送</span></li>
+            <li><span class="comp-icon-vip">★</span> 自用指标工具、深度研报共享</li>
+            <li><span class="comp-icon-vip">★</span> 杰明自研Tradingview指标共享</li>
+            <li><span class="comp-icon-vip">★</span> 付费课程大额折扣（课程制作中，持续会更新）</li>
+            <li><span class="comp-icon-vip">★</span> 专属群内答疑，每日不定期《亚欧美》盘群内视频图文分析</li>
+          </ul>
+          <div class="comp-qr-unified">
+            <img src="images/jidi.png" alt="加入基地">
+          </div>
+        </div>
       </div>
     </div>
 
