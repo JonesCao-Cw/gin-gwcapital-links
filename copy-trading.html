@@ -238,18 +238,6 @@
     /* System 1: Cyan */
     .head-sys1-center { background-image: linear-gradient(90deg, #fff, var(--accent-cyan)); }
     .head-sys1 { border-left-color: var(--accent-cyan); }
-    
-    /* System 2: Purple */
-    .head-sys2-center { background-image: linear-gradient(90deg, #fff, var(--accent-purple)); }
-    .head-sys2 { border-left-color: var(--accent-purple); }
-    
-    /* System 3: Blue */
-    .head-sys3-center { background-image: linear-gradient(90deg, #fff, var(--accent-blue)); }
-    .head-sys3 { border-left-color: var(--accent-blue); }
-    
-    /* System 4: Gold */
-    .head-sys4-center { background-image: linear-gradient(90deg, #fff, var(--accent-gold)); }
-    .head-sys4 { border-left-color: var(--accent-gold); }
 
     /* === 🔥 图片滚动 Marquee 及其交互特效 === */
     .marquee-wrap {
@@ -299,9 +287,6 @@
     
     /* 编号颜色区分 */
     .idx-cyan { color: var(--accent-cyan); border-color: rgba(34, 211, 238, 0.3); background: rgba(34, 211, 238, 0.1); }
-    .idx-purp { color: var(--accent-purple); border-color: rgba(168, 85, 247, 0.3); background: rgba(168, 85, 247, 0.1); }
-    .idx-blue { color: var(--accent-blue); border-color: rgba(59, 130, 246, 0.3); background: rgba(59, 130, 246, 0.1); }
-    .idx-gold { color: var(--accent-gold); border-color: rgba(251, 191, 36, 0.3); background: rgba(251, 191, 36, 0.1); }
 
     .step-txt h4 { margin: 0 0 4px; font-size: 15px; color: #fff; font-weight: 700; }
     .step-txt p { margin: 0; font-size: 13px; color: var(--txt-muted); line-height: 1.5; }
@@ -319,9 +304,6 @@
       box-shadow: 0 20px 50px -10px rgba(0,0,0,0.5);
     }
     .panel-sys1 { border: 1px solid rgba(34, 211, 238, 0.3); }
-    .panel-sys2 { border: 1px solid rgba(168, 85, 247, 0.3); } 
-    .panel-sys3 { border: 1px solid rgba(59, 130, 246, 0.3); } 
-    .panel-sys4 { border: 1px solid rgba(251, 191, 36, 0.3); }
     
     .profit-title { font-size: 12px; font-weight: 700; letter-spacing: 2px; opacity: 0.9; margin-bottom: 4px; }
     .profit-val { font-size: 56px; font-weight: 900; color: #fff; margin: 12px 0; letter-spacing: -2px; text-shadow: 0 0 30px rgba(255,255,255,0.1); }
@@ -339,24 +321,6 @@
     .btn-sys1-l:hover { background: var(--accent-cyan); color: #000; box-shadow: 0 0 20px rgba(34, 211, 238, 0.3); }
     .btn-sys1-r { background: linear-gradient(90deg, #06b6d4, #22d3ee); color: #fff; border: 1px solid rgba(34,211,238,0.3); }
     .btn-sys1-r:hover { filter: brightness(1.1); box-shadow: 0 0 25px rgba(34, 211, 238, 0.5); transform: translateY(-2px); }
-
-    /* Sys2 按钮: Purple */
-    .btn-sys2-l { background: rgba(168, 85, 247, 0.08); color: var(--accent-purple); border: 1px solid rgba(168, 85, 247, 0.2); }
-    .btn-sys2-l:hover { background: var(--accent-purple); color: #fff; box-shadow: 0 0 20px rgba(168, 85, 247, 0.3); }
-    .btn-sys2-r { background: linear-gradient(90deg, #9333ea, #a855f7); color: #fff; border: 1px solid rgba(168, 85, 247, 0.3); }
-    .btn-sys2-r:hover { filter: brightness(1.1); box-shadow: 0 0 25px rgba(168, 85, 247, 0.5); transform: translateY(-2px); }
-
-    /* Sys3 按钮: Blue */
-    .btn-sys3-l { background: rgba(59, 130, 246, 0.08); color: var(--accent-blue); border: 1px solid rgba(59, 130, 246, 0.2); }
-    .btn-sys3-l:hover { background: var(--accent-blue); color: #fff; box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
-    .btn-sys3-r { background: linear-gradient(90deg, #2563eb, #3b82f6); color: #fff; border: 1px solid rgba(59, 130, 246, 0.3); }
-    .btn-sys3-r:hover { filter: brightness(1.1); box-shadow: 0 0 25px rgba(59, 130, 246, 0.5); transform: translateY(-2px); }
-
-    /* Sys4 按钮: Gold */
-    .btn-sys4-l { background: rgba(251, 191, 36, 0.08); color: var(--accent-gold); border: 1px solid rgba(251, 191, 36, 0.2); }
-    .btn-sys4-l:hover { background: var(--accent-gold); color: #000; box-shadow: 0 0 20px rgba(251, 191, 36, 0.3); }
-    .btn-sys4-r { background: linear-gradient(90deg, #d97706, #fbbf24); color: #fff; border: 1px solid rgba(251, 191, 36, 0.3); }
-    .btn-sys4-r:hover { filter: brightness(1.1); box-shadow: 0 0 25px rgba(251, 191, 36, 0.5); transform: translateY(-2px); }
 
 
     /* === 🔴 统一的红色警示框 === */
@@ -382,7 +346,56 @@
     }
     .punish-text { color: #ff4d4f; font-weight: 700; font-size: 13px; line-height: 1.4; }
 
-    .footer { margin-top: 80px; padding-top: 30px; border-top: 1px solid var(--border-light); text-align: center; color: rgba(255,255,255,0.2); font-size: 12px; line-height: 1.6; }
+    /* === 🔥 问答滚动卡片样式 (FAQ Marquee) === */
+    .faq-marquee-wrap {
+      position: relative; margin-top: 20px; padding: 20px 0; overflow: hidden;
+      mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    }
+    .faq-marquee-track { 
+      display: flex; gap: 24px; width: max-content; 
+      animation: scroll-left-faq 45s linear infinite; 
+    }
+    .faq-marquee-track:hover { animation-play-state: paused; }
+    
+    .faq-card {
+      width: 360px;
+      background: rgba(20, 25, 35, 0.65);
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      padding: 24px;
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      flex-shrink: 0;
+      display: flex; flex-direction: column; gap: 16px;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .faq-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(34, 211, 238, 0.4);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    }
+    .faq-q {
+      font-size: 15px; font-weight: 800; color: #fff; line-height: 1.5;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .faq-q span {
+      flex-shrink: 0; color: #000; background: var(--accent-cyan);
+      width: 22px; height: 22px; display: flex; align-items: center; justify-content: center;
+      border-radius: 6px; font-size: 13px; font-weight: 900; box-shadow: 0 0 10px rgba(34,211,238,0.4);
+    }
+    .faq-a {
+      font-size: 13px; color: var(--txt-muted); line-height: 1.6;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .faq-a span {
+      flex-shrink: 0; color: #000; background: var(--accent-gold);
+      width: 22px; height: 22px; display: flex; align-items: center; justify-content: center;
+      border-radius: 6px; font-size: 13px; font-weight: 900; box-shadow: 0 0 10px rgba(251,191,36,0.4);
+    }
+    
+    @keyframes scroll-left-faq { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    .footer { margin-top: 60px; padding-top: 30px; border-top: 1px solid var(--border-light); text-align: center; color: rgba(255,255,255,0.2); font-size: 12px; line-height: 1.6; }
 
     @media(max-width:900px){
       .hero-unified { grid-template-columns: 1fr; gap: 24px; padding: 24px; }
@@ -597,7 +610,57 @@
       </div>
     </div>
 
-    
+    <div class="system-divider reveal">
+      <div class="line"></div>
+      <div class="sys-badge" style="color:var(--txt-muted)">常见问题 Q&A</div>
+      <div class="line"></div>
+    </div>
+
+    <div class="faq-marquee-wrap reveal">
+      <div class="faq-marquee-track">
+        <div class="faq-card">
+           <div class="faq-q"><span>Q</span>什么是加密货币跟单？</div>
+           <div class="faq-a"><span>A</span>加密货币跟单是指通过云端技术，将专业交易员的实盘操作信号，毫秒级无延迟地同步到您的个人MT5账户中。您无需盯盘即可实现自动化交易。</div>
+        </div>
+        <div class="faq-card">
+           <div class="faq-q"><span>Q</span>内部权益群分享的策略单和跟单有什么区别？</div>
+           <div class="faq-a"><span>A</span>内部群的策略单属于即时分享，偏向于日内短线逻辑，需要您手动执行；而智能跟单属于独立运作的资管业务，全自动运行，两者互不绑定。</div>
+        </div>
+        <div class="faq-card">
+           <div class="faq-q"><span>Q</span>跟单期间我可以自己手动平仓或者做单吗？</div>
+           <div class="faq-a"><span>A</span>[请在此处补充您的回答]</div>
+        </div>
+        <div class="faq-card">
+           <div class="faq-q"><span>Q</span>系统的最大回撤和风控是如何设置的？</div>
+           <div class="faq-a"><span>A</span>[请在此处补充您的回答]</div>
+        </div>
+        <div class="faq-card">
+           <div class="faq-q"><span>Q</span>如果遇到极端单边行情，系统会如何处理？</div>
+           <div class="faq-a"><span>A</span>[请在此处补充您的回答]</div>
+        </div>
+        
+        <div class="faq-card">
+           <div class="faq-q"><span>Q</span>什么是加密货币跟单？</div>
+           <div class="faq-a"><span>A</span>加密货币跟单是指通过云端技术，将专业交易员的实盘操作信号，毫秒级无延迟地同步到您的个人MT5账户中。您无需盯盘即可实现自动化交易。</div>
+        </div>
+        <div class="faq-card">
+           <div class="faq-q"><span>Q</span>内部权益群分享的策略单和跟单有什么区别？</div>
+           <div class="faq-a"><span>A</span>内部群的策略单属于即时分享，偏向于日内短线逻辑，需要您手动执行；而智能跟单属于独立运作的资管业务，全自动运行，两者互不绑定。</div>
+        </div>
+        <div class="faq-card">
+           <div class="faq-q"><span>Q</span>跟单期间我可以自己手动平仓或者做单吗？</div>
+           <div class="faq-a"><span>A</span>[请在此处补充您的回答]</div>
+        </div>
+        <div class="faq-card">
+           <div class="faq-q"><span>Q</span>系统的最大回撤和风控是如何设置的？</div>
+           <div class="faq-a"><span>A</span>[请在此处补充您的回答]</div>
+        </div>
+        <div class="faq-card">
+           <div class="faq-q"><span>Q</span>如果遇到极端单边行情，系统会如何处理？</div>
+           <div class="faq-a"><span>A</span>[请在此处补充您的回答]</div>
+        </div>
+      </div>
+    </div>
     <div class="footer">
       免责声明：杠杆交易可能带来高回报，但风险同样很大，请不要使用承受不起的资金参与。过往收益数据仅供参考，不代表未来结果。技术方不对任何最终亏损承担责任。
     </div>
@@ -635,9 +698,6 @@
 
     // 弹窗逻辑 (业务流)
     function openCryptoModal() { document.getElementById('cryptoModal').classList.add('show'); }
-    function openTMGMModal() { document.getElementById('tmgmModal').classList.add('show'); }
-    function openExnessModal() { document.getElementById('exnessModal').classList.add('show'); }
-    function openStockModal() { document.getElementById('stockModal').classList.add('show'); }
     function closeModal(id) { document.getElementById(id).classList.remove('show'); }
 
     // 点击遮罩关闭
@@ -650,11 +710,6 @@
     // 页面跳转逻辑修改为 home.html 对应的锚点
     function goPartner() { window.location.href = 'home.html#partner'; }
     function goContact() { window.location.href = 'home.html#contact'; }
-
-    function handleExnessRedirect() {
-        alert("Exness跟单需要单独链接，请联系小助理获取。");
-        window.location.href = 'home.html#contact';
-    }
 
     // === 🔥 图片放大预览逻辑 (Lightbox) ===
     function openLightbox(src) {
