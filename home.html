@@ -283,10 +283,35 @@
     
     .partner-card-new { display: flex; flex-direction: row; align-items: stretch; padding: 0; }
     
-    .p-col-logo { width: 35%; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(255,255,255,0.02); border-right: 1px solid var(--glass-border); }
+    .p-col-logo { width: 35%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 20px; background: rgba(255,255,255,0.02); border-right: 1px solid var(--glass-border); }
     .p-col-logo img { width: 100%; object-fit: contain; max-width: 140px; transition: 0.3s; }
     .partner-card-new:hover .p-col-logo img { transform: scale(1.1); filter: drop-shadow(0 0 15px rgba(255,255,255,0.3));}
     
+    /* 新增：跳动按钮样式 */
+    .btn-tut-jump {
+        padding: 6px 12px;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--accent-cyan);
+        background: rgba(34, 211, 238, 0.05);
+        border: 1px solid rgba(34, 211, 238, 0.4);
+        border-radius: 6px;
+        text-align: center;
+        animation: tutJump 2s infinite ease-in-out;
+        transition: 0.3s;
+        text-decoration: none;
+        white-space: nowrap;
+    }
+    .btn-tut-jump:hover {
+        background: var(--accent-cyan);
+        color: #000;
+        animation-play-state: paused;
+    }
+    @keyframes tutJump {
+        0%, 100% { transform: translateY(0); box-shadow: 0 0 10px rgba(34, 211, 238, 0.1); }
+        50% { transform: translateY(-4px); box-shadow: 0 4px 12px rgba(34, 211, 238, 0.4); }
+    }
+
     .p-col-info { width: 65%; padding: 20px 24px; display: flex; flex-direction: column; justify-content: center; }
     .p-col-info h3 { font-size: 16px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
     .p-col-info p { font-size: 12px; color: var(--text-muted); margin-bottom: 12px; line-height: 1.5; flex: 1;}
@@ -557,6 +582,7 @@
       <div class="glass-card partner-card-new">
         <div class="p-col-logo">
             <img src="images/tmgm.png" alt="TMGM">
+            <a href="https://www.kdocs.cn/l/cky5wDXDAlmQ?from=docs&reqtype=kdocs&startTime=1778906434010&createDirect=true&newFile=true" target="_blank" class="btn-tut-jump">点击查看开户图文教程</a>
         </div>
         <div class="p-col-info">
           <h3>TMGM <span style="font-size:10px; background:var(--accent-gold); color:#000; padding:2px 6px; border-radius:4px;">强推</span></h3>
