@@ -8,7 +8,7 @@
   <title>GWCAPITAL | 杰明</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@600;700&display=swap" rel="stylesheet">
 
   <style>
     /* === 核心色盘与赛博玻璃质感 === */
@@ -509,6 +509,62 @@
       .tool-left { flex-direction: column; align-items: flex-start; gap: 12px; }
       .tool-row .btn { width: 100%; display: block; }
     }
+    /* === GW CAPITAL · 专业金融机构视觉系统 === */
+    :root {
+      --bg-dark: #06101d;
+      --bg-card: rgba(12, 30, 47, .92);
+      --accent-cyan: #d6b66f;
+      --accent-blue: #d6b66f;
+      --accent-purple: #d6b66f;
+      --accent-gold: #e4c883;
+      --accent-green: #93b59a;
+      --accent-red: #d56e62;
+      --glass-border: rgba(214, 182, 111, .28);
+      --glass-hover: rgba(228, 200, 131, .62);
+      --text-main: #f3f2ed;
+      --text-muted: #aab7c2;
+    }
+    html { background: var(--bg-dark); }
+    body { background: var(--bg-dark); font-family: Inter, "PingFang SC", "Microsoft YaHei", sans-serif; }
+    .bg-container { background: radial-gradient(circle at 87% 14%, rgba(49, 91, 122, .25), transparent 28rem), linear-gradient(135deg, #06101d, #0a1c2e 55%, #071421); }
+    .bg-container::after { content: ""; position: absolute; inset: 0; opacity: .28; background-image: linear-gradient(rgba(214,182,111,.13) 1px, transparent 1px), linear-gradient(90deg, rgba(214,182,111,.13) 1px, transparent 1px); background-size: 74px 74px; mask-image: linear-gradient(to bottom, #000, transparent 80%); }
+    .blob, #mouse-spotlight { display: none; }
+    .wrap { max-width: 1320px; padding: 28px 28px 90px; }
+    .topbar { padding: 13px 18px; border: 1px solid rgba(214,182,111,.35); border-radius: 3px; background: rgba(7, 20, 33, .92); box-shadow: none; }
+    .brand { gap: 12px; color: #f6f3ea; font-size: 16px; letter-spacing: .08em; text-transform: uppercase; }
+    .logo-img { border-radius: 0; box-shadow: none; }
+    .nav { gap: 12px; }
+    .nav a { color: #b7c0c8; border-radius: 0; letter-spacing: .05em; }
+    .nav a:hover { color: var(--accent-gold); background: transparent; }
+    .cta, .btn-solid-blue, .btn-solid-gold, .btn-join-jidi { border: 1px solid var(--accent-gold) !important; border-radius: 1px !important; background: var(--accent-gold) !important; color: #111b25 !important; box-shadow: none !important; animation: none !important; }
+    .cta:hover, .btn-solid-blue:hover, .btn-solid-gold:hover, .btn-join-jidi:hover { background: #f2d99c !important; transform: translateY(-2px); }
+    .glass-card { border: 1px solid rgba(214,182,111,.28); border-radius: 2px; background: rgba(12,30,47,.92); box-shadow: none; backdrop-filter: none; }
+    .glass-card:hover { border-color: rgba(228,200,131,.7); background: rgba(16,37,56,.96); box-shadow: 0 14px 34px rgba(0,0,0,.2); }
+    .hero-unified { margin-top: 31px; padding: clamp(26px, 4vw, 54px); gap: 45px; background: linear-gradient(115deg, rgba(18,43,65,.98), rgba(7,20,33,.95)); }
+    .hero-left h1 { font-family: "Noto Serif SC", Georgia, serif; font-size: clamp(35px,4vw,54px); font-weight: 700; letter-spacing: -.06em; white-space: normal; }
+    .hero-left h1 span { color: var(--accent-gold); background: none; -webkit-text-fill-color: currentColor; }
+    .hero-left .tagline { font-size: 15px; letter-spacing: .03em; }
+    .ip-box { border-left-color: var(--accent-gold); border-radius: 0; background: rgba(4,13,23,.45); }
+    .ip-box h3 span, .tag { border-radius: 1px; color: var(--accent-gold); border-color: rgba(214,182,111,.45); background: rgba(214,182,111,.1); }
+    .qr-box-unified { border-radius: 0; border-color: rgba(214,182,111,.65); background: #f7f4e9; }
+    .qr-box-unified img { border-color: var(--accent-gold); border-radius: 0; box-shadow: none; }
+    .tvStage { border-radius: 0; box-shadow: none; border: 1px solid rgba(214,182,111,.25); }
+    .slide img { opacity: .82; filter: saturate(.7) contrast(1.03); }
+    .navBtn { border-radius: 0; color: var(--accent-gold); border-color: var(--accent-gold); }
+    .sectionHead { margin: 80px 0 28px; gap: 16px; }
+    .sectionHead h2 { font-family: "Noto Serif SC", Georgia, serif; font-size: 23px; font-weight: 600; letter-spacing: .04em; }
+    .sectionHead .dot { width: 7px; height: 7px; border-radius: 0; background: var(--accent-gold) !important; box-shadow: none; transform: rotate(45deg); }
+    .sectionHead .line.left, .sectionHead .line.right { background: rgba(214,182,111,.26); }
+    .btn { border-radius: 1px; }
+    .btn-outline-cyan, .btn-outline-gold, .btn-outline-red { color: var(--accent-gold) !important; border-color: rgba(214,182,111,.7) !important; background: transparent !important; }
+    .btn-outline-cyan:hover, .btn-outline-gold:hover, .btn-outline-red:hover { background: var(--accent-gold) !important; color: #101a24 !important; box-shadow: none !important; }
+    .feedback-card { border-radius: 1px; border-color: rgba(214,182,111,.25); }
+    .feedback-card:hover { border-color: var(--accent-gold); box-shadow: none; }
+    .price-row.vip, .price-row.free, .comp-card, .risk-box { background: rgba(12,30,47,.94) !important; }
+    .mini-icon, .tut-icon, .tool-icon-mini { border-radius: 1px !important; }
+    .modal-box, .modal-panel { border: 1px solid var(--accent-gold) !important; border-radius: 2px !important; background: #0b1e30 !important; box-shadow: 0 18px 60px rgba(0,0,0,.45) !important; }
+    .modal-title { color: var(--accent-gold) !important; }
+    @media (max-width: 760px) { .wrap { padding: 16px 16px 60px; } .topbar { top: 8px; } .nav { display: none; } .hero-unified { gap: 28px; } }
   </style>
 </head>
 

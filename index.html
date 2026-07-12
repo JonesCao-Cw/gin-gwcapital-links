@@ -3,258 +3,213 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GW内部量化研习社 | 资料库</title>
+  <title>GW Capital | 内部量化研习社</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
   <link rel="icon" href="images/logo.png" type="image/png">
-
   <style>
-    /* === 与主页一致的暗黑科技风 === */
     :root {
-      --bg-dark: #030508;
-      --accent-cyan: #22d3ee;
-      --accent-blue: #6366f1;
-      --accent-purple: #a855f7;
-      --glass-bg: rgba(20, 25, 35, 0.6);
-      --glass-border: rgba(255, 255, 255, 0.08);
-      --txt-main: rgba(255, 255, 255, 0.95);
-      --txt-muted: rgba(255, 255, 255, 0.65);
+      --navy-950: #06101d;
+      --navy-900: #09192a;
+      --navy-800: #102942;
+      --ink: #eff3f5;
+      --muted: #a9b6c2;
+      --gold: #c9a45c;
+      --gold-light: #efd397;
+      --line: rgba(223, 199, 145, .20);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    
+
     body {
-      font-family: "Inter", sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--txt-main);
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      /* 静态深邃背景 */
-      background-image: 
-        radial-gradient(circle at 15% 10%, rgba(99, 102, 241, 0.15), transparent 40%),
-        radial-gradient(circle at 85% 90%, rgba(34, 211, 238, 0.12), transparent 40%);
+      min-height: 100vh;
+      color: var(--ink);
+      background: var(--navy-950);
+      font-family: Inter, "PingFang SC", "Microsoft YaHei", sans-serif;
+      overflow-x: hidden;
     }
 
-    /* === 核心卡片 === */
-    .container {
-      width: 90%;
-      max-width: 480px;
-      padding: 40px 30px;
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: 24px;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-      text-align: center;
+    .page-shell {
       position: relative;
-      z-index: 10;
-      transform: translateY(0);
-      animation: float 6s ease-in-out infinite;
+      isolation: isolate;
+      min-height: 100vh;
+      overflow: hidden;
+      padding: 30px clamp(24px, 7vw, 112px) 38px;
+      background:
+        radial-gradient(circle at 83% 42%, rgba(38, 85, 118, .22), transparent 26rem),
+        linear-gradient(115deg, #06101d 0%, #091a2b 62%, #071421 100%);
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
-
-    /* 图标 */
-    .icon-box {
-      width: 72px;
-      height: 72px;
-      margin: 0 auto 24px;
-      background: linear-gradient(135deg, rgba(34, 211, 238, 0.1), rgba(99, 102, 241, 0.1));
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
-    }
-    .icon-box svg { width: 32px; height: 32px; color: var(--accent-cyan); }
-
-    h1 {
-      font-size: 22px;
-      font-weight: 800;
-      margin-bottom: 12px;
-      background: linear-gradient(90deg, #fff, var(--accent-cyan));
-      -webkit-background-clip: text;
-      color: transparent;
-      letter-spacing: -0.5px;
-    }
-
-    p {
-      font-size: 14px;
-      color: var(--txt-muted);
-      line-height: 1.6;
-      margin-bottom: 32px;
-    }
-
-    /* 按钮 */
-    .btn-start {
-      display: block;
-      width: 100%;
-      padding: 16px;
-      border: none;
-      border-radius: 12px;
-      background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
-      color: white;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.3s;
-      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
-      text-decoration: none;
-    }
-
-    .btn-start:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(34, 211, 238, 0.5);
-    }
-
-    /* 列表区域 */
-    .info-list {
-      margin-top: 32px;
-      text-align: left;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 24px;
-    }
-
-    .list-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 14px;
-      font-size: 13px;
-      color: var(--txt-muted);
-    }
-    
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent-cyan);
-      box-shadow: 0 0 8px var(--accent-cyan);
-    }
-    
-    .notice {
-      color: var(--accent-purple);
-      font-weight: 600;
-    }
-    .dot-notice {
-      background: var(--accent-purple);
-      box-shadow: 0 0 8px var(--accent-purple);
-    }
-
-    /* === 🔥 科技感过场动画 Overlay === */
-    .tech-overlay {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: #000;
-      z-index: 9999;
-      display: none; /* 默认隐藏 */
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .loader-ring {
-      width: 80px; height: 80px;
-      border: 4px solid rgba(34, 211, 238, 0.2);
-      border-top: 4px solid var(--accent-cyan);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-bottom: 20px;
-    }
-    
-    .loading-text {
-      font-family: monospace;
-      color: var(--accent-cyan);
-      font-size: 14px;
-      letter-spacing: 2px;
-      animation: blink 1s infinite;
-    }
-
-    .code-lines {
+    .page-shell::before,
+    .page-shell::after {
       position: absolute;
-      bottom: 20px;
-      left: 20px;
-      color: rgba(255,255,255,0.3);
-      font-family: monospace;
-      font-size: 10px;
-      text-align: left;
+      z-index: -1;
+      content: "";
+      pointer-events: none;
     }
 
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    .page-shell::before {
+      inset: 0;
+      opacity: .28;
+      background-image:
+        linear-gradient(rgba(201, 164, 92, .12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201, 164, 92, .12) 1px, transparent 1px);
+      background-size: 72px 72px;
+      -webkit-mask-image: linear-gradient(to bottom, black, transparent 82%);
+      mask-image: linear-gradient(to bottom, black, transparent 82%);
+    }
 
+    .page-shell::after {
+      width: min(53vw, 740px);
+      height: min(53vw, 740px);
+      right: -17vw;
+      top: 50%;
+      border: 1px solid rgba(201, 164, 92, .22);
+      border-radius: 50%;
+      box-shadow: 0 0 0 76px rgba(201, 164, 92, .04), 0 0 0 152px rgba(201, 164, 92, .025);
+      transform: translateY(-50%);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding-bottom: 25px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-mark {
+      display: grid;
+      width: 35px;
+      height: 35px;
+      place-items: center;
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      font-family: Georgia, serif;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .brand-name { font-size: 13px; font-weight: 700; letter-spacing: .16em; }
+    .brand-sub { margin-top: 3px; color: var(--muted); font-size: 10px; letter-spacing: .12em; }
+    .access-status { color: var(--gold-light); font-family: "DM Mono", monospace; font-size: 10px; letter-spacing: .12em; }
+    .access-status::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 8px; border-radius: 50%; background: #81ad8b; box-shadow: 0 0 8px #81ad8b; }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(300px, .9fr);
+      align-items: center;
+      gap: clamp(48px, 8vw, 150px);
+      width: 100%;
+      max-width: 1280px;
+      min-height: calc(100vh - 150px);
+      margin: 0 auto;
+    }
+
+    .eyebrow { display: flex; align-items: center; gap: 11px; color: var(--gold-light); font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: .15em; }
+    .eyebrow::before { content: ""; width: 35px; height: 1px; background: var(--gold); }
+    h1 { max-width: 720px; margin: 20px 0 24px; font-family: "Noto Serif SC", Georgia, serif; font-size: clamp(42px, 5vw, 72px); font-weight: 700; line-height: 1.25; letter-spacing: -.055em; }
+    h1 em { color: var(--gold-light); font-style: normal; }
+    .intro { max-width: 525px; color: var(--muted); font-size: 15px; line-height: 1.9; }
+    .entry-link { display: inline-flex; align-items: center; gap: 17px; margin-top: 37px; padding: 16px 20px 16px 23px; border: 1px solid var(--gold); color: #15120d; background: var(--gold-light); font-size: 14px; font-weight: 700; letter-spacing: .08em; cursor: pointer; transition: .25s ease; }
+    .entry-link span { font-size: 21px; font-weight: 400; line-height: 12px; transition: transform .25s ease; }
+    .entry-link:hover { background: #fff0c6; box-shadow: 0 10px 30px rgba(201, 164, 92, .18); transform: translateY(-2px); }
+    .entry-link:hover span { transform: translateX(4px); }
+
+    .credentials { display: grid; grid-template-columns: repeat(3, auto); gap: 25px; margin-top: 64px; }
+    .credential { padding-left: 13px; border-left: 1px solid var(--gold); }
+    .credential strong { display: block; margin-bottom: 4px; color: var(--gold-light); font-family: Georgia, serif; font-size: 20px; font-weight: 400; }
+    .credential small { color: var(--muted); font-size: 10px; letter-spacing: .08em; }
+
+    .briefing-card { position: relative; padding: clamp(26px, 3vw, 42px); border: 1px solid rgba(201, 164, 92, .4); background: linear-gradient(145deg, rgba(18, 43, 65, .94), rgba(7, 20, 34, .88)); box-shadow: 20px 24px 55px rgba(0, 0, 0, .23); }
+    .briefing-card::before { position: absolute; top: 0; right: 22px; width: 57px; height: 3px; content: ""; background: var(--gold); }
+    .card-label { color: var(--gold-light); font-family: "DM Mono", monospace; font-size: 10px; letter-spacing: .14em; }
+    .briefing-card h2 { margin: 17px 0 9px; font-family: "Noto Serif SC", Georgia, serif; font-size: 25px; font-weight: 600; }
+    .briefing-card > p { padding-bottom: 26px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 13px; line-height: 1.75; }
+    .updates { list-style: none; }
+    .updates li { display: grid; grid-template-columns: 13px 1fr auto; align-items: center; gap: 10px; padding: 17px 0; border-bottom: 1px solid rgba(223, 199, 145, .10); color: #dce3e6; font-size: 13px; }
+    .updates li::before { content: ""; width: 5px; height: 5px; border: 1px solid var(--gold); transform: rotate(45deg); }
+    .updates time { color: #8c9da9; font-family: "DM Mono", monospace; font-size: 10px; }
+    .meeting { display: flex; justify-content: space-between; gap: 16px; margin-top: 27px; padding: 14px 0 0; color: var(--gold-light); font-size: 12px; }
+    .meeting strong { font-family: "DM Mono", monospace; font-size: 10px; font-weight: 500; letter-spacing: .06em; white-space: nowrap; }
+
+    .footer-note { position: absolute; bottom: 22px; left: clamp(24px, 7vw, 112px); color: rgba(169, 182, 194, .54); font-family: "DM Mono", monospace; font-size: 9px; letter-spacing: .09em; }
+
+    .entry-overlay { position: fixed; inset: 0; z-index: 10; display: none; align-items: center; justify-content: center; background: #06101d; }
+    .entry-overlay.active { display: flex; }
+    .entry-overlay::before { position: absolute; inset: 0; content: ""; opacity: .25; background-image: linear-gradient(rgba(201,164,92,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(201,164,92,.12) 1px, transparent 1px); background-size: 60px 60px; }
+    .loading { position: relative; text-align: center; }
+    .loading-mark { width: 54px; height: 54px; margin: 0 auto 19px; border: 1px solid var(--gold); color: var(--gold-light); display: grid; place-items: center; font-family: Georgia, serif; font-size: 25px; animation: pulse 1.3s ease-in-out infinite; }
+    .loading p { color: var(--gold-light); font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: .14em; }
+    @keyframes pulse { 50% { box-shadow: 0 0 25px rgba(201,164,92,.42); } }
+
+    @media (max-width: 760px) {
+      .page-shell { padding-top: 22px; }
+      .access-status { display: none; }
+      main { grid-template-columns: 1fr; padding: 68px 0 70px; }
+      .credentials { margin-top: 43px; gap: 16px; }
+      .credential strong { font-size: 17px; }
+      .briefing-card { max-width: 530px; }
+      .footer-note { position: static; margin-top: -35px; }
+    }
+    @media (max-width: 420px) { .credentials { grid-template-columns: 1fr 1fr; } .credential:last-child { display: none; } }
   </style>
 </head>
 <body>
-
-  <div class="container">
-    <div class="icon-box">
-      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-      </svg>
-    </div>
-
-    <h1>学习职业交易员的系统交易术</h1>
-    <p>欢迎访问内部量化研习社。<br>点击下方按钮接入系统，获取最新策略与教研资料。</p>
-
-    <button class="btn-start" onclick="startSystem()">
-      马上开始
-    </button>
-
-    <div class="info-list">
-      <div class="list-item">
-        <div class="dot"></div>
-        <span>近期更新：实战技术分析 (Technical Analysis)</span>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">GW</div>
+        <div><div class="brand-name">GW CAPITAL</div><div class="brand-sub">QUANTITATIVE RESEARCH</div></div>
       </div>
-      <div class="list-item">
-        <div class="dot"></div>
-        <span>近期更新：全球宏观经济分析 (Macro)</span>
-      </div>
-      <div class="list-item notice">
-        <div class="dot dot-notice"></div>
-        <span>通知：每周四晚上九点教研组会议</span>
-      </div>
-    </div>
+      <div class="access-status">MEMBER ACCESS · SECURE</div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div class="eyebrow">INTERNAL QUANTITATIVE ACADEMY</div>
+        <h1 id="page-title">以系统化研究，<br><em>穿越市场周期。</em></h1>
+        <p class="intro">GW 内部量化研习社面向专业交易者，沉淀策略研究、宏观框架与实盘复盘，以长期主义构建可复用的交易能力。</p>
+        <button class="entry-link" type="button" onclick="startSystem()">进入研习社资料库 <span>→</span></button>
+        <div class="credentials">
+          <div class="credential"><strong>Research</strong><small>系统研究框架</small></div>
+          <div class="credential"><strong>Strategy</strong><small>策略实践与复盘</small></div>
+          <div class="credential"><strong>Macro</strong><small>全球宏观观察</small></div>
+        </div>
+      </section>
+
+      <aside class="briefing-card" aria-label="本周研报摘要">
+        <div class="card-label">WEEKLY RESEARCH BRIEFING · 07</div>
+        <h2>本周研报摘要</h2>
+        <p>研究团队持续更新核心知识库，以下为近期可访问的内容。</p>
+        <ul class="updates">
+          <li><span>实战技术分析：结构与周期</span><time>TA-01</time></li>
+          <li><span>全球宏观经济分析框架</span><time>MACRO</time></li>
+          <li><span>系统化策略的风险管理</span><time>RISK-04</time></li>
+        </ul>
+        <div class="meeting"><span>下次教研组会议</span><strong>THU · 21:00</strong></div>
+      </aside>
+    </main>
+    <div class="footer-note">© 2026 GW CAPITAL · INTERNAL USE ONLY</div>
   </div>
 
-  <div class="tech-overlay" id="overlay">
-    <div class="loader-ring"></div>
-    <div class="loading-text" id="loadingText">SYSTEM INITIALIZING...</div>
-    <div class="code-lines">
-      > Connecting to GW Server...<br>
-      > Verifying User Token...<br>
-      > Access Granted.
-    </div>
+  <div class="entry-overlay" id="overlay" aria-live="polite">
+    <div class="loading"><div class="loading-mark">GW</div><p id="loadingText">VERIFYING MEMBER ACCESS</p></div>
   </div>
 
   <script>
     function startSystem() {
       const overlay = document.getElementById('overlay');
       const text = document.getElementById('loadingText');
-      
-      // 1. 显示过场动画
-      overlay.style.display = 'flex';
-      
-      // 2. 模拟文字变化
-      setTimeout(() => { text.innerText = "CONNECTING..."; }, 800);
-      setTimeout(() => { text.innerText = "ACCESS GRANTED"; text.style.color = "#34d399"; }, 1800);
-
-      // 3. 跳转 (2秒后)
-      setTimeout(() => {
-        // 🔥 这里跳转到您真正的交易主页
-        window.location.href = 'home.html';
-      }, 2200);
+      overlay.classList.add('active');
+      setTimeout(() => { text.innerText = 'CONNECTING TO RESEARCH DESK'; }, 700);
+      setTimeout(() => { text.innerText = 'ACCESS GRANTED'; }, 1500);
+      setTimeout(() => { window.location.href = 'home.html'; }, 1950);
     }
   </script>
-
 </body>
 </html>
